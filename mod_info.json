@@ -1,0 +1,10 @@
+{
+  "id":"chatter",
+  "name":"Combat Chatter",
+  "author":"Histidine",
+  "version":"0.1 alpha",
+  "utility":"true",
+  "description":"bla",
+  "gameVersion":"0.7a",
+  "jars":["jars/CombatChatter.jar"],
+}

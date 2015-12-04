@@ -1,0 +1,5 @@
+{
+	"plugins":{
+		"ChatterCombatPlugin":"org.histidine.chatter.combat.ChatterCombatPlugin",
+	},
+}

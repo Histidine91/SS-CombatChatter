@@ -1,0 +1,61 @@
+{
+	"name":"default",
+	"personalities":["cautious","steady"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,	# not sure what I want to do with this yet
+	
+	"lines":{
+		"start":[
+			"Let's do this.",
+			"It's time to kick ass and chew bubble gum.",
+			"Glorious victory awaits!"
+		],
+		"start_escape":[
+			"Let's get out of here!",
+			"Run, damn it!"
+		],
+		"out_of_missiles":[
+			"Out of missiles."
+		],
+		"need_help":[
+			"I could use some help over here!",
+			"I'm in trouble here!",
+		],
+		"pursuing":[
+			"Pursuing target.",
+			"Engaging the enemy.",
+			"Contact, moving to intercept.",
+		],
+		"running":[
+			"I'm outta here!"
+		],
+		"hull_90":[
+			"I've taken hull damage.",
+			"Hull breach reported.",
+		],
+		"hull_50":[
+			"Hull integrity at 50%!",
+			"I'm down to half hull strength!"
+		],
+		"hull_30":[
+			"My hull's down to 30%!",
+			"Hull status critical!",
+			"My ship's in critical condition!"
+			#"Breach in starboard fusion chamber!",
+		],
+		"overload":[
+			"Help! I've overloaded!",
+			"Flux systems going haywire!"
+		],
+		"death":[
+			"NOOOOOOO!",
+			"WRYYYYYYYYY!",
+			"AAAAAAAAAAA!",
+		],
+		"victory":[
+			"The day is ours!",
+			"We have triumphed!",
+		],
+	}
+}
