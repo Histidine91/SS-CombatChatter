@@ -40,18 +40,19 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
 	public static final String CHARACTERS_DIR = "data/config/characters/";
 	public static final String CHARACTERS_LIST = CHARACTERS_DIR + "characters.csv";
+	public static final String CONFIG_FILE = "chatterConfig.json";
 	public static Logger log = Global.getLogger(ChatterCombatPlugin.class);
 	
 	public static final Map<String, ChatterCharacter> CHARACTERS = new HashMap<>();
 	public static final float PRIORITY_PER_MESSAGE = 20;
-	public static final float PRIORITY_DECAY = 3;	// TODO
+	public static final float PRIORITY_DECAY = 3;
 	//public static final Map<MessageType, Float> MESSAGE_TYPE_PRIORITY = new HashMap<>();
 	public static final Map<MessageType, Float> MESSAGE_TYPE_MAX_PRIORITY = new HashMap<>();
-	public static final Set<MessageType> RANDOM_CHATTER_TYPES = new HashSet<>();
+	public static final Set<MessageType> IDLE_CHATTER_TYPES = new HashSet<>();
 	public static final float MAX_TIME_FOR_INTRO = 8;
 	public static final float MESSAGE_INTERVAL = 3;
 	
-	public static boolean allowRandomChatter = true;	// TODO allow external config
+	public static boolean allowIdleChatter = true;
 	
 	protected CombatEngineAPI engine;
 	protected IntervalUtil interval = new IntervalUtil(0.25f, 0.3f);
@@ -66,6 +67,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	// TODO externalise
 	static {
+		try {
+			JSONObject settings = Global.getSettings().loadJSON(CONFIG_FILE);
+			allowIdleChatter = settings.optBoolean("allowIdleChatter", allowIdleChatter);
+		} 
+		catch (IOException | JSONException ex) {
+			log.error(ex);
+		}
+		
 		loadCharacters();
 		initPriorities();
 	}
@@ -81,14 +90,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_30, 60f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.DEATH, 10f);
 		
-		RANDOM_CHATTER_TYPES.add(MessageType.START);
-		RANDOM_CHATTER_TYPES.add(MessageType.START_ESCAPE);
-		RANDOM_CHATTER_TYPES.add(MessageType.PURSUING);
-		RANDOM_CHATTER_TYPES.add(MessageType.RUNNING);
+		IDLE_CHATTER_TYPES.add(MessageType.START);
+		IDLE_CHATTER_TYPES.add(MessageType.START_ESCAPE);
+		IDLE_CHATTER_TYPES.add(MessageType.PURSUING);
+		IDLE_CHATTER_TYPES.add(MessageType.RUNNING);
 		//RANDOM_CHATTER_TYPES.add(MessageType.OVERLOAD);
-		RANDOM_CHATTER_TYPES.add(MessageType.NEED_HELP);
-		RANDOM_CHATTER_TYPES.add(MessageType.VICTORY);
-		RANDOM_CHATTER_TYPES.add(MessageType.DEATH);
+		IDLE_CHATTER_TYPES.add(MessageType.NEED_HELP);
+		IDLE_CHATTER_TYPES.add(MessageType.VICTORY);
+		IDLE_CHATTER_TYPES.add(MessageType.DEATH);
 	}
 	
 	protected static void loadCharacters()
@@ -184,7 +193,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printRandomMessage(FleetMemberAPI member, MessageType category)
 	{
-		if (!allowRandomChatter && RANDOM_CHATTER_TYPES.contains(category))
+		if (!allowIdleChatter && IDLE_CHATTER_TYPES.contains(category))
 			return false;
 		
 		if (!clearPriorityThreshold(member, category))
@@ -286,6 +295,26 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 	}
 	
+	protected void playIntroMessage(List<FleetMemberAPI> deployed)
+	{
+		if (timeElapsed > MAX_TIME_FOR_INTRO) {
+			introDone = true;
+		}
+		else {
+			FleetMemberAPI random = pickRandomMemberFromList(deployed);
+			if (random != null)
+			{
+				//DeployedFleetMemberAPI randomD = fm.getDeployedFleetMember(fm.getShipFor(random));
+				//engine.getCombatUI().addMessage(0, engine.getContext().getPlayerGoal().name());
+				if (engine.getContext().getPlayerGoal() == FleetGoal.ESCAPE)
+					printRandomMessage(random, MessageType.START_ESCAPE);
+				else
+					printRandomMessage(random, MessageType.START);
+				introDone = true;
+			}
+		}
+	}
+	
 	// TODO
 	protected FleetMemberAPI pickRandomMemberFromList(List<FleetMemberAPI> members)
 	{
@@ -331,21 +360,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		if (!introDone)
 		{
-			if (timeElapsed > MAX_TIME_FOR_INTRO) {
-				introDone = true;
-			}
-			else {
-				FleetMemberAPI random = pickRandomMemberFromList(deployed);
-				if (random != null)
-				{
-					//DeployedFleetMemberAPI randomD = fm.getDeployedFleetMember(fm.getShipFor(random));
-					if (engine.getContext().getPlayerGoal() == FleetGoal.ESCAPE)
-						printRandomMessage(random, MessageType.START_ESCAPE);
-					else
-						printRandomMessage(random, MessageType.START);
-					introDone = true;
-				}
-			}
+			playIntroMessage(deployed);
 		}
 		
 		boolean printed = false;

@@ -1,0 +1,4 @@
+{
+	# false hides some low-priority messages
+	"allowIdleChatter":true,	
+}
