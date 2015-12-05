@@ -60,7 +60,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected FleetMemberAPI lastTalker = null;
 	protected float timeElapsed = 0;
 	protected float lastMessageTime = 0;
-	protected float priorityThreshold = 0;
+	protected float priorityThreshold = 0;	// if this is high, low priority messages won't be displayed
 	protected boolean introDone = false;
 	protected boolean victory = false;
 	
@@ -94,11 +94,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected static void loadCharacters()
 	{
 		try {
-            JSONArray charCSV = Global.getSettings().getMergedSpreadsheetDataForMod("character", CHARACTERS_LIST, "chatter");
-            for(int x = 0; x < charCSV.length(); x++)
-            {
-                JSONObject row = charCSV.getJSONObject(x);
-                String characterName = row.getString("character");
+			JSONArray charCSV = Global.getSettings().getMergedSpreadsheetDataForMod("character", CHARACTERS_LIST, "chatter");
+			for(int x = 0; x < charCSV.length(); x++)
+			{
+				JSONObject row = charCSV.getJSONObject(x);
+				String characterName = row.getString("character");
 				try {
 					JSONObject characterEntry = Global.getSettings().loadJSON(CHARACTERS_DIR + characterName + ".json");
 					ChatterCharacter character = new ChatterCharacter();
@@ -127,10 +127,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				} catch (IOException | JSONException ex) {	// can't read character file
 					log.error(ex);
 				}
-            }
-        } catch (Exception ex) {
-            log.error(ex);
-        }
+			}
+		} catch (Exception ex) {
+			log.error(ex);
+		}
 	}
 	
 	protected ShipStateData makeShipStateEntry(FleetMemberAPI member)
@@ -187,12 +187,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!allowRandomChatter && RANDOM_CHATTER_TYPES.contains(category))
 			return false;
 		
-		float threshold = priorityThreshold;
-		if (lastTalker == member) threshold *= 2f;
-		
-		if (getMessageMaxPriority(category) <= threshold)
+		if (!clearPriorityThreshold(member, category))
 		{
-			log.info("Threshold too high for message " + category.name() + ": " + threshold);
+			//log.info("Threshold too high for message " + category.name() + ": " + threshold);
 			return false;
 		}
 		
@@ -224,6 +221,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return true;
 	}
 	
+	protected boolean clearPriorityThreshold(FleetMemberAPI member, MessageType category)
+	{
+		float threshold = priorityThreshold;
+		if (lastTalker == member) threshold *= 2f;
+		
+		return (getMessageMaxPriority(category) > threshold);
+	}
+	
 	/**
 	 * Writes hull damage warning messages
 	 * @param member
@@ -233,7 +238,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printHullMessage(FleetMemberAPI member, MessageType category, int amount)
 	{
-		if (getMessageMaxPriority(category) <= priorityThreshold || !hasLine(member, category))
+		if (category == MessageType.HULL_50)
+			Global.getSoundPlayer().playUISound("cr_allied_warning", 1, 1);
+		else if (category == MessageType.HULL_30)
+			Global.getSoundPlayer().playUISound("cr_allied_malfunction", 1, 1);
+		if (!clearPriorityThreshold(member, category) || !hasLine(member, category))
 		{
 			// short form
 			String message1 = " " + StringHelper.getString("chatter_general", "isAt") + " ";
@@ -254,9 +263,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 	}
 	
+	/**
+	 * Writes hull damage warning messages
+	 * @param member
+	 * @return true if long form message was printed, false otherwise
+	 */
 	protected boolean printOverloadMessage(FleetMemberAPI member)
 	{
-		if (getMessageMaxPriority(MessageType.OVERLOAD) <= priorityThreshold || !hasLine(member, MessageType.OVERLOAD))
+		if (clearPriorityThreshold(member, MessageType.OVERLOAD) || !hasLine(member, MessageType.OVERLOAD))
 		{
 			// short form
 			String message = " " + StringHelper.getString("chatter_general", "hasOverloaded") + "!";
