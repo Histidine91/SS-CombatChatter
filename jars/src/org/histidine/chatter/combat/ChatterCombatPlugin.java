@@ -51,7 +51,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final float MAX_TIME_FOR_INTRO = 8;
 	public static final float MESSAGE_INTERVAL = 3;
 	
-	public static boolean allowRandomChatter = true;	// TODO allow remtoe config
+	public static boolean allowRandomChatter = true;	// TODO allow external config
 	
 	protected CombatEngineAPI engine;
 	protected IntervalUtil interval = new IntervalUtil(0.25f, 0.3f);
@@ -72,10 +72,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	protected static void initPriorities()
 	{
-		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.PURSUING, 5f);
+		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.PURSUING, 0f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.RUNNING, 20f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.OVERLOAD, 30f);
-		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.NEED_HELP, 30f);
+		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.NEED_HELP, 5f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_90, 20f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_50, 40f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_30, 60f);
@@ -158,6 +158,24 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return MESSAGE_TYPE_MAX_PRIORITY.get(category);
 	}
 	
+	protected boolean hasLine(FleetMemberAPI member, MessageType category)
+	{
+		ShipStateData stateData = getShipStateData(member);
+		String character = stateData.characterName;
+		if (!CHARACTERS.containsKey(character))
+			character = "default";
+		
+		List<String> lines = CHARACTERS.get(character).lines.get(category);
+		return lines != null && !lines.isEmpty();
+	}
+	
+	protected ShipStateData getShipStateData(FleetMemberAPI member)
+	{
+		if (!states.containsKey(member))
+			makeShipStateEntry(member);
+		return states.get(member);
+	}
+	
 	/**
 	 * Writes a random message of the appropriate category, based on the {@code member}'s assigned character
 	 * @param member
@@ -178,9 +196,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return false;
 		}
 		
-		if (!states.containsKey(member))
-			makeShipStateEntry(member);
-		ShipStateData stateData = states.get(member);
+		ShipStateData stateData = getShipStateData(member);
 		String character = stateData.characterName;
 		if (!CHARACTERS.containsKey(character))
 			character = "default";
@@ -191,6 +207,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			log.warn("Missing line category " + category.name() + " for character " + character);
 			return false;
 		}
+		if (lines.isEmpty()) return false;
+		
 		String message = ": \"" + GeneralUtils.getRandomListElement(lines) + "\"";
 		String name = getShipName(member);
 		Color textColor = Global.getSettings().getColor("standardTextColor");
@@ -215,7 +233,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printHullMessage(FleetMemberAPI member, MessageType category, int amount)
 	{
-		if (getMessageMaxPriority(category) <= priorityThreshold)
+		if (getMessageMaxPriority(category) <= priorityThreshold || !hasLine(member, category))
 		{
 			// short form
 			String message1 = " " + StringHelper.getString("chatter_general", "isAt") + " ";
@@ -232,8 +250,25 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		else
 		{
-			printRandomMessage(member, category);
-			return true;
+			return printRandomMessage(member, category);
+		}
+	}
+	
+	protected boolean printOverloadMessage(FleetMemberAPI member)
+	{
+		if (getMessageMaxPriority(MessageType.OVERLOAD) <= priorityThreshold || !hasLine(member, MessageType.OVERLOAD))
+		{
+			// short form
+			String message = " " + StringHelper.getString("chatter_general", "hasOverloaded") + "!";
+			String name = getShipName(member);
+			Color textColor = Global.getSettings().getColor("standardTextColor");
+			engine.getCombatUI().addMessage(1, member, Global.getSettings().getColor("textFriendColor"), name, 
+					Global.getSettings().getColor("standardTextColor"), message);
+			return false;
+		}
+		else
+		{
+			return printRandomMessage(member, MessageType.OVERLOAD);
 		}
 	}
 	
@@ -249,6 +284,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			float weight = FleetFactoryV2.getPointsForVariant(member.getVariant().getHullVariantId());
 			if (member.getCaptain() != null) weight *= 4;
 			if (member.isFighterWing()) weight *= 0.5f;
+			
+			ShipStateData stateData = getShipStateData(member);
+			String character = stateData.characterName;
+			if (!CHARACTERS.containsKey(character))
+				character = "default";
+
+			weight *= CHARACTERS.get(character).talkativeness;
+			
 			picker.add(member, weight);
 		}
 		if (picker.isEmpty()) return null;
@@ -308,9 +351,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (member.isFighterWing()) continue;
 			if (member.isFlagship()) continue;
 			
-			if (!states.containsKey(member))
-				makeShipStateEntry(member);
-			ShipStateData stateData = states.get(member);
+			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
 			ShipAPI ship = fm.getShipFor(member);
 			float hull = ship.getHullLevel();
@@ -328,11 +369,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			stateData.hull = hull;
 		}
 		
-		if (printed) return;
+		boolean canPrint = printed;
+		//if (printed) return;
 		if (timeElapsed < lastMessageTime + MESSAGE_INTERVAL)
 		{
-			log.info("Too soon for next message: " + timeElapsed + " / " + lastMessageTime);
-			return;
+			//log.info("Too soon for next message: " + timeElapsed + " / " + lastMessageTime);
+			//return;
+			canPrint = false;
 		}
 		
 		for (FleetMemberAPI member : deployed)
@@ -341,9 +384,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			//if (member.isFighterWing()) continue;
 			if (member.isFlagship()) continue;
 			
-			if (!states.containsKey(member))
-				makeShipStateEntry(member);
-			ShipStateData stateData = states.get(member);
+			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
 			ShipAPI ship = fm.getShipFor(member);
 			ShipwideAIFlags flags = ship.getAIFlags();
@@ -354,15 +395,17 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				stateData.dead = true;
 				continue;
 			}
-			boolean overloaded = ship.getFluxTracker().isOverloaded();
+			boolean overloaded = false;
+			if (ship.getFluxTracker() != null) overloaded = ship.getFluxTracker().isOverloaded();
 			
-			if (!printed)
+			if (!isFighter && overloaded && !stateData.overloaded)
+				printed = printOverloadMessage(member);
+			
+			stateData.overloaded = overloaded;
+			
+			if (flags != null && (canPrint || !printed))
 			{
-				if (!isFighter && overloaded && !stateData.overloaded)
-					printed = printRandomMessage(member, MessageType.OVERLOAD);
-				else if (flags == null)
-					continue;
-				else if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
+				if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
 					printed = printRandomMessage(member, MessageType.NEED_HELP);
 				else if (flags.hasFlag(AIFlags.PURSUING) && !stateData.pursuing)	// fighters can say this
 					printed = printRandomMessage(member, MessageType.PURSUING);
@@ -373,7 +416,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			//log.info(member.getShipName() + " running? " + flags.hasFlag(AIFlags.RUN_QUICKLY));
 			//log.info(member.getShipName() + " needs help? " + flags.hasFlag(AIFlags.NEEDS_HELP));
 			
-			stateData.overloaded = overloaded;
 			stateData.pursuing = flags.hasFlag(AIFlags.PURSUING);
 			stateData.running = flags.hasFlag(AIFlags.RUN_QUICKLY);
 			stateData.needHelp = flags.hasFlag(AIFlags.NEEDS_HELP);

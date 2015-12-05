@@ -1,6 +1,7 @@
 {
 	"chatter_general":{
 		"isAt":"is at",
+		"hasOverloaded":"has overloaded",
 		"hull":"hull",
 	},
 }
