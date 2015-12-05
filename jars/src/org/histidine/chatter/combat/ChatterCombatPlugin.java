@@ -323,10 +323,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		{
 			//if (member.isFighterWing()) continue;
 			if (member.isFlagship()) continue;
-			if (engine.getFleetManager(FleetSide.PLAYER).getShipFor(member).isHulk()) continue;
+			CombatFleetManagerAPI fm = engine.getFleetManager(FleetSide.PLAYER);
+			if (fm.getShipFor(member).getShipAI() == null) continue;	// under AI control;
+			if (fm.getShipFor(member).isHulk()) continue;
 			float weight = FleetFactoryV2.getPointsForVariant(member.getVariant().getHullVariantId());
 			if (member.getCaptain() != null) weight *= 4;
 			if (member.isFighterWing()) weight *= 0.5f;
+			if (member.isAlly()) weight *= 0.5f;
 			
 			ShipStateData stateData = getShipStateData(member);
 			String character = stateData.characterName;
@@ -383,6 +386,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
 			ShipAPI ship = fm.getShipFor(member);
+			if (ship.getShipAI() == null) continue;	// under AI control;
 			float hull = ship.getHullLevel();
 			float oldHull = stateData.hull;
 			
@@ -416,6 +420,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
 			ShipAPI ship = fm.getShipFor(member);
+			if (ship.getShipAI() == null) continue;	// under AI control;
 			ShipwideAIFlags flags = ship.getAIFlags();
 			
 			if (!ship.isAlive() && !stateData.dead) {
@@ -432,22 +437,26 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			
 			stateData.overloaded = overloaded;
 			
-			if (flags != null && (canPrint || !printed))
+			if (flags != null)
 			{
-				if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
-					printed = printRandomMessage(member, MessageType.NEED_HELP);
-				else if (flags.hasFlag(AIFlags.PURSUING) && !stateData.pursuing)	// fighters can say this
-					printed = printRandomMessage(member, MessageType.PURSUING);
-				else if (!isFighter && flags.hasFlag(AIFlags.RUN_QUICKLY) && !stateData.running)
-					printed = printRandomMessage(member, MessageType.RUNNING);
+				if ((canPrint || !printed))
+				{
+					if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
+						printed = printRandomMessage(member, MessageType.NEED_HELP);
+					else if (flags.hasFlag(AIFlags.PURSUING) && !stateData.pursuing)	// fighters can say this
+						printed = printRandomMessage(member, MessageType.PURSUING);
+					else if (!isFighter && flags.hasFlag(AIFlags.RUN_QUICKLY) && !stateData.running)
+						printed = printRandomMessage(member, MessageType.RUNNING);
+				}
+				stateData.pursuing = flags.hasFlag(AIFlags.PURSUING);
+				stateData.running = flags.hasFlag(AIFlags.RUN_QUICKLY);
+				stateData.needHelp = flags.hasFlag(AIFlags.NEEDS_HELP);
 			}
 			//log.info(member.getShipName() + " pursuing target? " + flags.hasFlag(AIFlags.PURSUING));
 			//log.info(member.getShipName() + " running? " + flags.hasFlag(AIFlags.RUN_QUICKLY));
 			//log.info(member.getShipName() + " needs help? " + flags.hasFlag(AIFlags.NEEDS_HELP));
 			
-			stateData.pursuing = flags.hasFlag(AIFlags.PURSUING);
-			stateData.running = flags.hasFlag(AIFlags.RUN_QUICKLY);
-			stateData.needHelp = flags.hasFlag(AIFlags.NEEDS_HELP);
+			
 		}
 	}
 
