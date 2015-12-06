@@ -9,20 +9,21 @@
 		"start":[
 			"Let's do this.",
 			"It's time to kick ass and chew bubble gum.",
+			"They won't know what hit them.",
 			"Glorious victory awaits!"
 		],
 		"start_escape":[
 			"Let's get out of here!",
 			"Run, damn it!"
 		],
-		"out_of_missiles":[
+		"out_of_missiles":[	# not used (yet)
 			"Out of missiles."
 		],
-		"need_help":[
+		"need_help":[	# not used
 			"I could use some help over here!",
 			"I'm in trouble here!",
 		],
-		"pursuing":[
+		"pursuing":[	# not used
 			"Pursuing target.",
 			"Engaging the enemy.",
 			"Contact, moving to intercept.",
@@ -48,7 +49,7 @@
 			"Help! I've overloaded!",
 			"Flux systems going haywire!"
 		],
-		"death":[
+		"death":[	# not used
 			"NOOOOOOO!",
 			"WRYYYYYYYYY!",
 			"AAAAAAAAAAA!",
@@ -57,6 +58,7 @@
 			"The day is ours!",
 			"We have triumphed!",
 			"The enemy has been defeated!",
+			"We showed them!",
 		],
 	}
 }

@@ -38,7 +38,7 @@ import org.histidine.chatter.utils.StringHelper;
 
 public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
-	public static final String CHARACTERS_DIR = "data/config/characters/";
+	public static final String CHARACTERS_DIR = "data/config/chatter/";
 	public static final String CHARACTERS_LIST = CHARACTERS_DIR + "characters.csv";
 	public static final String CONFIG_FILE = "chatterConfig.json";
 	public static Logger log = Global.getLogger(ChatterCombatPlugin.class);
@@ -52,7 +52,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final float MAX_TIME_FOR_INTRO = 8;
 	public static final float MESSAGE_INTERVAL = 3;
 	
-	public static boolean allowIdleChatter = true;
+	public static boolean idleChatter = true;
+	public static boolean allyChatter = true;
 	
 	protected CombatEngineAPI engine;
 	protected IntervalUtil interval = new IntervalUtil(0.25f, 0.3f);
@@ -69,7 +70,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	static {
 		try {
 			JSONObject settings = Global.getSettings().loadJSON(CONFIG_FILE);
-			allowIdleChatter = settings.optBoolean("allowIdleChatter", allowIdleChatter);
+			idleChatter = settings.optBoolean("idleChatter", idleChatter);
+			allyChatter = settings.optBoolean("allyChatter", allyChatter);
 		} 
 		catch (IOException | JSONException ex) {
 			log.error(ex);
@@ -185,6 +187,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return states.get(member);
 	}
 	
+	protected Color getShipNameColor(FleetMemberAPI member)
+	{
+		if (member.isAlly()) return Misc.getHighlightColor();
+		return Global.getSettings().getColor("textFriendColor");
+	}
+	
 	/**
 	 * Writes a random message of the appropriate category, based on the {@code member}'s assigned character
 	 * @param member
@@ -193,10 +201,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printRandomMessage(FleetMemberAPI member, MessageType category)
 	{
-		if (!allowIdleChatter && IDLE_CHATTER_TYPES.contains(category))
+		if (!idleChatter && IDLE_CHATTER_TYPES.contains(category))
 			return false;
 		
-		if (!clearPriorityThreshold(member, category))
+		if (!meetsPriorityThreshold(member, category))
 		{
 			//log.info("Threshold too high for message " + category.name() + ": " + threshold);
 			return false;
@@ -222,7 +230,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			textColor = Color.YELLOW;
 		else if (category == MessageType.HULL_30)
 			textColor = Misc.getNegativeHighlightColor();
-		engine.getCombatUI().addMessage(1, member, Global.getSettings().getColor("textFriendColor"), name, textColor, message);
+		engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, textColor, message);
 		lastMessageTime = timeElapsed;
 		log.info("Time elapsed: " + lastMessageTime);
 		priorityThreshold += PRIORITY_PER_MESSAGE;
@@ -230,12 +238,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return true;
 	}
 	
-	protected boolean clearPriorityThreshold(FleetMemberAPI member, MessageType category)
+	protected boolean meetsPriorityThreshold(FleetMemberAPI member, MessageType category)
 	{
 		float threshold = priorityThreshold;
 		if (lastTalker == member) threshold *= 2f;
+		if (member.isAlly()) threshold *= 2f;
 		
-		return (getMessageMaxPriority(category) > threshold);
+		return (getMessageMaxPriority(category) >= threshold);
 	}
 	
 	/**
@@ -251,7 +260,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			Global.getSoundPlayer().playUISound("cr_allied_warning", 1, 1);
 		else if (category == MessageType.HULL_30)
 			Global.getSoundPlayer().playUISound("cr_allied_malfunction", 1, 1);
-		if (!clearPriorityThreshold(member, category) || !hasLine(member, category))
+		if (!meetsPriorityThreshold(member, category) || !hasLine(member, category))
 		{
 			// short form
 			String message1 = " " + StringHelper.getString("chatter_general", "isAt") + " ";
@@ -262,7 +271,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				textColor = Color.YELLOW;
 			else if (category == MessageType.HULL_30)
 				textColor = Misc.getNegativeHighlightColor();
-			engine.getCombatUI().addMessage(1, member, Global.getSettings().getColor("textFriendColor"), name, 
+			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, 
 					Global.getSettings().getColor("standardTextColor"), message1, textColor, message2);
 			return false;
 		}
@@ -279,13 +288,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printOverloadMessage(FleetMemberAPI member)
 	{
-		if (clearPriorityThreshold(member, MessageType.OVERLOAD) || !hasLine(member, MessageType.OVERLOAD))
+		if (meetsPriorityThreshold(member, MessageType.OVERLOAD) || !hasLine(member, MessageType.OVERLOAD))
 		{
 			// short form
 			String message = " " + StringHelper.getString("chatter_general", "hasOverloaded") + "!";
 			String name = getShipName(member);
 			Color textColor = Global.getSettings().getColor("standardTextColor");
-			engine.getCombatUI().addMessage(1, member, Global.getSettings().getColor("textFriendColor"), name, 
+			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, 
 					Global.getSettings().getColor("standardTextColor"), message);
 			return false;
 		}
@@ -329,7 +338,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			float weight = FleetFactoryV2.getPointsForVariant(member.getVariant().getHullVariantId());
 			if (member.getCaptain() != null) weight *= 4;
 			if (member.isFighterWing()) weight *= 0.5f;
-			if (member.isAlly()) weight *= 0.5f;
+			if (member.isAlly()) {
+				if (allyChatter) weight *= 0.5f;
+				else continue;
+			}
 			
 			ShipStateData stateData = getShipStateData(member);
 			String character = stateData.characterName;
@@ -382,6 +394,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		{
 			if (member.isFighterWing()) continue;
 			if (member.isFlagship()) continue;
+			if (!allyChatter && member.isAlly()) continue;
 			
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
@@ -416,6 +429,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			boolean isFighter = member.isFighterWing();
 			//if (member.isFighterWing()) continue;
 			if (member.isFlagship()) continue;
+			if (!allyChatter && member.isAlly()) continue;
 			
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
@@ -441,11 +455,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			{
 				if ((canPrint || !printed))
 				{
-					if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
-						printed = printRandomMessage(member, MessageType.NEED_HELP);
-					else if (flags.hasFlag(AIFlags.PURSUING) && !stateData.pursuing)	// fighters can say this
-						printed = printRandomMessage(member, MessageType.PURSUING);
-					else if (!isFighter && flags.hasFlag(AIFlags.RUN_QUICKLY) && !stateData.running)
+					//if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
+					//	printed = printRandomMessage(member, MessageType.NEED_HELP);
+					//else if (flags.hasFlag(AIFlags.PURSUING) && !stateData.pursuing)	// fighters can say this
+						//printed = printRandomMessage(member, MessageType.PURSUING);
+					if (!isFighter && flags.hasFlag(AIFlags.RUN_QUICKLY) && !stateData.running)
 						printed = printRandomMessage(member, MessageType.RUNNING);
 				}
 				stateData.pursuing = flags.hasFlag(AIFlags.PURSUING);

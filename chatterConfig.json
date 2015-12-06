@@ -1,4 +1,4 @@
 {
-	# false hides some low-priority messages
-	"allowIdleChatter":true,	
+	"idleChatter":true,	# false hides some low-priority messages
+	"allyChatter":true,
 }
