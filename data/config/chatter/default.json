@@ -12,12 +12,17 @@
 			"They won't know what hit them.",
 			"Glorious victory awaits!"
 		],
-		"start_escape":[
+		"retreat":[
 			"Let's get out of here!",
 			"Run, damn it!"
 		],
 		"out_of_missiles":[	# not used (yet)
 			"Out of missiles."
+		],
+		"engaged":[	# not used
+			"In contact, could use some backup.",
+			"I am engaged, requesting assistance.",
+			"I am in combat, help wanted."
 		],
 		"need_help":[	# not used
 			"I could use some help over here!",
@@ -28,7 +33,7 @@
 			"Engaging the enemy.",
 			"Contact, moving to intercept.",
 		],
-		"running":[
+		"running":[	# never seems to trigger
 			"I'm outta here!"
 		],
 		"hull_90":[
@@ -49,7 +54,7 @@
 			"Help! I've overloaded!",
 			"Flux systems going haywire!"
 		],
-		"death":[	# not used
+		"death":[	# not triggered currently
 			"NOOOOOOO!",
 			"WRYYYYYYYYY!",
 			"AAAAAAAAAAA!",

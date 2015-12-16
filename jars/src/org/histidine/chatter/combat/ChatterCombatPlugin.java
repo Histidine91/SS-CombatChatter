@@ -4,7 +4,6 @@ import com.fs.starfarer.api.GameState;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.CombatFleetManagerAPI;
-import com.fs.starfarer.api.combat.DeployedFleetMemberAPI;
 import com.fs.starfarer.api.combat.EveryFrameCombatPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipwideAIFlags;
@@ -28,7 +27,6 @@ import org.histidine.chatter.utils.GeneralUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.lazywizard.lazylib.MathUtils;
 import java.awt.Color;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -87,17 +85,19 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.RUNNING, 20f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.OVERLOAD, 30f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.NEED_HELP, 5f);
+		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.ENGAGED, 5f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_90, 20f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_50, 40f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_30, 60f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.DEATH, 10f);
 		
 		IDLE_CHATTER_TYPES.add(MessageType.START);
-		IDLE_CHATTER_TYPES.add(MessageType.START_ESCAPE);
+		IDLE_CHATTER_TYPES.add(MessageType.RETREAT);
 		IDLE_CHATTER_TYPES.add(MessageType.PURSUING);
 		IDLE_CHATTER_TYPES.add(MessageType.RUNNING);
 		//RANDOM_CHATTER_TYPES.add(MessageType.OVERLOAD);
 		IDLE_CHATTER_TYPES.add(MessageType.NEED_HELP);
+		IDLE_CHATTER_TYPES.add(MessageType.ENGAGED);
 		IDLE_CHATTER_TYPES.add(MessageType.VICTORY);
 		IDLE_CHATTER_TYPES.add(MessageType.DEATH);
 	}
@@ -316,7 +316,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				//DeployedFleetMemberAPI randomD = fm.getDeployedFleetMember(fm.getShipFor(random));
 				//engine.getCombatUI().addMessage(0, engine.getContext().getPlayerGoal().name());
 				if (engine.getContext().getPlayerGoal() == FleetGoal.ESCAPE)
-					printRandomMessage(random, MessageType.START_ESCAPE);
+					printRandomMessage(random, MessageType.RETREAT);
 				else
 					printRandomMessage(random, MessageType.START);
 				introDone = true;
@@ -380,14 +380,26 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		boolean printed = false;
 		
-		if (!victory && engine.getFleetManager(FleetSide.ENEMY).getTaskManager(false).isInFullRetreat())
+		// victory message
+		if (!victory && engine.getFleetManager(FleetSide.ENEMY).getTaskManager(false).isInFullRetreat() 
+				&& engine.getFleetManager(FleetSide.ENEMY).getGoal() != FleetGoal.ESCAPE)
 		{
 			FleetMemberAPI random = pickRandomMemberFromList(deployed);
 			if (random != null)
 			{
 				printRandomMessage(random, MessageType.VICTORY);
-				victory = true;
 			}
+			victory = true;
+		}
+		// full retreat message (same as start escape)
+		else if (!victory && engine.getFleetManager(FleetSide.PLAYER).getTaskManager(false).isInFullRetreat())
+		{
+			FleetMemberAPI random = pickRandomMemberFromList(deployed);
+			if (random != null)
+			{
+				printRandomMessage(random, MessageType.RETREAT);
+			}
+			victory = true;
 		}
 		
 		for (FleetMemberAPI member : deployed)
@@ -461,6 +473,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 						//printed = printRandomMessage(member, MessageType.PURSUING);
 					if (!isFighter && flags.hasFlag(AIFlags.RUN_QUICKLY) && !stateData.running)
 						printed = printRandomMessage(member, MessageType.RUNNING);
+					//else if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
+					//	printed = printRandomMessage(member, MessageType.ENGAGED);
 				}
 				stateData.pursuing = flags.hasFlag(AIFlags.PURSUING);
 				stateData.running = flags.hasFlag(AIFlags.RUN_QUICKLY);
@@ -510,8 +524,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	}
 	
 	protected static enum MessageType {
-		START, START_ESCAPE, VICTORY,
-		PURSUING, RUNNING, NEED_HELP, OUT_OF_MISSILES,
+		START, RETREAT, VICTORY,
+		PURSUING, RUNNING, NEED_HELP, OUT_OF_MISSILES, ENGAGED,
 		HULL_90, HULL_50, HULL_30, OVERLOAD, DEATH
 	}
 }
