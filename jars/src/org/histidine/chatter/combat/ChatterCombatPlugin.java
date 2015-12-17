@@ -2,10 +2,13 @@ package org.histidine.chatter.combat;
 
 import com.fs.starfarer.api.GameState;
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.CombatFleetManagerAPI;
 import com.fs.starfarer.api.combat.EveryFrameCombatPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
+import com.fs.starfarer.api.combat.ShipHullSpecAPI;
+import com.fs.starfarer.api.combat.ShipHullSpecAPI.ShipTypeHints;
 import com.fs.starfarer.api.combat.ShipwideAIFlags;
 import com.fs.starfarer.api.combat.ShipwideAIFlags.AIFlags;
 import com.fs.starfarer.api.combat.ViewportAPI;
@@ -148,6 +151,20 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	{
 		ShipStateData data = new ShipStateData();
 		data.hull = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member).getHullLevel();
+		
+		boolean timid = false;
+		if (member.getHullSpec().getHints().contains(ShipTypeHints.CIVILIAN))
+			timid = true;
+		PersonAPI captain = member.getCaptain();
+		if (captain != null)
+		{
+			if (captain.getPersonalityAPI().getId().equals("timid"))
+				timid = true;
+			else if (captain.getPersonalityAPI().getId().equals("aggressive"))
+				timid = false;
+		}
+		if (timid) data.characterName = "default_timid";
+		
 		states.put(member, data);
 		return data;
 	}
