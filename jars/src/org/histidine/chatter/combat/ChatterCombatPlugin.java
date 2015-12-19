@@ -142,7 +142,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 					log.error(ex);
 				}
 			}
-		} catch (Exception ex) {
+		} catch (IOException | JSONException ex) {	// can't read CSV
 			log.error(ex);
 		}
 	}
