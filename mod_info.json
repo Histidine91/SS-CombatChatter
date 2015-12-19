@@ -4,7 +4,7 @@
   "author":"Histidine",
   "version":"1.0",
   "utility":true,
-  "description":"Talky-man broke Thog's tusk. TALKY-MAN BROKE THOG'S TUSK!!",
+  "description":"Talky-man broke Thog's tusk. TALKY-MAN BROKE THOG'S TUSK!! (Requires LazyLib)",
   "gameVersion":"0.7.1a",
   "jars":["jars/CombatChatter.jar"],
 }
