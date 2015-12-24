@@ -7,53 +7,53 @@
 	
 	"lines":{
 		"start":[
-			"This better be good!",
-			"Let me at them!",
-			"They are as good as dead!",
-			"Come on lads! Let's show them the airlock.",
-			"RRRRRRRR!"
+			{"text":"This better be good!"},
+			{"text":"Let me at them!"},
+			{"text":"They are as good as dead!"},
+			{"text":"Come on lads! Let's show them the airlock."},
+			{"text":"RRRRRRRR!"}
 		],
 		"retreat":[
-			"Every man for themselves!",
-			"You haven't seen the last of me!",
-			"Wait, are we losing?!",
+			{"text":"Every man for themselves!"},
+			{"text":"You haven't seen the last of me!"},
+			{"text":"Wait, are we losing?!"},
 		],
 		"out_of_missiles":[	# not used (yet)
 		],
 		"engaged":[
-			"Avast, ya scurvy dogs!",
-			"Prepare to be blasted!"
+			{"text":"Avast, ya scurvy dogs!"},
+			{"text":"Prepare to be blasted!"}
 		],
 		"need_help":[
 		],
 		"pursuing":[
 		],
 		"running":[
-			"I be outta here!"
+			{"text":"I be outta here!"}
 		],
 		"hull_90":[
-			"Hahaha! That tickled.",
-			"That all you got?",
+			{"text":"Hahaha! That tickled."},
+			{"text":"That all you got?"},
 		],
 		"hull_50":[
-			"Time to get serious!",
-			"Okay, now let's stop messing about!"
+			{"text":"Time to get serious!"},
+			{"text":"Okay, now let's stop messing about!"}
 		],
 		"hull_30":[
-			"The hull has been breached and the slaves are leaking out!",
-			"Hull status.... kinda bad!",
-			"My ship's in (-censored-) condition!"
-			],
+			{"text":"The hull has been breached and the slaves are leaking out!"},
+			{"text":"Hull status.... kinda bad!"},
+			{"text":"My ship's in (-censored-) condition!"}
+		],
 		"overload":[
-			"Oops. I'm overloaded.",
+			{"text":"Oops. I'm overloaded."},
 		],
 		"death":[
 		],
 		"victory":[
-			"Way too easy!",
-			"Suck on that!",
-			"Awh... was that all?",
-			"Now on to the looting!",
+			{"text":"Way too easy!"},
+			{"text":"Suck on that!"},
+			{"text":"Awh... was that all?"},
+			{"text":"Now on to the looting!"},
 		],
 	}
 }

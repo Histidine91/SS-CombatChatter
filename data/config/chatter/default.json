@@ -3,67 +3,67 @@
 	"personalities":["cautious","steady"],
 	"gender":["m","f","n"],
 	"chance":0.5,
-	"talkativeness":1,	# not sure what I want to do with this yet
+	"talkativeness":1,
 	
 	"lines":{
 		"start":[
-			"Let's do this.",
-			"Guns are hot.",
-			"They won't know what hit them.",
-			"Glorious victory awaits!"
+			{"text":"Let's do this."},
+			{"text":"Guns are hot."},
+			{"text":"They won't know what hit them."},
+			{"text":"Glorious victory awaits!"}
 		],
 		"retreat":[
-			"Let's get out of here!",
-			"Run, damn it!"
+			{"text":"Let's get out of here!"},
+			{"text":"Run, damn it!"}
 		],
 		"out_of_missiles":[	# not used (yet)
-			"Out of missiles."
+			{"text":"Out of missiles."}
 		],
 		"engaged":[	# not used
-			"In contact, could use some backup.",
-			"I am engaged, requesting assistance.",
-			"I am in combat, help wanted."
+			{"text":"In contact, could use some backup."},
+			{"text":"I am engaged, requesting assistance."},
+			{"text":"I am in combat, help wanted."}
 		],
-		"need_help":[	# not used
-			"I could use some help over here!",
-			"I'm in trouble here!",
+		"need_help":[
+			{"text":"I could use some help over here!"},
+			{"text":"I'm in trouble here!"},
 		],
-		"pursuing":[	# not used
-			"Pursuing target.",
-			"Engaging the enemy.",
-			"Contact, moving to intercept.",
+		"pursuing":[
+			{"text":"Pursuing target."},
+			{"text":"Engaging the enemy."},
+			{"text":"Contact, moving to intercept."},
 		],
-		"running":[	# never seems to trigger
-			"I'm outta here!"
+		"running":[
+			{"text":"I'm outta here!"}
 		],
 		"hull_90":[
-			"I've taken hull damage.",
-			"Hull breach reported.",
+			{"text":"I've taken hull damage."},
+			{"text":"Hull breach reported."},
 		],
 		"hull_50":[
-			"Hull integrity at 50%!",
-			"I'm down to half hull strength!"
+			{"text":"Hull integrity at 50%!"},
+			{"text":"I'm down to half hull strength!"}
 		],
 		"hull_30":[
-			"My hull's down to 30%!",
-			"Hull status critical!",
-			"My ship's in critical condition!"
-			#"Breach in starboard fusion chamber!",
+			{"text":"My hull's down to 30%!"},
+			{"text":"Hull status critical!"},
+			{"text":"My ship's in critical condition!"}
+			#{"text":"Breach in starboard fusion chamber!"},
 		],
 		"overload":[
-			"Help! I've overloaded!",
-			"Flux systems going haywire!"
+			{"text":"Help! I've overloaded!"},
+			{"text":"Flux systems going haywire!"}
 		],
 		"death":[	# not triggered currently
-			"NOOOOOOO!",
-			"WRYYYYYYYYY!",
-			"AAAAAAAAAAA!",
+			{"text":"NOOOOOOO!"},
+			{"text":"WRYYYYYYYYY!"},
+			{"text":"AAAAAAAAAAA!"},
 		],
 		"victory":[
-			"The day is ours!",
-			"We have triumphed!",
-			"The enemy has been defeated!",
-			"We showed them!",
+			{"text":"The day is ours!"},
+			{"text":"We have triumphed!"},
+			{"text":"The enemy has been defeated!"},
+			{"text":"We showed them!"},
 		],
 	}
 }

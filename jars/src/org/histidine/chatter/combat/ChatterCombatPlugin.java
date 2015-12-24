@@ -142,7 +142,16 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 							continue;
 						}
 						JSONArray linesForKey = lines.getJSONArray(key);
-						List<String> linesForKeyList = GeneralUtils.JSONArrayToStringList(linesForKey);
+						List<ChatterLine> linesForKeyList = new ArrayList<>();
+						for (int i=0; i<linesForKey.length(); i++)
+						{
+							JSONObject lineEntry = linesForKey.getJSONObject(i);
+							String text = lineEntry.optString("text");
+							String sound = null;
+							if (lineEntry.has("sound"))
+								sound = lineEntry.getString("sound");
+							linesForKeyList.add(new ChatterLine(text, sound));
+						}
 						character.lines.put(type, linesForKeyList);
 					}
 					
@@ -251,7 +260,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!CHARACTERS_MAP.containsKey(character))
 			character = "default";
 		
-		List<String> lines = CHARACTERS_MAP.get(character).lines.get(category);
+		List<ChatterLine> lines = CHARACTERS_MAP.get(character).lines.get(category);
 		return lines != null && !lines.isEmpty();
 	}
 	
@@ -301,7 +310,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!CHARACTERS_MAP.containsKey(character))
 			character = "default";
 		
-		List<String> lines = CHARACTERS_MAP.get(character).lines.get(category);
+		List<ChatterLine> lines = CHARACTERS_MAP.get(character).lines.get(category);
 		if (lines == null)
 		{
 			//log.warn("Missing line category " + category.name() + " for character " + character);
@@ -309,7 +318,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		if (lines.isEmpty()) return false;
 		
-		String message = "\"" + GeneralUtils.getRandomListElement(lines) + "\"";
+		ChatterLine line = (ChatterLine)GeneralUtils.getRandomListElement(lines);
+		String message = "\"" + line.text + "\"";
 		String name = getShipName(member);
 		Color textColor = Global.getSettings().getColor("standardTextColor");
 		if (category == MessageType.HULL_50)
@@ -330,6 +340,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Misc.getTextColor(), ": ", textColor, message);
+		if (line.sound != null)
+			Global.getSoundPlayer().playUISound(line.sound, 1, 1);
+		
 		lastMessageTime = timeElapsed;
 		log.info("Time elapsed: " + lastMessageTime);
 		priorityThreshold += PRIORITY_PER_MESSAGE;
@@ -619,7 +632,23 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		public List<String> gender = new ArrayList<>();
 		public float chance = 1;
 		public float talkativeness = 1;
-		public final Map<MessageType, List<String>> lines = new HashMap<>();
+		public final Map<MessageType, List<ChatterLine>> lines = new HashMap<>();
+	}
+	
+	protected static class ChatterLine
+	{
+		public String text;
+		public String sound;
+		
+		public ChatterLine(String text)
+		{
+			this.text = text;
+		}
+		public ChatterLine(String text, String sound)
+		{
+			this.text = text;
+			this.sound = sound;
+		}
 	}
 	
 	protected static enum MessageType {

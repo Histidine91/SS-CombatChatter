@@ -7,49 +7,49 @@
 	
 	"lines":{
 		"start":[
-			"Ready to roll!",
-			"What can I do for you, mah captain?",
-			"Let's give 'em hell, captain!"
+			{"text":"Ready to roll!"},
+			{"text":"What can I do for you, mah captain?"},
+			{"text":"Let's give 'em hell, captain!"}
 		],
 		"retreat":[
-			"Falling back already?",
-			"Aww, over already...",
-			"Ugh, so frustrating..."
+			{"text":"Falling back already?"},
+			{"text":"Aww, over already..."},
+			{"text":"Ugh, so frustrating..."}
 		],
 		"out_of_missiles":[
-			"I'm all out of missiles, captain!",
+			{"text":"I'm all out of missiles, captain!"},
 		],
 		"need_help":[],
 		"engaged":[],
 		"pursuing":[
-			"Forward and onward!",
-			"Let's go get 'em!",
+			{"text":"Forward and onward!"},
+			{"text":"Let's go get 'em!"},
 		],
 		"running":[
-			"Backwards? Aww..."
+			{"text":"Backwards? Aww..."}
 		],
 		"hull_90":[
-			"Don't worry, I'm still AOK!"
+			{"text":"Don't worry, I'm still AOK!"}
 		],
 		"hull_50":[
-			"I... I can do this!",
+			{"text":"I... I can do this!"},
 		],
 		"hull_30":[
-			"Uh oh, a lot of red lights are flashing on the monitor!",
-			"Don't worry... I'm still...",
+			{"text":"Uh oh, a lot of red lights are flashing on the monitor!"},
+			{"text":"Don't worry... I'm still..."},
 		],
 		"overload":[
-			"Aaah, help! I got a blue screen!",	    
+			{"text":"Aaah, help! I got a blue screen!"},	    
 		],
 		"death":[
-			"I-I'll be back!",
-			"Even heroes have bad days, huh..."
+			{"text":"I-I'll be back!"},
+			{"text":"Even heroes have bad days, huh..."}
 		],
 		"victory":[
-			"Victory!",
-			"Justice served!",
-			"Score one for the good guys!",
-			"All for one and one for all!",
+			{"text":"Victory!"},
+			{"text":"Justice served!"},
+			{"text":"Score one for the good guys!"},
+			{"text":"All for one and one for all!"},
 		],
 	}
 }

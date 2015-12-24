@@ -7,44 +7,44 @@
 	
 	"lines":{
 		"start":[
-			"All systems are green.",
-			"Awaiting orders.",
-			"At your command.",
+			{"text":"All systems are green."},
+			{"text":"Awaiting orders."},
+			{"text":"At your command."},
 		],
 		"retreat":[
-			"Give us some distance!"
+			{"text":"Give us some distance!"}
 		],
 		"out_of_missiles":[
-			"Our missiles are dry."
+			{"text":"Our missiles are dry."}
 		],
 		"need_help":[],
 		"engaged":[],
 		"pursuing":[
-			"All ahead, full.",
-			"Forward!",
+			{"text":"All ahead, full."},
+			{"text":"Forward!"},
 		],
 		"running":[
-			"Fall back!",
-			"Reverse course!",
+			{"text":"Fall back!"},
+			{"text":"Reverse course!"},
 		],
 		"hull_90":[
-			"Our hull is beginning to fracture!",
-			"Sections 32, 16 and 2 compromised!",
+			{"text":"Our hull is beginning to fracture!"},
+			{"text":"Sections 32, 16 and 2 compromised!"},
 		],
 		"hull_50":[
-			"Hull breaches on deck 0!",
-			"She's breaking apart, captain!",
+			{"text":"Hull breaches on deck 0!"},
+			{"text":"She's breaking apart, captain!"},
 		],
 		"hull_30":[
-			"Recommend we abandon ship!",
-			"Warning, core implosion imminent!",
+			{"text":"Recommend we abandon ship!"},
+			{"text":"Warning, core implosion imminent!"},
 		],
 		"overload":[],
 		"death":[
-			"All hands-"
+			{"text":"All hands-"}
 		],
 		"victory":[
-			"It appears your luck is holding, captain."
+			{"text":"It appears your luck is holding, captain."}
 		],
 	}
 }

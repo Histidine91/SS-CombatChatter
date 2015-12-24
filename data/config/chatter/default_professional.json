@@ -1,5 +1,4 @@
 {
-
 	"name":"default_professional",
 	"personalities":["cautious", "steady"],
 	"gender":["m","f","n"],
@@ -8,71 +7,71 @@
 	
 	"lines":{
 		"start":[
-			"Operation begins.",
-			"Everyone to battle stations.",
-			"Systems all green.",
-			"Commencing battlefield analysis."
+			{"text":"Operation begins."},
+			{"text":"Everyone to battle stations."},
+			{"text":"Systems all green."},
+			{"text":"Commencing battlefield analysis."}
 		],
 		"retreat":[
-			"Retreating.",
-			"Set the course. We're leaving here."
+			{"text":"Retreating."},
+			{"text":"Set the course. We're leaving here."}
 		],
-		"out_of_missiles":[	# not used (yet)
-			"Out of missiles."
+		"out_of_missiles":[
+			{"text":"Out of missiles."}
 		],
 
 		"engaged":[	# not used
-			"Contact, IFF reply invalid. Preparing for combat.",
-			"Contact, IFF no response. Marked target as enemy.",
-			"Engaging enemy.",
-			"Enemy confirmed. Ship to combat power."
+			{"text":"Contact, IFF reply invalid. Preparing for combat."},
+			{"text":"Contact, IFF no response. Marked target as enemy."},
+			{"text":"Engaging enemy."},
+			{"text":"Enemy confirmed. Ship to combat power."}
 		],
 
-		"need_help":[	# not used
-			"Requesting assistance.",
-			"We got trouble here.",
+		"need_help":[
+			{"text":"Requesting assistance."},
+			{"text":"We got trouble here."},
 		],
 
 		"pursuing":[	# not used
-			"Pursuing target.",
-			"Engaging the enemy.",
-			"Contact, moving to intercept.",
+			{"text":"Pursuing target."},
+			{"text":"Engaging the enemy."},
+			{"text":"Contact, moving to intercept."},
 		],
 
 		"running":[	# never seems to trigger
-			"Breaking engagement."
+			{"text":"Breaking engagement."}
 		],
 
 		"hull_90":[
-			"We've taken hull damage.",
-			"Hull breached.",
+			{"text":"We've taken hull damage."},
+			{"text":"Hull breached."},
 		],
 
 		"hull_50":[
-			"Hull integrity at 50%. Damage control teams on the way.",
-			"Hull down to 50%."
+			{"text":"Hull integrity at 50%. Damage control teams on the way."},
+			{"text":"Hull down to 50%."}
 		],
 
 		"hull_30":[
-			"Hull integrity at 30%. Requesting permission to retreat.",
-			"Hull status critical.",
-			"Breach in critical areas. All teams, focus on maintaining combat capability."
+			{"text":"Hull integrity at 30%. Requesting permission to retreat."},
+			{"text":"Hull status critical."},
+			{"text":"Breach in critical areas. All teams, focus on maintaining combat capability."}
 		],
 
 		"overload":[
-			"Flux overloaded. Requesting coverage until we handle it.",
-			"Flux exceeded the generator capacity. I need cover."
+			{"text":"Flux overloaded. Requesting coverage until we handle it."},
+			{"text":"Flux exceeded the generator capacity. I need cover."}
 		],
 
 		"death":[	# not triggered currently
-			"Commander, I lost the ship... Escaping.",
-			"Any surviving crew, get in the escape pods!",
-			"Reporting reactor explosion. Casualties... unknown."
+			{"text":"Commander, I lost the ship... Escaping."},
+			{"text":"Any surviving crew, get in the escape pods!"},
+			{"text":"Reporting reactor explosion. Casualties... unknown."}
 		],
 		"victory":[
-			"Mission accomplished. Nice job, everyone.",
-			"It's over.",
-			"Enemy is retreating."
+			{"text":"Mission accomplished. Nice job, everyone."},
+			{"text":"It's over."},
+			{"text":"Enemy is retreating."}
 		],
 	}
 }

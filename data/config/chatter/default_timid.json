@@ -7,54 +7,54 @@
 	
 	"lines":{
 		"start":[
-			"I'm scared...",
-			"Umm... is this gonna be alright?",
-			"Can't we talk this over?"
+			{"text":"I'm scared..."},
+			{"text":"Umm... is this gonna be alright?"},
+			{"text":"Can't we talk this over?"}
 		],
 		"retreat":[
-			"Run for your lives!",
-			"Protect me!"
+			{"text":"Run for your lives!"},
+			{"text":"Protect me!"}
 		],
 		"out_of_missiles":[	# not used (yet)
-			"I'm out of missiles!"
+			{"text":"I'm out of missiles!"}
 		],
 		"engaged":[	# not used
-			"Go away! You meanie!",
-			"I-I'm not gonna run from you!"
+			{"text":"Go away! You meanie!"},
+			{"text":"I-I'm not gonna run from you!"}
 		],
-		"need_help":[	# not used
-			"In combat! Someone help!",
-			"They got me pinned! I need assistance!"
+		"need_help":[
+			{"text":"In combat! Someone help!"},
+			{"text":"They got me pinned! I need assistance!"}
 		],
-		"pursuing":[	# not used
+		"pursuing":[
 		],
-		"running":[	# never seems to trigger
-			"Running for cover!"
+		"running":[
+			{"text":"Running for cover!"}
 		],
 		"hull_90":[
-			"Aaaah! They've gotten through my armor!",
-			"I've taken hull damage! Someone help!"
+			{"text":"Aaaah! They've gotten through my armor!"},
+			{"text":"I've taken hull damage! Someone help!"}
 		],
 		"hull_50":[
-			"My hull's at 50%! Help me or I'm screwed!",
-			"Down to half hull! Need help, damn it!"
+			{"text":"My hull's at 50%! Help me or I'm screwed!"},
+			{"text":"Down to half hull! Need help, damn it!"}
 		],
 		"hull_30":[
-			"NOOOO! I don't want to die!",
-			"MEDIIIC!"
+			{"text":"NOOOO! I don't want to die!"},
+			{"text":"MEDIIIC!"}
 		],
 		"overload":[
-			"Help! I've overloaded!",
-			"Aaaah! My capacitors are sparking!"
+			{"text":"Help! I've overloaded!"},
+			{"text":"Aaaah! My capacitors are sparking!"}
 		],
 		"death":[	# not triggered currently
-			"NOOOOOOO!",
-			"WRYYYYYYYYY!",
-			"AAAAAAAAAAA!",
+			{"text":"NOOOOOOO!"},
+			{"text":"WRYYYYYYYYY!"},
+			{"text":"AAAAAAAAAAA!"},
 		],
 		"victory":[
-			"Phew... I was worried for a bit there.",
-			"Is... is it over?"
+			{"text":"Phew... I was worried for a bit there."},
+			{"text":"Is... is it over?"}
 		],
 	}
 }
