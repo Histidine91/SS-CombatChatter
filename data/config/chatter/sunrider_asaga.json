@@ -1,0 +1,55 @@
+{
+	"name":"sunrider_asaga",
+	"personalities":["steady", "aggressive"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			"Ready to roll!",
+			"What can I do for you, mah captain?",
+			"Let's give 'em hell, captain!"
+		],
+		"retreat":[
+			"Falling back already?",
+			"Aww, over already...",
+			"Ugh, so frustrating..."
+		],
+		"out_of_missiles":[
+			"I'm all out of missiles, captain!",
+		],
+		"need_help":[],
+		"engaged":[],
+		"pursuing":[
+			"Forward and onward!",
+			"Let's go get 'em!",
+		],
+		"running":[
+			"Backwards? Aww..."
+		],
+		"hull_90":[
+			"Don't worry, I'm still AOK!"
+		],
+		"hull_50":[
+			"I... I can do this!",
+		],
+		"hull_30":[
+			"Uh oh, a lot of red lights are flashing on the monitor!",
+			"Don't worry... I'm still...",
+		],
+		"overload":[
+			"Aaah, help! I got a blue screen!",	    
+		],
+		"death":[
+			"I-I'll be back!",
+			"Even heroes have bad days, huh..."
+		],
+		"victory":[
+			"Victory!",
+			"Justice served!",
+			"Score one for the good guys!",
+			"All for one and one for all!",
+		],
+	}
+}

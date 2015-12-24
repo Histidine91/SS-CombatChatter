@@ -2,13 +2,13 @@
 	"name":"default",
 	"personalities":["cautious","steady"],
 	"gender":["m","f","n"],
-	"chance":1,
+	"chance":0.5,
 	"talkativeness":1,	# not sure what I want to do with this yet
 	
 	"lines":{
 		"start":[
 			"Let's do this.",
-			"It's time to kick ass and chew bubble gum.",
+			"Guns are hot.",
 			"They won't know what hit them.",
 			"Glorious victory awaits!"
 		],

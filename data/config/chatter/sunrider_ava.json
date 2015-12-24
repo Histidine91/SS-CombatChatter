@@ -1,0 +1,50 @@
+{
+	"name":"sunrider_ava",
+	"personalities":["steady", "cautious"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			"All systems are green.",
+			"Awaiting orders.",
+			"At your command.",
+		],
+		"retreat":[
+			"Give us some distance!"
+		],
+		"out_of_missiles":[
+			"Our missiles are dry."
+		],
+		"need_help":[],
+		"engaged":[],
+		"pursuing":[
+			"All ahead, full.",
+			"Forward!",
+		],
+		"running":[
+			"Fall back!",
+			"Reverse course!",
+		],
+		"hull_90":[
+			"Our hull is beginning to fracture!",
+			"Sections 32, 16 and 2 compromised!",
+		],
+		"hull_50":[
+			"Hull breaches on deck 0!",
+			"She's breaking apart, captain!",
+		],
+		"hull_30":[
+			"Recommend we abandon ship!",
+			"Warning, core implosion imminent!",
+		],
+		"overload":[],
+		"death":[
+			"All hands-"
+		],
+		"victory":[
+			"It appears your luck is holding, captain."
+		],
+	}
+}

@@ -43,9 +43,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final String CHARACTERS_DIR = "data/config/chatter/";
 	public static final String CHARACTERS_LIST = CHARACTERS_DIR + "characters.csv";
 	public static final String CONFIG_FILE = "chatterConfig.json";
+	public static final String PERSISTENT_DATA_KEY = "combatChatter";
 	public static Logger log = Global.getLogger(ChatterCombatPlugin.class);
 	
-	public static final Map<String, ChatterCharacter> CHARACTERS = new HashMap<>();
+	public static final List<ChatterCharacter> CHARACTERS = new ArrayList<>();
+	public static final Map<String, ChatterCharacter> CHARACTERS_MAP = new HashMap<>();
 	public static final float PRIORITY_PER_MESSAGE = 20;
 	public static final float PRIORITY_DECAY = 3;
 	//public static final Map<MessageType, Float> MESSAGE_TYPE_PRIORITY = new HashMap<>();
@@ -144,7 +146,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 						character.lines.put(type, linesForKeyList);
 					}
 					
-					CHARACTERS.put(characterName, character);
+					CHARACTERS.add(character);
+					CHARACTERS_MAP.put(characterName, character);
 				} catch (IOException | JSONException ex) {	// can't read character file
 					log.error(ex);
 				}
@@ -154,27 +157,57 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 	}
 	
+	protected String getCharacterForOfficer(PersonAPI captain)
+	{
+		// try to load officer if available
+		Map<String, Object> data = Global.getSector().getPersistentData();
+		Map<PersonAPI, String> savedOfficers = (HashMap<PersonAPI, String>)data.get(PERSISTENT_DATA_KEY);
+		if (savedOfficers == null)
+		{
+			savedOfficers = new HashMap<>();
+			data.put(PERSISTENT_DATA_KEY, savedOfficers);
+		}
+		if (savedOfficers.containsKey(captain))
+			return savedOfficers.get(captain);
+		
+		WeightedRandomPicker<String> picker = new WeightedRandomPicker<>();
+		String gender = "n";
+		if (captain.isFemale()) gender = "f";
+		else if (captain.isMale()) gender = "m";
+		for (ChatterCharacter character : CHARACTERS)
+		{
+			if (!character.gender.contains(gender)) continue;
+			if (character.personalities.contains(captain.getPersonalityAPI().getId()))
+				picker.add(character.name, character.chance);
+		}
+		if (picker.isEmpty()) return "default";
+		
+		String charName = picker.pick();
+		if (charName == null) return "default";
+		log.info("Assigning character " + charName + " to officer " + captain.getName().getFullName());
+		savedOfficers.put(captain, charName);
+		return charName;
+	}
+	
 	protected String getCharacterForFleetMember(FleetMemberAPI member)
 	{
+		PersonAPI captain = member.getCaptain();
+		if (captain != null && !captain.isDefault())
+		{
+			return getCharacterForOfficer(captain);
+		}		
+		
 		String name = "default";
 		CrewXPLevel xpLevel = member.getCrewXPLevel();
 		boolean timid = false;
 		if (member.getHullSpec().getHints().contains(ShipTypeHints.CIVILIAN) && !(xpLevel == CrewXPLevel.VETERAN || xpLevel == CrewXPLevel.ELITE))
 			timid = true;
-		PersonAPI captain = member.getCaptain();
-		if (captain != null)
-		{
-			if (captain.getPersonalityAPI().getId().equals("timid"))
-				timid = true;
-			else if (captain.getPersonalityAPI().getId().equals("aggressive"))
-				timid = false;
-		}
+		else if (xpLevel == CrewXPLevel.GREEN)
+			timid = true;
+		
 		if (timid) name = "default_timid";
-		else
-		{
-			if (xpLevel == CrewXPLevel.GREEN) name = "default_timid";
-			else if (xpLevel == CrewXPLevel.ELITE) name = "default_professional";
-		}
+		else if (xpLevel == CrewXPLevel.ELITE) name = "default_professional";
+		
 		return name;
 	}
 	
@@ -215,10 +248,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	{
 		ShipStateData stateData = getShipStateData(member);
 		String character = stateData.characterName;
-		if (!CHARACTERS.containsKey(character))
+		if (!CHARACTERS_MAP.containsKey(character))
 			character = "default";
 		
-		List<String> lines = CHARACTERS.get(character).lines.get(category);
+		List<String> lines = CHARACTERS_MAP.get(character).lines.get(category);
 		return lines != null && !lines.isEmpty();
 	}
 	
@@ -265,10 +298,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		ShipStateData stateData = getShipStateData(member);
 		String character = stateData.characterName;
-		if (!CHARACTERS.containsKey(character))
+		if (!CHARACTERS_MAP.containsKey(character))
 			character = "default";
 		
-		List<String> lines = CHARACTERS.get(character).lines.get(category);
+		List<String> lines = CHARACTERS_MAP.get(character).lines.get(category);
 		if (lines == null)
 		{
 			//log.warn("Missing line category " + category.name() + " for character " + character);
@@ -413,10 +446,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			
 			ShipStateData stateData = getShipStateData(member);
 			String character = stateData.characterName;
-			if (!CHARACTERS.containsKey(character))
+			if (!CHARACTERS_MAP.containsKey(character))
 				character = "default";
 
-			weight *= CHARACTERS.get(character).talkativeness;
+			weight *= CHARACTERS_MAP.get(character).talkativeness;
 			
 			picker.add(member, weight);
 		}
@@ -445,7 +478,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		if (!introDone)
 		{
-			log.info("Trying to play intro message");
+			//log.info("Trying to play intro message");
 			playIntroMessage(deployed);
 		}
 		

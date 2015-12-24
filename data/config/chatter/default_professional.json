@@ -3,9 +3,9 @@
 	"name":"default_professional",
 	"personalities":["cautious", "steady"],
 	"gender":["m","f","n"],
-	"chance":0.5,
+	"chance":1,
 	"talkativeness":1,
-        
+	
 	"lines":{
 		"start":[
 			"Operation begins.",

@@ -1,0 +1,70 @@
+{
+
+	"name":"default_aggressive",
+	"personalities":["aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,	# not sure what I want to do with this yet
+
+	"lines":{
+		"start":[
+			"Let's rock!",
+			"It's time to kick ass and chew bubble gum.",
+			"Engines to maximum!",
+			"Time for a mayhem.",
+                        "Lock and load!"
+		],
+		"retreat":[
+			"Wait, were we losing?",
+			"Ah come on! I haven't got all the fun yet."
+		],
+		"out_of_missiles":[	# not used (yet)
+			"Outta firecrackers."
+		],
+		"engaged":[	# not used
+			"Gotcha! Come on!",
+			"Guns, check! Engine, check! Enemies to shoot, check!",
+			"Show me what you've got!"
+		],
+		"need_help":[	# not used
+			"I'm outnumbered, commander. Which is PERFECT! Power all the weapons!",
+			"Fear me, you all!",
+		],
+		"pursuing":[	# not used
+			"No escape!",
+			"You're getting nowhere.",
+			"Resist me!",
+		],
+		"running":[	# never seems to trigger
+			"Well, it's a shame."
+		],
+		"hull_90":[
+			"Nothing happened here! What? Hull breach?",
+			"Not enough to kill me!",
+		],
+		"hull_50":[
+			"The other half won't be so easy!",
+			"Think you can beat me?"
+		],
+		"hull_30":[
+			"I'm in hyper-tension! Not the disease, you know.",
+			"Now this is interesting! Hey, someone turn that siren off.",
+			"Bring me more, MORE! *something explodes*"
+		],
+		"overload":[
+			"Sparkles fizzing everywhere!",
+			"Fix that flux system already! I can't get the guns shooting!"
+		],
+		"death":[	# not triggered currently
+			"Valhalla!",
+			"Darn! I thought I could make it.",
+			"AAAAAAAAAAA!",
+		],
+		"victory":[
+			"Encore! Woohoo!",
+			"Mediocre!",
+			"Yeaaah!",
+			"Is it all you've got there!",
+		],
+	}
+}
