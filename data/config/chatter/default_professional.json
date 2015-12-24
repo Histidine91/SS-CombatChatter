@@ -1,0 +1,78 @@
+{
+
+	"name":"default_professional",
+	"personalities":["cautious", "steady"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+        
+	"lines":{
+		"start":[
+			"Operation begins.",
+			"Everyone to battle stations.",
+			"Systems all green.",
+			"Commencing battlefield analysis."
+		],
+		"retreat":[
+			"Retreating.",
+			"Set the course. We're leaving here."
+		],
+		"out_of_missiles":[	# not used (yet)
+			"Out of missiles."
+		],
+
+		"engaged":[	# not used
+			"Contact, IFF reply invalid. Preparing for combat.",
+			"Contact, IFF no response. Marked target as enemy.",
+			"Engaging enemy.",
+			"Enemy confirmed. Ship to combat power."
+		],
+
+		"need_help":[	# not used
+			"Requesting assistance.",
+			"We got trouble here.",
+		],
+
+		"pursuing":[	# not used
+			"Pursuing target.",
+			"Engaging the enemy.",
+			"Contact, moving to intercept.",
+		],
+
+		"running":[	# never seems to trigger
+			"Breaking engagement."
+		],
+
+		"hull_90":[
+			"We've taken hull damage.",
+			"Hull breached.",
+		],
+
+		"hull_50":[
+			"Hull integrity at 50%. Damage control teams on the way.",
+			"Hull down to 50%."
+		],
+
+		"hull_30":[
+			"Hull integrity at 30%. Requesting permission to retreat.",
+			"Hull status critical.",
+			"Breach in critical areas. All teams, focus on maintaining combat capability."
+		],
+
+		"overload":[
+			"Flux overloaded. Requesting coverage until we handle it.",
+			"Flux exceeded the generator capacity. I need cover."
+		],
+
+		"death":[	# not triggered currently
+			"Commander, I lost the ship... Escaping.",
+			"Any surviving crew, get in the escape pods!",
+			"Reporting reactor explosion. Casualties... unknown."
+		],
+		"victory":[
+			"Mission accomplished. Nice job, everyone.",
+			"It's over.",
+			"Enemy is retreating."
+		],
+	}
+}

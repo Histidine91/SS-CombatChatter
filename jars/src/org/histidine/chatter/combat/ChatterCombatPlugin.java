@@ -2,12 +2,12 @@ package org.histidine.chatter.combat;
 
 import com.fs.starfarer.api.GameState;
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.campaign.CargoAPI.CrewXPLevel;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.CombatFleetManagerAPI;
 import com.fs.starfarer.api.combat.EveryFrameCombatPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
-import com.fs.starfarer.api.combat.ShipHullSpecAPI;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI.ShipTypeHints;
 import com.fs.starfarer.api.combat.ShipwideAIFlags;
 import com.fs.starfarer.api.combat.ShipwideAIFlags.AIFlags;
@@ -35,6 +35,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import org.histidine.chatter.utils.StringHelper;
+import org.lwjgl.util.vector.Vector2f;
 
 
 public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
@@ -50,19 +51,21 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	//public static final Map<MessageType, Float> MESSAGE_TYPE_PRIORITY = new HashMap<>();
 	public static final Map<MessageType, Float> MESSAGE_TYPE_MAX_PRIORITY = new HashMap<>();
 	public static final Set<MessageType> IDLE_CHATTER_TYPES = new HashSet<>();
+	public static final Set<MessageType> FLOAT_CHATTER_TYPES = new HashSet<>();
 	public static final float MAX_TIME_FOR_INTRO = 8;
 	public static final float MESSAGE_INTERVAL = 3;
+	public static final float MESSAGE_INTERVAL_IDLE = 6;
 	
 	public static boolean idleChatter = true;
 	public static boolean allyChatter = true;
 	
 	protected CombatEngineAPI engine;
-	protected IntervalUtil interval = new IntervalUtil(0.25f, 0.3f);
+	protected IntervalUtil interval = new IntervalUtil(0.4f, 0.5f);
 	protected Map<FleetMemberAPI, ShipStateData> states = new HashMap<>();
 	protected Map<String, Float> messageCooldown = new HashMap<>();
 	protected FleetMemberAPI lastTalker = null;
 	protected float timeElapsed = 0;
-	protected float lastMessageTime = 0;
+	protected float lastMessageTime = -9999;
 	protected float priorityThreshold = 0;	// if this is high, low priority messages won't be displayed
 	protected boolean introDone = false;
 	protected boolean victory = false;
@@ -98,11 +101,15 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		IDLE_CHATTER_TYPES.add(MessageType.RETREAT);
 		IDLE_CHATTER_TYPES.add(MessageType.PURSUING);
 		IDLE_CHATTER_TYPES.add(MessageType.RUNNING);
-		//RANDOM_CHATTER_TYPES.add(MessageType.OVERLOAD);
+		//IDLE_CHATTER_TYPES.add(MessageType.OVERLOAD);
 		IDLE_CHATTER_TYPES.add(MessageType.NEED_HELP);
 		IDLE_CHATTER_TYPES.add(MessageType.ENGAGED);
 		IDLE_CHATTER_TYPES.add(MessageType.VICTORY);
 		IDLE_CHATTER_TYPES.add(MessageType.DEATH);
+		
+		FLOAT_CHATTER_TYPES.add(MessageType.PURSUING);
+		FLOAT_CHATTER_TYPES.add(MessageType.NEED_HELP);
+		FLOAT_CHATTER_TYPES.add(MessageType.RUNNING);
 	}
 	
 	protected static void loadCharacters()
@@ -147,13 +154,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 	}
 	
-	protected ShipStateData makeShipStateEntry(FleetMemberAPI member)
+	protected String getCharacterForFleetMember(FleetMemberAPI member)
 	{
-		ShipStateData data = new ShipStateData();
-		data.hull = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member).getHullLevel();
-		
+		String name = "default";
+		CrewXPLevel xpLevel = member.getCrewXPLevel();
 		boolean timid = false;
-		if (member.getHullSpec().getHints().contains(ShipTypeHints.CIVILIAN))
+		if (member.getHullSpec().getHints().contains(ShipTypeHints.CIVILIAN) && !(xpLevel == CrewXPLevel.VETERAN || xpLevel == CrewXPLevel.ELITE))
 			timid = true;
 		PersonAPI captain = member.getCaptain();
 		if (captain != null)
@@ -163,7 +169,26 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			else if (captain.getPersonalityAPI().getId().equals("aggressive"))
 				timid = false;
 		}
-		if (timid) data.characterName = "default_timid";
+		if (timid) name = "default_timid";
+		else
+		{
+			if (xpLevel == CrewXPLevel.GREEN) name = "default_timid";
+			else if (xpLevel == CrewXPLevel.ELITE) name = "default_professional";
+		}
+		return name;
+	}
+	
+	/**
+	 * Makes a ShipStateData to track the condition of the {@code member} for chatter
+	 * @param member
+	 * @return
+	 */
+	protected ShipStateData makeShipStateEntry(FleetMemberAPI member)
+	{
+		ShipStateData data = new ShipStateData();
+		data.hull = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member).getHullLevel();
+		
+		data.characterName = getCharacterForFleetMember(member);
 		
 		states.put(member, data);
 		return data;
@@ -221,9 +246,20 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!idleChatter && IDLE_CHATTER_TYPES.contains(category))
 			return false;
 		
-		if (!meetsPriorityThreshold(member, category))
+		boolean floater = FLOAT_CHATTER_TYPES.contains(category);
+		
+		if (!floater && !meetsPriorityThreshold(member, category))
 		{
-			//log.info("Threshold too high for message " + category.name() + ": " + threshold);
+			//log.info("Threshold too high for message " + category.name());
+			return false;
+		}
+		
+		float msgInterval = MESSAGE_INTERVAL;
+		if (IDLE_CHATTER_TYPES.contains(category)) msgInterval = MESSAGE_INTERVAL_IDLE;
+		if (lastTalker == member) msgInterval *= 1.5f;
+		if (!floater && timeElapsed < lastMessageTime + msgInterval)
+		{
+			log.info("Too soon for next message: " + timeElapsed + " / " + lastMessageTime);
 			return false;
 		}
 		
@@ -235,23 +271,37 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		List<String> lines = CHARACTERS.get(character).lines.get(category);
 		if (lines == null)
 		{
-			log.warn("Missing line category " + category.name() + " for character " + character);
+			//log.warn("Missing line category " + category.name() + " for character " + character);
 			return false;
 		}
 		if (lines.isEmpty()) return false;
 		
-		String message = ": \"" + GeneralUtils.getRandomListElement(lines) + "\"";
+		String message = "\"" + GeneralUtils.getRandomListElement(lines) + "\"";
 		String name = getShipName(member);
 		Color textColor = Global.getSettings().getColor("standardTextColor");
 		if (category == MessageType.HULL_50)
 			textColor = Color.YELLOW;
 		else if (category == MessageType.HULL_30)
 			textColor = Misc.getNegativeHighlightColor();
-		engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, textColor, message);
+		else if (category == MessageType.OVERLOAD)
+			textColor = Color.CYAN;
+		
+		if (floater)
+		{
+			ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
+			if (ship == null) return false;
+			Vector2f pos = ship.getLocation();
+			pos.setY(pos.y - ship.getCollisionRadius());
+			engine.addFloatingText(pos, message, 32, textColor, ship, 0, 0);
+			return false;
+		}
+		
+		engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Misc.getTextColor(), ": ", textColor, message);
 		lastMessageTime = timeElapsed;
 		log.info("Time elapsed: " + lastMessageTime);
 		priorityThreshold += PRIORITY_PER_MESSAGE;
 		lastTalker = member;
+		
 		return true;
 	}
 	
@@ -324,6 +374,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected void playIntroMessage(List<FleetMemberAPI> deployed)
 	{
 		if (timeElapsed > MAX_TIME_FOR_INTRO) {
+			log.info("Too late for intro message: " + timeElapsed);
 			introDone = true;
 		}
 		else {
@@ -380,6 +431,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (engine.isSimulation()) return;
 		if (Global.getCurrentState() == GameState.TITLE) return;
 		
+		//log.info("Advancing: " + amount);
+		
 		timeElapsed += amount;
 		priorityThreshold -= amount * PRIORITY_DECAY;
 		if (priorityThreshold < 0) priorityThreshold = 0;
@@ -392,6 +445,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		if (!introDone)
 		{
+			log.info("Trying to play intro message");
 			playIntroMessage(deployed);
 		}
 		
@@ -446,12 +500,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		boolean canPrint = printed;
 		//if (printed) return;
-		if (timeElapsed < lastMessageTime + MESSAGE_INTERVAL)
-		{
-			//log.info("Too soon for next message: " + timeElapsed + " / " + lastMessageTime);
-			//return;
-			canPrint = false;
-		}
 		
 		for (FleetMemberAPI member : deployed)
 		{
@@ -484,11 +532,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			{
 				if ((canPrint || !printed))
 				{
-					//if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
-					//	printed = printRandomMessage(member, MessageType.NEED_HELP);
-					//else if (flags.hasFlag(AIFlags.PURSUING) && !stateData.pursuing)	// fighters can say this
-						//printed = printRandomMessage(member, MessageType.PURSUING);
-					if (!isFighter && flags.hasFlag(AIFlags.RUN_QUICKLY) && !stateData.running)
+					if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
+						printed = printRandomMessage(member, MessageType.NEED_HELP);
+					else if (flags.hasFlag(AIFlags.PURSUING) && !stateData.pursuing)	// fighters can say this
+						printed = printRandomMessage(member, MessageType.PURSUING);
+					else if (!isFighter && flags.hasFlag(AIFlags.RUN_QUICKLY) && !stateData.running)
 						printed = printRandomMessage(member, MessageType.RUNNING);
 					//else if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
 					//	printed = printRandomMessage(member, MessageType.ENGAGED);
@@ -515,6 +563,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
 	@Override
 	public void init(CombatEngineAPI engine) {
+		log.info("Chatter plugin initialized");
 		this.engine = engine;
 	}
 	
