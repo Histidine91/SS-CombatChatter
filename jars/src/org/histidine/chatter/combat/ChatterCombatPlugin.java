@@ -33,6 +33,7 @@ import org.json.JSONObject;
 import java.awt.Color;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Set;
 import org.histidine.chatter.utils.StringHelper;
 import org.lwjgl.util.vector.Vector2f;
@@ -137,7 +138,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 						String key = (String)keys.next();
 						MessageType type;
 						try {
-							type = MessageType.valueOf(key.toUpperCase());
+							type = MessageType.valueOf(StringHelper.flattenToAscii(key).toUpperCase());
 						} catch (IllegalArgumentException ex) {
 							continue;
 						}
