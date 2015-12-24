@@ -1,0 +1,55 @@
+{
+	"name":"dow2_commissar",
+	"personalities":["steady", "aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Drive me closer! I want to hit them with my sword!"},
+			{"text":"Go forth with confidence!"},
+			{"text":"Not one step back!"},
+			{"text":"No doubt, no fear!"},
+			{"text":"Make them tremble!"},
+		],
+		"retreat":[
+			
+		],
+		"out_of_missiles":[
+			
+		],
+		"need_help":[
+			{"text":"I am beset!"},
+			{"text":"I am under attack!"},
+		],
+		"pursuing":[
+			{"text":"Forward!"},
+			{"text":"More guts, more glory!"}
+		],
+		"running":[
+		],
+		"hull_90":[
+			{"text":"These foes underestimate me!"},
+			{"text":"It takes more than that, I say!"},
+		],
+		"hull_50":[
+			{"text":"You die on my command, not before!"},
+			{"text":"Take heart! There's glory in our pain!"},
+		],
+		"hull_30":[
+			{"text":"No... fear!"}
+		],
+		"overload":[
+		],
+		"death":[
+			{"text":"Win this day for me..."},
+			{"text":"Fight on... without me..."}
+		],
+		"victory":[
+			{"text":"Faster! Harder! Meaner! Better!"},
+			{"text":"Every enemy is a stepping stone!"},
+			{"text":"This is our day! This is our purpose!"},
+		],
+	}
+}

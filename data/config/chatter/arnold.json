@@ -1,0 +1,51 @@
+{
+	"name":"arnold",
+	"personalities":["aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Come with me if you want to live."},
+			{"text":"It's showtime!"},
+		],
+		"retreat":[
+			{"text":"Run! Run! Get to the chopper!"}
+		],
+		"out_of_missiles":[
+			
+		],
+		"need_help":[],
+		"pursuing":[
+			{"text":"Stick around!"}
+		],
+		"running":[
+			
+		],
+		"hull_90":[
+			{"text":"Let off some steam, Bennett!"},
+			{"text":"Talk to the hand!"},
+		],
+		"hull_50":[
+			{"text":"I need a vacation."},
+			{"text":"What the hell are you?!"},
+		],
+		"hull_30":[
+			{"text":"Do it! Do it now! I'm here! Hit me!"}
+		],
+		"overload":[
+			{"text":"That's not a tumor!"}
+		],
+		"death":[
+			{"text":"I'm an obsolete design..."},
+			{"text":"I'll be back!"}
+		],
+		"victory":[
+			{"text":"Hasta la vista, baby!"},
+			{"text":"What is best in life?"},
+			{"text":"You are terminated!"},
+			{"text":"You've just been erased!"},
+		],
+	}
+}
