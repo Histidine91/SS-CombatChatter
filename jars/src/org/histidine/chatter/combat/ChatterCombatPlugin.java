@@ -406,9 +406,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			// short form
 			String message = " " + StringHelper.getString("chatter_general", "hasOverloaded") + "!";
 			String name = getShipName(member);
-			Color textColor = Global.getSettings().getColor("standardTextColor");
-			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, 
-					Global.getSettings().getColor("standardTextColor"), message);
+			Color textColor = Color.CYAN;
+			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Color.CYAN, message);
 			return false;
 		}
 		else
