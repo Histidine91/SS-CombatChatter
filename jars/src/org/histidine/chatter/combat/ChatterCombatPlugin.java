@@ -167,7 +167,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 	}
 	
-	protected String getCharacterForOfficer(PersonAPI captain)
+	protected String getCharacterForOfficer(PersonAPI captain, boolean isAlly)
 	{
 		// try to load officer if available
 		Map<String, Object> data = Global.getSector().getPersistentData();
@@ -194,8 +194,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		String charName = picker.pick();
 		if (charName == null) return "default";
+		
 		log.info("Assigning character " + charName + " to officer " + captain.getName().getFullName());
-		savedOfficers.put(captain, charName);
+		if (!isAlly) savedOfficers.put(captain, charName);
 		return charName;
 	}
 	
@@ -204,8 +205,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		PersonAPI captain = member.getCaptain();
 		if (captain != null && !captain.isDefault())
 		{
-			return getCharacterForOfficer(captain);
-		}		
+			return getCharacterForOfficer(captain, member.isAlly());
+		}
 		
 		String name = "default";
 		CrewXPLevel xpLevel = member.getCrewXPLevel();
