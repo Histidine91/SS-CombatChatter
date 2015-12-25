@@ -1,0 +1,16 @@
+Aron0621:
+* default_aggressive
+* default_professional
+
+spoortje1: 
+* pirate
+
+Love in Space:
+* sunrider_ava
+* sunrider_asaga
+
+Relic Entertainment:
+* dow2_commissar
+
+Arnold Schwarzenegger:
+* arnold
