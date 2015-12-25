@@ -178,7 +178,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			data.put(PERSISTENT_DATA_KEY, savedOfficers);
 		}
 		if (savedOfficers.containsKey(captain))
-			return savedOfficers.get(captain);
+		{
+			String saved = savedOfficers.get(captain);
+			// this check makes sure it doesn't break if a previously used character is deleted
+			if (CHARACTERS_MAP.containsKey(saved)) return saved;
+		}
 		
 		WeightedRandomPicker<String> picker = new WeightedRandomPicker<>();
 		String gender = "n";
@@ -439,7 +443,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 	}
 	
-	// TODO
+	/**
+	 * Picks a random FleetMemberAPI to say a "team" message, such as the battle start or retreat messages.
+	 * @param members The FleetMemberAPIs to choose a random speaker from (usually this is engine.getFleetManager(FleetSide.PLAYER).getDeployedCopy())
+	 * @return
+	 */
 	protected FleetMemberAPI pickRandomMemberFromList(List<FleetMemberAPI> members)
 	{
 		WeightedRandomPicker<FleetMemberAPI> picker = new WeightedRandomPicker<>();
@@ -529,7 +537,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
 			ShipAPI ship = fm.getShipFor(member);
-			if (ship.getShipAI() == null) continue;	// under AI control;
+			if (ship.getShipAI() == null) continue;	// under player control;
 			float hull = ship.getHullLevel();
 			float oldHull = stateData.hull;
 			
