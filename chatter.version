@@ -1,11 +1,11 @@
 {
 	"masterVersionFile":"https://bitbucket.org/Histidine/combat-chatter/downloads/chatter.version",
 	"modName":"Combat Chatter",
-	"modThreadId":"",
+	"modThreadId":10399,
 	"modVersion":
 	{
 		"major":1,
-		"minor":0,
+		"minor":1,
 		"patch":0
 	},
 	"starsectorVersion":".7.1a"
