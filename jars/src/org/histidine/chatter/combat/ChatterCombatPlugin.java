@@ -459,7 +459,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (fm.getShipFor(member).getShipAI() == null) continue;	// under AI control;
 			if (fm.getShipFor(member).isHulk()) continue;
 			float weight = FleetFactoryV2.getPointsForVariant(member.getVariant().getHullVariantId());
-			if (member.getCaptain() != null) weight *= 4;
+			if (member.getCaptain() != null && !member.getCaptain().isDefault()) weight *= 4;
 			if (member.isFighterWing()) weight *= 0.5f;
 			if (member.isAlly()) {
 				if (allyChatter) weight *= 0.5f;
