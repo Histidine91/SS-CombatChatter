@@ -340,8 +340,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
 			if (ship == null) return false;
 			Vector2f pos = ship.getLocation();
-			pos.setY(pos.y - ship.getCollisionRadius());
-			engine.addFloatingText(pos, message, 32, textColor, ship, 0, 0);
+			Vector2f textPos = new Vector2f(pos.x, pos.y + ship.getCollisionRadius());
+			engine.addFloatingText(textPos, message, 32, textColor, ship, 0, 0);
 			return false;
 		}
 		
