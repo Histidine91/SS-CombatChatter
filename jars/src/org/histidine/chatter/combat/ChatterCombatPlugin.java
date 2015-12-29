@@ -417,12 +417,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printOverloadMessage(FleetMemberAPI member)
 	{
-		if (meetsPriorityThreshold(member, MessageType.OVERLOAD) || !hasLine(member, MessageType.OVERLOAD))
+		if (!meetsPriorityThreshold(member, MessageType.OVERLOAD) || !hasLine(member, MessageType.OVERLOAD))
 		{
 			// short form
 			String message = " " + StringHelper.getString("chatter_general", "hasOverloaded") + "!";
 			String name = getShipName(member);
-			Color textColor = Color.CYAN;
 			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Color.CYAN, message);
 			return false;
 		}
