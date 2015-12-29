@@ -58,6 +58,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final float MAX_TIME_FOR_INTRO = 8;
 	public static final float MESSAGE_INTERVAL = 3;
 	public static final float MESSAGE_INTERVAL_IDLE = 6;
+	public static final float MESSAGE_INTERVAL_FLOAT = 4;
 	
 	public static boolean idleChatter = true;
 	public static boolean allyChatter = true;
@@ -302,6 +303,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return false;
 		}
 		
+		
 		float msgInterval = MESSAGE_INTERVAL;
 		if (IDLE_CHATTER_TYPES.contains(category)) msgInterval = MESSAGE_INTERVAL_IDLE;
 		if (lastTalker == member) msgInterval *= 1.5f;
@@ -312,6 +314,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		ShipStateData stateData = getShipStateData(member);
+		if (floater && stateData.lastFloatMessageType == category)
+		{
+			if (timeElapsed < stateData.lastFloatMessageTime + MESSAGE_INTERVAL_FLOAT)
+				return false;
+		}
+		
 		String character = stateData.characterName;
 		if (!CHARACTERS_MAP.containsKey(character))
 			character = "default";
@@ -342,6 +350,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			Vector2f pos = ship.getLocation();
 			Vector2f textPos = new Vector2f(pos.x, pos.y + ship.getCollisionRadius());
 			engine.addFloatingText(textPos, message, 32, textColor, ship, 0, 0);
+			stateData.lastFloatMessageTime = timeElapsed;
+			stateData.lastFloatMessageType = category;
 			return false;
 		}
 		
@@ -632,6 +642,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		public boolean running = false;
 		public float hull = 0;
 		public boolean overloaded = false;
+		public float lastFloatMessageTime = -999;
+		public MessageType lastFloatMessageType = MessageType.START;
 	}
 	
 	protected static class ChatterCharacter
