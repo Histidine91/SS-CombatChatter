@@ -1,19 +1,23 @@
 package org.histidine.chatter.utils;
 
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.combat.ShipAPI.HullSize;
+import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.util.WeightedRandomPicker;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
-import org.lazywizard.lazylib.MathUtils;
 
 public class GeneralUtils {
 	
+	// get rid of the LazyLib requirement
 	public static <T> T getRandomListElement(List<T> list)
 	{
 		if (list.isEmpty())
 			return null;
-		int randomIndex = MathUtils.getRandomNumberInRange(0, list.size() - 1);
-		return list.get(randomIndex);
+		WeightedRandomPicker<T> picker = new WeightedRandomPicker<>();
+		picker.addAll(list);
+		return picker.pick();
 	}	
 	
 	public static List<String> JSONArrayToStringList(JSONArray jsonArray)
@@ -33,4 +37,23 @@ public class GeneralUtils {
         }
 		return ret;
     }
+	
+	public static float getHullSizePoints(FleetMemberAPI member)
+	{
+		HullSize size = member.getHullSpec().getHullSize();
+		switch (size)
+		{
+			case FIGHTER:
+			case FRIGATE:
+				return 1;
+			case DESTROYER:
+				return 2;
+			case CRUISER:
+				return 4;
+			case CAPITAL_SHIP:
+				return 8;
+			default:
+				return 1;
+		}
+	}
 }

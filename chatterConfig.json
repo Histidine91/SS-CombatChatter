@@ -1,4 +1,4 @@
 {
-	"idleChatter":true,	# false hides some low-priority messages
+	"idleChatter":true,	# false makes most low-priority messages appear as floating text instead of in message field
 	"allyChatter":true,
 }

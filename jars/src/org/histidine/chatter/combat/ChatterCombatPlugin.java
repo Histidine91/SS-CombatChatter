@@ -189,9 +189,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		String gender = "n";
 		if (captain.isFemale()) gender = "f";
 		else if (captain.isMale()) gender = "m";
+		boolean isMission = engine.isMission();
+		
 		for (ChatterCharacter character : CHARACTERS)
 		{
-			if (!character.gender.contains(gender)) continue;
+			if (!isMission && !character.gender.contains(gender)) continue;
 			if (character.personalities.contains(captain.getPersonalityAPI().getId()))
 				picker.add(character.name, character.chance);
 		}
@@ -201,14 +203,15 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (charName == null) return "default";
 		
 		log.info("Assigning character " + charName + " to officer " + captain.getName().getFullName());
-		if (!isAlly) savedOfficers.put(captain, charName);
+		if (!isAlly && !isMission) 
+			savedOfficers.put(captain, charName);
 		return charName;
 	}
 	
 	protected String getCharacterForFleetMember(FleetMemberAPI member)
 	{
 		PersonAPI captain = member.getCaptain();
-		if (captain != null && !captain.isDefault())
+		if ((captain != null && !captain.isDefault()) || engine.isMission())
 		{
 			return getCharacterForOfficer(captain, member.isAlly());
 		}
@@ -284,6 +287,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return Global.getSettings().getColor("textFriendColor");
 	}
 	
+	protected boolean isFloatingMessage(MessageType category)
+	{
+		boolean floater = FLOAT_CHATTER_TYPES.contains(category);
+		if (!idleChatter)
+			floater = floater || IDLE_CHATTER_TYPES.contains(category);
+		return floater;
+	}
+	
 	/**
 	 * Writes a random message of the appropriate category, based on the {@code member}'s assigned character
 	 * @param member
@@ -292,10 +303,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printRandomMessage(FleetMemberAPI member, MessageType category)
 	{
-		if (!idleChatter && IDLE_CHATTER_TYPES.contains(category))
-			return false;
-		
-		boolean floater = FLOAT_CHATTER_TYPES.contains(category);
+		boolean floater = isFloatingMessage(category);
 		
 		if (!floater && !meetsPriorityThreshold(member, category))
 		{
@@ -438,15 +446,16 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			introDone = true;
 		}
 		else {
-			FleetMemberAPI random = pickRandomMemberFromList(deployed);
+			MessageType type = MessageType.START;
+			if (engine.getContext().getPlayerGoal() == FleetGoal.ESCAPE)
+				type = MessageType.RETREAT;
+			
+			FleetMemberAPI random = pickRandomMemberFromList(deployed, type);
 			if (random != null)
 			{
 				//DeployedFleetMemberAPI randomD = fm.getDeployedFleetMember(fm.getShipFor(random));
 				//engine.getCombatUI().addMessage(0, engine.getContext().getPlayerGoal().name());
-				if (engine.getContext().getPlayerGoal() == FleetGoal.ESCAPE)
-					printRandomMessage(random, MessageType.RETREAT);
-				else
-					printRandomMessage(random, MessageType.START);
+				printRandomMessage(random, type);
 				introDone = true;
 			}
 		}
@@ -457,8 +466,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 * @param members The FleetMemberAPIs to choose a random speaker from (usually this is engine.getFleetManager(FleetSide.PLAYER).getDeployedCopy())
 	 * @return
 	 */
-	protected FleetMemberAPI pickRandomMemberFromList(List<FleetMemberAPI> members)
+	protected FleetMemberAPI pickRandomMemberFromList(List<FleetMemberAPI> members, MessageType category)
 	{
+		boolean floater = isFloatingMessage(category);
 		WeightedRandomPicker<FleetMemberAPI> picker = new WeightedRandomPicker<>();
 		for (FleetMemberAPI member : members)
 		{
@@ -467,12 +477,17 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			CombatFleetManagerAPI fm = engine.getFleetManager(FleetSide.PLAYER);
 			if (fm.getShipFor(member).getShipAI() == null) continue;	// under AI control;
 			if (fm.getShipFor(member).isHulk()) continue;
-			float weight = FleetFactoryV2.getPointsForVariant(member.getVariant().getHullVariantId());
+			float weight = GeneralUtils.getHullSizePoints(member);
 			if (member.getCaptain() != null && !member.getCaptain().isDefault()) weight *= 4;
 			if (member.isFighterWing()) weight *= 0.5f;
 			if (member.isAlly()) {
 				if (allyChatter) weight *= 0.5f;
 				else continue;
+			}
+			if (floater) {
+				ShipAPI ship = fm.getShipFor(member);
+				if (!Global.getCombatEngine().getViewport().isNearViewport(ship.getLocation(), ship.getCollisionRadius()))
+					continue;
 			}
 			
 			ShipStateData stateData = getShipStateData(member);
@@ -519,7 +534,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!victory && engine.getFleetManager(FleetSide.ENEMY).getTaskManager(false).isInFullRetreat() 
 				&& engine.getFleetManager(FleetSide.ENEMY).getGoal() != FleetGoal.ESCAPE)
 		{
-			FleetMemberAPI random = pickRandomMemberFromList(deployed);
+			FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.VICTORY);
 			if (random != null)
 			{
 				printRandomMessage(random, MessageType.VICTORY);
@@ -529,7 +544,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		// full retreat message (same as start escape)
 		else if (!victory && engine.getFleetManager(FleetSide.PLAYER).getTaskManager(false).isInFullRetreat())
 		{
-			FleetMemberAPI random = pickRandomMemberFromList(deployed);
+			FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.RETREAT);
 			if (random != null)
 			{
 				printRandomMessage(random, MessageType.RETREAT);
