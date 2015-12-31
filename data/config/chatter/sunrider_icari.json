@@ -1,0 +1,56 @@
+{
+	"name":"sunrider_icari",
+	"personalities":["aggressive"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Make it quick."},
+			{"text":"This had better be worth it."},
+			{"text":"What?! I'm not doing this because I like you!"},
+			{"text":"I'll take you all on!"},
+			{"text":"I hope you know what you're doing, captain."},
+		],
+		"retreat":[
+			{"text":"Falling back."},
+			{"text":"Turning around."},
+		],
+		"out_of_missiles":[
+		],
+		"need_help":[],
+		"engaged":[],
+		"pursuing":[
+			{"text":"Accelerating."},
+			{"text":"Engaging hostiles."},
+			{"text":"Prepare yourself!"},
+		],
+		"running":[
+		],
+		"hull_90":[
+			{"text":"Ugh... I won't forgive this!"},
+			{"text":"You scratched up my ship! You'll pay!"}
+		],
+		"hull_50":[
+			{"text":"Come on, captain, be more careful!"},
+			{"text":"Can't you command me better? This is all your fault!"},
+		],
+		"hull_30":[
+			{"text":"I... hate... everything..."},
+		],
+		"overload":[
+			{"text":"Controls... becoming sluggish..."},
+			{"text":"T-This isn't funny! Do something, captain!"},	
+		],
+		"death":[
+			{"text":"Captain...! This is all your fault!"},
+			{"text":"I'll be back!"},
+		],
+		"victory":[
+			{"text":"Easy in, easy out!"},
+			{"text":"All too easy."},
+			{"text":"And that's how it's done!"},
+		],
+	}
+}

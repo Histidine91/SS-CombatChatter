@@ -1,0 +1,46 @@
+{
+	"name":"sunrider_sola",
+	"personalities":["cautious", "steady"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":0.7,
+	
+	"lines":{
+		"start":[
+			{"text":"Death from the abyss."},
+			{"text":"No escape."},
+			{"text":"Providence awaits."},
+		],
+		"retreat":[
+			{"text":"Falling back."},
+			{"text":"Fading into the darkness."},
+		],
+		"out_of_missiles":[
+		],
+		"need_help":[],
+		"engaged":[],
+		"pursuing":[
+			{"text":"Moving forward."},
+			{"text":"Speeding up."},
+		],
+		"running":[
+			{"text":"Moving back."}
+		],
+		"hull_90":[
+			{"text":"Requesting cover."},
+		],
+		"hull_50":[
+			{"text":"Armor cannot hold..."},
+			{"text":"I need cover!"},
+		],
+		"hull_30":[
+		],
+		"overload":[
+		],
+		"death":[
+			{"text":"I return to the abyss..."},
+		],
+		"victory":[
+		],
+	}
+}

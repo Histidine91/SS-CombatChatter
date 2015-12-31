@@ -8,9 +8,14 @@ spoortje1:
 Love in Space:
 * sunrider_ava
 * sunrider_asaga
+* sunrider_icari
+* sunrider_sola
 
 Relic Entertainment:
 * dow2_commissar
 
 Arnold Schwarzenegger:
 * arnold
+
+Valve:
+* tf2_heavy
