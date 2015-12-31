@@ -2,9 +2,9 @@
   "id":"chatter",
   "name":"Combat Chatter",
   "author":"Histidine",
-  "version":"1.1b",
+  "version":"1.2",
   "utility":true,
-  "description":"Talky-man broke Thog's tusk. TALKY-MAN BROKE THOG'S TUSK!! (Requires LazyLib)",
+  "description":"Talky-man broke Thog's tusk. TALKY-MAN BROKE THOG'S TUSK!!",
   "gameVersion":"0.7.1a",
   "jars":["jars/CombatChatter.jar"],
 }
