@@ -1,0 +1,58 @@
+{
+	"name":"ja2_biff",
+	"personalities":["timid"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Red alert!"},
+			{"text":"Awww, no! I was just beginning to get comfortable!"},
+			{"text":"I know there's gonna be trouble! There's always trouble!"},
+		],
+		"retreat":[
+			{"text":"I need a nice, warm bed..."},
+			{"text":"Sometimes I wish I never left my room..."}
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+		],
+		"need_help":[
+			{"text":"Ohhh... I'm so scared!"},
+			{"text":"I'm in trouble here!"},
+		],
+		"pursuing":[
+			{"text":"Over there!"},
+			{"text":"Something there!"},
+		],
+		"running":[
+			{"text":"I'm gonna have to change my underwear..."}
+		],
+		"hull_90":[
+			{"text":"Oh my God..."},
+			{"text":"Mayday! Mayday!"},
+		],
+		"hull_50":[
+			{"text":"Oh my God... this is so painful..."},
+			{"text":"Oh my God! Oh my God!!"},
+		],
+		"hull_30":[
+			{"text":"Oh my God!! I'm a dead man!!"},
+			{"text":"I'm gonna die!"},
+		],
+		"overload":[
+			{"text":"It's broke! Why does my stuff always break?!"},
+			{"text":"Oh my God! I'm... I'm blind!"},
+		],
+		"death":[
+		],
+		"victory":[
+			{"text":"Sure glad it wasn't me!"},
+			{"text":"Ahh, I was never worried! Heh heh..."},
+			{"text":"That'll show them!"},
+			{"text":"All clear! And I'm still alive!"},
+		],
+	}
+}
