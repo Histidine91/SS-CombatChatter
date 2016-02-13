@@ -1,0 +1,71 @@
+{
+	"name":"freespace_human2",
+	"personalities":["cautious", "steady"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Bandits in the area."},
+			{"text":"Enemy ships just arrived!"},
+			{"text":"Heads up, we've got visitors!"},
+			{"text":"IFF confirmed! Hostiles inbound!"},
+			{"text":"We've got company!"},
+		],
+		"retreat":[
+			{"text":"Roger that, sir. See you back home."},
+			{"text":"That's affirmative, sir. Departing now."},
+			{"text":"Yes sir. Leaving battle area."},
+		],
+		"out_of_missiles":[
+			{"text":"I'm out of missiles."},
+			{"text":"Missile banks depleted!"},
+			{"text":"Ordnance depleted!"},
+		],
+		"engaged":[
+			{"text":"Engaging enemy."},
+			{"text":"Jump 'em fast before they swarm us!"},
+		],
+		"need_help":[
+			{"text":"Could one of you flyboys give me some cover?"},
+			{"text":"Cover me! Cover me!"},
+			{"text":"Get this bandit off me!"},
+		],
+		"pursuing":[
+			{"text":"Attacking now, sir."},
+			{"text":"I've got 'em in my sights!"},
+			{"text":"Target acquired."},
+			{"text":"We'll take 'em down!"},
+		],
+		"running":[
+		],
+		"hull_90":[
+			{"text":"Taking damage! Requesting cover!"},
+		],
+		"hull_50":[
+			{"text":"Hull taking serious damage!"},
+			{"text":"I can't hold them off much longer!"},
+		],
+		"hull_30":[
+			{"text":"Hull integrity failing! Get me out outta here, Command!"},
+			{"text":"This crate's gonna blow!"},
+		],
+		"overload":[
+			{"text":"I'm losing systems! Help me out!"},
+			{"text":"My systems are going berserk!"},
+			{"text":"Subsystems incapacitated!"},
+		],
+		"death":[
+			{"text":"Aaaaaaaah!!!"},
+			{"text":"Help me!!!"},
+			{"text":"Noooooooo!!!"},
+		],
+		"victory":[
+			{"text":"All hostiles are down. Area secure."},
+			{"text":"Command, we have secured the area."},
+			{"text":"Glad that's over."},
+			{"text":"Radar's clean and clear."},
+		],
+	}
+}

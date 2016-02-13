@@ -1,0 +1,48 @@
+{
+	"name":"ja2_miguel",
+	"personalities":["cautious, steady, aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"I am prepared for battle."},
+			{"text":"I wait for chance to meet enemy. It will come soon."},
+			{"text":"I wait for direction."},
+		],
+		"retreat":[
+		],
+		"out_of_missiles":[
+			{"text":"My gun must be reloaded!"},
+		],
+		"engaged":[
+		],
+		"need_help":[
+		],
+		"pursuing":[
+			{"text":"I will teach them!"},
+			{"text":"Enemy forces are here!"},
+		],
+		"running":[
+		],
+		"hull_90":[
+		],
+		"hull_50":[
+			{"text":"I have damage!"},
+			{"text":"War be most unpleasant."},
+		],
+		"hull_30":[
+			{"text":"They will not kill me. I have lived for too much."},
+		],
+		"overload":[
+			{"text":"It not possible! I cannot see!"},
+		],
+		"death":[
+		],
+		"victory":[
+			{"text":"They must try harder."},
+			{"text":"Their forces be finished here. Death take them all."},
+		],
+	}
+}

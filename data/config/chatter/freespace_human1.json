@@ -1,0 +1,76 @@
+{
+	"name":"freespace_human1",
+	"personalities":["steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Bandits incoming!"},
+			{"text":"Heads up! Enemy vessels closing in!"},
+			{"text":"Heads up, we have company!"},
+			{"text":"Hostiles approaching fast!"},
+			{"text":"Hostiles in the area!"},
+			{"text":"Incoming ship signatures! Hostile configuration!"},
+			{"text":"The cavalry has arrived!"},
+		],
+		"retreat":[
+			{"text":"I'm outta here."},
+			{"text":"Yes, sir! I'm outta here!"},
+			{"text":"You don't have to tell me twice!"},
+		],
+		"out_of_missiles":[
+			{"text":"I'm out of missiles."},
+			{"text":"Missile banks depleted!"},
+			{"text":"Ordnance depleted!"},
+		],
+		"engaged":[
+			{"text":"Engaging at will!"},
+			{"text":"Engaging enemy now, sir."},
+			{"text":"Engaging now, sir."},
+		],
+		"need_help":[
+			{"text":"Could one of you flyboys give me some cover?"},
+			{"text":"Cover me! Cover me!"},
+			{"text":"Get this bandit off me!"},
+		],
+		"pursuing":[
+			{"text":"Attacking now, sir."},
+			{"text":"I've got 'em in my sights!"},
+			{"text":"Target acquired."},
+			{"text":"We'll take 'em down!"},
+		],
+		"running":[
+		],
+		"hull_90":[
+			{"text":"Taking damage! Requesting cover!"},
+		],
+		"hull_50":[
+			{"text":"Hull taking serious damage!"},
+			{"text":"I can't hold them off much longer!"},
+		],
+		"hull_30":[
+			{"text":"Hull integrity failing! Get me out outta here, Command!"},
+			{"text":"This crate's gonna blow!"},
+		],
+		"overload":[
+			{"text":"Command, systems are blown!"},
+			{"text":"Subsystems are down!"},
+			{"text":"Systems failing!"},
+		],
+		"death":[
+			{"text":"Damn it!!"},
+			{"text":"I'm going down! I'm going down!"},
+			{"text":"Mayday! Mayday!"},
+			{"text":"Ship down! Ship down!"},
+		],
+		"victory":[
+			{"text":"All clear, Command."},
+			{"text":"Area is secure."},
+			{"text":"Bandits neutralized. All clear."},
+			{"text":"I think that's all of them."},
+			{"text":"Is that the best they can do?"},
+		],
+	}
+}

@@ -1,0 +1,69 @@
+{
+	"name":"freespace_default",
+	"personalities":["cautious","steady"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Enemy craft inbound."},
+			{"text":"Enemy fleet has just arrived!"},
+			{"text":"Enemy presence detected."},
+			{"text":"Hostile targets entering the area."},
+			{"text":"Reading hostile indicators."},
+		],
+		"retreat":[
+			{"text":"Affirmative. Departing now."},
+			{"text":"Departing field of engagement."},
+			{"text":"We are departing as ordered."},
+		],
+		"out_of_missiles":[
+			{"text":"Weapons depleted."},
+		],
+		"engaged":[
+			{"text":"Engaging at will!"},
+			{"text":"Engaging enemy now, sir."},
+			{"text":"Engaging enemy."},
+			{"text":"Engaging now, sir."},
+			{"text":"Jump 'em fast before they swarm us!"},
+		],
+		"need_help":[
+			{"text":"Cover me! Cover me!"},
+		],
+		"pursuing":[
+			{"text":"Breaking to attack."}
+			{"text":"Commencing attack on my target."},
+			{"text":"Target acquired."},
+		],
+		"running":[
+		],
+		"hull_90":[
+			{"text":"Taking damage! Requesting cover!"},
+		],
+		"hull_50":[
+			{"text":"Hull taking serious damage!"},
+			{"text":"Taking severe damage."},
+		],
+		"hull_30":[
+			{"text":"Sustained critical damage. Hull failure imminent."},
+			{"text":"We will not survive this engagement."},
+		],
+		"overload":[
+			{"text":"Subsystems compromised."},
+			{"text":"Systems are failing. Please assist."},
+		],
+		"death":[
+			{"text":"Avenge me!"},
+			{"text":"No sorrow, only vengeance."},
+			{"text":"One more passes beyond the veil."},
+			{"text":"Our flame will not be extinguished!"},
+		],
+		"victory":[
+			{"text":"All enemy forces negated."},
+			{"text":"All hostile targets neutralized."},
+			{"text":"Area secured."},
+			{"text":"Radar is clear of hostile targets."}
+		],
+	}
+}
