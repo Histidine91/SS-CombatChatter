@@ -1,5 +1,5 @@
 {
-	"name":"freespace_default",
+	"name":"freespace_vasudan",
 	"personalities":["cautious","steady"],
 	"gender":["m","f","n"],
 	"chance":1,
@@ -32,7 +32,7 @@
 			{"text":"Cover me! Cover me!"},
 		],
 		"pursuing":[
-			{"text":"Breaking to attack."}
+			{"text":"Breaking to attack."},
 			{"text":"Commencing attack on my target."},
 			{"text":"Target acquired."},
 		],
