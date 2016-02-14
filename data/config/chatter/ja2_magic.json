@@ -1,0 +1,55 @@
+{
+	"name":"ja2_magic",
+	"personalities":["steady, aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Our guests are here!"},
+			{"text":"Snapperhead alert!"},
+			{"text":"Like lightning, man, I'm here and ready to strike."},
+		],
+		"retreat":[
+		],
+		"out_of_missiles":[
+			{"text":"Chamber's empty, man."},
+		],
+		"engaged":[
+		],
+		"need_help":[
+			{"text":"I'm spinning my wheels, man..."},
+		],
+		"pursuing":[
+			{"text":"Snapperheads!"},
+			{"text":"Over there!"},
+		],
+		"running":[
+			{"text":"This isn't working, man..."},
+		],
+		"hull_90":[
+			{"text":"Bring it on. I wanna kick some ass."},
+		],
+		"hull_50":[
+			{"text":"This is when I'm at my best!"},
+			{"text":"Your ass is on my platter, snapperhead."},
+		],
+		"hull_30":[
+			{"text":"Pissing blood, man..."},
+			{"text":"I need... to... chill..."},
+		],
+		"overload":[
+			{"text":"Piece is screwed!"},
+			{"text":"Burning, man! I'm not seeing nothing!"},
+		],
+		"death":[
+		],
+		"victory":[
+			{"text":"Need a broom!"},
+			{"text":"So long, snapperheads!"},
+			{"text":"Ya gotta like that!"},
+			{"text":"I'm in tune."},
+		],
+	}
+}
