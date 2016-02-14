@@ -184,6 +184,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		WeightedRandomPicker<String> picker = new WeightedRandomPicker<>();
+		WeightedRandomPicker<String> pickerBackup = new WeightedRandomPicker<>();
+		
 		String gender = "n";
 		if (captain.isFemale()) gender = "f";
 		else if (captain.isMale()) gender = "m";
@@ -193,8 +195,26 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		{
 			if (!isMission && !character.gender.contains(gender)) continue;
 			if (character.personalities.contains(captain.getPersonalityAPI().getId()))
+			{
 				picker.add(character.name, character.chance);
+				pickerBackup.add(character.name, character.chance);
+			}
 		}
+		
+		// try to not have duplicate chatter chars among our fleet's officers (unless we've run out)
+		if ( !isAlly && (engine.isInCampaign() || engine.isInCampaignSim()) )
+		{
+			Iterator<Map.Entry<PersonAPI, String>> iter = savedOfficers.entrySet().iterator();
+			while (iter.hasNext())
+			{
+				Map.Entry<PersonAPI, String> tmp = iter.next();
+				String existing = tmp.getValue();
+				if (picker.getItems().contains(existing))
+					picker.remove(existing);
+			}
+		}
+		if (picker.isEmpty()) picker = pickerBackup;
+		
 		if (picker.isEmpty()) return "default";
 		
 		String charName = picker.pick();
