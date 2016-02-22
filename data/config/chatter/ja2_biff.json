@@ -10,6 +10,7 @@
 			{"text":"Red alert!"},
 			{"text":"Awww, no! I was just beginning to get comfortable!"},
 			{"text":"I know there's gonna be trouble! There's always trouble!"},
+			{"text":"Let's hope they don't feel like fighting!"}
 		],
 		"retreat":[
 			{"text":"I need a nice, warm bed..."},
@@ -28,7 +29,8 @@
 			{"text":"Something there!"},
 		],
 		"running":[
-			{"text":"I'm gonna have to change my underwear..."}
+			{"text":"I'm gonna have to change my underwear..."},
+			{"text":"Jiminy crickets!"}
 		],
 		"hull_90":[
 			{"text":"Oh my God..."},
