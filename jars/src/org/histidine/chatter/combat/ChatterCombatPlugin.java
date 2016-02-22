@@ -169,16 +169,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected String getCharacterForOfficer(PersonAPI captain, boolean isAlly)
 	{
 		// try to load officer if available
-		Map<String, Object> data = Global.getSector().getPersistentData();
-		Map<PersonAPI, String> savedOfficers = (HashMap<PersonAPI, String>)data.get(PERSISTENT_DATA_KEY);
-		if (savedOfficers == null)
+		String officerID = captain.getId();
+		Map<String, String> savedOfficers = GeneralUtils.getSavedCharacters();
+		
+		if (savedOfficers.containsKey(officerID))
 		{
-			savedOfficers = new HashMap<>();
-			data.put(PERSISTENT_DATA_KEY, savedOfficers);
-		}
-		if (savedOfficers.containsKey(captain))
-		{
-			String saved = savedOfficers.get(captain);
+			String saved = savedOfficers.get(officerID);
 			// this check makes sure it doesn't break if a previously used character is deleted
 			if (CHARACTERS_MAP.containsKey(saved)) return saved;
 		}
@@ -204,10 +200,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		// try to not have duplicate chatter chars among our fleet's officers (unless we've run out)
 		if ( !isAlly && (engine.isInCampaign() || engine.isInCampaignSim()) )
 		{
-			Iterator<Map.Entry<PersonAPI, String>> iter = savedOfficers.entrySet().iterator();
+			Iterator<Map.Entry<String, String>> iter = savedOfficers.entrySet().iterator();
 			while (iter.hasNext())
 			{
-				Map.Entry<PersonAPI, String> tmp = iter.next();
+				Map.Entry<String, String> tmp = iter.next();
 				String existing = tmp.getValue();
 				if (picker.getItems().contains(existing))
 					picker.remove(existing);
@@ -222,7 +218,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		log.info("Assigning character " + charName + " to officer " + captain.getName().getFullName());
 		if (!isAlly && !isMission) 
-			savedOfficers.put(captain, charName);
+			savedOfficers.put(captain.getId(), charName);
 		return charName;
 	}
 	
