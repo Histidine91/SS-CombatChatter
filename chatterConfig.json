@@ -1,5 +1,5 @@
 {
 	"idleChatter":true,	# false makes most low-priority messages appear as floating text instead of in message field
 	"allyChatter":true,
-	"selfChatter":true,	# if true, player flagship will have chatter as well
+	"selfChatter":false,	# if true, player flagship will have chatter as well
 }
