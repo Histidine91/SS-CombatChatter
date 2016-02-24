@@ -1,0 +1,49 @@
+{
+	"name":"ja2_fox",
+	"personalities":["cautious", "steady"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"The fox is listening..."},
+			{"text":"Get ready! They're here!"},
+		],
+		"retreat":[
+			{"text":"This is nothing like I expected it to be!"},
+		],
+		"out_of_missiles":[
+			{"text":"I'm in need of ammo."},
+		],
+		"engaged":[
+		],
+		"need_help":[
+		],
+		"pursuing":[
+			{"text":"There's something!"},
+		],
+		"running":[
+			
+		],
+		"hull_90":[
+		],
+		"hull_50":[
+			{"text":"This is not looking very good..."},
+			{"text":"Nothing in my life ever works out!"},
+		],
+		"hull_30":[
+			{"text":"I don't think I'm gonna make it..."},
+		],
+		"overload":[
+			{"text":"What's a girl have to do to get something that works around here?"},
+		],
+		"death":[
+		],
+		"victory":[
+			{"text":"Sweet dreams!"},
+			{"text":"Ready to move on!"},
+			{"text":"Yeah, we did 'em all! I love that!"},
+		],
+	}
+}
