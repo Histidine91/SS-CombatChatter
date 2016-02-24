@@ -19,3 +19,15 @@ Arnold Schwarzenegger:
 
 Valve:
 * tf2_heavy
+
+Strategy First:
+* ja2_biff
+* ja2_fox
+* ja2_miguel
+* ja2_magic
+* ja2_steroid
+
+Volition:
+* freespace_human1
+* freespace_human2
+* freespace_vasudan
