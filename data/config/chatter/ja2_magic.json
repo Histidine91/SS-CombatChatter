@@ -1,6 +1,6 @@
 {
 	"name":"ja2_magic",
-	"personalities":["steady, aggressive"],
+	"personalities":["steady", "aggressive"],
 	"gender":["m"],
 	"chance":1,
 	"talkativeness":1,
