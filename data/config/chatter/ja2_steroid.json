@@ -18,10 +18,8 @@
 		],
 		"need_help":[],
 		"pursuing":[
-			{"text":"I spy the evil people!"},
 		],
 		"running":[
-			{"text":"Jesus and Mary!"},
 			{"text":"The hairs on the back of my neck are... upstanding..."},
 			{"text":"Oh Mary!"},
 		],
@@ -30,6 +28,7 @@
 		],
 		"hull_50":[
 			{"text":"Damn it, damn it, damn it! This is not possible!"},
+			{"text":"Jesus and Mary!"},
 		],
 		"hull_30":[
 			{"text":"God damn it to hell!"},
