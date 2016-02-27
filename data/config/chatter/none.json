@@ -1,0 +1,10 @@
+{
+	# used for things that should not have voices (like II Olympus missiles)
+	"name":"none",
+	"personalities":[],
+	"gender":[],
+	"chance":0,
+	"talkativeness":1,
+	
+	"lines":{}
+}

@@ -53,6 +53,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final Map<MessageType, Float> MESSAGE_TYPE_MAX_PRIORITY = new HashMap<>();
 	public static final Set<MessageType> IDLE_CHATTER_TYPES = new HashSet<>();
 	public static final Set<MessageType> FLOAT_CHATTER_TYPES = new HashSet<>();
+	public static final Set<String> EXCLUDED_HULLS = new HashSet<>();
 	public static final float MAX_TIME_FOR_INTRO = 8;
 	public static final float MESSAGE_INTERVAL = 3;
 	public static final float MESSAGE_INTERVAL_IDLE = 6;
@@ -114,6 +115,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		FLOAT_CHATTER_TYPES.add(MessageType.PURSUING);
 		FLOAT_CHATTER_TYPES.add(MessageType.NEED_HELP);
 		FLOAT_CHATTER_TYPES.add(MessageType.RUNNING);
+		
+		EXCLUDED_HULLS.add("ii_titan");
+		EXCLUDED_HULLS.add("ii_mirv");
 	}
 	
 	protected static void loadCharacters()
@@ -226,6 +230,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	protected String getCharacterForFleetMember(FleetMemberAPI member)
 	{
+		if (EXCLUDED_HULLS.contains(member.getHullId()))
+			return "null";
+		
 		PersonAPI captain = member.getCaptain();
 		if ((captain != null && !captain.isDefault()) || engine.isMission())
 		{
