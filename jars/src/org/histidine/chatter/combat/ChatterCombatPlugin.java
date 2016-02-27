@@ -100,7 +100,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_90, 20f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_50, 40f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_30, 60f);
-		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.DEATH, 10f);
+		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.DEATH, 15f);
 		
 		IDLE_CHATTER_TYPES.add(MessageType.START);
 		IDLE_CHATTER_TYPES.add(MessageType.RETREAT);
@@ -338,9 +338,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		float msgInterval = MESSAGE_INTERVAL;
 		if (IDLE_CHATTER_TYPES.contains(category)) msgInterval = MESSAGE_INTERVAL_IDLE;
 		if (lastTalker == member) msgInterval *= 1.5f;
+		msgInterval = 0;	// FIXME remove this
 		if (!floater && timeElapsed < lastMessageTime + msgInterval)
 		{
-			log.info("Too soon for next message: " + timeElapsed + " / " + lastMessageTime);
+			//log.info("Too soon for next message: " + timeElapsed + " / " + lastMessageTime);
 			return false;
 		}
 		
@@ -391,7 +392,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			Global.getSoundPlayer().playUISound(line.sound, 1, 1);
 		
 		lastMessageTime = timeElapsed;
-		log.info("Time elapsed: " + lastMessageTime);
+		//log.info("Time elapsed: " + lastMessageTime);
 		priorityThreshold += PRIORITY_PER_MESSAGE;
 		lastTalker = member;
 		
@@ -543,7 +544,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		CombatFleetManagerAPI fm = engine.getFleetManager(FleetSide.PLAYER);
 		List<FleetMemberAPI> deployed = fm.getDeployedCopy();
-		if (deployed.isEmpty()) return;
+		List<FleetMemberAPI> dead = fm.getDisabledCopy();
+		dead.addAll(fm.getDestroyedCopy());
+		//if (deployed.isEmpty()) return;
 		
 		if (!introDone)
 		{
@@ -602,6 +605,19 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		boolean canPrint = printed;
 		//if (printed) return;
+		
+		for (FleetMemberAPI member : dead)
+		{
+			if (member.isFlagship() && !selfChatter) continue;
+			if (!allyChatter && member.isAlly()) continue;
+			
+			ShipStateData stateData = getShipStateData(member);
+			if (!stateData.dead) {
+				//log.info(member.getShipName() + " is dead!");
+				stateData.dead = true;
+				printRandomMessage(member, MessageType.DEATH);
+			}
+		}
 		
 		for (FleetMemberAPI member : deployed)
 		{
