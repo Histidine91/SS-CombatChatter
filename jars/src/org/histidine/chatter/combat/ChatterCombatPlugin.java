@@ -338,7 +338,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		float msgInterval = MESSAGE_INTERVAL;
 		if (IDLE_CHATTER_TYPES.contains(category)) msgInterval = MESSAGE_INTERVAL_IDLE;
 		if (lastTalker == member) msgInterval *= 1.5f;
-		msgInterval = 0;	// FIXME remove this
 		if (!floater && timeElapsed < lastMessageTime + msgInterval)
 		{
 			//log.info("Too soon for next message: " + timeElapsed + " / " + lastMessageTime);
