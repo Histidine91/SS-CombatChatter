@@ -18,24 +18,24 @@
 			{"text":"Wait, were we losing?"},
 			{"text":"Ah come on! I haven't got all the fun yet."}
 		],
-		"out_of_missiles":[	# not used (yet)
+		"out_of_missiles":[
 			{"text":"Outta firecrackers."}
 		],
-		"engaged":[	# not used
+		"engaged":[
 			{"text":"Gotcha! Come on!"},
 			{"text":"Guns, check! Engine, check! Enemies to shoot, check!"},
 			{"text":"Show me what you've got!"}
 		],
-		"need_help":[	# not used
+		"need_help":[
 			{"text":"I'm outnumbered, commander. Which is PERFECT! Power all the weapons!"},
 			{"text":"Fear me, you all!"},
 		],
-		"pursuing":[	# not used
+		"pursuing":[
 			{"text":"No escape!"},
 			{"text":"You're getting nowhere."},
 			{"text":"Resist me!"},
 		],
-		"running":[	# never seems to trigger
+		"running":[
 			{"text":"Well, it's a shame."}
 		],
 		"hull_90":[
@@ -55,14 +55,14 @@
 			{"text":"Sparkles fizzing everywhere!"},
 			{"text":"Fix that flux system already! I can't get the guns shooting!"}
 		],
-		"death":[	# not triggered currently
+		"death":[
 			{"text":"Valhalla!"},
 			{"text":"Darn! I thought I could make it."},
 			{"text":"AAAAAAAAAAA!"},
 		],
 		"victory":[
 			{"text":"Encore! Woohoo!"},
-			{"text":"Mediocre!"}
+			{"text":"Mediocre!"},
 			{"text":"Yeaaah!"},
 			{"text":"Is it all you've got there!"},
 		],

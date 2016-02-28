@@ -20,7 +20,7 @@
 			{"text":"Out of missiles."}
 		],
 
-		"engaged":[	# not used
+		"engaged":[
 			{"text":"Contact, IFF reply invalid. Preparing for combat."},
 			{"text":"Contact, IFF no response. Marked target as enemy."},
 			{"text":"Engaging enemy."},
@@ -32,13 +32,13 @@
 			{"text":"We got trouble here."},
 		],
 
-		"pursuing":[	# not used
+		"pursuing":[
 			{"text":"Pursuing target."},
 			{"text":"Engaging the enemy."},
 			{"text":"Contact, moving to intercept."},
 		],
 
-		"running":[	# never seems to trigger
+		"running":[
 			{"text":"Breaking engagement."}
 		],
 
@@ -63,7 +63,7 @@
 			{"text":"Flux exceeded the generator capacity. I need cover."}
 		],
 
-		"death":[	# not triggered currently
+		"death":[
 			{"text":"Commander, I lost the ship... Escaping."},
 			{"text":"Any surviving crew, get in the escape pods!"},
 			{"text":"Reporting reactor explosion. Casualties... unknown."}

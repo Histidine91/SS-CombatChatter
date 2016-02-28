@@ -18,7 +18,7 @@
 			{"text":"You haven't seen the last of me!"},
 			{"text":"Wait, are we losing?!"},
 		],
-		"out_of_missiles":[	# not used (yet)
+		"out_of_missiles":[
 		],
 		"engaged":[
 			{"text":"Avast, ya scurvy dogs!"},

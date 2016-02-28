@@ -36,13 +36,13 @@
 			{"text":"Yes, sir! I'm outta here!"},
 			{"text":"You don't have to tell me twice!"},
 		],
-		"out_of_missiles":[	# not used (yet)
+		"out_of_missiles":[
 			{"text":"I'm out of missiles."},
 			{"text":"Missile banks depleted!"},
 			{"text":"Ordnance depleted!"},
 			{"text":"Weapons depleted. Calling for support."},
 		],
-		"engaged":[	# not used
+		"engaged":[
 			{"text":"Engaging at will!"},
 			{"text":"Engaging enemy now, sir."},
 			{"text":"Engaging enemy."},
@@ -56,7 +56,7 @@
 		],
 		"pursuing":[
 			{"text":"Attacking now, sir."},
-			{"text":"Breaking to attack."}
+			{"text":"Breaking to attack."},
 			{"text":"Commencing attack on my target."},
 			{"text":"I've got 'em in my sights!"},
 			{"text":"Target acquired."},	# used by both races
@@ -88,7 +88,7 @@
 			{"text":"Systems are failing. Please assist."},
 			{"text":"Systems failing!"},
 		],
-		"death":[	# not triggered currently
+		"death":[
 			{"text":"Aaaaaaaah!!!"},
 			{"text":"Avenge me!"},
 			{"text":"Damn it!!"},

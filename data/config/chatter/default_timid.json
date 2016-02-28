@@ -15,10 +15,10 @@
 			{"text":"Run for your lives!"},
 			{"text":"Protect me!"}
 		],
-		"out_of_missiles":[	# not used (yet)
+		"out_of_missiles":[
 			{"text":"I'm out of missiles!"}
 		],
-		"engaged":[	# not used
+		"engaged":[
 			{"text":"Go away! You meanie!"},
 			{"text":"I-I'm not gonna run from you!"}
 		],
@@ -47,7 +47,7 @@
 			{"text":"Help! I've overloaded!"},
 			{"text":"Aaaah! My capacitors are sparking!"}
 		],
-		"death":[	# not triggered currently
+		"death":[
 			{"text":"NOOOOOOO!"},
 			{"text":"WRYYYYYYYYY!"},
 			{"text":"AAAAAAAAAAA!"},
