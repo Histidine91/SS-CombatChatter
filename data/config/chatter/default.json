@@ -54,7 +54,7 @@
 			{"text":"Help! I've overloaded!"},
 			{"text":"Flux systems going haywire!"}
 		],
-		"death":[	# not triggered currently
+		"death":[
 			{"text":"NOOOOOOO!"},
 			{"text":"WRYYYYYYYYY!"},
 			{"text":"AAAAAAAAAAA!"},
