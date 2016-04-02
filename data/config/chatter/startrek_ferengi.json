@@ -1,0 +1,63 @@
+{
+	"name":"Ferengi",
+	"personalities":["cautious","steady"],
+	"gender":["m","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"All set!"},
+			{"text":"We'll make them an offer they can't refuse. Heheheh!"},
+			{"text":"They won't trade with us, they won't even talk to us. Eh, we'll have to destroy' em."},
+			{"text":"Twenty bars of Latinum to the Dai-Mon who destroys that flagship!"}
+		],
+		"retreat":[
+			{"text":"Run! Save yourselves!"},
+			{"text":"This isn't looking very profitable, we shouldn't be here."}
+		],
+		"need_help":[
+			{"text":"This isn't going well, I need some help."},
+			{"text":"Five bars of Latinum to the Dai-Mon who stops this ship from shooting at me!"},
+		],
+		"pursuing":[
+			{"text":"Ahhahahaha! Run while you can!."},
+			{"text":"They're running away?"},
+			{"text":"They're getting away from us!"},
+		],
+		"running":[
+			{"text":"There is no profit here."},
+			{"text":"This was a bad idea."}
+		],
+		"hull_90":[
+			{"text":"We're under attack!"},
+			{"text":"I guess it's too late to hail them."},
+		],
+		"hull_50":[
+			{"text":"Uh oh, that sounded expensive."},
+			{"text":"The hull is damaged, this is gonna cost a fortune to repair."}
+		],
+		"hull_30":[
+			{"text":"AaaaaAAaaa! We're all gonna die!"},
+			{"text":"Structural failure! Get the Latinum to the life pods!"},
+			{"text":"This isn't what they promised it would be like..."}
+			
+		],
+		"overload":[
+			{"text":"Systems overloaded! We need to buy better equipment."},
+			{"text":"Energy spike! Everythings down, we're gonna die!"}
+		],
+		"death":[
+			{"text":"NOOOOOOO!"},
+			{"text":"WHOAAAAAA!"},
+			{"text":"AAAAAAAAA!"},
+			
+		],
+		"victory":[
+			{"text":"Victory! Our new strategy is working!"},
+			{"text":"We showed them!"},
+			{"text":"They underestimated us!"},
+			{"text":"All in a days work!"},
+		],
+	}
+}

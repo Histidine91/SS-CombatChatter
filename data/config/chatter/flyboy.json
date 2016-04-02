@@ -1,0 +1,70 @@
+{
+	"name":"Flyboy",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Let's kick the tires and light the fires."},
+			{"text":"They won't know what hit them."},
+			{"text":"I've seen it all."}
+		],
+		"retreat":[
+			{"text":"Let's get out of here!"},
+			{"text":"Cover our six!"}
+		],
+		"out_of_missiles":[
+			{"text":"Winchester, winchester!"}
+		],
+		"engaged":[
+			{"text":"Encountering Enemy."},
+			{"text":"I am engaged, requesting assistance."},
+			{"text":"I am in combat, help wanted."}
+		],
+		"need_help":[
+			{"text":"I could use some help over here!"},
+			{"text":"I'm in trouble here!"},
+		],
+		"pursuing":[
+			{"text":"Pursuing target."},
+			{"text":"Chasing towards sector 4a."},
+			{"text":"Contact, moving to intercept."}
+		],
+		"running":[
+			{"text":"I'm outta here!"},
+			{"text":"There's too much flak!"}
+		],
+		"hull_90":[
+			{"text":"I've taken hull damage."},
+			{"text":"Hull breach reported."},
+		],
+		"hull_50":[
+			{"text":"Hull integrity at 50%!"},
+			{"text":"Where's our fighter screen!"},
+			{"text":"I can't hold 'em alone!"}
+		],
+		"hull_30":[
+			{"text":"My hull's down to 30%!"},
+			{"text":"We're holding this junker with school glue! Send Backup!"},
+			{"text":"My ship's in critical condition!"}
+		],
+		"overload":[
+			{"text":"Help! I've gone haywire!"},
+			{"text":"Fix it Scotty!!"}
+		],
+		"death":[
+			{"text":"Well boys this is it."},
+			{"text":"Well boys I'm signing off."},
+			{"text":"Three months till retirement, too!"},
+			{"text":"See you on the other side!"},
+		],
+		"victory":[
+			{"text":"Cool off the guns. Battle's Over."},
+			{"text":"We have triumphed!"},
+			{"text":"The enemy crumbles!"},
+			{"text":"Scavenging teams are green lit."},
+		],
+	}
+}

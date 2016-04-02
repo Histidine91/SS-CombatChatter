@@ -1,0 +1,58 @@
+{
+	"name":"sunrider_claude",
+	"personalities":["timid", "cautious"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Anything for you, captain~"},
+			{"text":"Oh, command me, captain!"},
+			{"text":"Captain, you better keep your eyes on me~"},
+			{"text":"Today's my lucky day!"},
+		],
+		"retreat":[
+			{"text":"Teehee..."},
+			{"text":"I'll just go cry in a corner now..."},
+		],
+		"out_of_missiles":[
+		],
+		"need_help":[],
+		"engaged":[],
+		"pursuing":[
+			{"text":"I'm moving forward!"},
+			{"text":"Onward we go!"},
+			{"text":"You've been a bad boy..."},
+			{"text":"It's time for your medicine!"},
+		],
+		"running":[
+			{"text":"Backwards we go!"},
+			{"text":"I'm falling back!"},
+		],
+		"hull_90":[
+			{"text":"That might have stung a little..."},
+			{"text":"Aughhh... they're shooting at me, captain!"},
+		],
+		"hull_50":[
+			{"text":"Why's my monitor all red? Help!"},
+			{"text":"Y-Yeouch! Save me, captain!"},
+		],
+		"hull_30":[
+			{"text":"I need a vacation!!"},
+		],
+		"overload":[
+			{"text":"Ohhh... a thousand error messages just popped on my screen!"},
+			{"text":"Ahh, my computer just froze!"},
+		],
+		"death":[
+			{"text":"I messed up... *sniff*"},
+			{"text":"I-I'm sorry! I'll make up for this tonight, captain!"},
+		],
+		"victory":[
+			{"text":"Wohohohoho!"},
+			{"text":"Can I please get a hug for that?"},
+			{"text":"Ho ho ho! You better reward me for that, captain~"},
+		],
+	}
+}

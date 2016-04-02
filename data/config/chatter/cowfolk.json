@@ -1,0 +1,70 @@
+{
+	"name":"Country",
+	"personalities":["steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Jus' give us a target and we're on our way!"},
+			{"text":"I reckon they need a lesson."},
+			{"text":"I'll show 'em whose boss on mah time."}
+		],
+		"retreat":[
+			{"text":"Let's get out of here!"},
+			{"text":"Where are those farmhands I hired? Get 'em over here!"}
+		],
+		"out_of_missiles":[
+			{"text":"Aw shoot, ah've blown mah load!"}
+		],
+		"engaged":[	# not used
+			{"text":"I'm fixin' for a fight."},
+			{"text":"Y'all make a nice target."},
+			{"text":"Y'all better not complain 'bout mah kills bein' too high."}
+		],
+		"need_help":[
+			{"text":"We're caught like fish in a barrel!"},
+			{"text":"Y'all better have a plan!"}
+		],
+		"pursuing":[
+			{"text":"Stop squirmin'! Y'all makin' it worse fer yerself."},
+			{"text":"Whooo Weee! Ride 'em cowboy!"},
+			{"text":"Contact, moving to intercept."}
+		],
+		"running":[
+			{"text":"I'm makin' like a lizzard bein' chased by a Huskie!"},
+			{"text":"Y'all cover mah (Dialogue Retracted for excessive countryism's)"}
+		],
+		"hull_90":[
+			{"text":"I've taken some hits."},
+			{"text":"If only mah ship could repair with 'em fancy bots."}
+		],
+		"hull_50":[
+			{"text":"Hull at half! I mean half empty ya snakes!"},
+			{"text":"Mah word! Y'all better help!"},
+			{"text":"Mah ship can't mosey on for long!"}
+		],
+		"hull_30":[
+			{"text":"Mah hull's down to scratch!"},
+			{"text":"Yer quite the bunch of bandits to hurt mah ship!"},
+			{"text":"Mah ship's in shambles!"}
+		],
+		"overload":[
+			{"text":"Help! I've gone haywire!"},
+			{"text":"Fix it Scotty!!"}
+		],
+		"death":[
+			{"text":"Well boys I reckon this is it."},
+			{"text":"Make sure to feed mah calves."},
+			{"text":"I'll ride off into the sunset for good."},
+			{"text":"Tell mah wife I'll be late for din*ZZZT*"}
+		],
+		"victory":[
+			{"text":"I reckon y'all earned some hard cider."},
+			{"text":"Y'all died too soon. I wanted mah fun!"},
+			{"text":"Yah know, I want that dead guy's hat. Mah hat is worn."},
+			{"text":"Dang nabbit! It's over already!"}
+		],
+	}
+}

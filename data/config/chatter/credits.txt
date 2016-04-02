@@ -5,6 +5,13 @@ Aron0621:
 spoortje1: 
 * pirate
 
+cjusa:
+* flyboy
+* cowfolk
+
+Serenitis/Paramount:
+* startrek_ferengi
+
 Love in Space:
 * sunrider_ava
 * sunrider_asaga
