@@ -505,7 +505,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (!stateData.dead) {
 				//log.info(member.getShipName() + " is dead!");
 				stateData.dead = true;
-				printRandomMessage(member, MessageType.DEATH);
+				if (!member.isFighterWing())
+					printRandomMessage(member, MessageType.DEATH);
 			}
 		}
 		
