@@ -152,7 +152,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected ShipStateData makeShipStateEntry(FleetMemberAPI member)
 	{
 		ShipStateData data = new ShipStateData();
-		data.hull = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member).getHullLevel();
+		ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
+		if (ship != null)
+			data.hull = ship.getHullLevel();
 		
 		data.characterName = getCharacterForFleetMember(member);
 		
