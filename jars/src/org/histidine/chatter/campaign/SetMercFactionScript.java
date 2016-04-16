@@ -26,7 +26,6 @@ public class SetMercFactionScript extends BaseCampaignEventListener {
 		CommDirectoryAPI board = market.getCommDirectory();
 		for (CommDirectoryEntryAPI comm : board.getEntriesCopy()) {
 			if (comm.getType() != EntryType.PERSON) continue;
-			log.info("lalala " + comm.getEntryData().getClass().getName());
 			if (comm.getEntryData() instanceof PersonAPI) {
 				PersonAPI contact = (PersonAPI)(comm.getEntryData());
 				if (!contact.getPostId().equals(Ranks.POST_MERCENARY)) continue;
