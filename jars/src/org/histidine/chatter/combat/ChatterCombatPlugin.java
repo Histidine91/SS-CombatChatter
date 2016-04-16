@@ -33,6 +33,7 @@ import java.awt.Color;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import org.histidine.chatter.ChatterConfig;
 import org.histidine.chatter.ChatterLine;
 import org.histidine.chatter.ChatterLine.MessageType;
 import org.histidine.chatter.campaign.CampaignHandler;
@@ -43,7 +44,6 @@ import org.lwjgl.util.vector.Vector2f;
 
 public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
-	public static final String CONFIG_FILE = "chatterConfig.json";
 	public static final String PERSISTENT_DATA_KEY = "combatChatter";
 	public static Logger log = Global.getLogger(ChatterCombatPlugin.class);
 	
@@ -59,10 +59,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final float MESSAGE_INTERVAL_IDLE = 6;
 	public static final float MESSAGE_INTERVAL_FLOAT = 4;
 	
-	public static boolean idleChatter = true;
-	public static boolean allyChatter = true;
-	public static boolean selfChatter = false;
-	
 	protected CombatEngineAPI engine;
 	protected IntervalUtil interval = new IntervalUtil(0.4f, 0.5f);
 	protected Map<FleetMemberAPI, ShipStateData> states = new HashMap<>();
@@ -76,16 +72,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	// TODO externalise
 	static {
-		try {
-			JSONObject settings = Global.getSettings().loadJSON(CONFIG_FILE);
-			idleChatter = settings.optBoolean("idleChatter", idleChatter);
-			allyChatter = settings.optBoolean("allyChatter", allyChatter);
-			selfChatter = settings.optBoolean("selfChatter", selfChatter);
-		} 
-		catch (IOException | JSONException ex) {
-			log.error(ex);
-		}
-		
 		initPriorities();
 	}
 	
@@ -206,7 +192,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected boolean isFloatingMessage(MessageType category)
 	{
 		boolean floater = FLOAT_CHATTER_TYPES.contains(category);
-		if (!idleChatter)
+		if (!ChatterConfig.idleChatter)
 			floater = floater || IDLE_CHATTER_TYPES.contains(category);
 		return floater;
 	}
@@ -389,15 +375,15 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		for (FleetMemberAPI member : members)
 		{
 			//if (member.isFighterWing()) continue;
-			if (member.isFlagship() && !selfChatter) continue;
+			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
 			CombatFleetManagerAPI fm = engine.getFleetManager(FleetSide.PLAYER);
-			if (fm.getShipFor(member).getShipAI() == null && !selfChatter) continue;	// being player-piloted;
+			if (fm.getShipFor(member).getShipAI() == null && !ChatterConfig.selfChatter) continue;	// being player-piloted;
 			if (fm.getShipFor(member).isHulk()) continue;
 			float weight = GeneralUtils.getHullSizePoints(member);
 			if (member.getCaptain() != null && !member.getCaptain().isDefault()) weight *= 4;
 			if (member.isFighterWing()) weight *= 0.5f;
 			if (member.isAlly()) {
-				if (allyChatter) weight *= 0.5f;
+				if (ChatterConfig.allyChatter) weight *= 0.5f;
 				else continue;
 			}
 			if (floater) {
@@ -473,13 +459,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		for (FleetMemberAPI member : deployed)
 		{
 			if (member.isFighterWing()) continue;
-			if (member.isFlagship() && !selfChatter) continue;
-			if (!allyChatter && member.isAlly()) continue;
+			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
+			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
 			
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
 			ShipAPI ship = fm.getShipFor(member);
-			if (ship.getShipAI() == null && !selfChatter) continue;	// being player-piloted;
+			if (ship.getShipAI() == null && !ChatterConfig.selfChatter) continue;	// being player-piloted;
 			float hull = ship.getHullLevel();
 			float oldHull = stateData.hull;
 			
@@ -500,8 +486,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		for (FleetMemberAPI member : dead)
 		{
-			if (member.isFlagship() && !selfChatter) continue;
-			if (!allyChatter && member.isAlly()) continue;
+			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
+			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
 			
 			ShipStateData stateData = getShipStateData(member);
 			if (!stateData.dead) {
@@ -516,8 +502,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		{
 			boolean isFighter = member.isFighterWing();
 			//if (member.isFighterWing()) continue;
-			if (member.isFlagship() && !selfChatter) continue;
-			if (!allyChatter && member.isAlly()) continue;
+			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
+			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
 			
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;

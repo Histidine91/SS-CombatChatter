@@ -2,4 +2,5 @@
 	"idleChatter":true,	# false makes most low-priority messages appear as floating text instead of in message field
 	"allyChatter":true,
 	"selfChatter":false,	# if true, player flagship will have chatter as well
+	"factionSpecificCharacters": true,	# not all faction's officers will have all characters
 }
