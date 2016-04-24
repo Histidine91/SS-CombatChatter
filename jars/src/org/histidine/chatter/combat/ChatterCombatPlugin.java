@@ -379,7 +379,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			CombatFleetManagerAPI fm = engine.getFleetManager(FleetSide.PLAYER);
 			if (fm.getShipFor(member).getShipAI() == null && !ChatterConfig.selfChatter) continue;	// being player-piloted;
 			if (fm.getShipFor(member).isHulk()) continue;
-			float weight = GeneralUtils.getHullSizePoints(member);
+			float weight = 1;	//GeneralUtils.getHullSizePoints(member);
 			if (member.getCaptain() != null && !member.getCaptain().isDefault()) weight *= 4;
 			if (member.isFighterWing()) weight *= 0.5f;
 			if (member.isAlly()) {
