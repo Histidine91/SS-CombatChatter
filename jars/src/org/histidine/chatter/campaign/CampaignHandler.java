@@ -211,7 +211,7 @@ public class CampaignHandler {
 			
 			if (isCharacterAllowedForFaction(charId, factionId)) {
 				allowedFactions.add(factionId);
-				log.info("Character " + charId + " allows faction " + factionId);
+				//log.info("Character " + charId + " allows faction " + factionId);
 			}
 		}
 		return allowedFactions;
