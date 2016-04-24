@@ -39,6 +39,8 @@ public class CampaignHandler {
 	
 	public static Logger log = Global.getLogger(CampaignHandler.class);
 	
+	protected static boolean loaded = false;
+	
 	// FIXME: this lags when the class is first loaded, 
 	// and right now the class is loaded at the start of the first battle
 	static {
@@ -47,6 +49,7 @@ public class CampaignHandler {
 	
 	public static void loadCharacters()
 	{
+		if (loaded) return;
 		try {
 			// load faction tags
 			JSONArray tagsCSV = Global.getSettings().getMergedSpreadsheetDataForMod("faction", FACTION_TAGS_FILE, "chatter");
@@ -131,6 +134,8 @@ public class CampaignHandler {
 		} catch (IOException | JSONException ex) {	// can't read CSV
 			log.error(ex);
 		}
+		
+		loaded = true;
 	}
 	
 	public static String getCharacterForOfficer(PersonAPI captain, boolean isAlly, CombatEngineAPI engine)
