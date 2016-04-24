@@ -15,6 +15,7 @@ Serenitis/Paramount:
 Love in Space:
 * sunrider_ava
 * sunrider_asaga
+* sunrider_claude
 * sunrider_icari
 * sunrider_sola
 
