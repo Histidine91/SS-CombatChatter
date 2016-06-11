@@ -1,0 +1,81 @@
+{
+	"name":"default2",
+	"personalities":["timid", "cautious", "steady"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"It begins..."},
+			{"text":"Win the battle, win the war."},
+			{"text":"All hands to battle stations!"},
+			{"text":"Charging weapon systems."},
+		],
+		"retreat":[
+			{"text":"Roger that, let's get out of here."},
+			{"text":"Count me out, I don't get paid enough for this!"},
+			{"text":"I'm out of here, Godspeed to the rest of you."},
+		],
+		"out_of_missiles":[
+			{"text":"Ordinance is dry!"},
+			{"text":"Our missiles are depleted, none remain on-board."},
+			{"text":"Well, just fired the last of my missiles."},
+		],
+		"engaged":[
+			{"text":"It's raining megatons over here!"},
+			{"text":"We are under heavy fire!"},
+			{"text":"Pressing the advantage."},
+		],
+		"need_help":[
+			{"text":"Stumbled into a kill box over here, please assist!"},
+			{"text":"Up shit creek without a paddle, please help me!"},
+			{"text":"Not going to last much longer, can I get some backup?"},
+			{"text":"I need a squad over here ASAP!"},
+		],
+		"pursuing":[
+			{"text":"Gunnery control, open fire!"},
+			{"text":"Fire, FIRE! Don't let them through!"},
+			{"text":"Closing in on my target."},
+		],
+		"running":[
+			{"text":"We need to back off a little bit."},
+			{"text":"Helm, break off so we can dissipate flux safely."}, # normal
+			{"text":"Helm, pull back to safety."},
+		],
+		"hull_90":[
+			{"text":"Hull is taking fire."},
+			{"text":"Taking hits, but are OK for now."},
+			{"text":"My ship is taking damage but so far it remains non-critical."},
+		],
+		"hull_50":[
+			{"text":"Leaking atmosphere over here!"},
+			{"text":"That was a nuke! Or worse..."},
+			{"text":"I'm hit! I'm hit!"},
+			{"text":"Damage is reaching internal compartments!"},
+		],
+		"hull_30":[
+			{"text":"This rustbucket is coming apart at the seams!"},
+			{"text":"Port side magazine is cooking off!"},
+			{"text":"Come on baby, don't break apart on me yet!"},
+			{"text":"Half the bridge crew just got spaced!"},
+		],
+		"overload":[
+			{"text":"Flux systems have redlined!"},
+			{"text":"The reactor can't take this!"},
+			{"text":"They are going to blow out the reactor at this rate!"},
+			{"text":"Electrical systems are fried!"},
+		],
+		"death":[
+			{"text":"My ship has a reactor brea-"},
+			{"text":"Get to the esca-"},
+			{"text":"Tell my wife and kids I love them."},
+			{"text":"I didn't think I would die like this..."},
+		],
+		"victory":[
+			{"text":"Glorious victory, let us drink to commemorate!"},
+			{"text":"Just be glad that it is over with."},
+			{"text":"Seems like it wasn't my time yet."},
+		],
+	}
+}

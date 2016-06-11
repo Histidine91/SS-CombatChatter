@@ -1,0 +1,81 @@
+{
+	"name":"default_professional2",
+	"personalities":["cautious","steady"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Gunnery control, scan for targets."},
+			{"text":"Set reactor output to combat levels."},
+			{"text":"Let's play this by the numbers."},
+		],
+		"retreat":[
+			{"text":"Discretion is the better part of valor."},
+			{"text":"Live to fight another day."},
+			{"text":"Today is not my day to be one with the void."},
+			{"text":"Retreat to the rally point."},
+		],
+		"out_of_missiles":[
+			{"text":"Missile racks are out of ordnance."},
+			{"text":"We have used all of our expendable ordnance."},
+			{"text":"Out of missiles."},
+			{"text":"Missile racks are empty."},
+		],
+		"engaged":[
+			{"text":"This fire is thick."},
+			{"text":"Attempting to attain BFM advantage."},
+			{"text":"Encountering heavy resistance."},
+			{"text":"It is time to conclude this battle."},
+		],
+		"need_help":[
+			{"text":"This isn't good, requesting backup."},
+			{"text":"I don't think I am going to make it without reinforcements."},
+			{"text":"Mission outcome is looking... Not good."},
+		],
+		"pursuing":[
+			{"text":"Firing for effect."},
+			{"text":"Helm, initiate flank speed."},
+			{"text":"Bracket and fire for effect."},
+			{"text":"Shoot to kill."},
+		],
+		"running":[
+			{"text":"Initiating tactical retreat."},
+			{"text":"We have overextended."},
+			{"text":"Pulling back, we should reform our battle lines."},
+			{"text":"This position is untenable."},
+		],
+		"hull_90":[
+			{"text":"We have sustained light damage."},
+			{"text":"Prepare a damage control team, the battle has only just begun."},
+			{"text":"Armor plating has been breached, but internal compartments are still holding."},
+		],
+		"hull_50":[
+			{"text":"Engineering is reporting hull breaches!"},
+			{"text":"Fix that reactor coolant leak!"},
+			{"text":"Bulkheads are rupturing!"},
+		],
+		"hull_30":[
+			{"text":"All hands, prepare to abandon ship!"},
+			{"text":"The reactor's coolant pressure is dropping!"},
+			{"text":"Bulkheads are buckling, I am not going to last much longer!"},
+		],
+		"overload":[
+			{"text":"Systems have overloaded!"},
+			{"text":"The power grid can't cope!"},
+			{"text":"Flux capacitors have overloaded!"},
+		],
+		"death":[
+			{"text":"I die so you may live."},
+			{"text":"An honorable death."},
+			{"text":"The ship is volatile, get away from us!"},
+		],
+		"victory":[
+			{"text":"We taught them the meaning of ship superiority."},
+			{"text":"Peace through superior firepower."},
+			{"text":"That was damn fine shooting boys."},
+			{"text":"The battle is won, let us not forget the dead."},
+		],
+	}
+}

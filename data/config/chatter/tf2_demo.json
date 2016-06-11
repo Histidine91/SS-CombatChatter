@@ -1,0 +1,54 @@
+{
+	"name":"tf2_demo",
+	"personalities":["aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Leeeet's do iiiiit!"},
+			{"text":"Kill 'em all!"},
+		],
+		"retreat":[
+			{"text":"Buck up lads, we'll get them next time."},
+		],
+		"out_of_missiles":[
+		
+		],
+		"need_help":[
+			{"text":"Aye, give us a hand!"},
+		],
+		"pursuing":[
+			{"text":"Have at em', lads!"},
+			{"text":"Get 'am, boyos!"},
+			{"text":"Move it, lads!"},
+		],
+		"running":[
+			{"text":"I'm outta here!"}
+		],
+		"hull_90":[
+			{"text":"I'm goin' ta blast ya into thin gruel!"},
+			{"text":"Oh, they're goin' ta have to glue you back together...IN HELL!"},
+		],
+		"hull_50":[
+			{"text":"If you were huntin' trouble, lad, you found it."},
+			{"text":"You're making me very cross!"},
+		],
+		"hull_30":[
+			{"text":"Oh, that smarts."},
+			{"text":"I feel like every bone in me body's broke!"},
+		],
+		"overload":[
+			{"text":"Bloody hell!"},
+		],
+		"death":[
+			{"text":"I did what I could!"},
+		],
+		"victory":[
+			{"text":"That's the way ya do it!"},
+			{"text":"Bloody brilliant!"},
+			{"text":"I don't think they saw that one comin'!"},
+		],
+	}
+}

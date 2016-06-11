@@ -1,0 +1,72 @@
+{
+	"name":"robotic",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"beginning hostilities."},
+			{"text":"systems are live."},
+			{"text":"analyzing battlespace."},
+			{"text":"channels open."}
+		],
+		"retreat":[
+			{"text":"withdrawing."},
+			{"text":"retreating."},
+			{"text":"terminating connection."}
+		],
+		"out_of_missiles":[
+			{"text":"missiles depleted."}
+		],
+		"engaged":[
+			{"text":"hostiles encountered."},
+			{"text":"unit is engaged."},
+			{"text":"unit is in combat."}
+		],
+		"need_help":[
+			{"text":"requesting assistance."},
+			{"text":"unit is threatened."}
+		],
+		"pursuing":[
+			{"text":"pursuing target."},
+			{"text":"killing process."},
+			{"text":"engaging."},
+		],
+		"running":[
+			{"text":"does not compute."},
+			{"text":"initating avoidance protocol."},
+		],
+		"hull_90":[
+			{"text":"hull has sustained damage."},
+			{"text":"hull breach detected."},
+			{"text":"armor compromised."},
+		],
+		"hull_50":[
+			{"text":"structural integrity compromised."},
+			{"text":"hull status at 0.5."},
+			{"text":"damage control at capacity."}
+		],
+		"hull_30":[
+			{"text":"hull down to 0.3."},
+			{"text":"system failure imminent."},
+			{"text":"retreat recommended."}
+		],
+		"overload":[
+			{"text":"flux levels have exceeded tolerances."},
+			{"text":"flux systems overloaded."},
+			{"text":"unhandled exception."}
+		],
+		"death":[
+			{"text":"fatal error."},
+			{"text":"shutting down."},
+			{"text":"*NO SIGNAL*"},
+		],
+		"victory":[
+			{"text":"enemy defeat confirmed."},
+			{"text":"battlespace controlled."},
+			{"text":"initiating cleanup protocol."},
+		],
+	}
+}

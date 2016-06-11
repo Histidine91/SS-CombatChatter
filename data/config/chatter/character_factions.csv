@@ -1,10 +1,16 @@
 character,military,corporate,criminal,free,christian,muslim,imperial,templars,spire,darkspire
-#default,1,1,0,1,1,1,1,-1,1,1
-#default_timid,1,1,1,1,1,1,1,-1,1,1
+#default,1,1,0,1,1,1,1,0,1,1
+#default_timid,1,1,1,1,1,1,1,-1,1,-1
+#default_professional,1,1,0,1,1,1,1,0,1,1
+#default_aggressive,1,0,1,1,0,0,1,-1,0,1
+#default2,1,1,0,1,1,1,1,0,1,1
+#default_aggressive2,1,0,1,1,0,0,1,0,0,1
 #default_professional,1,1,0,1,1,1,1,-1,1,1
 pirate,0,0,1,1,0,0,0,-1,-1,-1
 flyboy,1,1,1,1,1,1,0,-1,-1,-1
 cowfolk,1,0,1,1,1,0,0,-1,-1,-1
+crusader,0,0,0,1,1,0,1,1,-1,-1
+robotic,1,1,0,0,-1,-1,1,1,1,1
 sunrider_ava,1,1,0,0,1,1,1,1,1,1
 sunrider_asaga,1,0,0,1,1,1,1,-1,-1,-1
 sunrider_claude,1,1,1,1,-1,-1,1,-1,-1,-1
@@ -12,6 +18,7 @@ sunrider_icari,1,1,1,1,0,0,1,-1,-1,-1
 sunrider_sola,1,1,1,1,1,1,1,1,1,1
 arnold,1,1,1,1,0,0,1,-1,-1,-1
 dow2_commissar,1,0,0,0,1,1,1,1,1,1
+tf2_demo,1,0,1,1,0,0,0,-1,-1,-1
 tf2_heavy,1,0,1,1,0,0,1,-1,-1,-1
 ja2_biff,1,1,1,1,1,1,1,-1,-1,-1
 ja2_fox,1,1,1,1,-1,-1,1,-1,-1,-1

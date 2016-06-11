@@ -1,0 +1,76 @@
+{
+	"name":"default_aggressive2",
+	"personalities":["aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"What could possibly go wrong?"},
+			{"text":"Let us get down to business."},
+			{"text":"Kill or be killed."},
+		],
+		"retreat":[
+			{"text":"They told me this ship is fast!"},
+			{"text":"Full burn away from here, I want those engines melting!"},
+			{"text":"Let's get the hell out of here!"},
+		],
+		"out_of_missiles":[
+			{"text":"What do you mean my missiles are depleted?"},
+			{"text":"Fire everything! Ah shit, we fired all our missiles already?"},
+			{"text":"I really could use some boomers right about now..."},
+		],
+		"engaged":[
+			{"text":"This is a target rich environment."},
+			{"text":"This party has only just started!"},
+			{"text":"Engaging in close quarters combat."},
+		],
+		"need_help":[
+			{"text":"Cycle long free drinks to whoever saves my hide!"},
+			{"text":"I need help over here like yesterday!"},
+			{"text":"This is going to hell in a handbasket!"},
+		],
+		"pursuing":[
+			{"text":"Light em up!"},
+			{"text":"Leave no survivors, I want that ship a smoldering wreck!"},
+			{"text":"Kill them! Kill them until they are dead!"},
+		],
+		"running":[
+			{"text":"Incoming! Evade, evade!"},
+			{"text":"Too hot for comfort over here!"},
+			{"text":"God dammit, we are in over our heads!"},
+		],
+		"hull_90":[
+			{"text":"Son of a bitch, just painted this thing last week."},
+			{"text":"Tis but a scratch."},
+			{"text":"Ah! There goes my drink, what a waste."},
+			{"text":"My ship is taking damage, but I will return the favor tenfold!"},
+		],
+		"hull_50":[
+			{"text":"Shit, taking heavy damage!"},
+			{"text":"That last hit just took out the canteen, looks like it's take out."},
+			{"text":"Is that one of my crew I can see outside the aft window?"},
+		],
+		"hull_30":[
+			{"text":"I'm not ready to die yet!"},
+			{"text":"This is it folks, now or never!"},
+			{"text":"I shall find honor in death, just hopefully not today!"},
+		],
+		"overload":[
+			{"text":"Who set off sparklers on my bridge!?"},
+			{"text":"My ship's flux just tipped into the red!"},
+			{"text":"The flux capacitors are bleeding out!"},
+		],
+		"death":[
+			{"text":"Fuck everythi-"},
+			{"text":"FUCK ME!"},
+			{"text":"Not like this!"},
+		],
+		"victory":[
+			{"text":"Heh, look at them scatter like roaches."},
+			{"text":"Like shooting Volturnian lobster in a barrel."},
+			{"text":"Haha, tell your friends, this show has only just started!"},
+		],
+	}
+}

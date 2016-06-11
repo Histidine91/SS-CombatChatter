@@ -2,6 +2,11 @@ Aron0621:
 * default_aggressive
 * default_professional
 
+MesoTroniK:
+* default2
+* default_aggressive2
+* default_professional2
+
 spoortje1: 
 * pirate
 
@@ -26,6 +31,7 @@ Arnold Schwarzenegger:
 * arnold
 
 Valve:
+* tf2_demo (compiled by tongo)
 * tf2_heavy
 
 Strategy First:
@@ -35,7 +41,7 @@ Strategy First:
 * ja2_magic
 * ja2_steroid
 
-Volition:
+Volition (compiled by MesoTroniK):
 * freespace_human1
 * freespace_human2
 * freespace_vasudan

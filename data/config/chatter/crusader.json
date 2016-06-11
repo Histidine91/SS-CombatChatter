@@ -1,0 +1,70 @@
+{
+	"name":"crusader",
+	"personalities":["steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Deus vult!"},
+			{"text":"In accordance with His word!"},
+			{"text":"Kill them all, God knows His own!"},
+			{"text":"Their judgement has come!"}
+		],
+		"retreat":[
+			{"text":"How can this be?!"},
+			{"text":"An ignomious day!"}
+		],
+		"out_of_missiles":[
+			{"text":"Missiles gone, only our faith remains!"}
+		],
+		"engaged":[
+			{"text":"Give it up, heretic!"},
+			{"text":"Convert or die!"}
+		],
+		"need_help":[
+			{"text":"The heathens are too many!"},
+			{"text":"We are persecuted!"}
+		],
+		"pursuing":[
+			{"text":"Strike them down!"},
+			{"text":"Smite our foes!"},
+			{"text":"By holy fire be cleansed!"}
+		],
+		"running":[
+			{"text":"Live to fight another day!"},
+			{"text":"I can take no more of this!"},
+			{"text":"Iron chariots!!"}
+		],
+		"hull_90":[
+			{"text":"Our armor is blessed!"},
+			{"text":"Our faith will not falter so easily!"}
+		],
+		"hull_50":[
+			{"text":"Our faith shall perservere!"},
+			{"text":"Demonic scum!"},
+			{"text":"Your time will come yet, infidel!"}
+		],
+		"hull_30":[
+			{"text":"The end is nigh!"},
+			{"text":"God save us!"},
+			{"text":"Pray for deliverance!"}
+		],
+		"overload":[
+			{"text":"What heresy is this?!"},
+			{"text":"Accursed malfunctions!"}
+		],
+		"death":[
+			{"text":"Why hast thou forsaken me?!"},
+			{"text":"Damn you all!"},
+			{"text":"HEAVEN!!"}
+		],
+		"victory":[
+			{"text":"Our will is true!"},
+			{"text":"Now you face the comfy chair!"},
+			{"text":"Their idols have been smashed!"},
+			{"text":"The sheep and the goats are separated!"}
+		],
+	}
+}
