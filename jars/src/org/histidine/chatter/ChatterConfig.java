@@ -14,6 +14,7 @@ public class ChatterConfig {
 	public static boolean allyChatter = true;
 	public static boolean selfChatter = false;
 	public static boolean factionSpecificCharacters = true;
+	public static float minMissileOPFractionForChatter = 0.2f;
 	
 	public static Logger log = Global.getLogger(ChatterConfig.class);
 	
@@ -24,6 +25,7 @@ public class ChatterConfig {
 			allyChatter = settings.optBoolean("allyChatter", allyChatter);
 			selfChatter = settings.optBoolean("selfChatter", selfChatter);
 			factionSpecificCharacters = settings.optBoolean("factionSpecificCharacters", factionSpecificCharacters);
+			minMissileOPFractionForChatter = (float)settings.optDouble("minMissileOPFractionForChatter", minMissileOPFractionForChatter);
 		} 
 		catch (IOException | JSONException ex) {
 			log.error(ex);

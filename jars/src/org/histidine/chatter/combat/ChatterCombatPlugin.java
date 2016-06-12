@@ -12,6 +12,8 @@ import com.fs.starfarer.api.combat.ShipHullSpecAPI.ShipTypeHints;
 import com.fs.starfarer.api.combat.ShipwideAIFlags;
 import com.fs.starfarer.api.combat.ShipwideAIFlags.AIFlags;
 import com.fs.starfarer.api.combat.ViewportAPI;
+import com.fs.starfarer.api.combat.WeaponAPI;
+import com.fs.starfarer.api.combat.WeaponAPI.WeaponType;
 import com.fs.starfarer.api.fleet.FleetGoal;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.input.InputEventAPI;
@@ -76,6 +78,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.OVERLOAD, 30f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.NEED_HELP, 5f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.ENGAGED, 5f);
+		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.OUT_OF_MISSILES, 8f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_90, 20f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_50, 40f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_30, 60f);
@@ -133,9 +136,19 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	{
 		ShipStateData data = new ShipStateData();
 		ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
-		if (ship != null)
+		if (ship != null) {
 			data.hull = ship.getHullLevel();
-		
+			//data.maxOPs = ship.getHullSpec().
+			for (WeaponAPI wep : ship.getAllWeapons())
+			{
+				float op = wep.getSpec().getOrdnancePointCost(null);
+				data.maxOPs += op;
+				if (wep.usesAmmo() && wep.getType() == WeaponType.MISSILE)
+					data.missileOPs += op;
+			}
+			if (data.missileOPs < data.maxOPs * ChatterConfig.minMissileOPFractionForChatter)
+				data.canWriteOutOfMissiles = false;	// don't bother writing out of missiles message
+		}
 		data.characterName = getCharacterForFleetMember(member);
 		
 		states.put(member, data);
@@ -315,7 +328,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	}
 	
 	/**
-	 * Writes hull damage warning messages
+	 * Writes overload warning messages
 	 * @param member
 	 * @return true if long form message was printed, false otherwise
 	 */
@@ -332,6 +345,27 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		else
 		{
 			return printRandomMessage(member, MessageType.OVERLOAD);
+		}
+	}
+	
+	/**
+	 * Writes missile depletion warning messages
+	 * @param member
+	 * @return true if long form message was printed, false otherwise
+	 */
+	protected boolean printOutOfMissilesMessage(FleetMemberAPI member)
+	{
+		if (!meetsPriorityThreshold(member, MessageType.OUT_OF_MISSILES) || !hasLine(member, MessageType.OUT_OF_MISSILES))
+		{
+			// short form
+			String message = " " + StringHelper.getString("chatter_general", "outOfMissiles");
+			String name = getShipName(member);
+			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, null, message);
+			return false;
+		}
+		else
+		{
+			return printRandomMessage(member, MessageType.OUT_OF_MISSILES);
 		}
 	}
 	
@@ -519,6 +553,27 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			
 			stateData.overloaded = overloaded;
 			
+			// check missiles
+			if (!isFighter && stateData.canWriteOutOfMissiles)
+			{
+				boolean haveMissileAmmo = false;
+				for (WeaponAPI wep : ship.getAllWeapons())
+				{
+					if (wep.usesAmmo() && wep.getType() == WeaponType.MISSILE)
+					{
+						if (wep.getSpec().getAmmoPerSecond() > 0 || wep.getAmmo() > 0)
+						{
+							haveMissileAmmo = true;
+							break;
+						}
+					}
+				}
+				if (!haveMissileAmmo) {
+					stateData.canWriteOutOfMissiles = false;
+					printOutOfMissilesMessage(member);
+				}
+			}
+			
 			if (flags != null)
 			{
 				if ((canPrint || !printed))
@@ -566,6 +621,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		public boolean pursuing = false;
 		public boolean backingOff = false;
 		public boolean running = false;
+		public boolean canWriteOutOfMissiles = true;
+		public int missileOPs = 0;
+		public int maxOPs = 0;
 		public float hull = 0;
 		public boolean overloaded = false;
 		public float lastFloatMessageTime = -999;
