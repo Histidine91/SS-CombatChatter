@@ -123,6 +123,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		if (timid) name = "default_timid";
 		else if (xpLevel == CrewXPLevel.ELITE) name = "default_professional";
+		if (!timid && Math.random() > 0.5) name += "2";	// don't have a default_timid2 yet 
 		
 		return name;
 	}
