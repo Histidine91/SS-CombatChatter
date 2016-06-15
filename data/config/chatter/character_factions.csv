@@ -4,6 +4,7 @@ character,military,corporate,criminal,free,christian,muslim,imperial,templars,sp
 #default_professional,1,1,0,1,1,1,1,0,1,1
 #default_aggressive,1,0,1,1,0,0,1,-1,0,1
 #default2,1,1,0,1,1,1,1,0,1,1
+#default_timid2,1,1,1,1,1,1,1,-1,1,-1
 #default_aggressive2,1,0,1,1,0,0,1,0,0,1
 #default_professional,1,1,0,1,1,1,1,-1,1,1
 pirate,0,0,1,1,0,0,0,-1,-1,-1

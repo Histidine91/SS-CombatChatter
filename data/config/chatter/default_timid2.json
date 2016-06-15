@@ -1,0 +1,75 @@
+{
+	"name":"default_timid2",
+	"personalities":["timid"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"I wish I was somewhere else right now."},
+			{"text":"Lets just get this over with before I have second thoughts."},
+			{"text":"I shouldn't have signed up for this!"},
+		],
+		"retreat":[
+			{"text":"Fight or flight, I choose the latter!"},
+			{"text":"I'm out of here, good luck to the rest of you!"},
+			{"text":"Every Starfarer for themselves!"},
+		],
+		"out_of_missiles":[
+			{"text":"I'm out of missiles, sorry boss."},
+			{"text":"I spent all my missiles!"},
+			{"text":"Missile racks are dry, this isn't good."},
+		],
+		"engaged":[
+			{"text":"I don't want to but, bringing all weapons to bear!"},
+			{"text":"I'm making my stand!"},
+			{"text":"Oh boy, I think we pissed them off."},
+		],
+		"need_help":[
+			{"text":"They got me pinned down, please assist!"},
+			{"text":"I can't do this alone."},
+			{"text":"I'm in way over my head!"},
+		],
+		"pursuing":[
+			{"text":"I've got them on the run!"},
+			{"text":"I believe we have the upper hand."},
+			{"text":"I got this, I think."},
+		],
+		"running":[
+			{"text":"I screwed up!"},
+			{"text":"I knew this was a bad idea!"},
+			{"text":"Boss, I have to pull back."},
+		],
+		"hull_90":[
+			{"text":"My ship's armor has been shredded!"},
+			{"text":"Defenses aren't holding!"},
+			{"text":"Outer compartments are depressurizing!"},
+		],
+		"hull_50":[
+			{"text":"I need help, my ship is taking heavy damage!"},
+			{"text":"Over half my decks are exposed to hard vacuum!"},
+			{"text":"I really need backup, my ship is in bad shape!"},
+		],
+		"hull_30":[
+			{"text":"My ship is critically damaged, I NEED HELP!"},
+			{"text":"I should have never signed up for this, prepare the escape pods!"},
+			{"text":"Luck isn't saving me this time!"},
+		],
+		"overload":[
+			{"text":"Capacitors have overloaded, I need assistance!"},
+			{"text":"The reactor is going haywire!"},
+			{"text":"Ship controls are unresponsive, please help!"},
+		],
+		"death":[
+			{"text":"I'm going down!"},
+			{"text":"See you on the other side!"},
+			{"text":"To end... Like this?"},
+		],
+		"victory":[
+			{"text":"Least it is finally over."},
+			{"text":"Sounds like silence."},
+			{"text":"I'm still shaking!"},
+		],
+	}
+}

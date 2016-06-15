@@ -6,6 +6,7 @@ MesoTroniK:
 * default2
 * default_aggressive2
 * default_professional2
+* default_timid2
 
 spoortje1: 
 * pirate
