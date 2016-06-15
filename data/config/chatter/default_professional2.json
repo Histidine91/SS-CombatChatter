@@ -2,7 +2,7 @@
 	"name":"default_professional2",
 	"personalities":["cautious","steady"],
 	"gender":["m","f","n"],
-	"chance":1,
+	"chance":0.5,
 	"talkativeness":1,
 	
 	"lines":{

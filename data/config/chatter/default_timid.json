@@ -16,7 +16,8 @@
 			{"text":"Protect me!"}
 		],
 		"out_of_missiles":[
-			{"text":"I'm out of missiles!"}
+			{"text":"I'm out of missiles!"},
+			{"text":"Oh no, missiles depleted!"},
 		],
 		"engaged":[
 			{"text":"Go away! You meanie!"},

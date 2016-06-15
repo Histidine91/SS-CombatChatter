@@ -2,7 +2,7 @@
 	"name":"default_professional",
 	"personalities":["cautious", "steady"],
 	"gender":["m","f","n"],
-	"chance":1,
+	"chance":0.5,
 	"talkativeness":1,
 	
 	"lines":{
@@ -17,7 +17,8 @@
 			{"text":"Set the course. We're leaving here."}
 		],
 		"out_of_missiles":[
-			{"text":"Out of missiles."}
+			{"text":"Out of missiles."},
+			{"text":"Missiles depleted."}
 		],
 
 		"engaged":[

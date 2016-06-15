@@ -16,8 +16,9 @@
 			{"text":"Let's get out of here!"},
 			{"text":"Run, damn it!"}
 		],
-		"out_of_missiles":[	# not used (yet)
-			{"text":"Out of missiles."}
+		"out_of_missiles":[
+			{"text":"Out of missiles."},
+			{"text":"No missiles left."}
 		],
 		"engaged":[	# not used
 			{"text":"In contact, could use some backup."},
@@ -58,7 +59,6 @@
 			{"text":"NOOOOOOO!"},
 			{"text":"WRYYYYYYYYY!"},
 			{"text":"AAAAAAAAAAA!"},
-			{"text":"See you on the other side!"},
 		],
 		"victory":[
 			{"text":"The day is ours!"},

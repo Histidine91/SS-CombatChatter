@@ -17,7 +17,8 @@
 			{"text":"An ignomious day!"}
 		],
 		"out_of_missiles":[
-			{"text":"Missiles gone, only our faith remains!"}
+			{"text":"Missiles gone, only our faith remains!"},
+			{"text":"We have exhausted our holy arrows!"},
 		],
 		"engaged":[
 			{"text":"Give it up, heretic!"},

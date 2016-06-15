@@ -39,7 +39,8 @@
 			{"text":"Don't worry... I'm still..."},
 		],
 		"overload":[
-			{"text":"Aaah, help! I got a blue screen!"},	    
+			{"text":"Aaah, help! I got a blue screen!"},
+			{"text":"Uncaught exception? What the hell is this?!"},
 		],
 		"death":[
 			{"text":"I-I'll be back!"},

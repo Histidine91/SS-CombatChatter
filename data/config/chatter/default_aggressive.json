@@ -1,5 +1,4 @@
 {
-
 	"name":"default_aggressive",
 	"personalities":["aggressive"],
 	"gender":["m","f","n"],
@@ -19,7 +18,8 @@
 			{"text":"Ah come on! I haven't got all the fun yet."}
 		],
 		"out_of_missiles":[
-			{"text":"Outta firecrackers."}
+			{"text":"Outta firecrackers."},
+			{"text":"Bah! Ran out already?"},
 		],
 		"engaged":[
 			{"text":"Gotcha! Come on!"},

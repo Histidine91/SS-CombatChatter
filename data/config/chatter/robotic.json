@@ -18,7 +18,8 @@
 			{"text":"terminating connection."}
 		],
 		"out_of_missiles":[
-			{"text":"missiles depleted."}
+			{"text":"missiles depleted."},
+			{"text":"missile racks empty."}
 		],
 		"engaged":[
 			{"text":"hostiles encountered."},
