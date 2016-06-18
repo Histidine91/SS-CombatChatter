@@ -477,11 +477,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		// full retreat message (same as start escape)
 		else if (!victory && engine.getFleetManager(FleetSide.PLAYER).getTaskManager(false).isInFullRetreat())
 		{
+			if (engine.getContext().getPlayerGoal() != FleetGoal.ESCAPE)
+			{
 				FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.RETREAT);
 				if (random != null)
 				{
 					printRandomMessage(random, MessageType.RETREAT);
 				}
+			}
 			victory = true;
 		}
 		
