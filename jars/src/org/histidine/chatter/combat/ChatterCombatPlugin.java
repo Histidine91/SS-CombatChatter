@@ -361,7 +361,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			// short form
 			String message = " " + StringHelper.getString("chatter_general", "outOfMissiles");
 			String name = getShipName(member);
-			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, null, message);
+			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Global.getSettings().getColor("standardTextColor"), message);
 			return false;
 		}
 		else
@@ -477,11 +477,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		// full retreat message (same as start escape)
 		else if (!victory && engine.getFleetManager(FleetSide.PLAYER).getTaskManager(false).isInFullRetreat())
 		{
-			FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.RETREAT);
-			if (random != null)
-			{
-				printRandomMessage(random, MessageType.RETREAT);
-			}
+				FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.RETREAT);
+				if (random != null)
+				{
+					printRandomMessage(random, MessageType.RETREAT);
+				}
 			victory = true;
 		}
 		
