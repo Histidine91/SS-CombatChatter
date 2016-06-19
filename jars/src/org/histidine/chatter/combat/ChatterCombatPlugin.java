@@ -28,6 +28,7 @@ import org.apache.log4j.Logger;
 import org.histidine.chatter.utils.GeneralUtils;
 import java.awt.Color;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import org.histidine.chatter.ChatterConfig;
 import org.histidine.chatter.ChatterLine;
@@ -102,6 +103,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		EXCLUDED_HULLS.add("ii_mirv");
 	}
 	
+	protected float getRandomForStringSeed(String seed)
+	{
+		Random generator = new Random(seed.hashCode());
+		return generator.nextFloat();
+	}
+	
 	protected String getCharacterForFleetMember(FleetMemberAPI member)
 	{
 		if (EXCLUDED_HULLS.contains(member.getHullId()))
@@ -123,7 +130,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		if (timid) name = "default_timid";
 		else if (xpLevel == CrewXPLevel.ELITE) name = "default_professional";
-		if (Math.random() > 0.5) name += "2";
+		if (getRandomForStringSeed(member.getShipName()) > 0.5) name += "2";
 		
 		return name;
 	}
