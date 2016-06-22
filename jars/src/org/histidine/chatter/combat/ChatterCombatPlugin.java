@@ -105,6 +105,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	protected float getRandomForStringSeed(String seed)
 	{
+		if (seed == null || seed.isEmpty()) return (float)Math.random();
 		Random generator = new Random(seed.hashCode());
 		return generator.nextFloat();
 	}
