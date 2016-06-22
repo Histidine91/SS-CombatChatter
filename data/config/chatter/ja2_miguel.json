@@ -14,7 +14,7 @@
 		"retreat":[
 		],
 		"out_of_missiles":[
-			{"text":"My gun must be reloaded!"},
+			#{"text":"My gun must be reloaded!"},
 		],
 		"engaged":[
 		],

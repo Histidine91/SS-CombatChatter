@@ -14,7 +14,7 @@
 			{"text":"As you say. Back to drawing board."},
 		],
 		"out_of_missiles":[
-			#{"text":"Gun is empty!"},
+			#{"text":"Gun is empty, damn it to hell!"},
 		],
 		"need_help":[],
 		"pursuing":[
