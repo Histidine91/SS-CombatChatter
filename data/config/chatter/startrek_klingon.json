@@ -1,0 +1,61 @@
+{
+	"name":"klingon",
+	"personalities":["aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"We stand ready to attack."},
+			{"text":"Enemy sighted!"},
+			{"text":"Ha! Mere target practice!"}
+		],
+		"retreat":[
+			{"text":"We WILL fight another day."},
+			{"text":"On our honour."}
+		],
+		"need_help":[
+			{"text":"We are surrounded by enemies! Keep firing!"},
+			{"text":"Join us in glorious battle!"}
+		],
+		"pursuing":[
+			{"text":"They are running in fear!"},
+			{"text":"Ha! They are afraid to die in battle!"},
+			{"text":"COWARDS!"},
+			{"text":"Let them run. Their cowardice will stalk them."}
+		],
+		"running":[
+			{"text":"The battle has soured!"}
+		],
+		"hull_90":[
+			{"text":"Interesting. Maybe they can fight after all."},
+			{"text":"Ah... The game is afoot!"}
+		],
+		"hull_50":[
+			{"text":"At last! A worthy adversary."},
+			{"text":"Impressive!"}
+		],
+		"hull_30":[
+			{"text":"Today is a good day to die!"},
+			{"text":"Sto'vo'kor awaits!"},
+			{"text":"There is no dishonour in death."}
+			
+		],
+		"overload":[
+			{"text":"Systems not responding!"},
+			{"text":"Overload!"},
+			{"text":"*sounds of console being thumped repeatedly*"}
+		],
+		"death":[
+			{"text":"Qa'pla'!"},
+			{"text":"Sto'vo'kor!"},
+			{"text":"Filthy pa'taq!"}
+		],
+		"victory":[
+			{"text":"An easy victory!"},
+			{"text":"Another victory for the Empire!"},
+			{"text":"We have honoured our houses."}
+		],
+	}
+}

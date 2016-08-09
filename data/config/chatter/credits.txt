@@ -17,6 +17,7 @@ cjusa:
 
 Serenitis/Paramount:
 * startrek_ferengi
+* startrek_klingon
 
 Love in Space:
 * sunrider_ava
