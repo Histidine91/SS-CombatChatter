@@ -10,7 +10,7 @@ pirates,criminal
 player_npc,"military,corporate,free"
 independent,free
 persean,military
-approlight,military
+approlight,"military,corporate"
 blackrock_driveyards,"military,corporate,criminal"
 bushi,robot
 cabal,"corporate,criminal"
