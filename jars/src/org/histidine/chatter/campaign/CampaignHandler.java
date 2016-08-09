@@ -128,7 +128,7 @@ public class CampaignHandler {
 					CHARACTERS.add(character);
 					CHARACTERS_MAP.put(characterId, character);
 				} catch (IOException | JSONException ex) {	// can't read character file
-					log.error(ex);
+					log.error("Error loading character " + characterId + ": " + ex);
 				}
 			}
 		} catch (IOException | JSONException ex) {	// can't read CSV
