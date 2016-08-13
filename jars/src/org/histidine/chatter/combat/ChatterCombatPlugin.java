@@ -55,6 +55,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final float MESSAGE_INTERVAL = 3;
 	public static final float MESSAGE_INTERVAL_IDLE = 6;
 	public static final float MESSAGE_INTERVAL_FLOAT = 4;
+	public static final float ANTI_REPETITION_DIVISOR = 3;
 	
 	protected CombatEngineAPI engine;
 	protected IntervalUtil interval = new IntervalUtil(0.4f, 0.5f);
@@ -181,7 +182,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return MESSAGE_TYPE_MAX_PRIORITY.get(category);
 	}
 	
-	protected boolean hasLine(FleetMemberAPI member, MessageType category)
+	protected boolean hasLine(FleetMemberAPI member, MessageType category, boolean useAntiRepetition)
 	{
 		ShipStateData stateData = getShipStateData(member);
 		String character = stateData.characterName;
@@ -189,8 +190,23 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			character = "default";
 		
 		List<ChatterLine> lines = CHARACTERS_MAP.get(character).lines.get(category);
-		return lines != null && !lines.isEmpty();
+		if (lines == null || lines.isEmpty())
+			return false;
+		// hax to reduce repetition if only 1-2 lines are defined
+		if (useAntiRepetition)
+		{
+			int count = lines.size();
+			if (Math.random() > (count / ANTI_REPETITION_DIVISOR))
+				return false;
+		}
+		return true;
 	}
+	
+	protected boolean hasLine(FleetMemberAPI member, MessageType category)
+	{
+		return hasLine(member, category, true);
+	}
+	
 	
 	protected ShipStateData getShipStateData(FleetMemberAPI member)
 	{
@@ -423,6 +439,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				if (ChatterConfig.allyChatter) weight *= 0.5f;
 				else continue;
 			}
+			if (!hasLine(member, category))
+				continue;
 			if (floater) {
 				ShipAPI ship = fm.getShipFor(member);
 				if (!Global.getCombatEngine().getViewport().isNearViewport(ship.getLocation(), ship.getCollisionRadius()))
@@ -433,9 +451,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			String character = stateData.characterName;
 			if (!CHARACTERS_MAP.containsKey(character))
 				character = "default";
-
-			weight *= CHARACTERS_MAP.get(character).talkativeness;
 			
+			weight *= CHARACTERS_MAP.get(character).talkativeness;
 			picker.add(member, weight);
 		}
 		if (picker.isEmpty()) return null;
