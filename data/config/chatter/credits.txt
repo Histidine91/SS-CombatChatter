@@ -47,3 +47,6 @@ Volition (compiled by MesoTroniK):
 * freespace_human1
 * freespace_human2
 * freespace_vasudan
+
+Michael Stewart, Steve Behling, Tom Grindberg, Edd Fear (compiled by MesoTroniK):
+* doom_comicguy

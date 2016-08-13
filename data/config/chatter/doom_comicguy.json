@@ -1,0 +1,76 @@
+{
+	"name":"doom_comicguy",
+	"personalities":["aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Who's a man and a half? I'm a man and a half!"},
+			{"text":"Lord almighty, I feel my temperature risin!"},
+			{"text":"Gonna get what you deserve!"},
+			{"text":"Ooh, here it comes! Here comes the pain train!"}
+		],
+		"retreat":[
+			{"text":"Death surrounds me."},
+			{"text":"Oh, the humanity!"}
+		],
+		"out_of_missiles":[
+			{"text":"My big gun is out of bullets!"}
+		],
+		"engaged":[
+			{"text":"Rip and tear rip and tear rip and tear your guts!"},
+			{"text":"I'm cookin' with Gas!"},
+			{"text":"Might makes light! And I feel mighty!"},
+			{"text":"Woo baby, I'm burning out of control!"},
+			{"text":"The sugar-sweet kiss of heavy ordinance!"}
+		],
+		"need_help":[
+			{"text":"I need a big gun. I need a really big gun..."},
+			{"text":"ARRRRGH! Turned my back... That was stupid!"},
+			{"text":"You think you can get me?"}
+		],
+		"pursuing":[
+			{"text":"There's nothing wrong with you that I can't fix.... With my hands!"},
+			{"text":"You are huge! That means you have huge guts!"},
+			{"text":"You're gonna be stupid and DEAD!"},
+			{"text":"You struggle in vain!"},
+			{"text":"Gimme. Cmon, gimme."},
+			{"text":"He's slim pickens."}
+		],
+		"running":[
+			{"text":"Feeling of invincibility over. Change of plans."}
+		],
+		"hull_90":[
+			{"text":"It's always something!"},
+			{"text":"Choo choo cha' boogie! Chooa choo cha...Choo ch...Choo cha...Oh my."}
+		],
+		"hull_50":[
+			{"text":"My cause is just... My will is strong..."},
+			{"text":"Now I'm radioactive! That can't be good!"}
+		],
+		"hull_30":[
+			{"text":"SWEET CHRISTMAS!"},
+			{"text":"As I stride knee deep through the dead, all is clear. I know what must be done..."},
+			{"text":"Ye, in my head I hear something that sounds like angels!"}
+		],
+		"overload":[
+			{"text":"Huh? Whuzzat? Whuzzat?"},
+			{"text":"Gaah! Burns! Stinks!"}
+		],
+		"death":[
+			{"text":"I have really had just about all I can't... Take..."},
+			{"text":"I can't believe it!"}
+		],
+		"victory":[
+			{"text":"Dynamite!"},
+			{"text":"Who's the man? I'm the man!"},
+			{"text":"Groovy."},
+			{"text":"Amen to that."},
+			{"text":"Righteousness and superior firepower has triumphed!"},
+			{"text":"Hail to the chief!"},
+			{"text":"I've blown up everything around here!"}
+		],
+	}
+}
