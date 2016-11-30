@@ -24,6 +24,7 @@
 		"pursuing":[
 			{"text":"Snapperheads!"},
 			{"text":"Over there!"},
+			{"text":"Need a broom!"},
 		],
 		"running":[
 			{"text":"This isn't working, man..."},
@@ -47,7 +48,7 @@
 		"death":[
 		],
 		"victory":[
-			{"text":"Need a broom!"},
+			{"text":"Time to chill out and relax."},
 			{"text":"So long, snapperheads!"},
 			{"text":"Ya gotta like that!"},
 			{"text":"I'm in tune."},
