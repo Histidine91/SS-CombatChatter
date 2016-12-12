@@ -33,8 +33,8 @@ import java.util.Set;
 import org.histidine.chatter.ChatterConfig;
 import org.histidine.chatter.ChatterLine;
 import org.histidine.chatter.ChatterLine.MessageType;
-import org.histidine.chatter.campaign.CampaignHandler;
-import static org.histidine.chatter.campaign.CampaignHandler.CHARACTERS_MAP;
+import org.histidine.chatter.ChatterDataManager;
+import static org.histidine.chatter.ChatterDataManager.CHARACTERS_MAP;
 import org.histidine.chatter.utils.StringHelper;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -119,7 +119,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		PersonAPI captain = member.getCaptain();
 		if ((captain != null && !captain.isDefault()) || engine.isMission())
 		{
-			return CampaignHandler.getCharacterForOfficer(captain, member.isAlly(), engine);
+			return ChatterDataManager.getCharacterForOfficer(captain, member, engine);
 		}
 		
 		String name = "default";

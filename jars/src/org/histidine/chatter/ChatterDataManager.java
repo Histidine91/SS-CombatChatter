@@ -1,9 +1,10 @@
-package org.histidine.chatter.campaign;
+package org.histidine.chatter;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
+import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,33 +12,36 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import org.apache.log4j.Logger;
-import org.histidine.chatter.ChatterCharacter;
-import org.histidine.chatter.ChatterConfig;
-import org.histidine.chatter.ChatterLine;
 import org.histidine.chatter.ChatterLine.MessageType;
-import org.histidine.chatter.combat.ChatterCombatPlugin;
 import org.histidine.chatter.utils.GeneralUtils;
 import org.histidine.chatter.utils.StringHelper;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CampaignHandler {
+public class ChatterDataManager {
 	
-	public static final String CHARACTERS_DIR = "data/config/chatter/";
-	public static final String CHARACTERS_LIST = CHARACTERS_DIR + "characters.csv";
-	public static final String FACTION_TAGS_FILE = CHARACTERS_DIR + "factiontags.csv";
-	public static final String CHARACTER_FACTIONS_FILE = CHARACTERS_DIR + "character_factions.csv";
+	public static final String CONFIG_DIR = "data/config/chatter/";
+	public static final String CHARACTERS_DIR = CONFIG_DIR + "characters/";
+	public static final String CHARACTERS_LIST = CONFIG_DIR + "characters.csv";
+	public static final String FACTION_TAGS_FILE = CONFIG_DIR + "factiontags.csv";
+	public static final String CHARACTER_FACTIONS_FILE = CONFIG_DIR + "character_factions.csv";
+	public static final String HULL_FACTION_PREFIX_FILE = CONFIG_DIR + "hull_prefixes.csv";
+	public static final String SHIP_NAME_FACTION_PREFIX_FILE = CONFIG_DIR + "ship_name_prefixes.csv";
 	
 	public static final List<ChatterCharacter> CHARACTERS = new ArrayList<>();
 	public static final Map<String, ChatterCharacter> CHARACTERS_MAP = new HashMap<>();
 	public static final Map<String, Set<String>> FACTION_TAGS = new HashMap<>();
 	public static final Map<String, Map<String, Integer>> CHARACTER_FACTIONS = new HashMap<>();
 	
-	public static Logger log = Global.getLogger(CampaignHandler.class);
+	public static final List<String[]> FACTION_HULL_PREFIXES = new ArrayList<>();
+	public static final List<String[]> FACTION_SHIPNAME_PREFIXES = new ArrayList<>();
+	
+	public static Logger log = Global.getLogger(ChatterDataManager.class);
 	
 	protected static boolean loaded = false;
 	
@@ -84,6 +88,7 @@ public class CampaignHandler {
 				CHARACTER_FACTIONS.put(characterId, factionCompat);
 			}
 			
+			// load the actual characters
 			JSONArray charCSV = Global.getSettings().getMergedSpreadsheetDataForMod("character", CHARACTERS_LIST, "chatter");
 			for(int x = 0; x < charCSV.length(); x++)
 			{
@@ -131,6 +136,37 @@ public class CampaignHandler {
 					log.error("Error loading character " + characterId + ": " + ex);
 				}
 			}
+			
+			// map for getting faction ID based on hull ID prefix (e.g. ii_olympus is an II ship)
+			JSONArray prefixes = Global.getSettings().getMergedSpreadsheetDataForMod("prefix", HULL_FACTION_PREFIX_FILE, "audio_plus");
+			for(int x = 0; x < prefixes.length(); x++)
+			{
+				String prefix = "<unknown>";
+				try {
+					JSONObject row = prefixes.getJSONObject(x);
+					prefix = row.getString("prefix");
+					String faction = row.getString("faction");
+					FACTION_HULL_PREFIXES.add(new String[]{prefix, faction});
+				} catch (JSONException ex) {
+					log.error("Failed to load hull ID prefix – faction mapping for " + prefix, ex);
+				}
+			}
+		
+			// map for getting faction ID based on ship name's prefix (e.g. TTS for Tri-Tachyon)
+			JSONArray prefixes2 = Global.getSettings().getMergedSpreadsheetDataForMod("prefix", SHIP_NAME_FACTION_PREFIX_FILE, "audio_plus");
+			for(int x = 0; x < prefixes2.length(); x++)
+			{
+				String prefix = "<unknown>";
+				try {
+					JSONObject row = prefixes2.getJSONObject(x);
+					prefix = row.getString("prefix");
+					String faction = row.getString("faction");
+					FACTION_SHIPNAME_PREFIXES.add(new String[]{prefix, faction});
+				} catch (JSONException ex) {
+					log.error("Failed to load ship name prefix – faction mapping for " + prefix, ex);
+				}
+			}
+			
 		} catch (IOException | JSONException ex) {	// can't read CSV
 			log.error(ex);
 		}
@@ -138,7 +174,7 @@ public class CampaignHandler {
 		loaded = true;
 	}
 	
-	public static String getCharacterForOfficer(PersonAPI captain, boolean isAlly, CombatEngineAPI engine)
+	public static String getCharacterForOfficer(PersonAPI captain, FleetMemberAPI ship, CombatEngineAPI engine)
 	{
 		// try to load officer if available
 		String officerID = captain.getId();
@@ -158,19 +194,29 @@ public class CampaignHandler {
 		if (captain.isFemale()) gender = "f";
 		else if (captain.isMale()) gender = "m";
 		boolean isMission = engine.isMission();
+		
 		String factionId = captain.getFaction().getId();
 		if (captain.getMemoryWithoutUpdate().contains("$originalFaction"))
 		{
 			factionId = captain.getMemoryWithoutUpdate().getString("$originalFaction");
 		}
 		
+		if (engine.isMission())
+		{
+			factionId = getFactionIDFromShipNamePrefix(ship.getShipName());
+			if (factionId.isEmpty())
+				factionId = getFactionIDFromHullID(ship.getHullId());
+			//log.info("Detected faction for ship " + ship.getShipName() + " as " + factionId);
+		}
+		
 		for (ChatterCharacter character : CHARACTERS)
 		{
 			if (!isMission) {
 				if (!character.gender.contains(gender)) continue;
-				if (ChatterConfig.factionSpecificCharacters && !character.allowedFactions.contains(factionId)) 
-					continue;
 			}
+			if (ChatterConfig.factionSpecificCharacters && !character.allowedFactions.contains(factionId)) 
+				continue;
+			
 			if (character.personalities.contains(captain.getPersonalityAPI().getId()))
 			{
 				picker.add(character.name, character.chance);
@@ -179,7 +225,7 @@ public class CampaignHandler {
 		}
 		
 		// try to not have duplicate chatter chars among our fleet's officers (unless we've run out)
-		if ( !isAlly && (engine.isInCampaign() || engine.isInCampaignSim()) )
+		if ( !ship.isAlly() && (engine.isInCampaign() || engine.isInCampaignSim()) )
 		{
 			Iterator<Map.Entry<String, String>> iter = savedOfficers.entrySet().iterator();
 			while (iter.hasNext())
@@ -198,7 +244,7 @@ public class CampaignHandler {
 		if (charName == null) return "default";
 		
 		log.info("Assigning character " + charName + " to officer " + captain.getName().getFullName());
-		if (!isAlly && !isMission) 
+		if (!ship.isAlly() && !isMission) 
 			savedOfficers.put(captain.getId(), charName);
 		return charName;
 	}
@@ -242,5 +288,40 @@ public class CampaignHandler {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Used to guess the faction of the opposing fleet in missions, based on the hull ID of the first enemy ship
+	 * @param hullID
+	 * @return Faction ID, or empty string if no faction found
+	 */
+	public static String getFactionIDFromHullID(String hullID)
+	{
+		hullID = hullID.toLowerCase(Locale.ROOT);
+		//log.info("Getting faction for hull ID " + hullID);
+		if (hullID.endsWith("_cabal"))
+			return "cabal";
+		for (String[] mapEntry : FACTION_HULL_PREFIXES)
+		{
+			if (hullID.startsWith(mapEntry[0]))
+				return mapEntry[1];
+		}
+		return "";
+	}
+	
+	/**
+	 * Used to guess the faction of the opposing fleet in missions, based on the name of the first enemy ship
+	 * @param shipName
+	 * @return Faction ID, or empty string if no faction found
+	 */
+	public static String getFactionIDFromShipNamePrefix(String shipName)
+	{
+		//log.info("Getting faction for ship name " + shipName);
+		for (String[] mapEntry : FACTION_SHIPNAME_PREFIXES)
+		{
+			if (shipName.startsWith(mapEntry[0] + " "))
+				return mapEntry[1];
+		}
+		return "";
 	}
 }
