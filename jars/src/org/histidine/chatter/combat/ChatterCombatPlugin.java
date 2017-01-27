@@ -6,6 +6,7 @@ import com.fs.starfarer.api.campaign.CargoAPI.CrewXPLevel;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.CombatFleetManagerAPI;
+import com.fs.starfarer.api.combat.CombatTaskManagerAPI;
 import com.fs.starfarer.api.combat.EveryFrameCombatPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI.ShipTypeHints;
@@ -61,6 +62,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected IntervalUtil interval = new IntervalUtil(0.4f, 0.5f);
 	protected Map<FleetMemberAPI, ShipStateData> states = new HashMap<>();
 	protected Map<String, Float> messageCooldown = new HashMap<>();
+	protected Set<FleetMemberAPI> ignore = new HashSet<>();
+	
 	protected FleetMemberAPI lastTalker = null;
 	protected float timeElapsed = 0;
 	protected float lastMessageTime = -9999;
@@ -112,10 +115,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	}
 	
 	protected String getCharacterForFleetMember(FleetMemberAPI member)
-	{
-		if (EXCLUDED_HULLS.contains(member.getHullId()))
-			return "null";
-		
+	{	
 		PersonAPI captain = member.getCaptain();
 		if ((captain != null && !captain.isDefault()) || engine.isMission())
 		{
@@ -137,6 +137,17 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return name;
 	}
 	
+	protected boolean isIgnored(FleetMemberAPI member)
+	{
+		if (ignore.contains(member)) return true;
+		if (EXCLUDED_HULLS.contains(member.getHullId()))
+		{
+			ignore.add(member);
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * Makes a ShipStateData to track the condition of the {@code member} for chatter
 	 * @param member
@@ -144,6 +155,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected ShipStateData makeShipStateEntry(FleetMemberAPI member)
 	{
+		if (isIgnored(member)) return null;
+		
 		ShipStateData data = new ShipStateData();
 		ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
 		if (ship != null) {
@@ -184,6 +197,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	protected boolean hasLine(FleetMemberAPI member, MessageType category, boolean useAntiRepetition)
 	{
+		if (isIgnored(member)) return false;
+		
 		ShipStateData stateData = getShipStateData(member);
 		String character = stateData.characterName;
 		if (!CHARACTERS_MAP.containsKey(character))
@@ -237,6 +252,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printRandomMessage(FleetMemberAPI member, MessageType category)
 	{
+		if (isIgnored(member)) return false;
+		
 		boolean floater = isFloatingMessage(category);
 		
 		if (!floater && !meetsPriorityThreshold(member, category))
@@ -428,6 +445,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		for (FleetMemberAPI member : members)
 		{
 			//if (member.isFighterWing()) continue;
+			if (isIgnored(member)) continue;
 			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
 			CombatFleetManagerAPI fm = engine.getFleetManager(FleetSide.PLAYER);
 			if (fm.getShipFor(member).getShipAI() == null && !ChatterConfig.selfChatter) continue;	// being player-piloted;
@@ -489,32 +507,38 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		boolean printed = false;
 		
 		// victory message
-		if (!victory && engine.getFleetManager(FleetSide.ENEMY).getTaskManager(false).isInFullRetreat() 
-				&& engine.getFleetManager(FleetSide.ENEMY).getGoal() != FleetGoal.ESCAPE)
+		if (!victory)
 		{
-			FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.VICTORY);
-			if (random != null)
+			CombatTaskManagerAPI enemyManager = engine.getFleetManager(FleetSide.ENEMY).getTaskManager(false);
+			CombatTaskManagerAPI playerManager = engine.getFleetManager(FleetSide.PLAYER).getTaskManager(false);
+			if (enemyManager.isInFullRetreat() && !enemyManager.isPreventFullRetreat() 
+					&& engine.getFleetManager(FleetSide.ENEMY).getGoal() != FleetGoal.ESCAPE)
 			{
-				printRandomMessage(random, MessageType.VICTORY);
-			}
-			victory = true;
-		}
-		// full retreat message (same as start escape)
-		else if (!victory && engine.getFleetManager(FleetSide.PLAYER).getTaskManager(false).isInFullRetreat())
-		{
-			if (engine.getContext().getPlayerGoal() != FleetGoal.ESCAPE)
-			{
-				FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.RETREAT);
+				FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.VICTORY);
 				if (random != null)
 				{
-					printRandomMessage(random, MessageType.RETREAT);
+					printRandomMessage(random, MessageType.VICTORY);
 				}
+				victory = true;
 			}
-			victory = true;
+
+			// full retreat message (same as start escape)
+			else if (playerManager.isInFullRetreat() && !playerManager.isPreventFullRetreat())
+			{
+				if (engine.getContext().getPlayerGoal() != FleetGoal.ESCAPE)
+				{
+					FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.RETREAT);
+					if (random != null)
+					{
+						printRandomMessage(random, MessageType.RETREAT);
+					}
+				}
+				victory = true;
+			}
 		}
-		
 		for (FleetMemberAPI member : deployed)
 		{
+			if (isIgnored(member)) continue;
 			if (member.isFighterWing()) continue;
 			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
 			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
@@ -543,6 +567,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		for (FleetMemberAPI member : dead)
 		{
+			if (isIgnored(member)) continue;
 			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
 			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
 			
@@ -559,6 +584,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		{
 			boolean isFighter = member.isFighterWing();
 			//if (member.isFighterWing()) continue;
+			if (isIgnored(member)) continue;
 			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
 			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
 			
@@ -586,6 +612,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (!isFighter && stateData.canWriteOutOfMissiles)
 			{
 				boolean haveMissileAmmo = false;
+				
 				for (WeaponAPI wep : ship.getAllWeapons())
 				{
 					if (wep.usesAmmo() && wep.getType() == WeaponType.MISSILE)
