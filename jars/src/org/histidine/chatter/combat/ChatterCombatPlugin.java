@@ -10,6 +10,7 @@ import com.fs.starfarer.api.combat.CombatTaskManagerAPI;
 import com.fs.starfarer.api.combat.EveryFrameCombatPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI.ShipTypeHints;
+import com.fs.starfarer.api.combat.ShipSystemAPI;
 import com.fs.starfarer.api.combat.ShipwideAIFlags;
 import com.fs.starfarer.api.combat.ShipwideAIFlags.AIFlags;
 import com.fs.starfarer.api.combat.ViewportAPI;
@@ -591,8 +592,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
 			ShipAPI ship = fm.getShipFor(member);
-			if (ship.getShipAI() == null) continue;	// under AI control;
-			ShipwideAIFlags flags = ship.getAIFlags();
 			
 			if (!ship.isAlive() && !stateData.dead) {
 				if (!printed && !isFighter)
@@ -612,15 +611,24 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (!isFighter && stateData.canWriteOutOfMissiles)
 			{
 				boolean haveMissileAmmo = false;
-				
-				for (WeaponAPI wep : ship.getAllWeapons())
+				// check for missile autoforge
+				ShipSystemAPI system = ship.getSystem();
+				if (system.getId().equals("forgevats") && !system.isOutOfAmmo())
 				{
-					if (wep.usesAmmo() && wep.getType() == WeaponType.MISSILE)
+					haveMissileAmmo = true;
+				}
+				else
+				{
+					// check all missile weapons
+					for (WeaponAPI wep : ship.getAllWeapons())
 					{
-						if (wep.getSpec().getAmmoPerSecond() > 0 || wep.getAmmo() > 0)
+						if (wep.usesAmmo() && wep.getType() == WeaponType.MISSILE)
 						{
-							haveMissileAmmo = true;
-							break;
+							if (wep.getSpec().getAmmoPerSecond() > 0 || wep.getAmmo() > 0)
+							{
+								haveMissileAmmo = true;
+								break;
+							}
 						}
 					}
 				}
@@ -630,28 +638,30 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				}
 			}
 			
-			if (flags != null)
+			if (ship.getShipAI() != null)
 			{
-				if ((canPrint || !printed))
+				ShipwideAIFlags flags = ship.getAIFlags();
+				if (flags != null)
 				{
-					if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
-						printed = printRandomMessage(member, MessageType.NEED_HELP);
-					else if (flags.hasFlag(AIFlags.PURSUING) && !stateData.pursuing)	// fighters can say this
-						printed = printRandomMessage(member, MessageType.PURSUING);
-					else if (!isFighter && flags.hasFlag(AIFlags.RUN_QUICKLY) && !stateData.running)
-						printed = printRandomMessage(member, MessageType.RUNNING);
-					//else if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
-					//	printed = printRandomMessage(member, MessageType.ENGAGED);
+					if ((canPrint || !printed))
+					{
+						if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
+							printed = printRandomMessage(member, MessageType.NEED_HELP);
+						else if (flags.hasFlag(AIFlags.PURSUING) && !stateData.pursuing)	// fighters can say this
+							printed = printRandomMessage(member, MessageType.PURSUING);
+						else if (!isFighter && flags.hasFlag(AIFlags.RUN_QUICKLY) && !stateData.running)
+							printed = printRandomMessage(member, MessageType.RUNNING);
+						//else if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
+						//	printed = printRandomMessage(member, MessageType.ENGAGED);
+					}
+					stateData.pursuing = flags.hasFlag(AIFlags.PURSUING);
+					stateData.running = flags.hasFlag(AIFlags.RUN_QUICKLY);
+					stateData.needHelp = flags.hasFlag(AIFlags.NEEDS_HELP);
 				}
-				stateData.pursuing = flags.hasFlag(AIFlags.PURSUING);
-				stateData.running = flags.hasFlag(AIFlags.RUN_QUICKLY);
-				stateData.needHelp = flags.hasFlag(AIFlags.NEEDS_HELP);
+				//log.info(member.getShipName() + " pursuing target? " + flags.hasFlag(AIFlags.PURSUING));
+				//log.info(member.getShipName() + " running? " + flags.hasFlag(AIFlags.RUN_QUICKLY));
+				//log.info(member.getShipName() + " needs help? " + flags.hasFlag(AIFlags.NEEDS_HELP));
 			}
-			//log.info(member.getShipName() + " pursuing target? " + flags.hasFlag(AIFlags.PURSUING));
-			//log.info(member.getShipName() + " running? " + flags.hasFlag(AIFlags.RUN_QUICKLY));
-			//log.info(member.getShipName() + " needs help? " + flags.hasFlag(AIFlags.NEEDS_HELP));
-			
-			
 		}
 	}
 
