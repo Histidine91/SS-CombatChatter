@@ -7,6 +7,8 @@ import org.histidine.chatter.campaign.SetMercFactionScript;
 
 public class ChatterModPlugin extends BaseModPlugin
 {
+	public static boolean hasTwigLib = Global.getSettings().getModManager().isModEnabled("ztwiglib");
+	
 	@Override
 	public void onGameLoad(boolean newGame) {
 		Global.getSector().addTransientListener(new SetMercFactionScript());

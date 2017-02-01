@@ -23,6 +23,7 @@ import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
+import db.twiglib.TwigUtils;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,7 @@ import org.histidine.chatter.ChatterLine;
 import org.histidine.chatter.ChatterLine.MessageType;
 import org.histidine.chatter.ChatterDataManager;
 import static org.histidine.chatter.ChatterDataManager.CHARACTERS_MAP;
+import org.histidine.chatter.scripts.ChatterModPlugin;
 import org.histidine.chatter.utils.StringHelper;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -145,6 +147,17 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		{
 			ignore.add(member);
 			return true;
+		}
+		
+		// ignore TwigLib subunits
+		if (ChatterModPlugin.hasTwigLib)
+		{
+			ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
+			if (!TwigUtils.isRoot(ship))
+			{
+				ignore.add(member);
+				return true;
+			}
 		}
 		return false;
 	}
