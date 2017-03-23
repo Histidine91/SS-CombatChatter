@@ -6,8 +6,7 @@ import com.fs.starfarer.api.characters.OfficerDataAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import org.histidine.chatter.utils.GeneralUtils;
+import org.histidine.chatter.ChatterDataManager;
 import org.lazywizard.console.BaseCommand;
 import org.lazywizard.console.CommandUtils;
 import org.lazywizard.console.CommonStrings;
@@ -41,9 +40,7 @@ public class SetChatterChar implements BaseCommand {
 		String nameSearch = builder.toString();
 		PersonAPI selectedOfficer = null;
 		
-		Map<String, String> savedOfficers = GeneralUtils.getSavedCharacters();
-		
-		if (nameSearch.toLowerCase().equals("self") || nameSearch.toLowerCase().equals("player"))
+		if (nameSearch.toLowerCase().equalsIgnoreCase("self") || nameSearch.toLowerCase().equalsIgnoreCase("player"))
 		{
 			selectedOfficer = Global.getSector().getPlayerPerson();
 		}
@@ -86,7 +83,7 @@ public class SetChatterChar implements BaseCommand {
 			return CommandResult.ERROR;
 		}
         
-		savedOfficers.put(selectedOfficer.getId(), charID);
+		ChatterDataManager.saveCharacter(selectedOfficer, charID);
 		Console.showMessage("Assigning character " + charID + " to officer " + selectedOfficer.getName().getFullName());
         return CommandResult.SUCCESS;
     }

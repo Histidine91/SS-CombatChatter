@@ -2,6 +2,7 @@ package org.histidine.chatter;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.FactionAPI;
+import com.fs.starfarer.api.characters.OfficerDataAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
@@ -25,6 +26,7 @@ import org.json.JSONObject;
 
 public class ChatterDataManager {
 	
+	public static final String PERSISTENT_DATA_KEY = "combatChatter";
 	public static final String CONFIG_DIR = "data/config/chatter/";
 	public static final String CHARACTERS_DIR = CONFIG_DIR + "characters/";
 	public static final String CHARACTERS_LIST = CONFIG_DIR + "characters.csv";
@@ -32,6 +34,7 @@ public class ChatterDataManager {
 	public static final String CHARACTER_FACTIONS_FILE = CONFIG_DIR + "character_factions.csv";
 	public static final String HULL_FACTION_PREFIX_FILE = CONFIG_DIR + "hull_prefixes.csv";
 	public static final String SHIP_NAME_FACTION_PREFIX_FILE = CONFIG_DIR + "ship_name_prefixes.csv";
+	public static final String CHARACTER_MEMORY_KEY = "$chatterChar";
 	
 	public static final List<ChatterCharacter> CHARACTERS = new ArrayList<>();
 	public static final Map<String, ChatterCharacter> CHARACTERS_MAP = new HashMap<>();
@@ -174,18 +177,12 @@ public class ChatterDataManager {
 		loaded = true;
 	}
 	
+	
 	public static String getCharacterForOfficer(PersonAPI captain, FleetMemberAPI ship, CombatEngineAPI engine)
 	{
 		// try to load officer if available
-		String officerID = captain.getId();
-		Map<String, String> savedOfficers = GeneralUtils.getSavedCharacters();
-		
-		if (savedOfficers.containsKey(officerID))
-		{
-			String saved = savedOfficers.get(officerID);
-			// this check makes sure it doesn't break if a previously used character is deleted
-			if (CHARACTERS_MAP.containsKey(saved)) return saved;
-		}
+		String saved = getCharacterFromMemory(captain);
+		if (saved != null) return saved;
 		
 		WeightedRandomPicker<String> picker = new WeightedRandomPicker<>();
 		WeightedRandomPicker<String> pickerBackup = new WeightedRandomPicker<>();
@@ -219,34 +216,29 @@ public class ChatterDataManager {
 			
 			if (character.personalities.contains(captain.getPersonalityAPI().getId()))
 			{
-				picker.add(character.name, character.chance);
-				pickerBackup.add(character.name, character.chance);
+				picker.add(character.id, character.chance);
+				pickerBackup.add(character.id, character.chance);
 			}
 		}
 		
 		// try to not have duplicate chatter chars among our fleet's officers (unless we've run out)
 		if ( !ship.isAlly() && (engine.isInCampaign() || engine.isInCampaignSim()) )
 		{
-			Iterator<Map.Entry<String, String>> iter = savedOfficers.entrySet().iterator();
-			while (iter.hasNext())
-			{
-				Map.Entry<String, String> tmp = iter.next();
-				String existing = tmp.getValue();
-				if (picker.getItems().contains(existing))
-					picker.remove(existing);
-			}
+			Set<String> usedChars = getUsedCharacters();
+			for (String usedChar : usedChars)
+				picker.remove(usedChar);
 		}
 		if (picker.isEmpty()) picker = pickerBackup;
 		
 		if (picker.isEmpty()) return "default";
 		
-		String charName = picker.pick();
-		if (charName == null) return "default";
+		String charId = picker.pick();
+		if (charId == null) return "default";
 		
-		log.info("Assigning character " + charName + " to officer " + captain.getName().getFullName());
-		if (!ship.isAlly() && !isMission) 
-			savedOfficers.put(captain.getId(), charName);
-		return charName;
+		log.info("Assigning character " + charId + " to officer " + captain.getName().getFullName());
+		if (!isMission)
+			saveCharacter(captain, charId);
+		return charId;
 	}
 	
 	protected static Set<String> getAllowedFactionsForCharacter(String charId) {
@@ -323,5 +315,120 @@ public class ChatterDataManager {
 				return mapEntry[1];
 		}
 		return "";
+	}
+	
+	/**
+	 * Tries to get the officer's chatter character from their memory
+	 * @param officer
+	 * @return Chatter character ID, or null if no character saved
+	 */
+	public static String getCharacterFromMemory(PersonAPI officer)
+	{
+		String result = null;
+		if (officer.getMemoryWithoutUpdate().contains(CHARACTER_MEMORY_KEY))
+		{
+			result = officer.getMemoryWithoutUpdate().getString(CHARACTER_MEMORY_KEY);
+		}
+		
+		// this check makes sure it doesn't break if a previously used character is deleted
+		if (CHARACTERS_MAP.containsKey(result)) return result;
+		return null;
+	}
+	
+	public static ChatterCharacter getCharacterData(String id)
+	{
+		return CHARACTERS_MAP.get(id);
+	}
+	
+	/**
+	 * Returns a list of officers in the player fleet
+	 * @param includePlayer Include the player character
+	 * @return
+	 */
+	public static List<PersonAPI> getOfficers(boolean includePlayer)
+	{
+		List<PersonAPI> officers = new ArrayList<>();
+		
+		for (OfficerDataAPI officer : Global.getSector().getPlayerFleet().getFleetData().getOfficersCopy())
+		{
+			PersonAPI person = officer.getPerson();
+			officers.add(person);
+		}
+		if (includePlayer)
+		{
+			PersonAPI playerPerson = Global.getSector().getPlayerPerson();
+			officers.add(playerPerson);
+		}
+		
+		return officers;
+	}
+	
+	/**
+	 * Returns a map of officer IDs and their chatter characters present in the player fleet
+	 * @return
+	 */
+	public static Map<String, String> getSavedCharacters()
+	{
+		Map<String, String> characters = new HashMap<>();
+		
+		for (PersonAPI person: getOfficers(true))
+		{
+			characters.put(person.getId(), getCharacterFromMemory(person));
+		}
+		
+		return characters;
+	}
+	
+	/**
+	 * Returns a set of all characters that have been used by one or another player's officer in the current campaign
+	 * Should only be used for this purpose, not getting saved characters
+	 * @return
+	 */
+	public static Set<String> getUsedCharacters()
+	{
+		Set<String> used = new HashSet<>();
+		Map<String, Object> data = Global.getSector().getPersistentData();
+		Object loadedData = data.get(PERSISTENT_DATA_KEY);
+		if (loadedData == null)
+		{
+			Map<String, String> officers = new HashMap<>();
+			data.put(PERSISTENT_DATA_KEY, officers);
+			return new HashSet<>();
+		}
+		
+		Map<String, String> savedOfficers = (HashMap<String, String>) loadedData;
+		
+		Iterator<Map.Entry<String, String>> iter = savedOfficers.entrySet().iterator();
+		while (iter.hasNext())
+		{
+			Map.Entry<String, String> tmp = iter.next();
+			String character = tmp.getValue();
+			used.add(character);
+		}
+		return used;
+	}
+	
+	/**
+	 * Saves an assigned character for an officer to memory and persistent data
+	 * @param person
+	 * @param character
+	 */
+	public static void saveCharacter(PersonAPI person, String character)
+	{
+		// save to person's memory
+		person.getMemoryWithoutUpdate().set(CHARACTER_MEMORY_KEY, character);
+		
+		// save to used characters map in persistent data
+		Map<String, Object> data = Global.getSector().getPersistentData();
+		Map<String, String> officers = null;
+		Object loadedData = data.get(PERSISTENT_DATA_KEY);
+		if (loadedData == null)
+		{
+			officers = new HashMap<>();
+			data.put(PERSISTENT_DATA_KEY, officers);
+		}
+		else
+			officers = (HashMap<String, String>)loadedData;
+		officers.put(person.getId(), character);
 	}
 }

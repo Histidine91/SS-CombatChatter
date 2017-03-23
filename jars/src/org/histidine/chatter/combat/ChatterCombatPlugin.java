@@ -37,7 +37,6 @@ import org.histidine.chatter.ChatterConfig;
 import org.histidine.chatter.ChatterLine;
 import org.histidine.chatter.ChatterLine.MessageType;
 import org.histidine.chatter.ChatterDataManager;
-import static org.histidine.chatter.ChatterDataManager.CHARACTERS_MAP;
 import org.histidine.chatter.scripts.ChatterModPlugin;
 import org.histidine.chatter.utils.StringHelper;
 import org.lwjgl.util.vector.Vector2f;
@@ -45,7 +44,6 @@ import org.lwjgl.util.vector.Vector2f;
 
 public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
-	public static final String PERSISTENT_DATA_KEY = "combatChatter";
 	public static Logger log = Global.getLogger(ChatterCombatPlugin.class);
 	
 	public static final float PRIORITY_PER_MESSAGE = 20;
@@ -186,7 +184,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (data.missileOPs < data.maxOPs * ChatterConfig.minMissileOPFractionForChatter)
 				data.canWriteOutOfMissiles = false;	// don't bother writing out of missiles message
 		}
-		data.characterName = getCharacterForFleetMember(member);
+		data.characterId = getCharacterForFleetMember(member);
 		
 		states.put(member, data);
 		return data;
@@ -214,11 +212,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (isIgnored(member)) return false;
 		
 		ShipStateData stateData = getShipStateData(member);
-		String character = stateData.characterName;
-		if (!CHARACTERS_MAP.containsKey(character))
+		String character = stateData.characterId;
+		if (ChatterDataManager.getCharacterData(character) == null)
 			character = "default";
 		
-		List<ChatterLine> lines = CHARACTERS_MAP.get(character).lines.get(category);
+		List<ChatterLine> lines = ChatterDataManager.getCharacterData(character).lines.get(category);
 		if (lines == null || lines.isEmpty())
 			return false;
 		// hax to reduce repetition if only 1-2 lines are defined
@@ -293,11 +291,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				return false;
 		}
 		
-		String character = stateData.characterName;
-		if (!CHARACTERS_MAP.containsKey(character))
+		String character = stateData.characterId;
+		if (ChatterDataManager.getCharacterData(character) == null)
 			character = "default";
 		
-		List<ChatterLine> lines = CHARACTERS_MAP.get(character).lines.get(category);
+		List<ChatterLine> lines = ChatterDataManager.getCharacterData(character).lines.get(category);
 		if (lines == null)
 		{
 			//log.warn("Missing line category " + category.name() + " for character " + character);
@@ -480,11 +478,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			}
 			
 			ShipStateData stateData = getShipStateData(member);
-			String character = stateData.characterName;
-			if (!CHARACTERS_MAP.containsKey(character))
+			String character = stateData.characterId;
+			if (ChatterDataManager.getCharacterData(character) == null)
 				character = "default";
 			
-			weight *= CHARACTERS_MAP.get(character).talkativeness;
+			weight *= ChatterDataManager.getCharacterData(character).talkativeness;
 			picker.add(member, weight);
 		}
 		if (picker.isEmpty()) return null;
@@ -694,7 +692,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	protected static class ShipStateData
 	{
-		public String characterName = "default";
+		public String characterId = "default";
 		public boolean dead = false;
 		public boolean needHelp = false;
 		public boolean pursuing = false;
