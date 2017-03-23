@@ -1,5 +1,5 @@
 {
-	"name":"default_professional2",
+	"name":"Default (professional 2)",
 	"personalities":["cautious","steady"],
 	"gender":["m","f","n"],
 	"chance":0.5,

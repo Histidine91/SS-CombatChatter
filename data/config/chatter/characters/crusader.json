@@ -1,5 +1,5 @@
 {
-	"name":"crusader",
+	"name":"Crusader",
 	"personalities":["steady","aggressive"],
 	"gender":["m","f","n"],
 	"chance":1,

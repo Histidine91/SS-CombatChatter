@@ -1,5 +1,5 @@
 {
-	"name":"default2",
+	"name":"Default 2",
 	"personalities":["timid", "cautious", "steady"],
 	"gender":["m","f","n"],
 	"chance":0.5,

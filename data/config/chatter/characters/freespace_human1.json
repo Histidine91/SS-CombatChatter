@@ -1,5 +1,5 @@
 {
-	"name":"freespace_human1",
+	"name":"Freespace (human 1)",
 	"personalities":["steady","aggressive"],
 	"gender":["m","f","n"],
 	"chance":1,

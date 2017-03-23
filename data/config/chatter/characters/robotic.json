@@ -1,5 +1,5 @@
 {
-	"name":"robotic",
+	"name":"Robotic",
 	"personalities":["cautious","steady","aggressive"],
 	"gender":["m","f","n"],
 	"chance":1,

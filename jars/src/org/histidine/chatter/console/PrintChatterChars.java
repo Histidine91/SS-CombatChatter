@@ -2,6 +2,7 @@ package org.histidine.chatter.console;
 
 import com.fs.starfarer.api.characters.PersonAPI;
 import java.util.List;
+import org.histidine.chatter.ChatterCharacter;
 import org.histidine.chatter.ChatterDataManager;
 import org.lazywizard.console.BaseCommand;
 import org.lazywizard.console.CommonStrings;
@@ -24,9 +25,10 @@ public class PrintChatterChars implements BaseCommand {
 		for (PersonAPI officer: officers)
 		{
 			String officerName = officer.getName().getFullName();
-			String character = ChatterDataManager.getCharacterFromMemory(officer);
-			
-			Console.showMessage(officerName + ": " + character);
+			String characterId = ChatterDataManager.getCharacterFromMemory(officer);
+			ChatterCharacter character = ChatterDataManager.getCharacterData(characterId);
+			if (character != null)
+				Console.showMessage(officerName + ": " + character.name + " (" + character.id + ")");
 		}
 		
 		return CommandResult.SUCCESS;

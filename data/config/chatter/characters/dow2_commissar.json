@@ -1,5 +1,5 @@
 {
-	"name":"dow2_commissar",
+	"name":"Commissar",
 	"personalities":["steady", "aggressive"],
 	"gender":["m"],
 	"chance":1,
