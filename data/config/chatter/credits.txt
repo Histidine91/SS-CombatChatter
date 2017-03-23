@@ -29,8 +29,17 @@ Love in Space:
 Relic Entertainment:
 * dow2_commissar
 
+Blizzard (compiled by Cycerin):
+* sc2_tychus
+
+One (One-Punch Man) (compiled by Cycerin):
+* darklord
+
 Arnold Schwarzenegger:
 * arnold
+
+Mr. T:
+* mr-t
 
 Valve:
 * tf2_demo (compiled by tongo)

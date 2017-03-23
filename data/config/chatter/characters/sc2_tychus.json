@@ -1,0 +1,72 @@
+{
+	"name":"Tychus Findlay",
+	"personalities":["aggressive","steady"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Hell... it's about time."},
+			{"text":"I am a bad, bad man."},
+			{"text":"They say odd objects attract gunfire... and that fleet sure looks pretty odd to me."},
+			{"text":"A man's gotta do what a man's gotta do."},
+			{"text":"Just like ol' times, eh, partner?"},				
+		],
+		"retreat":[
+			{"text":"Sure thing, armchair general."},
+		],
+		"out_of_missiles":[
+			{"text":"Runnin' low on missiles, partner."},
+		],
+		"engaged":[
+			{"text":"Big dog is off the leash."},
+			{"text":"Burn, baby, burn!"},
+			{"text":"Blaze of glory!"},
+			{"text":"Shut up and die!"},
+			{"text":"Don't stop 'till they're all dead!"},
+		],
+		"need_help":[
+			{"text":"Multiple bogies detected! ETA: Right the hell now!"},
+			{"text":"Uh... a little help here? Anybody?"},
+			{"text":"Do I gotta do everything myself?"},
+			{"text":"Get your head outta your six!"},			
+		],
+		"pursuing":[
+			{"text":"And there ain't nobody here to save you this time..."},
+			{"text":"Nice armor. Too bad it ain't worth spit."},
+			{"text":"Don't start none, don't be none."},
+			{"text":"Walk the walk."},			
+		],
+		"running":[
+			{"text":"Fine by me."}
+		],
+		"hull_50":[
+			{"text":"Gettin' a lil' dicey out here!"},
+			{"text":"Huah well... it's time for me to show you what I'm made of."},
+		],
+		"hull_30":[
+			{"text":"Steppin’ all over my last nerve, kiddo."},
+			{"text":"Stick your hand in the cage, and you just might lose it."}
+		],
+		"hull_90":[
+			{"text":"People lose teeth doin' that."},
+			{"text":"When in doubt... empty your magazines."}
+		],
+		"overload":[
+			{"text":"Urhh.. I'm seein' red here."},
+			{"text":"Anyone wanna help out an amigo?"},
+			{"text":"Fryin' some wires over here, chief."},			
+		],
+		"death":[
+			{"text":"Awwh hell-"},
+		],
+		"victory":[
+			{"text":"Hell, still pulled it off!"},
+			{"text":"Hmm ha ha ha ha! I ain't sure what all that fuss was about!"},
+			{"text":"Hah hah! Hot damn, we are good!"},			
+			{"text":"Nice goin', chief."},
+			{"text":"Death sure does suit'cha."},
+		],
+	}
+}

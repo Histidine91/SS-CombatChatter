@@ -1,0 +1,67 @@
+{
+	"name":"Darklord",
+	"personalities":["aggressive","steady"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Heh... how insignificant their wretched fleet is. This shall be a fun distraction..."},
+			{"text":"Ahh. Look upon this measly collection of pathetic vermin. They shall taste my fury..."},
+			{"text":"It's time to conduct evil... let's make it a slaughter party."},
+			{"text":"Mm hm hm hm. This shall be a glorious flesh-feast."}
+		],
+		"retreat":[
+			{"text":"Hmpf... Boring."},
+		],
+		"out_of_missiles":[
+			{"text":"Missiles depleted... but my power is only beginning to be unleashed!"},
+		],
+		"engaged":[
+			{"text":"The filth has rounded on me in the battlespace. Time to unleash my true power."},
+			{"text":"Ha ha ha! Yes! I am a GOD!!!"},
+			{"text":"More... MORE!!!"},
+			{"text":"Insignificant wretch."},
+			{"text":"Quake and shiver as you feel the extent of my terrible power!"},
+		],
+		"need_help":[
+			{"text":"Join me! JOIN ME in battle, and we shall drown the stars in a deluge of boiling ichor!"},
+			{"text":"Ahh, that's better, worm! Yes, FEED my boundless anger!"},
+		],
+		"pursuing":[
+			{"text":"What's the problem, worm? Starting to doubt your convictions? I can't blame you..."},
+			{"text":"Sate my hunger, you disgusting wretch!"},
+			{"text":"Scatter before me, pathetic insects!"},
+		],
+		"running":[
+			{"text":"A momentary distraction."}
+		],
+		"hull_90":[
+			{"text":"Ha ha ha ha! Good, good! Feed my fury, slake my thirst!"},
+			{"text":"Huurgh! Yes, that's better! Ha ha ha ha haa!!!"},
+		],
+		"hull_50":[
+			{"text":"YOU SHALL BE SEARED BY MY INCOMPREHENSIBLE MIGHT!"},
+			{"text":"Hmpf... I may have to use -that-."}
+		],
+		"hull_30":[
+			{"text":"Hrrrmmm.. MORE!!!"},
+			{"text":"HA HA HA HA HA HA HA!!!!"}
+		],
+		"overload":[
+			{"text":"Hrrnn!!! Get the reactor in check, you disgusting grunts!"},
+			{"text":"What? A momentary lapse."}
+		],
+		"death":[
+			{"text":"NNNNOOOOOOOO! MY POWER IS INFINI-"},
+		],
+		"victory":[
+			{"text":"You were in contempt of my power... now a cursory glance reveals the extent of your ruin."},
+			{"text":"HAAA HA HA HA HA HA! TRULY pathetic!"},
+			{"text":"Ahhh... a worthy harvest."},			
+			{"text":"Hm hm hm hm. Let this be a lesson to you all."},
+			{"text":"A predictable outcome... Hm hm hm."},
+		],
+	}
+}

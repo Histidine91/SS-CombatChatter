@@ -1,0 +1,66 @@
+{
+	"name":"Mr. T",
+	"personalities":["aggressive","steady"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"Do you know me? Of course you do. 'Cause I'm famous!"},
+			{"text":"Don't get too close man. It's hard to pity a fool if you get too close."},
+			{"text":"Hey fool, this ain't no football game!"},
+		],
+		"retreat":[
+			{"text":"You a disgrace to the man race!"},
+			{"text":"Fools went unpitied and jibba jabba went unchallenged!"},
+		],
+		"out_of_missiles":[
+
+		],
+		"engaged":[
+			
+		
+		],
+		"need_help":[
+			{"text":"I got no time for the jibba-jabba."},
+			{"text":"You ain't hurt, you pathetic!"},
+		],
+		"pursuing":[
+			{"text":"Hey, you with the teeth..."},
+			{"text":"It's time to get in da pool, 'cause you're goin' swimmin', fool!"},
+			{"text":"Hey, sucka!"},
+			{"text":"You're gonna meet my friend pain!"},
+		],
+		"running":[
+			{"text":"I hate flying, so this had better be the last time I see yo cryin'!"},
+			{"text":"It's time to run like a real man!"},
+		],
+		"hull_90":[
+			{"text":"Anger - use it, but don't lose it!"},
+			{"text":"The jibba jabba stops here!"},
+		],
+		"hull_50":[
+			{"text":"Life's tough, but I'm tougher!"},
+			{"text":"Do it again sucker, and there's going to be trouble!"},
+			{"text":"Shut up Murdock, crazy fool!"},
+		],
+		"hull_30":[
+			{"text":"I'm on a real short leash here, and I'm tired of your crazy rap!"},
+			{"text":"Don't make me mad, arrr!"},
+		],
+		"overload":[
+			{"text":"I ain't getting on no plane, Hannibal!"},
+			{"text":"Quit yo jibba jabba!"},
+			{"text":"Where's the meat? This sandwich is full of weeds! I ain't eatin' nothing I don't understand!"},
+		],
+		"death":[
+
+		],
+		"victory":[
+			{"text":"Teachin' fools some basic rules!"},
+			{"text":"Take that, speedwalker!"},
+			{"text":"Snickers, get some nuts!"},
+		],
+	}
+}
