@@ -32,3 +32,6 @@ freespace_vasudan,1,0,0,1,1,1,1,1,1,1
 startrek_ferengi,0,1,1,1,0,-1,0,-1,-1,-1
 startrek_klingon,1,0,0,1,0,0,1,0,0,0
 doom_comicguy,1,0,1,1,0,0,0,0,0,0
+sc2_tychus,0,0,1,1,0,0,0,-1,-1,-1
+darklord,-1,0,1,1,0,0,-1,0,-1,1
+mr-t,1,0,-1,1,1,0,0,-1,0,-1
