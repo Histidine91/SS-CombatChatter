@@ -14,6 +14,7 @@ public class ChatterCharacter {
 	public String id;
 	public List<String> personalities = new ArrayList<>();
 	public List<String> gender = new ArrayList<>();
+	public Set<String> categoryTags = new HashSet<>();
 	public float chance = 1;
 	public float talkativeness = 1;
 	public Set<String> allowedFactions = new HashSet<>();

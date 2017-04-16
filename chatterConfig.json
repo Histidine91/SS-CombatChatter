@@ -5,5 +5,9 @@
 	"factionSpecificCharacters": true,	# not all faction's officers will have all characters
 	
 	# at least this proportion of the ship's weapon OPs should be in missiles, else it won't print "out of missiles" messages
-	"minMissileOPFractionForChatter": 0.2
+	"minMissileOPFractionForChatter": 0.2,
+	
+	# any characters with any of the category tags in this list will not be picked ingame
+	# tags of interest may include: othermedia" (all configs taken from another game, film, etc.); "meme"
+	"disallowedTags":[]
 }

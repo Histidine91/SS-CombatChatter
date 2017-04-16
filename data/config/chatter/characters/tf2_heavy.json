@@ -4,6 +4,7 @@
 	"gender":["m"],
 	"chance":1,
 	"talkativeness":1,
+	"categoryTags":["tf2", "game", "othermedia", "meme"],
 	
 	"lines":{
 		"start":[

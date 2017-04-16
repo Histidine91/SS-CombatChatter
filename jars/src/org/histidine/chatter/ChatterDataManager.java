@@ -105,7 +105,8 @@ public class ChatterDataManager {
 					character.personalities = GeneralUtils.JSONArrayToStringList(characterEntry.optJSONArray("personalities"));
 					character.gender = GeneralUtils.JSONArrayToStringList(characterEntry.optJSONArray("gender"));
 					character.chance = (float)characterEntry.optDouble("chance", 1);
-					character.talkativeness = (float)characterEntry.optDouble("chance", 1);
+					character.talkativeness = (float)characterEntry.optDouble("talkativeness", 1);
+					character.categoryTags = new HashSet<>(GeneralUtils.JSONArrayToStringList(characterEntry.optJSONArray("categoryTags")));
 					
 					JSONObject lines = characterEntry.getJSONObject("lines");
 					Iterator<?> keys = lines.keys();
@@ -177,6 +178,24 @@ public class ChatterDataManager {
 		loaded = true;
 	}
 	
+	/**
+	 * Returns true if this character has a tag listed in the mod config's disallowedTags set
+	 * @param character
+	 * @return
+	 */
+	public static boolean isCharacterDisallowedByTag(ChatterCharacter character)
+	{
+		for (String disabledTag : ChatterConfig.disallowedTags)
+		{
+			if (character.categoryTags.contains(disabledTag))
+			{
+				log.info("Character " + character.name + " verboten by tag " + disabledTag);
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	
 	public static String getCharacterForOfficer(PersonAPI captain, FleetMemberAPI ship, CombatEngineAPI engine)
 	{
@@ -208,9 +227,13 @@ public class ChatterDataManager {
 		
 		for (ChatterCharacter character : CHARACTERS)
 		{
+			if (isCharacterDisallowedByTag(character))
+				continue;
+			
 			if (!isMission) {
 				if (!character.gender.contains(gender)) continue;
 			}
+			
 			if (ChatterConfig.factionSpecificCharacters && !character.allowedFactions.contains(factionId)) 
 				continue;
 			

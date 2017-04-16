@@ -4,6 +4,7 @@
 	"gender":["m","f","n"],
 	"chance":1,
 	"talkativeness":1,
+	"categoryTags":["default", "original"],
 	
 	"lines":{
 		"start":[

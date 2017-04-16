@@ -4,6 +4,7 @@
 	"gender":["f"],
 	"chance":1,
 	"talkativeness":1,
+	"categoryTags":["ja2", "game", "othermedia"],
 	
 	"lines":{
 		"start":[

@@ -4,6 +4,7 @@
 	"gender":["m"],
 	"chance":1,
 	"talkativeness":1,
+	"categoryTags":["othermedia"],
 	
 	"lines":{
 		"start":[
