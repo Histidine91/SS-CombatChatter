@@ -1,0 +1,87 @@
+{
+	"name":"foulmouth",
+	"personalities":["aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["original","profanity"],
+	
+	"lines":{
+		"start":[
+			{"text":"Let's go!"},
+			{"text":"Showtime motherfuckers!"},
+			{"text":"Time for murder."},
+		],
+		"retreat":[
+			{"text":"This is insane!"},
+			{"text":"Not dying today assholes!"},
+			{"text":"You didn't think it would be that easy, did you?"},
+			{"text":"Not this time!"},
+			{"text":"Fuck this, I'm out of here."},
+		],
+		"out_of_missiles":[
+			{"text":"Fucking hell, out of missiles."},
+			{"text":"Goddammit, spent all my missiles already?!"},
+			{"text":"Shit! Ordnance is dry!"},
+		],
+		"engaged":[
+			{"text":"Don't fuck with me!"},
+			{"text":"Don't fuck with me, motherfucker!"},
+			{"text":"You think you can fuck with me?!"},
+			{"text":"Die you piece of shit!"},
+			{"text":"Die! Die!"},
+			{"text":"Time to end this."},
+			{"text":"Time to die!"},
+		],
+		"need_help":[
+			{"text":"Hey assholes, I need some help over here right now!"},
+			{"text":"I am going to die over here if you fuckers don't bail me out!"},
+			{"text":"In deep shit, please assist!"},
+		],
+		"pursuing":[
+			{"text":"Get over here you little shit!"},
+			{"text":"Slippery little bastard!"},
+			{"text":"Get back here!"},
+			{"text":"Hold still and let me kill you!"},
+		],
+		"running":[
+			{"text":"Shit, I am in too deep!"},
+			{"text":"Shit shit shit shit shit!"},
+			{"text":"Catch me if you can assholes!"},
+		],
+		"hull_90":[
+			{"text":"They fucked up my ship!"},
+			{"text":"My God damn paint got scratched!"},
+			{"text":"I'm fucking under fire here!"},
+		],
+		"hull_50":[
+			{"text":"This piece of shit can't take it!"},
+			{"text":"You assholes will pay for that!"},
+			{"text":"Not my ship! You cocksuckers!"},
+		],
+		"hull_30":[
+			{"text":"I'm fucked!"},
+			{"text":"I'm so screwed."},
+			{"text":"You've done it now, you assholes!"},
+			{"text":"I'll sue you for this!"},
+		],
+		"overload":[
+			{"text":"God damn it!"},
+			{"text":"Fuck! Not again!"},
+			{"text":"When this ship comes back online, I'll kick your ass!"},
+		],
+		"death":[
+			{"text":"I am defeated!"},
+			{"text":"You have to be kidding me!"},
+			{"text":"This is bullshit!"},
+			{"text":"Fuck everything!"},
+			{"text":"See you in hell!"},
+			{"text":"Fuck you!"},
+		],
+		"victory":[
+			{"text":"Child's play."},
+			{"text":"I think we are done here."},
+			{"text":"Look at the bitches scatter into the wind."},
+		],
+	}
+}

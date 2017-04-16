@@ -1,0 +1,61 @@
+{
+	"name":"Emote",
+	"personalities":["timid","cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["original", "nonsense"],
+	
+	"lines":{
+		"start":[
+			{"text":":)"},
+			{"text":":P"}
+		],
+		"retreat":[
+			{"text":":(((("},
+			{"text":":'("}
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[],
+		"need_help":[
+			{"text":":O"},
+			{"text":"!"}
+		],
+		"pursuing":[
+			{"text":">:D"},
+			{"text":":3"}
+		],
+		"running":[
+			{"text":"o_o"},
+			{"text":"–_–'"}
+		],
+		"hull_90":[
+			{"text":":|"},
+			{"text":"?"}
+		],
+		"hull_50":[
+			{"text":">:O"},
+			{"text":"ಠ_ಠ"}
+		],
+		"hull_30":[
+			{"text":">_<"},
+			{"text":"q_q"},
+			#{"text":"ლ(ಠ益ಠლ)"}	# invalid characters
+		],
+		"overload":[
+			{"text":"?!?!"},
+			#{"text":"(╯°□°)╯︵ ┻━┻"},
+			{"text":"<o>"}
+		],
+		"death":[
+			{"text":"X_X"},
+			{"text":"D: D: D:"}
+		],
+		"victory":[
+			{"text":":^_^"},
+			{"text":":\\o/"},
+			{"text":":D :D :D"}
+		]
+	}
+}

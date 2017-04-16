@@ -9,5 +9,5 @@
 	
 	# any characters with any of the category tags in this list will not be picked ingame
 	# tags of interest may include: othermedia" (all configs taken from another game, film, etc.); "meme"
-	"disallowedTags":[]
+	"disallowedTags":["profanity", "nonsense"]
 }
