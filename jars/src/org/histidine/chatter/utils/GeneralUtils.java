@@ -1,17 +1,11 @@
 package org.histidine.chatter.utils;
 
 import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.characters.OfficerDataAPI;
-import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import static org.histidine.chatter.ChatterDataManager.CHARACTERS_MAP;
-import static org.histidine.chatter.ChatterDataManager.CHARACTER_MEMORY_KEY;
 import org.json.JSONArray;
 
 public class GeneralUtils {
@@ -29,6 +23,7 @@ public class GeneralUtils {
 	public static List<String> JSONArrayToStringList(JSONArray jsonArray)
 	{
 		List<String> ret = new ArrayList<>();
+		if (jsonArray == null) return ret;
 		try
 		{
 			//return jsonArray.toString().substring(1, jsonArray.toString().length() - 1).replaceAll("\"","").split(",");
