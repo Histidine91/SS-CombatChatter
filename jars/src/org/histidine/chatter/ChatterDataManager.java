@@ -189,7 +189,7 @@ public class ChatterDataManager {
 		{
 			if (character.categoryTags.contains(disabledTag))
 			{
-				log.info("Character " + character.name + " verboten by tag " + disabledTag);
+				//log.info("Character " + character.name + " verboten by tag " + disabledTag);
 				return true;
 			}
 		}
@@ -331,6 +331,7 @@ public class ChatterDataManager {
 	 */
 	public static String getFactionIDFromShipNamePrefix(String shipName)
 	{
+		if (shipName == null) return "";
 		//log.info("Getting faction for ship name " + shipName);
 		for (String[] mapEntry : FACTION_SHIPNAME_PREFIXES)
 		{
