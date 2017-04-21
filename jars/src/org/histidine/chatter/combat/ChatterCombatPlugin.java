@@ -2,7 +2,6 @@ package org.histidine.chatter.combat;
 
 import com.fs.starfarer.api.GameState;
 import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.campaign.CargoAPI.CrewXPLevel;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.CombatFleetManagerAPI;
@@ -124,16 +123,18 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		String name = "default";
-		CrewXPLevel xpLevel = member.getCrewXPLevel();
+		//CrewXPLevel xpLevel = member.getCrewXPLevel();
 		boolean timid = false;
-		if (member.getHullSpec().getHints().contains(ShipTypeHints.CIVILIAN) && !(xpLevel == CrewXPLevel.VETERAN || xpLevel == CrewXPLevel.ELITE))
+		if (member.getHullSpec().getHints().contains(ShipTypeHints.CIVILIAN))// && !(xpLevel == CrewXPLevel.VETERAN || xpLevel == CrewXPLevel.ELITE))
 			timid = true;
-		else if (xpLevel == CrewXPLevel.GREEN)
-			timid = true;
+		//else if (xpLevel == CrewXPLevel.GREEN)
+		//	timid = true;
 		
 		if (timid) name = "default_timid";
-		else if (xpLevel == CrewXPLevel.ELITE) name = "default_professional";
-		if (getRandomForStringSeed(member.getShipName()) > 0.5) name += "2";
+		//else if (xpLevel == CrewXPLevel.ELITE) name = "default_professional";
+		Random rand = new Random(member.getShipName().hashCode());
+		if (rand.nextFloat() > 0.5) name = "default_professional";
+		if (rand.nextFloat() > 0.5) name += "2";
 		
 		return name;
 	}
