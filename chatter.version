@@ -5,8 +5,8 @@
 	"modVersion":
 	{
 		"major":1,
-		"minor":6,
-		"patch":1
+		"minor":7,
+		"patch":0
 	},
 	"starsectorVersion":".7.1a"
 }
