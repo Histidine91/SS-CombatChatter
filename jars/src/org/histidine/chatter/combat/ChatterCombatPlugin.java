@@ -130,10 +130,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		//else if (xpLevel == CrewXPLevel.GREEN)
 		//	timid = true;
 		
-		if (timid) name = "default_timid";
 		//else if (xpLevel == CrewXPLevel.ELITE) name = "default_professional";
-		Random rand = new Random(member.getShipName().hashCode());
-		if (rand.nextFloat() > 0.5) name = "default_professional";
+		int hash = member.getShipName() != null ? member.getShipName().hashCode() : (int)(Math.random() * 65536);
+		Random rand = new Random(hash);
+		if (timid) 
+			name = "default_timid";
+		else if (rand.nextFloat() > 0.5) 
+			name = "default_professional";
 		if (rand.nextFloat() > 0.5) name += "2";
 		
 		return name;
