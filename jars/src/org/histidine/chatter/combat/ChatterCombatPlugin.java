@@ -6,6 +6,7 @@ import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.CombatFleetManagerAPI;
 import com.fs.starfarer.api.combat.CombatTaskManagerAPI;
+import com.fs.starfarer.api.combat.DeployedFleetMemberAPI;
 import com.fs.starfarer.api.combat.EveryFrameCombatPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI.ShipTypeHints;
@@ -151,15 +152,27 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return true;
 		}
 		
-		// ignore TwigLib subunits
-		if (ChatterModPlugin.hasTwigLib)
+		// ignore modules
+		ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
+		if (ship != null)
 		{
-			if (TwigUtils.isMultiShip(ship) && !TwigUtils.isRoot(ship))
+			DeployedFleetMemberAPI deployedMember = engine.getFleetManager(FleetSide.PLAYER).getDeployedFleetMemberEvenIfDisabled(ship);
+			if (deployedMember != null && deployedMember.isStationModule())
 			{
 				ignore.add(member);
 				return true;
 			}
+			// ignore TwigLib subunits
+			if (ChatterModPlugin.hasTwigLib)
+			{
+				if (TwigUtils.isMultiShip(ship) && !TwigUtils.isRoot(ship))
+				{
+					ignore.add(member);
+					return true;
+				}
+			}
 		}
+		
 		return false;
 	}
 	
@@ -627,7 +640,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				boolean haveMissileAmmo = false;
 				// check for missile autoforge
 				ShipSystemAPI system = ship.getSystem();
-				if (system.getId().equals("forgevats") && !system.isOutOfAmmo())
+				if (system != null && system.getId().equals("forgevats") && !system.isOutOfAmmo())
 				{
 					haveMissileAmmo = true;
 				}
