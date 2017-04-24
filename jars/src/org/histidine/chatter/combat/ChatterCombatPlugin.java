@@ -154,7 +154,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		// ignore TwigLib subunits
 		if (ChatterModPlugin.hasTwigLib)
 		{
-			ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
 			if (TwigUtils.isMultiShip(ship) && !TwigUtils.isRoot(ship))
 			{
 				ignore.add(member);
