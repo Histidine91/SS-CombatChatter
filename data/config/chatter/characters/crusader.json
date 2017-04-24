@@ -1,6 +1,6 @@
 {
 	"name":"Crusader",
-	"personalities":["steady","aggressive"],
+	"personalities":["steady","aggressive","reckless"],
 	"gender":["m","f","n"],
 	"chance":1,
 	"talkativeness":1,

@@ -1,6 +1,6 @@
 {
 	"name":"foulmouth",
-	"personalities":["aggressive"],
+	"personalities":["aggressive","reckless"],
 	"gender":["m","f","n"],
 	"chance":1,
 	"talkativeness":1,

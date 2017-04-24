@@ -1,6 +1,6 @@
 {
 	"name":"Darklord",
-	"personalities":["aggressive","steady"],
+	"personalities":["aggressive","steady","reckless"],
 	"gender":["m","f","n"],
 	"chance":1,
 	"talkativeness":1,
