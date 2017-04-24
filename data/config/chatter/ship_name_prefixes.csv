@@ -5,7 +5,9 @@ ISS,independent
 CGR,luddic_church
 SDS,sindrian_diktat
 LGS,lions_guard
-PLS,persean
+PLSS,persean
+DSS,derelict
+TTDS,remnant
 AL,approlight
 BRS,blackrock_driveyards
 STAR,cabal
@@ -19,6 +21,7 @@ IL,immortallight
 ISA,interstellarimperium
 MNS,mayorate
 MSV,metelson
+ANS,ORA
 PBC,pbc
 SNS,SCY
 SYS,shadow_industry
