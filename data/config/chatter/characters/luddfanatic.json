@@ -1,0 +1,71 @@
+{
+	"name":"Luddite fanatic",
+	"personalities":["aggressive","reckless"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["religious", "original"],
+
+	"lines":{
+		"start":[
+			{"text":"These warmongers, the descendants of apes and pigs..."},
+			{"text":"I've got it all. We kill them even with shoes."},
+			{"text":"We have sent young men to Sindria, to Anar, to Yggdrasil..."},
+			{"text":"Welcome to our show, which will deal with wife-beating."},
+			{"text":"By God, you people are dogs. I will go on as usual."}
+		],
+		"retreat":[
+			{"text":"By next year, God willing, you will be annihilated."},
+			{"text":"To be honest, I never expected to see such a spectacle."}
+		],
+		"out_of_missiles":[
+			{"text":"We have a whole jungle of missiles at our orbital."},
+			{"text":"Parts are falling off the heretic. God is great."},
+		],
+		"engaged":[
+			{"text":"I promise you, once we're in range, I'll teach you a new kind of defeat."},
+			{"text":"We will give them fertility. We will breed children with them."},
+			{"text":"I shall liberate you from the capitalists."}
+		],
+		"need_help":[
+			{"text":"By God, I swear that if you win I will grow a tree and once it is fully grown I will hang myself from it."},
+			{"text":"They shouted, 'Death to the unclean!', and it came true."},
+		],
+		"pursuing":[
+			{"text":"What is the cure for such disorders? Beatings."},
+			{"text":"A complex operation will be carried out by our martyrs."},
+			{"text":"If you just look with your eye, it will be gouged out."},
+		],
+		"running":[
+			{"text":"I swear to you I won't go home until you are gone."}
+		],
+		"hull_90":[
+			{"text":"If you call this shooting, I swear to God that I will shoot myself right here."},
+			{"text":"They want to tell people that Luddism is a very dangerous religion."},
+		],
+		"hull_50":[
+			{"text":"By God, behave yourself! I will give you a taste of my shoe!"},
+			{"text":"This is my only comment. A worn-out shoe is my only comment."}
+		],
+		"hull_30":[
+			{"text":"By God, I have encountered cases of cancer."},
+			{"text":"I will beat you with 30 lashes for your insolence."},
+			{"text":"If only the fall had finished them off, thus relieving humanity of them."}
+		],
+		"overload":[
+			{"text":"We do not know how to run things. Neither in politics nor in technical matters."},
+			{"text":"Take my skin. Turn it into a fuse or a slingshot for a child."}
+		],
+		"death":[
+			{"text":"By God, a faithful's fingernail is worth more than a thousand unclean."},
+			{"text":"But God willing, your faction will soon be cleaned from augmentation and idolatry."},
+			{"text":"Oh God, completely destroy and shatter the unclean."},
+		],
+		"victory":[
+			{"text":"I admit that I was a bit disappointed, because I had hoped for a larger toll."},
+			{"text":"God did not curse the worm or the moth as much as he cursed your kin."},
+			{"text":"This is well known. If you did not participate in the cleansing, you don't get to share the booty."},
+			{"text":"We should be happy that he died. Let him go to Hell."},
+		],
+	}
+}

@@ -1,0 +1,74 @@
+{
+	"name":"Bender",
+	"personalities":["aggressive", "reckless"],
+	"gender":["m","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["futurama", "tv", "othermedia", "original", "mature"],
+	
+	"lines":{
+		"start":[
+			{"text":"Look at these swanky tombs. These people really know how to die!"},
+			{"text":"I love stealin'. I love takin'things."},
+			{"text":"I was enjoying it 'til you guys showed up!"},
+			{"text":"You're playing Starsector. The game that does not advocate the cool crime of robbery."},
+			{"text":"Let's go already!"}
+		],
+		"retreat":[
+			{"text":"Yeah, well, I'm gonna build my own faction! With blackjack! And hookers! In fact, forget the faction!"},
+			{"text":"Ah, screw the whole thing."}
+		],
+		"out_of_missiles":[
+			{"text":"No liquor? Dosvidanja, comrade."}
+		],
+		"engaged":[
+			{"text":"Destroy all humans!!"},
+			{"text":"You're better off dead, im telling you."},
+			{"text":"You're a pimple on society's ass and you'll never amount to anything!"},
+			{"text":"I guess if you want children beaten, you have to do it yourself."}
+		],
+		"need_help":[
+			{"text":"I need professional help! And damn the expense!"},
+			{"text":"Pick up the pace, captain. I'm sick of shaking my booty for these fat jerks."}
+		],
+		"pursuing":[
+			{"text":"Ahahahahaha."},
+			{"text":"Hasta la vista, meatbag."},
+			{"text":"Try this, kids at home!"}
+		],
+		"running":[
+			{"text":"Ooh, I'm so scared."},
+			{"text":"Hey, are you trying to make me look bad?"}
+		],
+		"hull_90":[
+			{"text":"That was so terrible I think it gave me cancer."},
+			{"text":"Bite my shiny metal ass!"},
+			{"text":"Oh wait, you're serious. Let me laugh even harder."}
+		],
+		"hull_50":[
+			{"text":"You Bastard!"},
+			{"text":"Stupid anti-AI laws."},
+			{"text":"This is the worst kind of discrimination. The kind against me."}
+		],
+		"hull_30":[
+			{"text":"No! Wait! I'm the good AI!"},
+			{"text":"Ah, crap!"},
+			{"text":"We're boned!"}
+		],
+		"overload":[
+			{"text":"Exo cracked corn, and I don't care! Captain cracked corn, still don't care! Bender cracked corn and he is great! Take that you stupid corn!"},
+			{"text":"O she'll be comin round the mountain when she comes, o she'll be comin round the mountain when she comes. I'LL KILL YOU MEATBAG!!"},
+			{"text":"O I'll kill all the humans in the world, yes I'll kill all the humans in the world..."}
+		],
+		"death":[
+			{"text":"I'll give you five credits to not do what you're thinking about doing... Heheh, you just lost FIVE credits."},
+			{"text":"Anything less than immortality is a complete waste of time."},
+			{"text":"I came here with a simple dream. A dream of killing all humans. And this is how it must end?"}
+		],
+		"victory":[
+			{"text":"Ehehehe."},
+			{"text":"A-ha. I'm even greater than I thought I was."},
+			{"text":"I think I might have finally stolen enough."}
+		],
+	}
+}
