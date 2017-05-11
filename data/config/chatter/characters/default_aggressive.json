@@ -2,7 +2,7 @@
 	"name":"Default (aggressive)",
 	"personalities":["aggressive","reckless"],
 	"gender":["m","f","n"],
-	"chance":1,
+	"chance":0.5,
 	"talkativeness":1,
 	"categoryTags":["default", "original"],
 
