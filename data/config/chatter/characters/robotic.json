@@ -13,6 +13,10 @@
 			{"text":"analyzing battlespace."},
 			{"text":"channels open."}
 		],
+		"start_boss":[
+			{"text":"massive target detected."},
+			{"text":"large enemy approaching."},
+		],
 		"retreat":[
 			{"text":"withdrawing."},
 			{"text":"retreating."},

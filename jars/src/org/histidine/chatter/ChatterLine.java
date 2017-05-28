@@ -15,7 +15,7 @@ public class ChatterLine {
 	}
 	
 	public static enum MessageType {
-		START, RETREAT, VICTORY,
+		START, START_BOSS, RETREAT, VICTORY,
 		PURSUING, RUNNING, NEED_HELP, OUT_OF_MISSILES, ENGAGED,
 		HULL_90, HULL_50, HULL_30, OVERLOAD, DEATH
 	}

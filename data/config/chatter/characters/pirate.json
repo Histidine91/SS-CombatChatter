@@ -14,6 +14,10 @@
 			{"text":"Come on lads! Let's show them the airlock."},
 			{"text":"RRRRRRRR!"}
 		],
+		"start_boss":[
+			{"text":"This better have some good loot on it!"},
+			{"text":"That be a mighty galleon indeed!"},
+		],
 		"retreat":[
 			{"text":"Every man for themselves!"},
 			{"text":"You haven't seen the last of me!"},
@@ -49,6 +53,7 @@
 			{"text":"Oops. I'm overloaded."},
 		],
 		"death":[
+			{"text":"Skulls and crossbones!"},
 		],
 		"victory":[
 			{"text":"Way too easy!"},

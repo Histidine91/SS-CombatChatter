@@ -12,6 +12,10 @@
 			{"text":"Umm... is this gonna be alright?"},
 			{"text":"Can't we talk this over?"}
 		],
+		"start_boss":[
+			{"text":"This is a really bad idea!"},
+			{"text":"Maybe we should run while we can!"},
+		],
 		"retreat":[
 			{"text":"Run for your lives!"},
 			{"text":"Protect me!"}

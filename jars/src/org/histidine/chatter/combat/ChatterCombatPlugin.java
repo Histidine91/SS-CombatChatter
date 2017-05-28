@@ -91,6 +91,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.DEATH, 15f);
 		
 		IDLE_CHATTER_TYPES.add(MessageType.START);
+		IDLE_CHATTER_TYPES.add(MessageType.START_BOSS);
 		IDLE_CHATTER_TYPES.add(MessageType.RETREAT);
 		IDLE_CHATTER_TYPES.add(MessageType.PURSUING);
 		IDLE_CHATTER_TYPES.add(MessageType.RUNNING);
@@ -250,6 +251,18 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return hasLine(member, category, true);
 	}
 	
+	protected boolean haveBoss()
+	{
+		List<FleetMemberAPI> enemies = engine.getFleetManager(FleetSide.ENEMY).getDeployedCopy();
+		for (FleetMemberAPI member : enemies)
+		{
+			if (member.getVariant().hasHullMod("vastbulk"))
+				return true;
+			if (ChatterDataManager.BOSS_SHIPS.contains(member.getHullId()))
+				return true;
+		}
+		return false;
+	}
 	
 	protected ShipStateData getShipStateData(FleetMemberAPI member)
 	{
@@ -449,6 +462,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			MessageType type = MessageType.START;
 			if (engine.getContext().getPlayerGoal() == FleetGoal.ESCAPE)
 				type = MessageType.RETREAT;
+			else if (haveBoss())
+				type = MessageType.START_BOSS;
 			
 			FleetMemberAPI random = pickRandomMemberFromList(deployed, type);
 			if (random != null)
@@ -627,7 +642,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				continue;
 			}
 			boolean overloaded = false;
-			if (ship.getFluxTracker() != null) overloaded = ship.getFluxTracker().isOverloaded();
+			if (ship.getFluxTracker() != null) 
+			{
+				overloaded = ship.getFluxTracker().getOverloadTimeRemaining() > 2;
+			}
 			
 			if (!isFighter && overloaded && !stateData.overloaded)
 				printed = printOverloadMessage(member);

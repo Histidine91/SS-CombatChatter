@@ -12,6 +12,9 @@
 			{"text":"I reckon they need a lesson."},
 			{"text":"I'll show 'em whose boss on mah time."}
 		],
+		"start_boss":[
+			{"text":"Damn, son, look at those horns..."},
+		],
 		"retreat":[
 			{"text":"Let's get out of here!"},
 			{"text":"Where are those farmhands I hired? Get 'em over here!"}

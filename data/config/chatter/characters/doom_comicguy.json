@@ -13,6 +13,9 @@
 			{"text":"Gonna get what you deserve!"},
 			{"text":"Ooh, here it comes! Here comes the pain train!"}
 		],
+		"start_boss":[
+			{"text":"You are huge! That means you have huge guts!"},
+		],
 		"retreat":[
 			{"text":"Death surrounds me."},
 			{"text":"Oh, the humanity!"}
@@ -34,7 +37,6 @@
 		],
 		"pursuing":[
 			{"text":"There's nothing wrong with you that I can't fix.... With my hands!"},
-			{"text":"You are huge! That means you have huge guts!"},
 			{"text":"You're gonna be stupid and DEAD!"},
 			{"text":"You struggle in vain!"},
 			{"text":"Gimme. Cmon, gimme."},

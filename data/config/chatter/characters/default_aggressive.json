@@ -14,6 +14,10 @@
 			{"text":"Time for a mayhem."},
 			{"text":"Lock and load!"}
 		],
+		"start_boss":[
+			{"text":"Now this will be a real challenge!"},
+			{"text":"At last, a worthy foe!"},
+		],
 		"retreat":[
 			{"text":"Wait, were we losing?"},
 			{"text":"Ah come on! I haven't got all the fun yet."}

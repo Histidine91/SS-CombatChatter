@@ -34,12 +34,14 @@ public class ChatterDataManager {
 	public static final String CHARACTER_FACTIONS_FILE = CONFIG_DIR + "character_factions.csv";
 	public static final String HULL_FACTION_PREFIX_FILE = CONFIG_DIR + "hull_prefixes.csv";
 	public static final String SHIP_NAME_FACTION_PREFIX_FILE = CONFIG_DIR + "ship_name_prefixes.csv";
+	public static final String BOSS_SHIP_FILE = CONFIG_DIR + "boss_ships.csv";
 	public static final String CHARACTER_MEMORY_KEY = "$chatterChar";
 	
 	public static final List<ChatterCharacter> CHARACTERS = new ArrayList<>();
 	public static final Map<String, ChatterCharacter> CHARACTERS_MAP = new HashMap<>();
 	public static final Map<String, Set<String>> FACTION_TAGS = new HashMap<>();
 	public static final Map<String, Map<String, Integer>> CHARACTER_FACTIONS = new HashMap<>();
+	public static final Set<String> BOSS_SHIPS = new HashSet<>();
 	
 	public static final List<String[]> FACTION_HULL_PREFIXES = new ArrayList<>();
 	public static final List<String[]> FACTION_SHIPNAME_PREFIXES = new ArrayList<>();
@@ -142,7 +144,7 @@ public class ChatterDataManager {
 			}
 			
 			// map for getting faction ID based on hull ID prefix (e.g. ii_olympus is an II ship)
-			JSONArray prefixes = Global.getSettings().getMergedSpreadsheetDataForMod("prefix", HULL_FACTION_PREFIX_FILE, "audio_plus");
+			JSONArray prefixes = Global.getSettings().getMergedSpreadsheetDataForMod("prefix", HULL_FACTION_PREFIX_FILE, "chatter");
 			for(int x = 0; x < prefixes.length(); x++)
 			{
 				String prefix = "<unknown>";
@@ -157,7 +159,7 @@ public class ChatterDataManager {
 			}
 		
 			// map for getting faction ID based on ship name's prefix (e.g. TTS for Tri-Tachyon)
-			JSONArray prefixes2 = Global.getSettings().getMergedSpreadsheetDataForMod("prefix", SHIP_NAME_FACTION_PREFIX_FILE, "audio_plus");
+			JSONArray prefixes2 = Global.getSettings().getMergedSpreadsheetDataForMod("prefix", SHIP_NAME_FACTION_PREFIX_FILE, "chatter");
 			for(int x = 0; x < prefixes2.length(); x++)
 			{
 				String prefix = "<unknown>";
@@ -169,6 +171,17 @@ public class ChatterDataManager {
 				} catch (JSONException ex) {
 					log.error("Failed to load ship name prefix – faction mapping for " + prefix, ex);
 				}
+			}
+			
+			// boss ships
+			JSONArray bosses = Global.getSettings().getMergedSpreadsheetDataForMod("hull id", BOSS_SHIP_FILE, "chatter");
+			for(int x = 0; x < bosses.length(); x++)
+			{
+				try {
+					JSONObject row = bosses.getJSONObject(x);
+					String hullId = row.getString("hull id");
+					BOSS_SHIPS.add(hullId);
+				} catch (JSONException ex) {}
 			}
 			
 		} catch (IOException | JSONException ex) {	// can't read CSV

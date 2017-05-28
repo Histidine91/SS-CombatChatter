@@ -13,6 +13,10 @@
 			{"text":"Kill them all, God knows His own!"},
 			{"text":"Their judgement has come!"}
 		],
+		"start_boss":[
+			{"text":"By God and Saint George, I will slay you, dragon!"},
+			{"text":"You've lived your last, beast!"},
+		],
 		"retreat":[
 			{"text":"How can this be?!"},
 			{"text":"An ignomious day!"}

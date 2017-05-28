@@ -13,6 +13,10 @@
 			{"text":"Systems all green."},
 			{"text":"Commencing battlefield analysis."}
 		],
+		"start_boss":[
+			{"text":"Stick together and we'll take that thing down."},
+			{"text":"Pincer it and it'll die like the rest."},
+		],
 		"retreat":[
 			{"text":"Retreating."},
 			{"text":"Set the course. We're leaving here."}
