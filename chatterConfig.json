@@ -1,5 +1,5 @@
 {
-	"idleChatter":true,	# false makes most low-priority messages appear as floating text instead of in message field
+	"lowImportanceChatter":true,	# false makes most low-priority messages appear as floating text instead of in message field
 	"allyChatter":true,
 	"selfChatter":false,	# if true, player flagship will have chatter as well
 	"factionSpecificCharacters": true,	# not all faction's officers will have all characters
@@ -8,6 +8,6 @@
 	"minMissileOPFractionForChatter": 0.2,
 	
 	# any characters with any of the category tags in this list will not be picked ingame
-	# tags of interest may include: othermedia" (all configs taken from another game, film, etc.); "meme"
+	# tags of interest may include: "othermedia" (all configs taken from another game, film, etc.); "meme"
 	"disallowedTags":["profanity", "nonsense"]
 }

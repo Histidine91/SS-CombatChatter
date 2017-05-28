@@ -50,7 +50,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final float PRIORITY_DECAY = 3;
 	//public static final Map<MessageType, Float> MESSAGE_TYPE_PRIORITY = new HashMap<>();
 	public static final Map<MessageType, Float> MESSAGE_TYPE_MAX_PRIORITY = new HashMap<>();
-	public static final Set<MessageType> IDLE_CHATTER_TYPES = new HashSet<>();
+	public static final Set<MessageType> LOW_IMPORTANCE_CHATTER_TYPES = new HashSet<>();
 	public static final Set<MessageType> FLOAT_CHATTER_TYPES = new HashSet<>();
 	public static final Set<String> EXCLUDED_HULLS = new HashSet<>();
 	public static final float MAX_TIME_FOR_INTRO = 8;
@@ -90,16 +90,16 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_30, 60f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.DEATH, 15f);
 		
-		IDLE_CHATTER_TYPES.add(MessageType.START);
-		IDLE_CHATTER_TYPES.add(MessageType.START_BOSS);
-		IDLE_CHATTER_TYPES.add(MessageType.RETREAT);
-		IDLE_CHATTER_TYPES.add(MessageType.PURSUING);
-		IDLE_CHATTER_TYPES.add(MessageType.RUNNING);
+		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.START);
+		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.START_BOSS);
+		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.RETREAT);
+		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.PURSUING);
+		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.RUNNING);
 		//IDLE_CHATTER_TYPES.add(MessageType.OVERLOAD);
-		IDLE_CHATTER_TYPES.add(MessageType.NEED_HELP);
-		IDLE_CHATTER_TYPES.add(MessageType.ENGAGED);
-		IDLE_CHATTER_TYPES.add(MessageType.VICTORY);
-		IDLE_CHATTER_TYPES.add(MessageType.DEATH);
+		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.NEED_HELP);
+		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.ENGAGED);
+		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.VICTORY);
+		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.DEATH);
 		
 		FLOAT_CHATTER_TYPES.add(MessageType.PURSUING);
 		FLOAT_CHATTER_TYPES.add(MessageType.NEED_HELP);
@@ -280,8 +280,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected boolean isFloatingMessage(MessageType category)
 	{
 		boolean floater = FLOAT_CHATTER_TYPES.contains(category);
-		if (!ChatterConfig.idleChatter)
-			floater = floater || IDLE_CHATTER_TYPES.contains(category);
+		if (!ChatterConfig.lowImportanceChatter)
+			floater = floater || LOW_IMPORTANCE_CHATTER_TYPES.contains(category);
 		return floater;
 	}
 	
@@ -305,7 +305,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		
 		float msgInterval = MESSAGE_INTERVAL;
-		if (IDLE_CHATTER_TYPES.contains(category)) msgInterval = MESSAGE_INTERVAL_IDLE;
+		if (LOW_IMPORTANCE_CHATTER_TYPES.contains(category)) msgInterval = MESSAGE_INTERVAL_IDLE;
 		if (lastTalker == member) msgInterval *= 1.5f;
 		if (!floater && timeElapsed < lastMessageTime + msgInterval)
 		{
