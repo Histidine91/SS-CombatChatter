@@ -11,6 +11,9 @@
 			{"text":"The fox is listening..."},
 			{"text":"Get ready! They're here!"},
 		],
+		"start_boss":[
+			{"text":"Look at the size of it! Oh my..."},
+		],
 		"retreat":[
 			{"text":"This is nothing like I expected it to be!"},
 		],
@@ -20,6 +23,8 @@
 		"engaged":[
 		],
 		"need_help":[
+			{"text":"They've got me pinned!"},
+			{"text":"Run for cover!"},
 		],
 		"pursuing":[
 			{"text":"There's something!"},
@@ -28,6 +33,7 @@
 			
 		],
 		"hull_90":[
+			{"text":"I've had back rubs worse than that..."},
 		],
 		"hull_50":[
 			{"text":"This is not looking very good..."},

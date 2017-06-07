@@ -26,6 +26,11 @@
 			{"text":"The cavalry has arrived!"},
 			{"text":"We've got company!"},
 		],
+		"start_boss":[
+			{"text":"Command, massive drive signature detected. They're putting the pressure on us now!"},
+			{"text":"Even if I must send my crew to hell with it, that monstrosity will be destroyed!"},
+			{"text":"Massive enemy target detected."},
+		],
 		"retreat":[
 			{"text":"Affirmative. Departing now."},
 			{"text":"Departing field of engagement."},

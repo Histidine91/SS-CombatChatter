@@ -25,7 +25,8 @@
 			{"text":"Speeding up."},
 		],
 		"running":[
-			{"text":"Moving back."}
+			{"text":"Moving back."},
+			{"text":"Fading into the background."}
 		],
 		"hull_90":[
 			{"text":"Requesting cover."},

@@ -12,6 +12,9 @@
 			{"text":"I wait for chance to meet enemy. It will come soon."},
 			{"text":"I wait for direction."},
 		],
+		"start_boss":[
+			{"text":"I must find its weakness."},
+		],
 		"retreat":[
 		],
 		"out_of_missiles":[

@@ -11,11 +11,14 @@
 			{"text":"I spy the evil people!"},
 			{"text":"Peoples of evil be here!"},
 		],
+		"start_boss":[
+			{"text":"I would not have thought such monsters existed!"},
+		],
 		"retreat":[
 			{"text":"As you say. Back to drawing board."},
 		],
 		"out_of_missiles":[
-			#{"text":"Gun is empty, damn it to hell!"},
+			{"text":"Gun is empty, damn it to hell!"},
 		],
 		"need_help":[],
 		"pursuing":[
@@ -26,6 +29,7 @@
 		],
 		"hull_90":[
 			{"text":"I assume I get big bonus for this?"},
+			{"text":"Stupid fools push me too far!"},
 		],
 		"hull_50":[
 			{"text":"Damn it, damn it, damn it! This is not possible!"},

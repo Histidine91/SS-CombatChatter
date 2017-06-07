@@ -12,6 +12,9 @@
 			{"text":"Lets just get this over with before I have second thoughts."},
 			{"text":"I shouldn't have signed up for this!"},
 		],
+		"start_boss":[
+			{"text":"Look at the size of that thing! Why did I get myself into this?"},
+		],		
 		"retreat":[
 			{"text":"Fight or flight, I choose the latter!"},
 			{"text":"I'm out of here, good luck to the rest of you!"},

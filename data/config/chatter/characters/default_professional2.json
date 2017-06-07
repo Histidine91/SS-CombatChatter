@@ -12,6 +12,9 @@
 			{"text":"Set reactor output to combat levels."},
 			{"text":"Let's play this by the numbers."},
 		],
+		"start_boss":[
+			{"text":"Stick to the plan, and even THAT monster can be destroyed."},
+		],
 		"retreat":[
 			{"text":"Discretion is the better part of valor."},
 			{"text":"Live to fight another day."},

@@ -12,6 +12,9 @@
 			{"text":"Let us get down to business."},
 			{"text":"Kill or be killed."},
 		],
+		"start_boss":[
+			{"text":"Holy shit, they just don't make them like that anymore!"},
+		],	
 		"retreat":[
 			{"text":"They told me this ship is fast!"},
 			{"text":"Full burn away from here, I want those engines melting!"},

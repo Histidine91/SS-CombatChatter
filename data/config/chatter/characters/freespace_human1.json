@@ -16,6 +16,9 @@
 			{"text":"Incoming drive signatures! Hostile configuration!"},
 			{"text":"The cavalry has arrived!"},
 		],
+		"start_boss":[
+			{"text":"Command, massive drive signature detected. They're putting the pressure on us now!"},
+		],
 		"retreat":[
 			{"text":"I'm outta here."},
 			{"text":"Yes, sir! I'm outta here!"},

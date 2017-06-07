@@ -14,6 +14,9 @@
 			{"text":"Hostile targets entering the area."},
 			{"text":"Reading hostile indicators."},
 		],
+		"start_boss":[
+			{"text":"Massive enemy target detected."},
+		],
 		"retreat":[
 			{"text":"Affirmative. Departing now."},
 			{"text":"Departing field of engagement."},

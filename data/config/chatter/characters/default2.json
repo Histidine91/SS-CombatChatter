@@ -13,6 +13,9 @@
 			{"text":"All hands to battle stations!"},
 			{"text":"Charging weapon systems."},
 		],
+		"start_boss":[
+			{"text":"The bigger they are, the harder they fall."},
+		],
 		"retreat":[
 			{"text":"Roger that, let's get out of here."},
 			{"text":"Count me out, I don't get paid enough for this!"},
