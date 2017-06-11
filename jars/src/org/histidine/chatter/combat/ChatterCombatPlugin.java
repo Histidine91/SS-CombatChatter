@@ -23,7 +23,6 @@ import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
-import db.twiglib.TwigUtils;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -162,15 +161,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			{
 				ignore.add(member);
 				return true;
-			}
-			// ignore TwigLib subunits
-			if (ChatterModPlugin.hasTwigLib)
-			{
-				if (TwigUtils.isMultiShip(ship) && !TwigUtils.isRoot(ship))
-				{
-					ignore.add(member);
-					return true;
-				}
 			}
 		}
 		
