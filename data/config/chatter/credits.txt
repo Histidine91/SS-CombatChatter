@@ -3,6 +3,7 @@ Aron0621:
 * default_professional
 
 MesoTroniK:
+* badass
 * default2
 * default_aggressive2
 * default_professional2
