@@ -1,0 +1,82 @@
+{
+	"name":"badass",
+	"personalities":["steady", "aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["original"],
+	
+	"lines":{
+		"start":[
+			{"text":"Launch everything we got!"},
+			{"text":"The battle begins."},
+			{"text":"Proximity alert, hostiles incoming."},
+		],
+		"start_boss":[
+			{"text":"Any problem can be solved with gratuitous firepower!"},
+			{"text":"Don't get cocky."},
+			{"text":"Formidable enemy approaching!"},
+		],
+		"retreat":[
+			{"text":"If we value our lives, we need to be somewhere else."},
+			{"text":"Withdraw, or we will be destroyed!"},
+			{"text":"We need to get the hell out of here!"},
+		],
+		"out_of_missiles":[
+			{"text":"Missiles are expended."},
+			{"text":"Expendable ordnance dried up!"},
+			{"text":"Racks are dry!"},
+		],
+		"engaged":[
+			{"text":"Time on target!"},
+			{"text":"I am having the time of my life!"},
+			{"text":"They are putting up a hell of a fight!"},
+			{"text":"Come get some!"},
+		],
+		"need_help":[
+			{"text":"I could really use some help over here!"},
+			{"text":"Hey dipshits! I am getting my ass kicked and need backup!"},
+			{"text":"I am in way over my head!"},
+		],
+		"pursuing":[
+			{"text":"Locked on and pursuing my target."},
+			{"text":"Closing the distance."},
+			{"text":"They won't get away from me so easily!"},
+		],
+		"running":[
+			{"text":"I really screwed up this time!"},
+			{"text":"I have to pull back."},
+			{"text":"They are pissed now!"},
+		],
+		"hull_90":[
+			{"text":"Armor has taken light damage!"},
+			{"text":"They think they can take me down?"},
+			{"text":"Receiving light fire, nothing to worry about yet."},
+		],
+		"hull_50":[
+			{"text":"They scored a solid hit!"},
+			{"text":"This isn't good, taking heavy damage!"},
+			{"text":"Armor penetrated, receiving reports of internal damage!"},
+		],
+		"hull_30":[
+			{"text":"My ship has taken severe damage!"},
+			{"text":"At this rate I am not gonna make it!"},
+			{"text":"My ship is all full of holes!"},
+		],
+		"overload":[
+			{"text":"Not this shit again..."},
+			{"text":"Reactor temps exceeded redline!"},
+			{"text":"Ship is running too hot!"},
+		],
+		"death":[
+			{"text":"You haven't seen the last of me!"},
+			{"text":"Casualty!"},
+			{"text":"I have been cheated of my victory!"},
+		],
+		"victory":[
+			{"text":"The enemy has been rendered silent."},
+			{"text":"They are dust and rubble before us!"},
+			{"text":"Well, that was easy."},
+		],
+	}
+}
