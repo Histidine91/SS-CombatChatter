@@ -22,8 +22,8 @@
 			{"text":"I'm out of here, Godspeed to the rest of you."},
 		],
 		"out_of_missiles":[
-			{"text":"Ordinance is dry!"},
-			{"text":"Our missiles are depleted, none remain on-board."},
+			{"text":"Ordnance is dry!"},
+			{"text":"Our missiles are depleted, none remain onboard."},
 			{"text":"Well, just fired the last of my missiles."},
 		],
 		"engaged":[
