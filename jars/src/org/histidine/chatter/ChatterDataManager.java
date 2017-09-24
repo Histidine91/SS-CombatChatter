@@ -34,6 +34,7 @@ public class ChatterDataManager {
 	public static final String CHARACTER_FACTIONS_FILE = CONFIG_DIR + "character_factions.csv";
 	public static final String HULL_FACTION_PREFIX_FILE = CONFIG_DIR + "hull_prefixes.csv";
 	public static final String SHIP_NAME_FACTION_PREFIX_FILE = CONFIG_DIR + "ship_name_prefixes.csv";
+	public static final String EXCLUDED_HULL_FILE = CONFIG_DIR + "excluded_hulls.csv";
 	public static final String BOSS_SHIP_FILE = CONFIG_DIR + "boss_ships.csv";
 	public static final String CHARACTER_MEMORY_KEY = "$chatterChar";
 	
@@ -41,6 +42,7 @@ public class ChatterDataManager {
 	public static final Map<String, ChatterCharacter> CHARACTERS_MAP = new HashMap<>();
 	public static final Map<String, Set<String>> FACTION_TAGS = new HashMap<>();
 	public static final Map<String, Map<String, Integer>> CHARACTER_FACTIONS = new HashMap<>();
+	public static final Set<String> EXCLUDED_HULLS = new HashSet<>();
 	public static final Set<String> BOSS_SHIPS = new HashSet<>();
 	
 	public static final List<String[]> FACTION_HULL_PREFIXES = new ArrayList<>();
@@ -171,6 +173,17 @@ public class ChatterDataManager {
 				} catch (JSONException ex) {
 					log.error("Failed to load ship name prefix – faction mapping for " + prefix, ex);
 				}
+			}
+			
+			// hull exclusion
+			JSONArray excluded = Global.getSettings().getMergedSpreadsheetDataForMod("hull id", EXCLUDED_HULL_FILE, "chatter");
+			for(int x = 0; x < excluded.length(); x++)
+			{
+				try {
+					JSONObject row = excluded.getJSONObject(x);
+					String hullId = row.getString("hull id");
+					EXCLUDED_HULLS.add(hullId);
+				} catch (JSONException ex) {}
 			}
 			
 			// boss ships

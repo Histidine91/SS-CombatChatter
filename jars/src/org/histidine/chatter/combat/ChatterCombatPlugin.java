@@ -36,7 +36,6 @@ import org.histidine.chatter.ChatterConfig;
 import org.histidine.chatter.ChatterLine;
 import org.histidine.chatter.ChatterLine.MessageType;
 import org.histidine.chatter.ChatterDataManager;
-import org.histidine.chatter.scripts.ChatterModPlugin;
 import org.histidine.chatter.utils.StringHelper;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -51,7 +50,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final Map<MessageType, Float> MESSAGE_TYPE_MAX_PRIORITY = new HashMap<>();
 	public static final Set<MessageType> LOW_IMPORTANCE_CHATTER_TYPES = new HashSet<>();
 	public static final Set<MessageType> FLOAT_CHATTER_TYPES = new HashSet<>();
-	public static final Set<String> EXCLUDED_HULLS = new HashSet<>();
 	public static final float MAX_TIME_FOR_INTRO = 8;
 	public static final float MESSAGE_INTERVAL = 3;
 	public static final float MESSAGE_INTERVAL_IDLE = 6;
@@ -70,6 +68,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected float priorityThreshold = 0;	// if this is high, low priority messages won't be displayed
 	protected boolean introDone = false;
 	protected boolean victory = false;
+	protected int victoryIncrement = 0;
 	
 	// TODO externalise
 	static {
@@ -103,9 +102,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		FLOAT_CHATTER_TYPES.add(MessageType.PURSUING);
 		FLOAT_CHATTER_TYPES.add(MessageType.NEED_HELP);
 		FLOAT_CHATTER_TYPES.add(MessageType.RUNNING);
-		
-		EXCLUDED_HULLS.add("ii_titan");
-		EXCLUDED_HULLS.add("ii_mirv");
 	}
 	
 	protected float getRandomForStringSeed(String seed)
@@ -146,7 +142,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected boolean isIgnored(FleetMemberAPI member)
 	{
 		if (ignore.contains(member)) return true;
-		if (EXCLUDED_HULLS.contains(member.getHullId()))
+		if (ChatterDataManager.EXCLUDED_HULLS.contains(member.getHullId()))
+		{
+			ignore.add(member);
+			return true;
+		}
+		if (member.isFighterWing() && member.getHullSpec().getMaxCrew() <= 0)
 		{
 			ignore.add(member);
 			return true;
