@@ -548,14 +548,18 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (enemyManager.isInFullRetreat() && !enemyManager.isPreventFullRetreat() 
 					&& engine.getFleetManager(FleetSide.ENEMY).getGoal() != FleetGoal.ESCAPE)
 			{
-				FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.VICTORY);
-				if (random != null)
+				// try to fix premature victory message (still happens)
+				victoryIncrement++;
+				if (victoryIncrement >= 3)
 				{
-					printRandomMessage(random, MessageType.VICTORY);
+					FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.VICTORY);
+					if (random != null)
+					{
+						printRandomMessage(random, MessageType.VICTORY);
+					}
+					victory = true;
 				}
-				victory = true;
 			}
-
 			// full retreat message (same as start escape)
 			else if (playerManager.isInFullRetreat() && !playerManager.isPreventFullRetreat())
 			{
@@ -569,6 +573,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				}
 				victory = true;
 			}
+			else
+				victoryIncrement = 0;
 		}
 		for (FleetMemberAPI member : deployed)
 		{
