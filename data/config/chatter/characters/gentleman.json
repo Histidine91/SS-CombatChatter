@@ -1,0 +1,89 @@
+{
+	"name":"Gentleman",
+	"personalities":["steady", "cautious"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["original"],
+	
+	"lines":{
+		"start":[
+			{"text":"Tally ho and all that!"},
+			{"text":"Time for a sporting little battle, wot wot?"},
+			{"text":"Let's get this over with before the kettle boils, shall we?"}
+		],
+		"start_boss":[
+			{"text":"What in God's holy name is THAT!?"},
+			{"text":"Forgive me for my impertinence commander, but... Do you have a sterling plan by any chance?"}
+		],
+		"retreat":[
+			{"text":"Ta ta lads! Hope the rest of the fight goes well."},
+			{"text":"There'll be tea and biscuits for the rest of you soon enough!"}
+		],
+		"out_of_missiles":[
+			{"text":"Goodness gracious me, if the magazines aren't bally well dry."},
+			{"text":"I do declare that we're out of ordnance!"}
+		],
+
+		"engaged":[
+			{"text":"Let's show these swashbuckling imbeceles what for!"},
+			{"text":"For king and country!"},
+			{"text":"You there! Stand and deliver!"}
+		],
+
+		"need_help":[
+			{"text":"Oh fie, the cads are stronger than I thought!"},
+			{"text":"I say chaps, we could use some backup over here... Pronto!"},
+			{"text":"The buccaneers are giving no quarter!"},
+			{"text":"This is a right fine mess we're in..."}
+		],
+
+		"pursuing":[
+			{"text":"The blighters won't get away this time."},
+			{"text":"CHARGE!"},
+			{"text":"Turn and face me, blaggard!"}
+		],
+
+		"running":[
+			{"text":"Oh, do excuse me, I think I left the iron on...!"},
+			{"text":"Time to leave I think. Toodles!"}
+		],
+
+		"hull_90":[
+			{"text":"Now look here, that's just not cricket!"},
+			{"text":"Well, how exceedingly rude."}
+		],
+
+		"hull_50":[
+			{"text":"Did I just see the teapot float past the bridge?"},
+			{"text":"Looks like we're in a bit of a tangle here."},
+			{"text":"By God above, that came out of nowhere!"}
+		],
+
+		"hull_30":[
+			{"text":"Do give us a sporting chance, eh chaps?"},
+			{"text":"Bleedin'eck that hurt!"},
+			{"text":"She's giving way! Clear the decks!"},
+			{"text":"You bloody wankers!"}
+		],
+
+		"overload":[
+			{"text":"Dash it, we've overloaded!"},
+			{"text":"Having a wee bit of trouble here chaps - be with you again shortly."},
+			{"text":"Fiddlesticks!"},
+			{"text":"I say! How do you turn this thing back on again?"}
+		],
+
+		"death":[
+			{"text":"Curses, not again!"},
+			{"text":"At least we die with honour!"},
+			{"text":"Time to say goodbye chaps..."}
+		],
+		"victory":[
+			{"text":"Haha! We bally well showed them what's what, wot?"},
+			{"text":"Spiffing work, spiffing work indeed!"},
+			{"text":"Positively top-hole!"},
+			{"text":"Tea and biscuits all round. I think we've earned it, eh?"}
+		],
+	}
+}

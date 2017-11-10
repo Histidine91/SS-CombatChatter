@@ -27,8 +27,6 @@
 		],
 
 		"engaged":[
-			{"text":"Contact, IFF reply invalid. Preparing for combat."},
-			{"text":"Contact, IFF no response. Marked target as enemy."},
 			{"text":"Engaging enemy."},
 			{"text":"Enemy confirmed. Ship to combat power."}
 		],
