@@ -1,0 +1,70 @@
+{
+	"name":"Mad Bastard",
+	"personalities":["reckless","aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["profanity", "original"],
+	
+	"lines":{
+		"start":[
+			{"text":"Let's get stuck in, you twats!"},
+			{"text":"I'll give 'em a few hot ones right in the vitals."},
+			{"text":"They'll know what a good pounding feels like when I'm done with 'em!"},
+			{"text":"It's gonna be sticking work before long!"}
+		],
+		"start_boss":[
+			{"text":"I like the look of this, a proper challenge!"},
+			{"text":"What are you afraid of, you lot! Let's get stuck into it!"},
+		],		
+		"retreat":[
+			{"text":"I've had enough of this, you filth!"},
+			{"text":"I'm coming back for a look at your insides, you bastard!"}
+		],
+		"out_of_missiles":[
+			{"text":"Now it's time for some pretty knife work."},
+			{"text":"I've shot my load off. And I'm out of missiles."}
+		],
+		"engaged":[],
+		"need_help":[
+			{"text":"Oh, this one likes to struggle!"},
+			{"text":"Try that with me and you'll spend the rest of your life pissing through half a cock, lad!"},
+			{"text":"We've got a lively one over here!"},
+		],
+		"pursuing":[
+			{"text":"Hunting the little rotter down!"},
+			{"text":"You're not fit to captain a paper plate in a piss puddle!"},
+			{"text":"Come back here and fight, you!"},
+			{"text":"Oh, I'm not finished with you yet..."},
+		],
+		"running":[
+			{"text":"Fuck this for a game of spaceships!"}
+		],
+		"hull_90":[
+			{"text":"I've had a bit of a dust-up."},
+			{"text":"They've punctured me a bit!"},
+		],
+		"hull_50":[
+			{"text":"Ooh, that smarts, you're going to pay for that!"}
+		],
+		"hull_30":[
+			{"text":"That bloody hurts, you little weasel!"},
+			{"text":"If you little shits fought half so well as you bleed on my deck..."}
+		],
+		"overload":[
+			{"text":"Does nothing on this ship bloody work!?"},
+			{"text":"It's sparking all to buggery in here!"}
+		],
+		"death":[
+			{"text":"They tried to hang me once, and did, not, do it!"},
+			{"text":"I cannot die, lads!"},
+			{"text":"Come back here and fight! Dogs aren't dangerous!"},
+		],
+		"victory":[
+			{"text":"Suck on that, you nappy-soiling little toads!"},
+			{"text":"I got the raggedy little bastard!"},
+			{"text":"I spread 'em halfway across the sector!"},
+			{"text":"I told you I knew my way around this business!"},
+		],
+	}
+}

@@ -1,0 +1,71 @@
+{
+	"name":"Alien 1",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["alien", "original"],
+	
+	"lines":{
+		"start":[
+			{"text":"Let us the thing exuberantly!"},
+			{"text":"Enshootments of deathery are warming!"},
+			{"text":"A striking upon them!"},
+			{"text":"Our victoriousness pauses!"}
+		],
+		"start_boss":[
+			{"text":"A damnation! It is largeful!"},
+			{"text":"A care is taken! Harm befalls when it is unwatchful."},
+		],		
+		"retreat":[
+			{"text":"Find exit! Do not entrap!"},
+			{"text":"Fleeing will now occur!"}
+		],
+		"out_of_missiles":[
+			{"text":"Projecticles have been exhaustioned."},
+			{"text":"I am no longer with killing cylinders."}
+		],
+
+		"need_help":[
+			{"text":"An assistance must be sent! Rapidously!"},
+			{"text":"Meal leavements! I am bepooped!"},
+		],
+		"pursuing":[
+			{"text":"Ah, you are needed to run vaporously away!"},
+			{"text":"Many chases are given, and gladly!"},
+			{"text":"Delivering interceptiously!"},
+		],
+		"running":[
+			{"text":"I crimp my limbs, to floof off speedfully!"}
+		],
+		"hull_90":[
+			{"text":"Mild injury has locationed us!"},
+			{"text":"A puncture, I have become!"},
+		],
+		"hull_50":[
+			{"text":"Great hurtings seek me out!"},
+			{"text":"Beholden my woe, I bleed atmospheres!"}
+		],
+		"hull_30":[
+			{"text":"I suffer greavically!"},
+			{"text":"A criticality of ouches arrives!"},
+			{"text":"Oh, I squish! My skin crisples!"},
+			{"text":"Our vessel damages stupendously!"},
+		],
+		"overload":[
+			{"text":"A sparklet erupts from everywhere!"},
+			{"text":"Uncomprehensical! Nonfunctionous!"}
+		],
+		"death":[
+			{"text":"A finality is happening!"},
+			{"text":"My hatchlings! I grieve you!"},
+			{"text":"*high-pitched screeching*"},
+		],
+		"victory":[
+			{"text":"I am triumphous!"},
+			{"text":"I befoul the nesting of your enmities!"},
+			{"text":"Victoriments taste... delectical."},
+			{"text":"Ha! Your hatchmate was bereft of feathers!"},
+		],
+	}
+}
