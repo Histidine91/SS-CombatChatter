@@ -9,6 +9,7 @@ import com.fs.starfarer.api.combat.CombatTaskManagerAPI;
 import com.fs.starfarer.api.combat.DeployedFleetMemberAPI;
 import com.fs.starfarer.api.combat.EveryFrameCombatPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
+import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI.ShipTypeHints;
 import com.fs.starfarer.api.combat.ShipSystemAPI;
 import com.fs.starfarer.api.combat.ShipwideAIFlags;
@@ -189,7 +190,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				if (wep.usesAmmo() && wep.getType() == WeaponType.MISSILE)
 					data.missileOPs += op;
 			}
-			if (data.missileOPs < data.maxOPs * ChatterConfig.minMissileOPFractionForChatter)
+			if (data.maxOPs <= 0 || data.missileOPs < data.maxOPs * ChatterConfig.minMissileOPFractionForChatter)
 				data.canWriteOutOfMissiles = false;	// don't bother writing out of missiles message
 		}
 		data.characterId = getCharacterForFleetMember(member);
@@ -247,10 +248,15 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		List<FleetMemberAPI> enemies = engine.getFleetManager(FleetSide.ENEMY).getDeployedCopy();
 		for (FleetMemberAPI member : enemies)
 		{
-			if (member.getVariant().hasHullMod("vastbulk"))
+			if (member.getVariant().hasHullMod("vastbulk") && 
+					(member.getHullSpec().getHullSize() == HullSize.CAPITAL_SHIP))
+			{
 				return true;
+			}
 			if (ChatterDataManager.BOSS_SHIPS.contains(member.getHullId()))
+			{
 				return true;
+			}
 		}
 		return false;
 	}
