@@ -20,7 +20,7 @@
 			{"text":"Winchester, winchester!"}
 		],
 		"engaged":[
-			{"text":"Encountering Enemy."},
+			{"text":"Encountering enemy."},
 			{"text":"I am engaged, requesting assistance."},
 			{"text":"I am in combat, help wanted."}
 		],

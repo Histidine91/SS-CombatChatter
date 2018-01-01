@@ -54,7 +54,8 @@
 			{"text":"All hands-"}
 		],
 		"victory":[
-			{"text":"It appears your luck is holding, captain."}
+			{"text":"It appears your luck is holding, captain."},
+			{"text":"The enemy is sinking!"}
 		],
 	}
 }

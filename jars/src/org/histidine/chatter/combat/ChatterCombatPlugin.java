@@ -347,7 +347,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			engine.addFloatingText(textPos, message, 32, textColor, ship, 0, 0);
 			stateData.lastFloatMessageTime = timeElapsed;
 			stateData.lastFloatMessageType = category;
-			log.info(name + ": " + message + " (" + category.toString() + ")");
+			//log.info(name + ": " + message + " (" + category.toString() + ")");
 			return false;
 		}
 		

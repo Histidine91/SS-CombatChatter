@@ -2,7 +2,7 @@
 	"name":"Mad Bastard",
 	"personalities":["reckless","aggressive"],
 	"gender":["m","f","n"],
-	"chance":0.5,
+	"chance":1,
 	"talkativeness":1,
 	"categoryTags":["profanity", "original"],
 	
