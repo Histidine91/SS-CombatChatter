@@ -11,7 +11,6 @@
 			{"text":"Make it quick."},
 			{"text":"This had better be worth it."},
 			{"text":"What?! I'm not doing this because I like you!"},
-			{"text":"I'll take you all on!"},
 			{"text":"I hope you know what you're doing, captain."},
 		],
 		"retreat":[
@@ -21,7 +20,11 @@
 		"out_of_missiles":[
 		],
 		"need_help":[],
-		"engaged":[],
+		"engaged":[
+			{"text":"I'll take you all on!"},
+			{"text":"I'll cut you down!"},
+			{"text":"I'll see you in hell!"}
+		],
 		"pursuing":[
 			{"text":"Accelerating."},
 			{"text":"Engaging hostiles."},
@@ -39,6 +42,7 @@
 		],
 		"hull_30":[
 			{"text":"I... hate... everything..."},
+			{"text":"I won't forgive this!"},
 		],
 		"overload":[
 			{"text":"Controls... becoming sluggish..."},

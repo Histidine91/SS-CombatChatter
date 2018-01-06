@@ -54,7 +54,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final float MAX_TIME_FOR_INTRO = 8;
 	public static final float MESSAGE_INTERVAL = 3;
 	public static final float MESSAGE_INTERVAL_IDLE = 6;
-	public static final float MESSAGE_INTERVAL_FLOAT = 4;
+	public static final float MESSAGE_INTERVAL_FLOAT = 6;
 	public static final float ANTI_REPETITION_DIVISOR = 3;
 	
 	protected CombatEngineAPI engine;
@@ -94,12 +94,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.RETREAT);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.PURSUING);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.RUNNING);
-		//IDLE_CHATTER_TYPES.add(MessageType.OVERLOAD);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.NEED_HELP);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.ENGAGED);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.VICTORY);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.DEATH);
 		
+		FLOAT_CHATTER_TYPES.add(MessageType.ENGAGED);
 		FLOAT_CHATTER_TYPES.add(MessageType.PURSUING);
 		FLOAT_CHATTER_TYPES.add(MessageType.NEED_HELP);
 		FLOAT_CHATTER_TYPES.add(MessageType.RUNNING);
@@ -286,7 +286,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 * Writes a random message of the appropriate category, based on the {@code member}'s assigned character
 	 * @param member
 	 * @param category
-	 * @return true if message was printed
+	 * @return true if message was printed to message field
 	 */
 	protected boolean printRandomMessage(FleetMemberAPI member, MessageType category)
 	{
@@ -300,7 +300,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return false;
 		}
 		
-		
 		float msgInterval = MESSAGE_INTERVAL;
 		if (LOW_IMPORTANCE_CHATTER_TYPES.contains(category)) msgInterval = MESSAGE_INTERVAL_IDLE;
 		if (lastTalker == member) msgInterval *= 1.5f;
@@ -311,9 +310,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		ShipStateData stateData = getShipStateData(member);
-		if (floater && stateData.lastFloatMessageType == category)
+		if (floater)
 		{
-			if (timeElapsed < stateData.lastFloatMessageTime + MESSAGE_INTERVAL_FLOAT)
+			float requiredInterval = MESSAGE_INTERVAL_FLOAT;
+			if (stateData.lastFloatMessageType != category) requiredInterval *= 0.5f;
+			if (category == MessageType.ENGAGED) requiredInterval *= 2.5f;
+			if (timeElapsed < stateData.lastFloatMessageTime + requiredInterval)
 				return false;
 		}
 		
@@ -321,14 +323,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (ChatterDataManager.getCharacterData(character) == null)
 			character = "default";
 		
-		List<ChatterLine> lines = ChatterDataManager.getCharacterData(character).lines.get(category);
-		if (lines == null)
-		{
-			//log.warn("Missing line category " + category.name() + " for character " + character);
+		if (!hasLine(member, category))
 			return false;
-		}
-		if (lines.isEmpty()) return false;
 		
+		List<ChatterLine> lines = ChatterDataManager.getCharacterData(character).lines.get(category);		
 		ChatterLine line = (ChatterLine)GeneralUtils.getRandomListElement(lines);
 		String message = "\"" + line.text + "\"";
 		String name = getShipName(member);
@@ -349,6 +347,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			engine.addFloatingText(textPos, message, 32, textColor, ship, 0, 0);
 			stateData.lastFloatMessageTime = timeElapsed;
 			stateData.lastFloatMessageType = category;
+			log.info(name + ": " + message + " (" + category.toString() + ")");
 			return false;
 		}
 		
@@ -586,17 +585,22 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		{
 			if (isIgnored(member)) continue;
 			if (member.isFighterWing()) continue;
-			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
 			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
 			
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
+			
 			ShipAPI ship = fm.getShipFor(member);
-			if (ship.getShipAI() == null && !ChatterConfig.selfChatter) continue;	// being player-piloted;
+			if (!ship.isAlive()) continue;
+			
+			if ((member.isFlagship() || ship.getShipAI() == null) && !ChatterConfig.selfChatter) // being player-piloted
+			{
+				stateData.hull = ship.getHullLevel();
+				continue;
+			}
+			
 			float hull = ship.getHullLevel();
 			float oldHull = stateData.hull;
-			
-			if (!ship.isAlive()) continue;
 			
 			if (hull <= 0.3 && oldHull > 0.3)
 				printed = printHullMessage(member, MessageType.HULL_30, 30);
@@ -614,15 +618,17 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		for (FleetMemberAPI member : dead)
 		{
 			if (isIgnored(member)) continue;
-			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
 			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
-			
 			ShipStateData stateData = getShipStateData(member);
+			
 			if (!stateData.dead) {
 				//log.info(member.getShipName() + " is dead!");
 				stateData.dead = true;
-				if (!member.isFighterWing())
-					printRandomMessage(member, MessageType.DEATH);
+				if ((member.isFlagship()) && !ChatterConfig.selfChatter) // being player-piloted
+				{
+					continue;
+				}
+				printRandomMessage(member, MessageType.DEATH);
 			}
 		}
 		
@@ -691,20 +697,26 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				ShipwideAIFlags flags = ship.getAIFlags();
 				if (flags != null)
 				{
+					boolean engaged = flags.hasFlag(AIFlags.HAS_INCOMING_DAMAGE) && !flags.hasFlag(AIFlags.BACK_OFF)
+							&& !flags.hasFlag(AIFlags.PURSUING);
+					boolean pursuing = flags.hasFlag(AIFlags.PURSUING) && !engaged;
+					boolean running = flags.hasFlag(AIFlags.BACKING_OFF) && flags.hasFlag(AIFlags.IN_CRITICAL_DPS_DANGER);
+					
 					if ((canPrint || !printed))
 					{
 						if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
 							printed = printRandomMessage(member, MessageType.NEED_HELP);
-						else if (flags.hasFlag(AIFlags.PURSUING) && !stateData.pursuing)	// fighters can say this
-							printed = printRandomMessage(member, MessageType.PURSUING);
-						else if (!isFighter && flags.hasFlag(AIFlags.RUN_QUICKLY) && !stateData.running)
+						else if (!isFighter && running && !stateData.running)
 							printed = printRandomMessage(member, MessageType.RUNNING);
-						//else if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
-						//	printed = printRandomMessage(member, MessageType.ENGAGED);
+						else if (!isFighter && engaged && !stateData.engaged)
+							printed = printRandomMessage(member, MessageType.ENGAGED);
+						else if (pursuing && !stateData.pursuing)	// fighters can say this
+							printed = printRandomMessage(member, MessageType.PURSUING);
 					}
-					stateData.pursuing = flags.hasFlag(AIFlags.PURSUING);
-					stateData.running = flags.hasFlag(AIFlags.RUN_QUICKLY);
+					stateData.pursuing = pursuing;
+					stateData.running = running;
 					stateData.needHelp = flags.hasFlag(AIFlags.NEEDS_HELP);
+					stateData.engaged = engaged;
 				}
 				//log.info(member.getShipName() + " pursuing target? " + flags.hasFlag(AIFlags.PURSUING));
 				//log.info(member.getShipName() + " running? " + flags.hasFlag(AIFlags.RUN_QUICKLY));
@@ -731,6 +743,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	{
 		public String characterId = "default";
 		public boolean dead = false;
+		public boolean engaged = false;
 		public boolean needHelp = false;
 		public boolean pursuing = false;
 		public boolean backingOff = false;

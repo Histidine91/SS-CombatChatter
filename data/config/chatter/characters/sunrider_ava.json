@@ -11,6 +11,10 @@
 			{"text":"All systems are green."},
 			{"text":"Awaiting orders."},
 			{"text":"At your command."},
+			{"text":"Hostiles alert!"},
+		],
+		"start_boss":[
+			{"text":"Enemy energy spike detected."},
 		],
 		"retreat":[
 			{"text":"Give us some distance!"}
@@ -19,7 +23,11 @@
 			{"text":"Our missiles are dry."}
 		],
 		"need_help":[],
-		"engaged":[],
+		"engaged":[
+			{"text":"Take them out!"},
+			{"text":"Initiating shock and awe."},
+			{"text":"Target locked!"}
+		],
 		"pursuing":[
 			{"text":"All ahead, full."},
 			{"text":"Forward!"},

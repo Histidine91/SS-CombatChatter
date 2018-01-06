@@ -25,7 +25,7 @@
 			{"text":"Out of missiles."},
 			{"text":"No missiles left."}
 		],
-		"engaged":[	# not used
+		"engaged":[
 			{"text":"In contact, could use some backup."},
 			{"text":"I am engaged, requesting assistance."},
 			{"text":"I am in combat, help wanted."}

@@ -22,7 +22,7 @@
 		"out_of_missiles":[
 			{"text":"Aw shoot, ah've blown mah load!"}
 		],
-		"engaged":[	# not used
+		"engaged":[
 			{"text":"I'm fixin' for a fight."},
 			{"text":"Y'all make a nice target."},
 			{"text":"Y'all better not complain 'bout mah kills bein' too high."}

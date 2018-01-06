@@ -20,11 +20,14 @@
 		"out_of_missiles":[
 		],
 		"need_help":[],
-		"engaged":[],
+		"engaged":[
+			{"text":"I'm moving forward!"},
+			{"text":"You've been a bad boy..."},
+			{"text":"I have just the thing for you!"}
+		],
 		"pursuing":[
 			{"text":"I'm moving forward!"},
 			{"text":"Onward we go!"},
-			{"text":"You've been a bad boy..."},
 			{"text":"It's time for your medicine!"},
 		],
 		"running":[

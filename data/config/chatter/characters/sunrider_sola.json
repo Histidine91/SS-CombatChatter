@@ -9,8 +9,8 @@
 	"lines":{
 		"start":[
 			{"text":"Death from the abyss."},
-			{"text":"No escape."},
 			{"text":"Providence awaits."},
+			{"text":"Your will is my desire."},
 		],
 		"retreat":[
 			{"text":"Falling back."},
@@ -19,10 +19,15 @@
 		"out_of_missiles":[
 		],
 		"need_help":[],
-		"engaged":[],
+		"engaged":[
+			{"text":"Unleashing."},
+			{"text":"Executing."},
+			{"text":"Locking onto target."}
+		],
 		"pursuing":[
 			{"text":"Moving forward."},
 			{"text":"Speeding up."},
+			{"text":"No escape."},
 		],
 		"running":[
 			{"text":"Moving back."},
@@ -30,6 +35,7 @@
 		],
 		"hull_90":[
 			{"text":"Requesting cover."},
+			{"text":"Hull status holding."},
 		],
 		"hull_50":[
 			{"text":"Armor cannot hold..."},
@@ -40,6 +46,7 @@
 		"overload":[
 		],
 		"death":[
+			{"text":"Aaah!"},
 			{"text":"I return to the abyss..."},
 		],
 		"victory":[

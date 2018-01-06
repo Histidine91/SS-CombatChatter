@@ -10,7 +10,11 @@
 		"start":[
 			{"text":"Ready to roll!"},
 			{"text":"What can I do for you, mah captain?"},
-			{"text":"Let's give 'em hell, captain!"}
+			{"text":"Let's give 'em hell, captain!"},
+			{"text":"Showtime, let's go!"}
+		],
+		"start_boss":[
+			{"text":"I'll reduce you to size!"},
 		],
 		"retreat":[
 			{"text":"Falling back already?"},
@@ -21,10 +25,15 @@
 			{"text":"I'm all out of missiles, captain!"},
 		],
 		"need_help":[],
-		"engaged":[],
+		"engaged":[
+			{"text":"Time to do this the old-fashioned way!"},
+			{"text":"Gonna light this place up!"},
+			{"text":"I'll blow you away!"}
+		],
 		"pursuing":[
 			{"text":"Forward and onward!"},
 			{"text":"Let's go get 'em!"},
+			{"text":"Clearin' the road!"},
 		],
 		"running":[
 			{"text":"Backwards? Aww..."}
