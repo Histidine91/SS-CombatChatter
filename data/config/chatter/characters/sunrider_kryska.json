@@ -1,0 +1,55 @@
+{
+	"name":"Kryska Stares",
+	"personalities":["steady", "cautious", "aggressive"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["sunrider", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Reporting for duty, sir!"},
+			{"text":"Awaiting orders, sir!"},
+		],
+		"start_boss":[
+			{"text":"Enemy energy spike detected."},
+		],
+		"retreat":[],
+		"out_of_missiles":[],
+		"need_help":[],
+		"engaged":[
+			{"text":"Engaging hostiles."},
+			{"text":"Breaching the enemy's defenses."},
+			{"text":"Do you still refuse to negotiate?"},
+		],
+		"pursuing":[
+			{"text":"Hitting thrusters."},
+			{"text":"Onward to victory!"},
+			{"text":"Forward!"},
+		],
+		"running":[
+			{"text":"Reverse course."},
+			{"text":"Falling back!"},
+			{"text":"Backwards!"},
+		],
+		"hull_90":[
+			{"text":"My honor is my shield!"},
+			{"text":"Holding steadfast!"},
+		],
+		"hull_50":[
+			{"text":"My shield shall hold!"},
+			{"text":"I've taken moderate damage, sir. Nothing I can't handle."},
+		],
+		"hull_30":[
+			{"text":"Shall I perform a tactical retreat, captain?!"},
+		],
+		"overload":[],
+		"death":[
+			{"text":"I'll leave the rest to you!"}
+		],
+		"victory":[
+			{"text":"Weaponized diplomacy was successful!"},
+			{"text":"You have fought with honor, but that was not enough."}
+		],
+	}
+}
