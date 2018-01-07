@@ -20,18 +20,16 @@
 
 		],
 		"engaged":[
-			
-		
+			{"text":"You're gonna meet my friend pain!"},
+			{"text":"Hey, you with the teeth..."},
 		],
 		"need_help":[
 			{"text":"I got no time for the jibba-jabba."},
 			{"text":"You ain't hurt, you pathetic!"},
 		],
-		"pursuing":[
-			{"text":"Hey, you with the teeth..."},
+		"pursuing":[			
 			{"text":"It's time to get in da pool, 'cause you're goin' swimmin', fool!"},
 			{"text":"Hey, sucka!"},
-			{"text":"You're gonna meet my friend pain!"},
 			{"text":"I pity da fool!"},
 		],
 		"running":[

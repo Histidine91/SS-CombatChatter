@@ -36,8 +36,8 @@
 		],
 		"pursuing":[
 			{"text":"Pursuing target."},
-			{"text":"Engaging the enemy."},
 			{"text":"Contact, moving to intercept."},
+			{"text":"Vectoring to intercept."}
 		],
 		"running":[
 			{"text":"I'm outta here!"}

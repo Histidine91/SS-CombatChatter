@@ -28,7 +28,8 @@
 
 		"engaged":[
 			{"text":"Engaging enemy."},
-			{"text":"Enemy confirmed. Ship to combat power."}
+			{"text":"Enemy confirmed. Ship to combat power."},
+			{"text":"Unit in contact."}
 		],
 
 		"need_help":[
@@ -37,9 +38,9 @@
 		],
 
 		"pursuing":[
-			{"text":"Pursuing target."},
-			{"text":"Engaging the enemy."},
-			{"text":"Contact, moving to intercept."},
+			{"text":"Intercept plotted."},
+			{"text":"Moving to engage."},
+			{"text":"Vector locked in."}
 		],
 
 		"running":[
