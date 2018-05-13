@@ -1,3 +1,3 @@
 command,class,tags,syntax,help
 PrintChatterChars,org.histidine.chatter.console.PrintChatterChars,"campaign,combatchatter",printchatterchars,Writes the saved chatter characters for all officers that have served with the player.
-SetChatterChar,org.histidine.chatter.console.SetChatterChar,"campaign,combatchatter",setchatterchar [officer name] [character ID] ,"Assigns the specified chatter character to the officer in the player fleet with the best match for the provided name. Note: Full name is searched first, then surname, then given name"
+SetChatterChar,org.histidine.chatter.console.SetChatterChar,"campaign,combatchatter",setchatterchar <officer name> <character ID>,"Assigns the specified chatter character to the officer in the player fleet with the best match for the provided name. Note: Full name is searched first, then surname, then given name"
