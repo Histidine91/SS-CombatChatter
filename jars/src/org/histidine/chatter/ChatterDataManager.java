@@ -48,6 +48,8 @@ public class ChatterDataManager {
 	public static final List<String[]> FACTION_HULL_PREFIXES = new ArrayList<>();
 	public static final List<String[]> FACTION_SHIPNAME_PREFIXES = new ArrayList<>();
 	
+	public static final boolean DEBUG_MODE = false;
+	
 	public static Logger log = Global.getLogger(ChatterDataManager.class);
 	
 	protected static boolean loaded = false;
@@ -58,12 +60,19 @@ public class ChatterDataManager {
 		loadCharacters();
 	}
 	
+	public static void debugPrint(String str)
+	{
+		if (!DEBUG_MODE) return;
+		log.info(str);
+	}
+	
 	public static void loadCharacters()
 	{
 		if (loaded) return;
 		try {
 			// load faction tags
 			JSONArray tagsCSV = Global.getSettings().getMergedSpreadsheetDataForMod("faction", FACTION_TAGS_FILE, "chatter");
+			debugPrint("Loading faction tags");
 			for(int x = 0; x < tagsCSV.length(); x++)
 			{
 				JSONObject row = tagsCSV.getJSONObject(x);
@@ -75,15 +84,18 @@ public class ChatterDataManager {
 					String tagTrimmed = tag.trim();
 					tags.add(tagTrimmed);
 				}
+				debugPrint("\t" + factionId + ": " + tags);
 				FACTION_TAGS.put(factionId, tags);
 			}
 			
 			// load character-faction compatibility data
 			JSONArray charFactionsCSV = Global.getSettings().getMergedSpreadsheetDataForMod("character", CHARACTER_FACTIONS_FILE, "chatter");
+			debugPrint("Loading character-faction compatibility data");
 			for(int x = 0; x < charFactionsCSV.length(); x++)
 			{
 				JSONObject row = charFactionsCSV.getJSONObject(x);
 				String characterId = row.getString("character");
+				debugPrint("\tCharacter: " + characterId);
 				Map<String, Integer> factionCompat = new HashMap<>();
 				Iterator<?> factionsAndGroups = row.keys();
 				while( factionsAndGroups.hasNext() ) {
@@ -91,11 +103,13 @@ public class ChatterDataManager {
 					if (factionOrGroup.equals("fs_rowSource")) continue;
 					if (factionOrGroup.equals("character")) continue;
 					factionCompat.put(factionOrGroup, row.getInt(factionOrGroup));
+					debugPrint("\t\t" + factionOrGroup + ": " + row.getInt(factionOrGroup));
 				}
 				CHARACTER_FACTIONS.put(characterId, factionCompat);
 			}
 			
 			// load the actual characters
+			debugPrint("Loading characters");
 			JSONArray charCSV = Global.getSettings().getMergedSpreadsheetDataForMod("character", CHARACTERS_LIST, "chatter");
 			for(int x = 0; x < charCSV.length(); x++)
 			{
@@ -146,6 +160,7 @@ public class ChatterDataManager {
 			}
 			
 			// map for getting faction ID based on hull ID prefix (e.g. ii_olympus is an II ship)
+			debugPrint("Loading hull prefixes");
 			JSONArray prefixes = Global.getSettings().getMergedSpreadsheetDataForMod("prefix", HULL_FACTION_PREFIX_FILE, "chatter");
 			for(int x = 0; x < prefixes.length(); x++)
 			{
@@ -161,6 +176,7 @@ public class ChatterDataManager {
 			}
 		
 			// map for getting faction ID based on ship name's prefix (e.g. TTS for Tri-Tachyon)
+			debugPrint("Loading ship name prefixes");
 			JSONArray prefixes2 = Global.getSettings().getMergedSpreadsheetDataForMod("prefix", SHIP_NAME_FACTION_PREFIX_FILE, "chatter");
 			for(int x = 0; x < prefixes2.length(); x++)
 			{
@@ -176,6 +192,7 @@ public class ChatterDataManager {
 			}
 			
 			// hull exclusion
+			debugPrint("Loading hull exclusion list");
 			JSONArray excluded = Global.getSettings().getMergedSpreadsheetDataForMod("hull id", EXCLUDED_HULL_FILE, "chatter");
 			for(int x = 0; x < excluded.length(); x++)
 			{
@@ -187,6 +204,7 @@ public class ChatterDataManager {
 			}
 			
 			// boss ships
+			debugPrint("Loading boss ships");
 			JSONArray bosses = Global.getSettings().getMergedSpreadsheetDataForMod("hull id", BOSS_SHIP_FILE, "chatter");
 			for(int x = 0; x < bosses.length(); x++)
 			{
@@ -251,6 +269,7 @@ public class ChatterDataManager {
 			//log.info("Detected faction for ship " + ship.getShipName() + " as " + factionId);
 		}
 		
+		debugPrint("Getting character for faction " + factionId);
 		for (ChatterCharacter character : CHARACTERS)
 		{
 			if (isCharacterDisallowedByTag(character))
@@ -262,6 +281,8 @@ public class ChatterDataManager {
 			
 			if (ChatterConfig.factionSpecificCharacters && !character.allowedFactions.contains(factionId)) 
 				continue;
+			
+			debugPrint("\tFaction allowed to use character " + character.id);
 			
 			if (character.personalities.contains(captain.getPersonalityAPI().getId()))
 			{
@@ -306,14 +327,17 @@ public class ChatterDataManager {
 	
 	protected static boolean isCharacterAllowedForFaction(String charId, String factionId)
 	{
+		debugPrint("Testing character comptability: " + charId + ", " + factionId);
 		if (!CHARACTER_FACTIONS.containsKey(charId)) {
 			return true;	// character-faction entry not found; ignore factions
 		}
 		
 		Map<String, Integer> allowedFactionsOrGroups = CHARACTER_FACTIONS.get(charId);
 		int compatibility = 0;
-		if (allowedFactionsOrGroups.containsKey(charId))
-			compatibility = allowedFactionsOrGroups.get(charId);
+		if (allowedFactionsOrGroups.containsKey(factionId))
+			compatibility = allowedFactionsOrGroups.get(factionId);
+		
+		if (compatibility != 0) debugPrint("Base compatiblity: " + compatibility);
 		
 		if (compatibility == 1) return true;	// explicitly allow this faction
 		else if (compatibility == -1) return false;	// explicitly forbid this faction
@@ -323,6 +347,9 @@ public class ChatterDataManager {
 		for (String tag: tags) {
 			if (!allowedFactionsOrGroups.containsKey(tag)) continue;
 			int groupCompat = allowedFactionsOrGroups.get(tag);
+			
+			debugPrint("Compatibility with tag " + tag + ": " + groupCompat);
+			
 			if (groupCompat == 1) return true;
 			else if (groupCompat == -1) return false;
 			//else return false;
