@@ -1,0 +1,90 @@
+{
+	"name":"Bounty Hunter",
+	"personalities":["steady", "aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["original"],
+	
+	"lines":{
+		"start":[
+			{"text":"Alright boys, let's make some money."},
+			{"text":"Let 'em rip boys!"},
+			{"text":"That flagship's got a big bounty on it, and I want it bad."}
+		],
+		
+		"start_boss":[
+			{"text":"Holy mother of... I don't know what that thing is, but I don't like the look on its face."},
+			{"text":"Hey hey, my contract specifically says 'Will not be led into certain death'. I got it right here, see? See?"}
+		],
+		
+		"retreat":[
+			{"text":"Forget it, men! This bounty ain't worth our lives!"},
+			{"text":"Screw this, I wanna live to get paid another day!"}
+		],
+		
+		"out_of_missiles":[
+			{"text":"Yeah, we're outta missiles. What? They don't come cheap y'know!"},
+			{"text":"Dammit you lot, stop throwing our cash down the torpedo tubes!"}
+		],
+
+		"engaged":[
+			{"text":"Hey, you with the guns! I want them on my ship."},
+			{"text":"You got a big bounty on yer head."},
+			{"text":"You're wanted dead or alive... And it's probably gonna be dead."}
+		],
+
+		"need_help":[
+			{"text":"I don't get paid enough for this..."},
+			{"text":"Hey! I could use a hand over here!"},
+			{"text":"Is no-one gonna help me out?"},
+			{"text":"Someone get this devil offa me! I'll pay!"}
+		],
+
+		"pursuing":[
+			{"text":"You ain't getting away this time!"},
+			{"text":"I've got 'em in my sights."},
+			{"text":"Hah! Look at 'em run. It's almost like they think they have a chance!"}
+		],
+
+		"running":[
+			{"text":"I don't get paid enough for this!"},
+			{"text":"Don't stress boys, we'll get another chance."}
+		],
+
+		"hull_90":[
+			{"text":"Hey, I just had this thing waxed!"},
+			{"text":"Already? Really?"}
+		],
+
+		"hull_50":[
+			{"text":"Are we getting hazard pay for this trip...?"},
+			{"text":"Gerroffa me ya bastards!"},
+			{"text":"Ow ow ow! Cut it out!"}
+		],
+
+		"hull_30":[
+			{"text":"I hope the insurance pays out, chief..."},
+			{"text":"I knew I should've paid the extra for fire extinguishers!"},
+			{"text":"That did NOT sound cheap."},
+			{"text":"I'd wager we're in big trouble..."}
+		],
+
+		"overload":[
+			{"text":"We're sparking up a storm in here!"},
+			{"text":"Hey, who's sticking coins in the power points!?"},
+			{"text":"I thought you said that new reactor core was overload-proof!? WE'VE BEEN SWINDLED!"}
+		],
+
+		"death":[
+			{"text":"Bury me with my credits!"},
+			{"text":"That's it, we're done!"},
+			{"text":"Abandon ship! ABANDON SHIP!"}
+		],
+		"victory":[
+			{"text":"Someone's getting a raise!"},
+			{"text":"Oh yeah, that's what I'm talking about!"},
+			{"text":"We kicked ass! Now hand over the damn paycheck."},
+		],
+	}
+}

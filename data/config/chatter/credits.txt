@@ -73,6 +73,7 @@ Firaxis (compiled by Shoot Them Later)
 
 AxleMC131
 * gentleman
+* bountyhunter
 
 Soren
 * alien1
