@@ -1,0 +1,76 @@
+{
+	"name":"Orlok The Eternal",
+	"personalities":["steady", "aggressive", "reckless"],
+	"gender":["m", "n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["game", "universeatwar", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"I am the eternal."},
+			{"text":"I serve the Hierarchy."},
+			{"text":"I am the one with the gun."},
+			{"text":"There is only honor in battle."},
+			{"text":"Bringing in the big guns!"}
+		],
+		"start_boss":[
+			{"text":"I will stamp it out."},
+			{"text":"You'll do."},
+			{"text":"Any last words?"},
+			{"text":"I've been looking forward to this."},
+			{"text":"There is nothing you possess that we cannot take away."}
+		],		
+		"retreat":[
+			{"text":"Tactics. I use them to my advantage."}
+		],
+		"out_of_missiles":[
+			{"text":"I have need of your matter."},
+		],
+		"engaged":[
+			{"text":"Leave them to me."},
+			{"text":"I will bring the battle to them."},
+			{"text":"It will not live for another day."},
+			{"text":"Get through this!"}
+		],
+		"need_help":[
+			{"text":"Here comes trouble."},
+			{"text":"That is something I cannot allow to happen."}
+		],
+		"pursuing":[
+			{"text":"Open season."},
+			{"text":"Get ready to fight."},
+			{"text":"Feel honored I have chosen you."}
+		],
+		"running":[
+		    {"text":"No time to lose."}
+		],
+		"hull_90":[
+			{"text":"Nobody touches me!"},
+			{"text":"I have taken damage."},
+		],
+		"hull_50":[
+			{"text":"My damage is growing, but so is my anger!"},
+			{"text":"This is more than a flesh wound!"},
+			{"text":"I could use some repairs!"}
+		],
+		"hull_30":[
+			{"text":"My survival is in doubt."},
+			{"text":"My damage has reached critical levels."},
+			{"text":"My death is almost certain."}
+		],
+		"overload":[
+			{"text":"Put the cattle down, and back away, slowly."},
+		],
+		"death":[
+			{"text":"Everybody dies."}
+		],
+		"victory":[
+			{"text":"All I see are corpses."},
+			{"text":"As good as dead."},
+			{"text":"I compensate for nothing."},
+			{"text":"Perhaps you are too frightened to engage me!"},
+			{"text":"Curse me in vain as you breathe your last!"}
+		],
+	}
+}

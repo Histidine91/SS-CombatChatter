@@ -77,3 +77,16 @@ AxleMC131
 Soren
 * alien1
 * madbastard
+
+Electronic Arts (compiled by [REDACTED] Element)
+* kw_flametank
+* ra3_gigafortress
+* tt_medusa
+
+Petroglyph Games (compiled by [REDACTED] Element)
+* uaw_founder
+* uaw_kamalrex
+* uaw_orlok
+
+FromSoftware (compiled by [REDACTED] Element)
+* acvd_bluemagnolia

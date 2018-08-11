@@ -1,0 +1,76 @@
+{
+	"name":"The Founder",
+	"personalities":["cautious","steady", "aggressive"],
+	"gender":["m","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["game", "universeatwar", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Intelligent, but not artificial."},
+			{"text":"I am the origin."},
+			{"text":"Precision annihilation."},
+			{"text":"Oblivion will have them."},
+			{"text":"I can help you to escape the weakness that is flesh!"},
+			{"text":"I will finish you out of mercy."}
+		],
+		"start_boss":[
+			{"text":"Superior creation at your service."},
+			{"text":"They have treaded on my domain. I will refresh their memory core."},
+			{"text":"It has been singled out."},
+			{"text":"I like these odds."}
+		],		
+		"retreat":[
+			{"text":"A better location."},
+			{"text":"We retreat. For now."}
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"They are out of their boundary."},
+			{"text":"Termination is in order."},
+			{"text":"It will not live for another day."},
+			{"text":"Change is inevitable."}
+		],
+		"need_help":[
+			{"text":"Perhaps you should consider a better plan?!"}
+		],
+		"pursuing":[
+			{"text":"Movement initiated."},
+			{"text":"Come to me."},
+			{"text":"This matter is between you and me."}
+		],
+		"running":[
+		    {"text":"Altering path, with singuar focus."},
+			{"text":"We are leaving this place, prepare accordingly."}
+		],
+		"hull_90":[
+			{"text":"Your preparations are inferior."},
+		],
+		"hull_50":[
+			{"text":"I am not operating at peak efficiency."},
+			{"text":"Further damage will degrade my lifespan."}
+		],
+		"hull_30":[
+			{"text":"My systems are reaching critical mass!"},
+			{"text":"I fear my destruction is imminent."},
+			{"text":"My program is experiencing a catastrophic failure."}
+		],
+		"overload":[
+			{"text":"Reformatting."},
+			{"text":"There is a fault im my logic core."},
+		],
+		"death":[
+			{"text":"I must become, what I became."},
+			{"text":"This is the promise of rebirth fulfilled."}
+		],
+		"victory":[
+			{"text":"Your contingency. Contemplating victory."},
+			{"text":"There is no disgrace in recognising a neccessity."},
+			{"text":"What is yours, is now ours!"},
+			{"text":"THE MACHINE'S TIME HAS COME."},
+			{"text":"Death is the way of all flesh."}
+		],
+	}
+}

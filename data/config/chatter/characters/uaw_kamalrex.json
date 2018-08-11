@@ -1,0 +1,79 @@
+{
+	"name":"Kamal Re'x",
+	"personalities":["cautious","steady", "aggressive", "reckless"],
+	"gender":["m","n"],
+	"chance":1,
+	"talkativeness":1.6,
+	"categoryTags":["game", "universeatwar", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"I am the abductor!"},
+			{"text":"I am destined for greatness!"},
+			{"text":"They will bow to me."},
+			{"text":"I will leave no survivors."},
+			{"text":"Respect my power."},
+		],
+		"start_boss":[
+			{"text":"Bow down!"},
+			{"text":"Avert your eyes from your lord!"},
+			{"text":"Their world will fall."},
+			{"text":"TO THE PROCESSORS WITH YOU."},
+			{"text":"I consume entire worlds. You are no different."}
+		],		
+		"retreat":[
+			{"text":"You live because I allow it."}
+		],
+		"out_of_missiles":[
+			{"text":"No more games."},
+		],
+		"engaged":[
+			{"text":"There is no place to hide."},
+			{"text":"Amusing at best."},
+			{"text":"Their suffering will be legendary."},
+			{"text":"Death to the disobedient."},
+			{"text":"Witness my power."},
+			{"text":"I want you to suffer to your last, fool."}
+		],
+		"need_help":[
+			{"text":"Here's something to shoot at."},
+			{"text":"Your sacrifice is expected!"}
+		],
+		"pursuing":[
+			{"text":"That one will bow to my will."},
+			{"text":"I will seek them out."},
+			{"text":"They cannot hide from me."}
+		],
+		"running":[
+		],
+		"hull_90":[
+			{"text":"Insignificant pest."},
+			{"text":"Your strategy is amusing at best."},
+		],
+		"hull_50":[
+			{"text":"This battle is causing me damage!"},
+			{"text":"This plan must change before I suffer further!"},
+			{"text":"This situation grows intolerable!"}
+		],
+		"hull_30":[
+			{"text":"These attacks are taking their toll."},
+			{"text":"The end of my reign is at hand!"},
+			{"text":"My demise approaches! Do something!"}
+		],
+		"overload":[
+			{"text":"My genius will cause your mind to implode."}
+		],
+		"death":[
+			{"text":"I am dying! This cannot be!"}
+		],
+		"victory":[
+			{"text":"I have such sights to show you."},
+			{"text":"Where I go, my enemies fall."},
+			{"text":"There is no coming back!"},
+			{"text":"I AM UNSTOPPABLE!"},
+			{"text":"NOTHING WILL STAND IN MY WAY!"},
+			{"text":"DIE! MUHAHAHAHAHA!!!"},
+			{"text":"The difference between insanity and genius, is success!"}
+		],
+	}
+}

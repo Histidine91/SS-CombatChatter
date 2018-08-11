@@ -1,0 +1,84 @@
+{
+	"name":"Blue Magnolia",
+	"personalities":["steady","aggressive", "reckless"],
+	"gender":["f","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["game", "armoredcore", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Do you want to get paid or not?"},
+			{"text":"I'll amend the contract."},
+			{"text":"What are your intentions? What do you have to gain from challenging us?"},
+			{"text":"Just another routine job."}
+		],
+		"start_boss":[
+			{"text":"Who the hell are you?"},
+			{"text":"Now it's time. Time for you, to die!"},
+			{"text":"Do not fly around and expose yourself too much. Take them out, one by one."},
+			{"text":"I have one question, I see that thing you got there, who are you with?"},
+			{"text":"You won't survive many hits from that! Make it your primary target."},
+			{"text":"This is the main course. Dig in."},
+			{"text":"Those ships are formidable opponents. Keep a cool head."}
+		],		
+		"retreat":[
+			{"text":"Do you want to get paid or not?"},
+			{"text":"Fine, we're going then. Bye."}
+		],
+		"out_of_missiles":[
+			#{"text":"Duly noted."},
+		],
+		"engaged":[
+			{"text":"We'll just have to deal with them too."},
+			{"text":"Anything that moves is fair game."},
+			{"text":"That bastard! Get them! It's do or die!"},
+			{"text":"I doubt they'll put up much of a fight."},
+			{"text":"They're on us next, stay sharp!"}
+			
+		],
+		"need_help":[
+		    {"text":"We're happy to hang back, but too much caution is a sign of fear."},
+			{"text":"We're on our own here."}
+		],
+		"pursuing":[
+			{"text":"That bastard! Get them! It's do or die!"},
+			{"text":"Grr, they're trying to rejoin their allies!"},
+			{"text":"After them, before it's too late."},
+			{"text":"Don't let them get away."},
+			{"text":"Close in on that unit and take it out!"}
+		],
+		"running":[
+		    {"text":"We're happy to hang back, but too much caution is a sign of fear."}
+		],
+		"hull_90":[
+			{"text":"You can't deny their power."},
+			{"text":"They're on us next, stay sharp!"}
+		],
+		"hull_50":[
+			{"text":"You're stuck with me a while longer."}
+		],
+		"hull_30":[
+			{"text":"Never!! I...I can still fight!!"},
+			{"text":"The battlefield...is where...my soul...BELONGS!!!"}
+		],
+		"overload":[
+			{"text":"What the?! What is going on?"},
+			{"text":"Explain yourselves. What the hell is going on?!"}
+		],
+		"death":[
+			{"text":"I wasn't the one, but...I'm glad it ended this way..."},
+			{"text":"Goodbye..."},
+			{"text":"You! You're the one that!..that!.."}
+		],
+		"victory":[
+			{"text":"None of them were anywhere near a match for you. Not even close. They didn't stand a chance."},
+			{"text":"Let's just leave, Operator."},
+			{"text":"Operator, any left?"},
+			{"text":"A job well done. Let's go."},
+			{"text":"Your skills increase with every mission."},
+			{"text":"Disappointed that a mere mercenary survived?"},
+			{"text":"Let's head home."}
+		],
+	}
+}

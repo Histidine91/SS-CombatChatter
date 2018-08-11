@@ -1,0 +1,72 @@
+{
+	"name":"Flame Tank (Kane's Wrath)",
+	"personalities":["reckless", "aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1.2,
+	"categoryTags":["game", "c&c", "kaneswrath", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Leave them in ashes!"},
+			{"text":"Yes! It's time!"},
+			{"text":"The flames will rise."},
+			{"text":"Ah, the wait has ended!"},
+			{"text":"We must share this gift."}
+		],
+		"start_boss":[
+			{"text":"Purge them with flame!"},
+			{"text":"Burn them out!"},
+			{"text":"It must be purified."},
+			{"text":"It's beautiful..."}
+		],		
+		"retreat":[
+			{"text":"Keep it safe."}
+		],
+		"out_of_missiles":[
+		    #{"text":"SPREADING THE JOY."}
+		],
+		"engaged":[
+			{"text":"Release the glory!"},
+			{"text":"To cinders!"},
+			{"text":"Everything must burn!"},
+			{"text":"Look at the flames!"},
+			{"text":"Feel the power of the heat!"}
+		],
+		"need_help":[
+		],
+		"pursuing":[
+			{"text":"Everything must burn!"},
+			{"text":"Enclose upon them."},
+			{"text":"We must get closer!"}
+		],
+		"running":[
+		],
+		"hull_90":[
+		    {"text":"The tides will not yield."}
+		],
+		"hull_50":[
+		    {"text":"Protect the fuel!"},
+			{"text":"EMBRACE YOUR DESTINY!"}
+		],
+		"hull_30":[
+		    {"text":"Deliver us!"},
+			{"text":"Buuurn! BUUUURN!"}
+		],
+		"overload":[
+			{"text":"Steady now."}
+		],
+		"death":[
+		    {"text":"URRRH-"},
+			{"text":"UUGH-"},
+			{"text":"NUUH-"}
+		],
+		"victory":[
+			{"text":"Do not toy with the power of the flame!"},
+			{"text":"No one escapes the heat!"},
+			{"text":"The fuel hungers!"},
+			{"text":"Respect the flame!"},
+			{"text":"Cleansing fire!"}
+		],
+	}
+}

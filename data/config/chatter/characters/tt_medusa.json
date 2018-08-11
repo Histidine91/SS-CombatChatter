@@ -1,0 +1,71 @@
+{
+	"name":"Medusa (Tiberium Twilight)",
+	"personalities":["cautious", "aggressive", "steady"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1.2,
+	"categoryTags":["game", "tiberian", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"I'm here."},
+			{"text":"Their eyes will be opened."},
+			{"text":"What stands in our way?"},
+			{"text":"Show them to me."},
+			{"text":"Let the massacre begin."}
+		],
+		"start_boss":[
+			{"text":"This one needs to settle down."},
+			{"text":"They will be silent."},
+			{"text":"It's our turn now!"}
+		],		
+		"retreat":[
+			{"text":"Of course. We must go."},
+			{"text":"Rightfully so."}
+		],
+		"out_of_missiles":[
+		    #{"text":"Let us continue."}
+		],
+		"engaged":[
+			{"text":"Fool should have run!"},
+			{"text":"That one, humiliate them!"},
+			{"text":"Ground them!"},
+			{"text":"Stop them."},
+			{"text":"Shut them down at once!"},
+			{"text":"Should we release them? I almost pity them."}
+		],
+		"need_help":[
+		],
+		"pursuing":[
+			{"text":"Hope this one's not in a hurry."},
+			{"text":"I want to see this."},
+			{"text":"There. At last!"}
+		],
+		"running":[
+		    {"text":"Quite right. So be it."}
+		],
+		"hull_90":[
+			{"text":"They attack! Do they have any idea?!"}
+		],
+		"hull_50":[
+			{"text":"They will learn soon enough!"},
+			{"text":"The braggards will pay for this!"}
+		],
+		"hull_30":[
+		    {"text":"The time is upon us."},
+			{"text":"They're trying to make a mockery of us!"}
+		],
+		"overload":[
+			#{"text":"A wise move."}
+		],
+		"death":[
+		    {"text":"We will not stand for this!"}
+		],
+		"victory":[
+			{"text":"Hurry, before they scatter!"},
+			{"text":"Return to the others."},
+			{"text":"They've put this upon themselves."},
+			{"text":"Only now do they understand."},
+		],
+	}
+}
