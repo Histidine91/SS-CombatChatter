@@ -306,7 +306,7 @@ public class ChatterDataManager {
 		if (charId == null) return "default";
 		
 		log.info("Assigning character " + charId + " to officer " + captain.getName().getFullName());
-		if (!isMission)
+		if (!isMission && !captain.isDefault() && !ship.isFighterWing())
 			saveCharacter(captain, charId);
 		return charId;
 	}
