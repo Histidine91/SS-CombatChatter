@@ -17,19 +17,33 @@ public class PrintChatterChars implements BaseCommand {
 			return CommandResult.WRONG_CONTEXT;
 		}
 		
-		//Map<String, String> savedOfficers = GeneralUtils.getSavedCharacters();
-		
-		List<PersonAPI> officers = ChatterDataManager.getOfficers(true);
-		
-		Console.showMessage("Current officers:");
-		for (PersonAPI officer: officers)
+		String[] tmp = args.split(" ");
+		if (tmp.length == 0 || tmp[0].isEmpty() || tmp[0].equalsIgnoreCase("current"))
 		{
-			String officerName = officer.getName().getFullName();
-			String characterId = ChatterDataManager.getCharacterFromMemory(officer);
-			ChatterCharacter character = ChatterDataManager.getCharacterData(characterId);
-			if (character != null)
-				Console.showMessage(officerName + ": " + character.name + " (" + character.id + ")");
+			//Map<String, String> savedOfficers = GeneralUtils.getSavedCharacters();
+
+			List<PersonAPI> officers = ChatterDataManager.getOfficers(true);
+
+			Console.showMessage("Current officers:");
+			for (PersonAPI officer: officers)
+			{
+				String officerName = officer.getName().getFullName();
+				String characterId = ChatterDataManager.getCharacterFromMemory(officer);
+				ChatterCharacter character = ChatterDataManager.getCharacterData(characterId);
+				if (character != null)
+					Console.showMessage("  " + officerName + ": " + character.name + " (" + character.id + ")");
+			}
 		}
+		else if (tmp[0].equalsIgnoreCase("all"))
+		{
+			Console.showMessage("Available chatter characters:");
+			for (ChatterCharacter character : ChatterDataManager.CHARACTERS)
+			{
+				Console.showMessage("  " + character.name + " (" + character.id + ")");
+			}
+		}
+		else
+			return CommandResult.BAD_SYNTAX;
 		
 		return CommandResult.SUCCESS;
 	}
