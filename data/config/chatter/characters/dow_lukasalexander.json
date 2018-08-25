@@ -1,0 +1,68 @@
+{
+	"name":"Lukas Alexander",
+	"personalities":["steady", "aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["dawnofwar", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"All right, men! Time to wage war!"},
+			{"text":"I stand ready to serve."},
+			{"text":"It will be my honor."},
+			{"text":"Obedience without hesitation."},
+		],
+		"start_boss":[
+			{"text":"I will smite this abomination!"},
+			{"text":"Face me, beasts!"},
+		],
+		"retreat":[
+			{"text":"Fall back! Fall back!"},
+			{"text":"Let us be on our way."},
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"Take them now!"},
+			{"text":"Spare none in your fury!"},
+			{"text":"Into the fray! Attack!"},
+		],
+		"need_help":[
+			{"text":"Let them attack. I will have their hearts."},
+			{"text":"We're taking fire!"},
+			{"text":"Stand your ground!"},
+		],
+		"pursuing":[
+			{"text":"That way lies victory."},
+			{"text":"Follow, men! Charge!"},
+			{"text":"We have the enemy in our sights."},
+			{"text":"They won't leave my sights."},
+		],
+		"running":[
+			{"text":"Retreat and regroup!"},
+		],
+		"hull_90":[
+			{"text":"Kill them where they stand!"},
+			{"text":"Drive them back! No quarter!"},
+		],
+		"hull_50":[
+			{"text":"You will not fear! You will not falter! You will not give a single step to the enemy!"},
+			{"text":"A true servant never yields to doubt."},
+		],
+		"hull_30":[
+			{"text":"I will not accept this defeat!"},
+		],
+		"overload":[
+			{"text":"What manner of heresy is this?"},
+		],
+		"death":[
+			{"text":"Only in death does duty end."},
+			
+		],
+		"victory":[
+			{"text":"The hand of the Emperor guides all."},
+			{"text":"Glory for the Emperor!"},
+		],
+	}
+}

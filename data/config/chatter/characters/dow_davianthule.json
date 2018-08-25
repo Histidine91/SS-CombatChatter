@@ -1,0 +1,78 @@
+{
+	"name":"Davian Thule",
+	"personalities":["steady", "aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["dawnofwar", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Walk softly, and carry a big gun."},
+			{"text":"They have come for our blood but they will drown in their own!"},
+			{"text":"He who stands with me shall be my brother."},
+			{"text":"Today the enemy shall know fear."},
+			{"text":"Beware the alien, the mutant, and the heretic."},
+			{"text":"This day shall be a glorious one for the Imperium."},
+		],
+		"start_boss":[
+			{"text":"Brothers, the great enemy approaches!"},
+			{"text":"Do not be daunted by its size!"},
+			{"text":"Fear not the size of the enemy!"},
+		],
+		"retreat":[
+			{"text":"I am needed elsewhere."},
+			{"text":"Men, we must withdraw!"},
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"By my command, attack!"},
+			{"text":"I fear no evil, for I am fear incarnate!"},
+			{"text":"By my fury, they shall know the Emperor's name!"},
+			{"text":"Take no prisoners!"},
+		],
+		"need_help":[
+			{"text":"We shall know no fear!"},
+			{"text":"Aim true, brothers!"},
+			{"text":"I shall not fail!"},
+		],
+		"pursuing":[
+			{"text":"Follow my lead."},
+			{"text":"Faith and duty."},
+			{"text":"To me, brothers!"},
+			{"text":"Take me to the front!"},
+			{"text":"Follow me into battle!"},
+		],
+		"running":[
+			{"text":"Withdraw and regroup!"},
+			{"text":"Initiate a tactical withdrawal!"},
+		],
+		"hull_90":[
+			{"text":"My faith is my shield!"},
+			{"text":"I shall not fear."},
+		],
+		"hull_50":[
+			{"text":"No retreat! No surrender!"},
+			{"text":"My aim shall not falter!"},
+			{"text":"Emperor protect us!"},
+		],
+		"hull_30":[
+			{"text":"To the last man and the last round!"},
+			{"text":"I shall not die on this day!"},
+		],
+		"overload":[
+			{"text":"You will not falter!"},
+			{"text":"I shall not fail!"},
+		],
+		"death":[
+			{"text":"Forgive me, Emperor... for I have failed you..."},
+			{"text":"No! We cannot... fail..."},
+			{"text":"My will is undone..."},
+		],
+		"victory":[
+			{"text":"While the enemies of the Emperor still draw breath, there can be no peace."},
+			{"text":"Praise the emperor."},
+		],
+	}
+}

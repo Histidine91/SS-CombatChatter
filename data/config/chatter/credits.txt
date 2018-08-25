@@ -26,9 +26,13 @@ Love in Space:
 * sunrider_asaga
 * sunrider_claude
 * sunrider_icari
+* sunrider_kryska
 * sunrider_sola
 
-Relic Entertainment:
+Relic Entertainment / Games Workshop:
+* dow_davianthule
+* dow_lukasalexander
+* dow2_diomedes
 * dow2_commissar
 
 Blizzard (compiled by Cycerin):

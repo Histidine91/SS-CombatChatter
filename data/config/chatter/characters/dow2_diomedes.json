@@ -1,0 +1,80 @@
+{
+	#"name":"Boreale & Diomedes – Bald Brathas",
+	"name":"Apollo Diomedes",
+	"personalities":["aggressive", "reckless"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["dawnofwar", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			#{"text":"We fight for our honor! We fight in the name of the Emperor!"},
+			{"text":"Be strengthened and be ready!"},
+			{"text":"All shall yield or fall before us."},
+			{"text":"To glory and victory!"},
+		],
+		"start_boss":[
+			{"text":"I will leave it a ruin."},
+			{"text":"I have slain many harder foes!"},
+			{"text":"Even this thing should be wary!"},
+		],
+		"retreat":[
+			{"text":"Retreat now for victory later!"},
+			{"text":"We should not be here!"},
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"No foe shall see my mercy!"},
+			{"text":"My strength is true."},
+			{"text":"The fight is here!"},
+			{"text":"Think you are my match?"},
+		],
+		"need_help":[
+			{"text":"I am under attack!"},
+			{"text":"Steady... steady..."},
+			{"text":"The demons are upon me!"},
+			{"text":"I am beset by the horror!"},
+		],
+		"pursuing":[
+			{"text":"You tremble because you are weak!"},
+			{"text":"See what fight you have in you now!"},
+			{"text":"Let nothing stand in our way!"},
+			{"text":"They are ill-prepared for me!"},
+		],
+		"running":[
+			{"text":"Getting clear."},
+		],
+		"hull_90":[
+			{"text":"I can withstand this."},
+			{"text":"It's but a minor wound!"},
+			{"text":"'tis nothing!"},
+		],
+		"hull_50":[
+			{"text":"Brother I am hit!"},
+			{"text":"Steady yourself, brother!"},
+			{"text":"I will not fall so easily."},
+		],
+		"hull_30":[
+			#{"text":"If we die this day, we die in glory!"},
+			{"text":"Live or die, this shall be glory!"},
+			{"text":"Miserable things!"},
+		],
+		"overload":[
+			{"text":"Brother I am pinned here!"},
+			{"text":"They have us held down!"},
+		],
+		"death":[
+			{"text":"Here... is my... glory."},
+			{"text":"I die... as I swore I would."},
+			{"text":"We have failed... the Emperor!"},
+		],
+		"victory":[
+			#{"text":"We are the Emperor's fury!"},
+			{"text":"Might and honor! Glory and victory!"},
+			{"text":"This one did not measure up."},
+			{"text":"Better than you have tried!"},
+		],
+	}
+}
