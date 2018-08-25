@@ -8,17 +8,17 @@
 	
 	"lines":{
 		"start":[
-			{"text":"I am...awake."},
+			{"text":"I am... awake."},
 			{"text":"All weapons on."},
-			{"text":"Giga Fortress...alive."},
-			{"text":"Ready...for assignment."},
+			#{"text":"Giga Fortress... alive."},
+			{"text":"Ready... for assignment."},
 			{"text":"Nice day, isn't it?"}
 		],
 		"start_boss":[
-			{"text":"Command...authorized."},
-			{"text":"Moving, as ordered."},
+			{"text":"Command... authorized."},
+			{"text":"Moving as ordered."},
 			{"text":"It will be eliminated."},
-			{"text":"All systems...nominal..."}
+			{"text":"All systems... nominal..."}
 		],		
 		"retreat":[
 			{"text":"I agree."}
@@ -31,17 +31,17 @@
 			{"text":"Removing enemy presence."},
 			{"text":"Engaging now."},
 			{"text":"Enabling fire sequence."},
-			{"text":"Extermination...in progress."}
+			{"text":"Extermination... in progress."}
 		],
 		"need_help":[
-		    {"text":"They're attacking me!"}
+			{"text":"They're attacking me!"}
 		],
 		"pursuing":[
 			{"text":"Approaching destination."},
 			{"text":"Approaching target."},
 		],
 		"running":[
-		    {"text":"Starting travel sequence."}
+			{"text":"Starting travel sequence."}
 		],
 		"hull_90":[
 			{"text":"This is a nice view."},
@@ -59,13 +59,13 @@
 		],
 		"overload":[
 			{"text":"Processing request."},
-			{"text":"Where is...my body?"}
+			{"text":"Where is... my body?"}
 		],
 		"death":[
-		    {"text":"Anticipating casualties..."}
+			{"text":"Anticipating casualties..."}
 		],
 		"victory":[
-			{"text":"My thoughts, exactly."},
+			#{"text":"My thoughts, exactly."},
 			{"text":"Enemy removal commencing."},
 			{"text":"Conflict protocols declined."}
 		],

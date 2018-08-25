@@ -9,14 +9,14 @@
 	"lines":{
 		"start":[
 			{"text":"Leave them in ashes!"},
-			{"text":"Yes! It's time!"},
+			{"text":"Burn them out!"},
+			{"text":"Purge them with flame!"},
 			{"text":"The flames will rise."},
 			{"text":"Ah, the wait has ended!"},
 			{"text":"We must share this gift."}
 		],
 		"start_boss":[
-			{"text":"Purge them with flame!"},
-			{"text":"Burn them out!"},
+			{"text":"Yes! It's time!"},
 			{"text":"It must be purified."},
 			{"text":"It's beautiful..."}
 		],		
