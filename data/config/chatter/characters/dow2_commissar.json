@@ -14,8 +14,13 @@
 			{"text":"No doubt, no fear!"},
 			{"text":"Make them tremble!"},
 		],
+		"start_boss":[
+			{"text":"We must break that machine!"},
+			{"text":"I've trained for this!"},
+			{"text":"No fear! Only victory!"},
+		],
 		"retreat":[
-			
+			{"text":"Nothing but failed soldiers!"},
 		],
 		"out_of_missiles":[
 			
@@ -26,20 +31,30 @@
 		],
 		"pursuing":[
 			{"text":"Forward!"},
-			{"text":"More guts, more glory!"}
+			{"text":"More guts, more glory!"},
+			{"text":"Eyes open, you dogs!"}
+		],
+		"engaged":[
+			{"text":"Strike true!"},
+			{"text":"This glory is the Emperor's!"},
+			{"text":"Weapons free!"},
 		],
 		"running":[
+			{"text":"Disorder and misconduct! Shameful!"},
 		],
 		"hull_90":[
 			{"text":"These foes underestimate me!"},
 			{"text":"It takes more than that, I say!"},
+			{"text":"Be ready for blood!"}
 		],
 		"hull_50":[
 			{"text":"You die on my command, not before!"},
 			{"text":"Take heart! There's glory in our pain!"},
+			{"text":"Do you think I fear injury?"},
 		],
 		"hull_30":[
-			{"text":"No... fear!"}
+			{"text":"No... fear!"},
+			{"text":"Glory to the first man that dies!"},
 		],
 		"overload":[
 		],
@@ -51,6 +66,7 @@
 			{"text":"Faster! Harder! Meaner! Better!"},
 			{"text":"Every enemy is a stepping stone!"},
 			{"text":"This is our day! This is our purpose!"},
+			{"text":"The galaxy is that much safer!"},
 		],
 	}
 }
