@@ -246,6 +246,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected boolean haveBoss()
 	{
 		List<FleetMemberAPI> enemies = engine.getFleetManager(FleetSide.ENEMY).getDeployedCopy();
+		enemies.addAll(engine.getFleetManager(FleetSide.ENEMY).getReservesCopy());
 		for (FleetMemberAPI member : enemies)
 		{
 			if (member.getVariant().hasHullMod("vastbulk") && 
@@ -462,10 +463,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				type = MessageType.START_BOSS;
 			
 			FleetMemberAPI random = pickRandomMemberFromList(deployed, type);
+			if (random == null && type == MessageType.START_BOSS)
+			{
+				type = MessageType.START;
+				random = pickRandomMemberFromList(deployed, type);
+			}
+			
 			if (random != null)
 			{
-				//DeployedFleetMemberAPI randomD = fm.getDeployedFleetMember(fm.getShipFor(random));
-				//engine.getCombatUI().addMessage(0, engine.getContext().getPlayerGoal().name());
 				printRandomMessage(random, type);
 				introDone = true;
 			}
