@@ -254,6 +254,7 @@ public class ChatterDataManager {
 		if (captain.isFemale()) gender = "f";
 		else if (captain.isMale()) gender = "m";
 		boolean isMission = engine.isMission();
+		boolean isFighter = ship.isFighterWing();
 		
 		String factionId = captain.getFaction().getId();
 		if (captain.getMemoryWithoutUpdate().contains("$originalFaction"))
@@ -275,11 +276,12 @@ public class ChatterDataManager {
 			if (isCharacterDisallowedByTag(character))
 				continue;
 			
-			if (!isMission) {
+			if (!isMission && !isFighter) {
 				if (!character.gender.contains(gender)) continue;
 			}
 			
-			if (ChatterConfig.factionSpecificCharacters && !character.allowedFactions.contains(factionId)) 
+			if (!isFighter && ChatterConfig.factionSpecificCharacters 
+					&& !character.allowedFactions.contains(factionId)) 
 				continue;
 			
 			debugPrint("\tFaction allowed to use character " + character.id);
@@ -292,7 +294,7 @@ public class ChatterDataManager {
 		}
 		
 		// try to not have duplicate chatter chars among our fleet's officers (unless we've run out)
-		if ( !ship.isAlly() && (engine.isInCampaign() || engine.isInCampaignSim()) )
+		if ( !ship.isAlly() && !isFighter && (engine.isInCampaign() || engine.isInCampaignSim()) )
 		{
 			Set<String> usedChars = getUsedCharacters();
 			for (String usedChar : usedChars)
@@ -306,7 +308,7 @@ public class ChatterDataManager {
 		if (charId == null) return "default";
 		
 		log.info("Assigning character " + charId + " to officer " + captain.getName().getFullName());
-		if (!isMission && !captain.isDefault() && !ship.isFighterWing())
+		if (!isMission && !captain.isDefault() && !isFighter)
 			saveCharacter(captain, charId);
 		return charId;
 	}
