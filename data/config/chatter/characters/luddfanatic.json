@@ -14,6 +14,9 @@
 			{"text":"Welcome to our show, which will deal with wife-beating."},
 			{"text":"By God, you people are dogs. I will go on as usual."}
 		],
+		"start_boss":[
+			{"text":"How do you think he acquired that ship? Through jihad."},
+		],
 		"retreat":[
 			{"text":"By next year, God willing, you will be annihilated."},
 			{"text":"To be honest, I never expected to see such a spectacle."}
@@ -40,7 +43,7 @@
 			{"text":"I swear to you I won't go home until you are gone."}
 		],
 		"hull_90":[
-			{"text":"If you call this shooting, I swear to God that I will shoot myself right here."},
+			{"text":"If you call this fighting, I swear to God that I will shoot myself right here."},
 			{"text":"They want to tell people that Luddism is a very dangerous religion."},
 		],
 		"hull_50":[
