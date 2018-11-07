@@ -40,6 +40,12 @@ public class SetChatterChar implements BaseCommand {
 		String nameSearch = builder.toString();
 		PersonAPI selectedOfficer = null;
 		
+		if (!ChatterDataManager.CHARACTERS_MAP.containsKey(charID))
+		{
+			Console.showMessage("Character not found for ID: " + charID);
+			return CommandResult.ERROR;
+		}
+		
 		if (nameSearch.toLowerCase().equalsIgnoreCase("self") || nameSearch.toLowerCase().equalsIgnoreCase("player"))
 		{
 			selectedOfficer = Global.getSector().getPlayerPerson();
@@ -52,13 +58,17 @@ public class SetChatterChar implements BaseCommand {
 			List<PersonAPI> officersOrdered = new ArrayList<>();
 			for (OfficerDataAPI officer : Global.getSector().getPlayerFleet().getFleetData().getOfficersCopy())
 			{
-				FullName name = officer.getPerson().getName();
+				officersOrdered.add(officer.getPerson());
+			}
+			officersOrdered.add(Global.getSector().getPlayerPerson());
+			
+			for (PersonAPI person : officersOrdered)
+			{
+				FullName name = person.getName();
 				officerFullNames.add(name.getFullName());
 				officerLastNames.add(name.getLast());
 				officerFirstNames.add(name.getFirst());
-				officersOrdered.add(officer.getPerson());
 			}
-
 
 			String bestFullName = CommandUtils.findBestStringMatch(nameSearch, officerFullNames);
 			if (bestFullName != null) {
