@@ -743,6 +743,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		log.info("Chatter plugin initialized");
 		this.engine = engine;
 	}
+
+	@Override
+	public void processInputPreCoreControls(float arg0, List<InputEventAPI> arg1) {
+	}
 	
 	protected static class ShipStateData
 	{
