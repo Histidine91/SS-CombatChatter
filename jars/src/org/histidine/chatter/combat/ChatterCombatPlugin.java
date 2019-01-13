@@ -484,15 +484,18 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected FleetMemberAPI pickRandomMemberFromList(List<FleetMemberAPI> members, MessageType category)
 	{
+		CombatFleetManagerAPI fm = engine.getFleetManager(FleetSide.PLAYER);
+		if (fm == null) return null;	// this can rarely happen?
+		
 		boolean floater = isFloatingMessage(category);
 		WeightedRandomPicker<FleetMemberAPI> picker = new WeightedRandomPicker<>();
 		for (FleetMemberAPI member : members)
 		{
 			//if (member.isFighterWing()) continue;
 			if (isIgnored(member)) continue;
-			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
-			CombatFleetManagerAPI fm = engine.getFleetManager(FleetSide.PLAYER);
-			if (fm.getShipFor(member).getShipAI() == null && !ChatterConfig.selfChatter) continue;	// being player-piloted;
+			if (fm.getShipFor(member) == null) continue;
+			
+			if (fm.getShipFor(member) == engine.getPlayerShip() && !ChatterConfig.selfChatter) continue;	// being player-piloted;
 			if (fm.getShipFor(member).isHulk()) continue;
 			float weight = 1;	//GeneralUtils.getHullSizePoints(member);
 			if (member.getCaptain() != null && !member.getCaptain().isDefault()) weight *= 4;
@@ -537,6 +540,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!interval.intervalElapsed()) return;
 		
 		CombatFleetManagerAPI fm = engine.getFleetManager(FleetSide.PLAYER);
+		if (fm == null) return;
+		
 		List<FleetMemberAPI> deployed = fm.getDeployedCopy();
 		List<FleetMemberAPI> dead = fm.getDisabledCopy();
 		dead.addAll(fm.getDestroyedCopy());
@@ -598,7 +603,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			ShipAPI ship = fm.getShipFor(member);
 			if (!ship.isAlive()) continue;
 			
-			if ((member.isFlagship() || ship.getShipAI() == null) && !ChatterConfig.selfChatter) // being player-piloted
+			if (stateData.isPlayer && !ChatterConfig.selfChatter) // being player-piloted
 			{
 				stateData.hull = ship.getHullLevel();
 				continue;
@@ -629,7 +634,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (!stateData.dead) {
 				//log.info(member.getShipName() + " is dead!");
 				stateData.dead = true;
-				if ((member.isFlagship()) && !ChatterConfig.selfChatter) // being player-piloted
+				if (stateData.isPlayer && !ChatterConfig.selfChatter) // being player-piloted
 				{
 					continue;
 				}
@@ -642,11 +647,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			boolean isFighter = member.isFighterWing();
 			//if (member.isFighterWing()) continue;
 			if (isIgnored(member)) continue;
-			if (member.isFlagship() && !ChatterConfig.selfChatter) continue;
 			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
 			
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
+			if (stateData.isPlayer && !ChatterConfig.selfChatter) continue;
 			ShipAPI ship = fm.getShipFor(member);
 			
 			if (!ship.isAlive() && !stateData.dead) {
@@ -727,6 +732,15 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				//log.info(member.getShipName() + " running? " + flags.hasFlag(AIFlags.RUN_QUICKLY));
 				//log.info(member.getShipName() + " needs help? " + flags.hasFlag(AIFlags.NEEDS_HELP));
 			}
+			
+			// only update isPlayer state at the very end, after death message checks
+			// this is to keep death message from playing for player ship
+			boolean isPlayer = ship == engine.getPlayerShip();
+			if (isPlayer != stateData.isPlayer) {
+				stateData.isPlayer = isPlayer;
+				stateData.dead = ship.isAlive();
+			}
+			
 		}
 	}
 
@@ -751,6 +765,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected static class ShipStateData
 	{
 		public String characterId = "default";
+		public boolean isPlayer = false;
 		public boolean dead = false;
 		public boolean engaged = false;
 		public boolean needHelp = false;
