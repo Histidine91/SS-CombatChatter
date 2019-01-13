@@ -5,18 +5,12 @@ import java.util.Set;
 import static org.histidine.chatter.ChatterDataManager.CHARACTER_FACTIONS;
 import static org.histidine.chatter.ChatterDataManager.FACTION_TAGS;
 import org.lazywizard.console.BaseCommand;
-import org.lazywizard.console.CommonStrings;
 import org.lazywizard.console.Console;
 
 public class ValidateCharacterFaction implements BaseCommand {
 
 	@Override
 	public CommandResult runCommand(String args, CommandContext context) {
-		if (context != CommandContext.CAMPAIGN_MAP) {
-			Console.showMessage(CommonStrings.ERROR_CAMPAIGN_ONLY);
-			return CommandResult.WRONG_CONTEXT;
-		}
-		
 		if (args.isEmpty())
 		{
 			return CommandResult.BAD_SYNTAX;

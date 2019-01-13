@@ -14,24 +14,24 @@ import org.lazywizard.console.Console;
 
 public class SetChatterChar implements BaseCommand {
 
-    @Override
-    public CommandResult runCommand(String args, CommandContext context) {
-        if (context != CommandContext.CAMPAIGN_MAP) {
-            Console.showMessage(CommonStrings.ERROR_CAMPAIGN_ONLY);
-            return CommandResult.WRONG_CONTEXT;
-        }
+	@Override
+	public CommandResult runCommand(String args, CommandContext context) {
+		if (!context.isInCampaign()) {
+			Console.showMessage(CommonStrings.ERROR_CAMPAIGN_ONLY);
+			return CommandResult.WRONG_CONTEXT;
+		}
 		
 		if (args.isEmpty())
-        {
-            return CommandResult.BAD_SYNTAX;
-        }
+		{
+			return CommandResult.BAD_SYNTAX;
+		}
 
-        String[] tmp = args.split(" ");
+		String[] tmp = args.split(" ");
 
-        if (tmp.length < 2)
-        {
-            return CommandResult.BAD_SYNTAX;
-        }
+		if (tmp.length < 2)
+		{
+			return CommandResult.BAD_SYNTAX;
+		}
 		
 		String charID = tmp[tmp.length - 1];
 		StringBuilder builder = new StringBuilder();
@@ -92,11 +92,11 @@ public class SetChatterChar implements BaseCommand {
 			Console.showMessage("Unable to find officer with name " + nameSearch);
 			return CommandResult.ERROR;
 		}
-        
+		
 		ChatterDataManager.saveCharacter(selectedOfficer, charID);
 		Console.showMessage("Assigning character " + charID + " to officer " + selectedOfficer.getName().getFullName());
-        return CommandResult.SUCCESS;
-    }
+		return CommandResult.SUCCESS;
+	}
 	
 	protected int getStringIndexInList(String str, List<String> list)
 	{
