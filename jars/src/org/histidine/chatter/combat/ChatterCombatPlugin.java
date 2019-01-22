@@ -601,7 +601,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (stateData.dead) continue;
 			
 			ShipAPI ship = fm.getShipFor(member);
-			if (!ship.isAlive()) continue;
+			if (ship == null || !ship.isAlive()) continue;
 			
 			if (stateData.isPlayer && !ChatterConfig.selfChatter) // being player-piloted
 			{
@@ -653,6 +653,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (stateData.dead) continue;
 			if (stateData.isPlayer && !ChatterConfig.selfChatter) continue;
 			ShipAPI ship = fm.getShipFor(member);
+			if (ship == null) continue;
 			
 			if (!ship.isAlive() && !stateData.dead) {
 				if (!printed && !isFighter)
