@@ -10,9 +10,14 @@
 		"start":[
 			{"text":"Come with me if you want to live."},
 			{"text":"It's showtime!"},
+			{"text":"Allow me to break the ice."},
+		],
+		"start_boss":[
+			{"text":"If it bleeds we can kill it."},
 		],
 		"retreat":[
-			{"text":"Run! Run! Get to the chopper!"}
+			{"text":"Run! Run! Get to the chopper!"},
+			{"text":"No sequel for you!"},
 		],
 		"out_of_missiles":[
 			
@@ -20,16 +25,22 @@
 		"need_help":[],
 		"pursuing":[
 			{"text":"Stick around!"},
+			{"text":"I need your clothes, your boots, and your motorcycle."},
+		],
+		"engaging":[
 			{"text":"Knock, knock!"},
+			{"text":"Enough talk!"},
 		],
 		"running":[
-			
+			{"text":"One of us is in deep trouble!"},
 		],
 		"hull_90":[
 			{"text":"Let off some steam, Bennett!"},
 			{"text":"Talk to the hand!"},
+			{"text":"Just a scratch!"},
 		],
 		"hull_50":[
+			{"text":"Who is your daddy and what does he do?"},
 			{"text":"I need a vacation."},
 			{"text":"What the hell are you?!"},
 		],
@@ -37,7 +48,8 @@
 			{"text":"Do it! Do it now! I'm here! Hit me!"}
 		],
 		"overload":[
-			{"text":"That's not a tumor!"}
+			{"text":"That's not a tumor!"},
+			{"text":"I like you. That's why I'm gonna kill you last."},
 		],
 		"death":[
 			{"text":"I'm an obsolete design..."},
@@ -48,6 +60,7 @@
 			{"text":"What is best in life?"},
 			{"text":"You are terminated!"},
 			{"text":"You've just been erased!"},
+			{"text":"All right, everyone. Chill."},
 		],
 	}
 }

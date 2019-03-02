@@ -13,6 +13,7 @@
 			{"text":"Enemy presence detected."},
 			{"text":"Hostile targets entering the area."},
 			{"text":"Reading hostile indicators."},
+			{"text":"The enemy has accepted our challenge."},
 		],
 		"start_boss":[
 			{"text":"Massive enemy target detected."},
