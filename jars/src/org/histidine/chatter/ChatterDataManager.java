@@ -48,7 +48,7 @@ public class ChatterDataManager {
 	public static final List<String[]> FACTION_HULL_PREFIXES = new ArrayList<>();
 	public static final List<String[]> FACTION_SHIPNAME_PREFIXES = new ArrayList<>();
 	
-	public static final boolean DEBUG_MODE = false;
+	public static final boolean DEBUG_MODE = true;
 	
 	public static Logger log = Global.getLogger(ChatterDataManager.class);
 	
@@ -502,6 +502,10 @@ public class ChatterDataManager {
 			used.add(character);
 		}
 		return used;
+	}
+	
+	public static void resetUsedCharacters() {
+		Global.getSector().getPersistentData().remove(PERSISTENT_DATA_KEY);
 	}
 	
 	/**
