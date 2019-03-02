@@ -19,5 +19,5 @@ public class ChatterCharacter {
 	public float talkativeness = 1;
 	public Set<String> allowedFactions = new HashSet<>();
 	public final Map<MessageType, List<ChatterLine>> lines = new HashMap<>();
-
+	public boolean isDefault = false;
 }

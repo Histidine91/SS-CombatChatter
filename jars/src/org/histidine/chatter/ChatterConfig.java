@@ -18,6 +18,7 @@ public class ChatterConfig {
 	public static boolean selfChatter = false;
 	public static boolean factionSpecificCharacters = true;
 	public static float minMissileOPFractionForChatter = 0.2f;
+	public static boolean personalityChanceScaling = true;
 	public static Set<String> disallowedTags = null;
 	
 	public static Logger log = Global.getLogger(ChatterConfig.class);
@@ -30,6 +31,7 @@ public class ChatterConfig {
 			selfChatter = settings.optBoolean("selfChatter", selfChatter);
 			factionSpecificCharacters = settings.optBoolean("factionSpecificCharacters", factionSpecificCharacters);
 			minMissileOPFractionForChatter = (float)settings.optDouble("minMissileOPFractionForChatter", minMissileOPFractionForChatter);
+			personalityChanceScaling = settings.optBoolean("personalityChanceScaling", personalityChanceScaling);
 			
 			disallowedTags = new HashSet<>(GeneralUtils.JSONArrayToStringList(settings.optJSONArray("disallowedTags")));
 		} 

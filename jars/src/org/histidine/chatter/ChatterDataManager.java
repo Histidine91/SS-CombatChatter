@@ -125,6 +125,7 @@ public class ChatterDataManager {
 					character.chance = (float)characterEntry.optDouble("chance", 1);
 					character.talkativeness = (float)characterEntry.optDouble("talkativeness", 1);
 					character.categoryTags = new HashSet<>(GeneralUtils.JSONArrayToStringList(characterEntry.optJSONArray("categoryTags")));
+					character.isDefault = character.categoryTags.contains("default");
 					
 					JSONObject lines = characterEntry.getJSONObject("lines");
 					Iterator<?> keys = lines.keys();
@@ -286,12 +287,22 @@ public class ChatterDataManager {
 					&& !character.allowedFactions.contains(factionId)) 
 				continue;
 			
-			debugPrint("\tFaction allowed to use character " + character.id);
+			//debugPrint("\tFaction allowed to use character " + character.id);
 			
 			if (character.personalities.contains(captain.getPersonalityAPI().getId()))
 			{
-				picker.add(character.id, character.chance);
-				pickerBackup.add(character.id, character.chance);
+				if (!isFighter) debugPrint("\tAllowed to pick character: " + character.id);
+				float weight = character.chance;
+				if (ChatterConfig.personalityChanceScaling) {
+					int numPersonalities = character.personalities.size();
+					if (numPersonalities == 1)
+						weight *= 2f;
+					else if (numPersonalities == 2)
+						weight *= 1.2f;
+				}
+				
+				picker.add(character.id, weight);
+				pickerBackup.add(character.id, weight);
 			}
 		}
 		
@@ -299,8 +310,12 @@ public class ChatterDataManager {
 		if ( !ship.isAlly() && !isFighter && (engine.isInCampaign() || engine.isInCampaignSim()) )
 		{
 			Set<String> usedChars = getUsedCharacters();
-			for (String usedChar : usedChars)
+			for (String usedChar : usedChars) {
+				if (picker.getItems().contains(usedChar) && !isFighter)
+					debugPrint("\tRemoving used character: " + usedChar);
 				picker.remove(usedChar);
+			}
+				
 		}
 		if (picker.isEmpty()) picker = pickerBackup;
 		
