@@ -48,7 +48,7 @@ public class ChatterDataManager {
 	public static final List<String[]> FACTION_HULL_PREFIXES = new ArrayList<>();
 	public static final List<String[]> FACTION_SHIPNAME_PREFIXES = new ArrayList<>();
 	
-	public static final boolean DEBUG_MODE = true;
+	public static final boolean DEBUG_MODE = false;
 	
 	public static Logger log = Global.getLogger(ChatterDataManager.class);
 	
