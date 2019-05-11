@@ -1,0 +1,71 @@
+{
+	"name":"Lt. Conrad Gillitt",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["ja2", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Remain calm. I will be in charge here."},
+			{"text":"I suggest killing them quickly."},
+			{"text":"What great task shall I undertake now?"},
+			{"text":"Enemies are in the area."}
+		],
+		"start_boss":[
+			{"text":"What the hell is that? Is some kind of joke?"},
+		],		
+		"retreat":[
+			{"text":"Need better planning!"},
+			{"text":"This is not acceptable! The filth will die for this!"},
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"Remain calm, while I shoot you."},
+			{"text":"No rush. You will all die!"},
+			{"text":"Not an acceptable human."}
+		],
+		"need_help":[
+			{"text":"I may need help!"},
+		],
+		"pursuing":[
+			{"text":"Sighting!"},
+			{"text":"Have enemy in view."},
+			{"text":"No need to be nervous. I am in charge."}
+		],
+		"running":[
+			{"text":"If only they would use me as an example. Maybe then, this entire thing could improve."},
+			{"text":"I will take my leave now!"}
+		],
+		"hull_90":[
+			{"text":"I have no fear!"},
+			{"text":"It was nothing!"},
+			{"text":"This conversation no longer interests me. Shooting you interests me."}
+		],
+		"hull_50":[
+			{"text":"This smell can't be good for me. Or anyone."},
+			{"text":"My training is not of use!"}
+		],
+		"hull_30":[
+			{"text":"This is the kindergarten of military training!"},
+			{"text":"Drop everything! I require medical attention!"}
+		],
+		"overload":[
+			{"text":"What...? I must be given functional tools to do job!"},
+			{"text":"Need better maintenance!"},
+			{"text":"I can't see! Remain... calm..."}
+		],
+		"death":[
+			
+		],
+		"victory":[
+			{"text":"Obviously, I did not train them."},
+			{"text":"It was nothing. I teach people how to do this!"},
+			{"text":"Defeated. Of course!"},
+			{"text":"Well done! All enemies are ready for box."},
+			{"text":"Please don't ask for autograph."}
+		],
+	}
+}
