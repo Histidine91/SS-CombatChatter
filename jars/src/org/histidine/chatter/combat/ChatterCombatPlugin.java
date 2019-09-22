@@ -117,7 +117,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		PersonAPI captain = member.getCaptain();
 		if ((captain != null && !captain.isDefault()) || engine.isMission() || member.isFighterWing())
 		{
-			return ChatterDataManager.getCharacterForOfficer(captain, member, engine);
+			return ChatterDataManager.getCharacterForOfficer(captain, member, engine, true);
 		}
 		
 		String name = "default";

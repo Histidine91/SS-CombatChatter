@@ -2,10 +2,14 @@ package org.histidine.chatter;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.FactionAPI;
+import com.fs.starfarer.api.characters.FullName;
+import com.fs.starfarer.api.characters.FullName.Gender;
 import com.fs.starfarer.api.characters.OfficerDataAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.fleet.FleetMemberType;
+import com.fs.starfarer.api.impl.campaign.events.OfficerManagerEvent;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -243,8 +247,8 @@ public class ChatterDataManager {
 		return false;
 	}
 	
-	
-	public static String getCharacterForOfficer(PersonAPI captain, FleetMemberAPI ship, CombatEngineAPI engine)
+	public static String getCharacterForOfficer(PersonAPI captain, FleetMemberAPI ship, 
+			CombatEngineAPI engine, boolean save)
 	{
 		// try to load officer if available
 		String saved = getCharacterFromMemory(captain);
@@ -256,7 +260,8 @@ public class ChatterDataManager {
 		String gender = "n";
 		if (captain.isFemale()) gender = "f";
 		else if (captain.isMale()) gender = "m";
-		boolean isMission = engine.isMission();
+		boolean isMission = engine != null && engine.isMission();
+		boolean isCampaign = engine != null && (engine.isInCampaign() || engine.isInCampaignSim());
 		boolean isFighter = ship.isFighterWing();
 		
 		String factionId = captain.getFaction().getId();
@@ -265,7 +270,7 @@ public class ChatterDataManager {
 			factionId = captain.getMemoryWithoutUpdate().getString("$originalFaction");
 		}
 		
-		if (engine.isMission())
+		if (isMission)
 		{
 			factionId = getFactionIDFromShipNamePrefix(ship.getShipName());
 			if (factionId.isEmpty())
@@ -299,6 +304,10 @@ public class ChatterDataManager {
 						weight *= 2f;
 					else if (numPersonalities == 2)
 						weight *= 1.2f;
+					
+					int numGenders = character.gender.size();
+					if (numGenders == 1)
+						weight *= 1.5f;
 				}
 				
 				picker.add(character.id, weight);
@@ -307,7 +316,7 @@ public class ChatterDataManager {
 		}
 		
 		// try to not have duplicate chatter chars among our fleet's officers (unless we've run out)
-		if ( !ship.isAlly() && !isFighter && (engine.isInCampaign() || engine.isInCampaignSim()) )
+		if ( !ship.isAlly() && !isFighter && isCampaign)
 		{
 			Set<String> usedChars = getUsedCharacters();
 			for (String usedChar : usedChars) {
@@ -324,8 +333,8 @@ public class ChatterDataManager {
 		String charId = picker.pick();
 		if (charId == null) return "default";
 		
-		log.info("Assigning character " + charId + " to officer " + captain.getName().getFullName());
-		if (!isMission && !captain.isDefault() && !isFighter)
+		//log.info("Assigning character " + charId + " to officer " + captain.getName().getFullName());
+		if (save && !isMission && !captain.isDefault() && !isFighter)
 			saveCharacter(captain, charId);
 		return charId;
 	}
@@ -530,5 +539,30 @@ public class ChatterDataManager {
 		else
 			officers = (HashMap<String, String>)loadedData;
 		officers.put(person.getId(), character);
+	}
+	
+	// runcode org.histidine.chatter.ChatterDataManager.debug("aggressive")
+	public static void debug(String personality) {
+		FleetMemberAPI member = Global.getFactory().createFleetMember(FleetMemberType.SHIP, "paragon_Elite");
+		PersonAPI officerM = OfficerManagerEvent.createOfficer(Global.getSector().getPlayerFaction(), 5, false);
+		PersonAPI officerF = OfficerManagerEvent.createOfficer(Global.getSector().getPlayerFaction(), 5, false);
+		officerM.setGender(Gender.MALE);
+		officerF.setGender(Gender.FEMALE);
+		officerM.setPersonality(personality);
+		officerF.setPersonality(personality);
+		
+		log.info("Trying characters for male-gendered officer:");
+		for (int i=0;i<50;i++) 
+		{
+			String character = ChatterDataManager.getCharacterForOfficer(officerM, member, null, false);
+			log.info("  " + character);
+		}
+		
+		log.info("Trying characters for female-gendered officer:");
+		for (int i=0;i<50;i++) 
+		{
+			String character = ChatterDataManager.getCharacterForOfficer(officerF, member, null, false);
+			log.info("  " + character);
+		}
 	}
 }
