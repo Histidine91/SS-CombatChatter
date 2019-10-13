@@ -95,3 +95,15 @@ Petroglyph Games (compiled by [REDACTED] Element)
 
 FromSoftware (compiled by [REDACTED] Element)
 * acvd_bluemagnolia
+
+FNV collection (compiled by AzyWng)
+* mikeburnfire's LP:
+  * fnv_mike
+  * fnv_zach
+* base game by Obsidian Entertainment:
+  * fnv_boone
+  * fnv_roseofsharoncassidy
+* Interesting NPCs mod: 
+  * fnv_vincentvincent
+  * fnv_hopelies
+  * fnv_velius

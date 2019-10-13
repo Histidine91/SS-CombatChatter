@@ -1,0 +1,140 @@
+{
+	"name":"Rose of Sharon Cassidy",
+	"personalities":["cautious","steady", "aggressive"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "falloutnewvegas", "game"],
+	
+	"lines":{
+		"start":[
+			{"text":"Let's roll out, then."},
+			{"text":"Now we're talking."},
+			{"text":"Time to make some new friends."},
+			{"text":"Anything moves, it's going to get it."},
+			{"text":"Let's focus on the bad guys."},
+			{"text":"Music to my ears."},
+			{"text":"Got 'em spotted."},
+			{"text":"Guess who won the lottery."},
+			{"text":"Let's start this dance."},
+			{"text":"They looking for trouble?"},
+			#{"text":"Don't need this right now."},
+			{"text":"Let's kick this in gear."},
+			{"text":"Looks like a party."},
+			{"text":"Well now, what's all this."},
+			{"text":"Hope these shitheads know what they're in for."},
+			{"text":"Someone's looking to cash their chips early."},
+			{"text":"Looks like someone wants to be neighborly."},
+			{"text":"*Gulp* All right, now for some ass-kicking."}
+		],
+		"start_boss":[
+			{"text":"Sure hope you know what you're doing."},
+			{"text":"What the hell is this shit?"},
+			{"text":"And then the fight started."},
+			{"text":"Guess there's no turning back now."},
+			{"text":"Make sure you have a backup weapon, that thing won't go down easy."},
+			{"text":"Gonna be a bad day for somebody."}
+		],		
+		"retreat":[
+			{"text":"Not looking to die here."},
+			{"text":"Me and courage are out of here."},
+			{"text":"They want me, they'll have to catch me."},
+			{"text":"Why the hell do I follow you into things like this?"},
+			{"text":"Blood's running, and I'm going to follow."}
+		],
+		"out_of_missiles":[
+			{"text":"Reloading! Wait, no, I'm out!"},
+			{"text":"No more missiles."},
+			{"text":"I'm out."},
+			{"text":"Firing dry here."},
+			{"text":"Trigger's willing, chamber's empty."}
+		],
+		"engaged":[
+			{"text":"Let's see what you got."},
+			{"text":"Kindly go fuck yourself."},
+			{"text":"Time for some get-even."},
+			{"text":"Let's paint this place red."},
+			{"text":"I'll put a nail in your head."},
+			{"text":"Gonna fix your wagon."},
+			{"text":"Gonna six this bitch."},
+			{"text":"That does it."},
+			{"text":"You're just in time for your ass-whipping."},
+			{"text":"Serving up some hurt."},
+			{"text":"I'm going to knock you off your axles."},
+			{"text":"I'm going to put you down."},
+			{"text":"Go to hell."}
+		],
+		"need_help":[
+		],
+		"pursuing":[
+			{"text":"Could use a little target practice."},
+			{"text":"Line the bottles up, I'm ready."},
+			{"text":"Gonna kill you for wasting my time."},
+			{"text":"Should've run, now say your prayers."},
+			{"text":"So what, we chase those little cocksuckers down or what?"},
+			{"text":"Yeah, better run. Uh, them, not us."}
+		],
+		"running":[
+			{"text":"Scatter!"},
+			{"text":"Trouble!"}
+		],
+		"hull_90":[
+			{"text":"Feeling a little worse for wear."},
+			{"text":"Fat's in the fire now, you little bitch."},
+			{"text":"That's how you wanna play, huh?"},
+			{"text":"Piece. Of. Shit."},
+			{"text":"Got me good and pissed."}
+		],
+		"hull_50":[
+			{"text":"Not firing on all pistons here!"},
+			{"text":"They're cutting me up!"},
+			{"text":"A toolbox and some whiskey, if you don't mind."}
+		],
+		"hull_30":[
+			{"text":"Too stupid to die... but getting there."},
+			{"text":"On my last legs here."},
+			{"text":"Ain't beat yet."},
+			{"text":"If I'm going to die, at least pass me some whiskey."}
+		],
+		"overload":[
+			{"text":"Oh god, I think I'm going to be sick..."}
+		],
+		"death":[
+			{"text":"I... you got me beat."},
+			{"text":"Don't let them bury me in -"}
+		],
+		"victory":[
+			{"text":"Let's hit the road."},
+			{"text":"You know, you put up a good fight. I'm impressed."},
+			{"text":"Feel more alive than I ever have."},
+			{"text":"Payback's a bitch."},
+			{"text":"Not many people in my company could have done what you did."},
+			{"text":"Could have handled that better."},
+			{"text":"What I would have done."},
+			{"text":"You handled that well."},
+			{"text":"Glad that's over."},
+			{"text":"Pass the bottle."},
+			{"text":"That was fucked up."},
+			{"text":"Good job."},
+			{"text":"Color me impressed."},
+			{"text":"Proud of you."},
+			{"text":"Gone to their reward."},
+			{"text":"That's all she wrote."},
+			{"text":"Sure put a nail in that one."},
+			{"text":"Their trouble's all gone."},
+			{"text":"Well, that's all wrapped up."},
+			{"text":"Words aren't enough, but - thanks."},
+			{"text":"Sure could use a drink."},
+			{"text":"Well, that's settled."},
+			{"text":"Makes me wonder how much more I can settle with guns."},
+			{"text":"Killing never felt so good, could almost hear the dead behind me guiding my hand."},
+			{"text":"Drinks on me."},
+			#{"text":"All right, let's get this fleet rolling."},
+			{"text":"Hope they're in hell right now, blinking, trying to figure out where they fucked up."},
+			#{"text":"Route's not getting any shorter."},
+			{"text":"Glad we iced those little fuckers."},
+			{"text":"Let's see what we can find. Might be something in the wreckage."},
+			{"text":"You don't fuck with the one who brings you your mail."}
+		]
+	}
+}

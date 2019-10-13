@@ -1,0 +1,52 @@
+{
+	"name":"Velius",
+	"personalities":["cautious","steady", "aggressive"],
+	"gender":["m", "f", "n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["falloutnewvegas", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Let us proceed."},
+			{"text":"Let all be vanquished under our might."},
+			{"text":"Divide et imperia."},
+			{"text":"In hoc signo taurus vinces."},
+			{"text":"Our enemies await."}
+		],
+		"start_boss":[
+		],
+		"retreat":[
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"Death to our enemies!"},
+			{"text":"Die, profligate!"},
+			{"text":"For honor!"}
+		],
+		"need_help":[
+		],
+		"pursuing":[
+			{"text":"You won't escape!"}
+		],
+		"running":[
+		],
+		"hull_90":[
+		],
+		"hull_50":[
+		],
+		"hull_30":[
+		],
+		"overload":[
+		],
+		"death":[
+		],
+		"victory":[
+			{"text":"Our victory here will send a message to certain people. The question is how they will respond."},
+			{"text":"Let us take what we must."},
+			{"text":"The enemy has been defeated!"},
+			{"text":"We showed them!"}
+		]
+	}
+}

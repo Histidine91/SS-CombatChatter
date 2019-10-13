@@ -1,0 +1,82 @@
+{
+	"name":"Hope Lies",
+	"personalities":["steady", "aggressive", "cautious"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["falloutnewvegas", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Protect us, Lord, and keep us safe."},
+			{"text":"I'm right behind ya."},
+			{"text":"You're the sheriff, and I'm the deputy."},
+			{"text":"Keep your peepers peeled."},
+			{"text":"I got your back!"},
+			{"text":"What's the plan?"},
+			{"text":"These folks are madder than a wet hen. I say we dry 'em off."},
+			{"text":"These folks are fit to be tied. Best be careful."},
+			{"text":"Come on, let's send these boys packing!"},
+			{"text":"Guess it's time to sort out the saints and the sinners!"},
+			{"text":"Get ready for a fight!"},
+			{"text":"Hostiles! Twelve o'clock!"},
+			{"text":"Pa always said to kill 'em with kindness. Ma, though, she preferred bullets."}
+		],
+		"start_boss":[
+			{"text":"Best we don't get too big for our britches."},
+			{"text":"Whatever you're fixin' to do, I'm with you."},
+			{"text":"Hope and faith will see you through."},
+			{"text":"That thing looks dangerous... But I got faith in the Lord he'll see us through."}
+		],	
+		"retreat":[
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"You're gonna need a stimpak for that!"},
+			{"text":"You ain't gonna win this!"},
+			{"text":"Like fish in a barrel!"},
+			{"text":"Hot damn!"},
+			{"text":"You're gonna fall down flatter than a cat on the road!"}
+		],
+		"need_help":[
+			{"text":"It's raining megatons out here. And here I am without an umbrella."}
+		],
+		"pursuing":[
+			{"text":"I got this one!"},
+			{"text":"I got you covered!"},
+			{"text":"I'll shoot, you flank 'em!"}
+		],
+		"running":[
+		],
+		"hull_90":[
+			{"text":"Ain't nothing Jesus can't fix!"},
+			{"text":"You're gonna need a bigger gun, pal!"}
+		],
+		"hull_50":[
+		],
+		"hull_30":[
+		],
+		"overload":[
+		],
+		"death":[
+		],
+		"victory":[
+			{"text":"So were dinosaurs a pre-war thing or a pre-pre-war thing?"},
+			{"text":"Phew! That was a close one."},
+			{"text":"Huh, these fools couldn't fight their way out of a wet paper bag."},
+			{"text":"That was a tough one. I'm sweating like a fiend in church."},
+			{"text":"I never liked this part. Looting wreckage just don't seem right. Then again, it ain't like we're killing saints."},
+			{"text":"You certainly saw them coming. You're keener than a three-eyed cat staring at a mousehole."},
+			{"text":"Ain't much to that fight. They were more scared than a puppy pooping peach seeds if you ask me."},
+			{"text":"Phew, we sure get in a lot of messes. Well, if you're gonna be stupid, you gotta be tough."},
+			{"text":"That was an easy fight. Like hunting elephants on ice skates."},
+			{"text":"You all right? That fight was busier than a one-legged man in a butt-kicking contest."},
+			{"text":"Dip 'em in bullets and roll 'em in the dirt!"},
+			{"text":"Good fightin'. You barely got a scratch on ya."},
+			{"text":"There ain't much in this world louder than silence."},
+			{"text":"That's a one-way ticket to the frying pan for these folks."},
+			{"text":"We take 'em down and let God sort 'em out."}
+		]
+	}
+}

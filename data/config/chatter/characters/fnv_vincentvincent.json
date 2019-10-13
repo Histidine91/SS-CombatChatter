@@ -1,0 +1,76 @@
+{
+	"name":"Vincent Vincent",
+	"personalities":["aggressive", "cautious", "steady"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["falloutnewvegas", "game", "othermedia", "profanity"],
+
+	"lines":{
+		"start":[
+			{"text":"Ah shit here we go!"},
+			{"text":"Right behind you."},
+			{"text":"Just watch out for friendly fire. If my toilet is any indication, I don't have the best aim."},
+			{"text":"Fuck yeah! Kill those sons of bitches!"}
+		],
+		"start_boss":[
+			{"text":"We're the 'fuck you' the world forgot."},
+			{"text":"Shit's getting hairier than a gorilla in a bear suit. Let's do our best not to rattle the cages."},
+			{"text":"Remember to keep a clear head, a steady hand, and a flaccid penis."}
+		],
+		"retreat":[
+		],
+		"out_of_missiles":[
+			{"text":"Shit, I'm running low on missiles. If you gave me a dollar for every one I got, I'd have twenty-five cents."}
+		],
+		"engaged":[
+			{"text":"Bleed, motherfucker, bleed!"},
+			{"text":"You want some of this? Huh?"},
+			{"text":"Hyagh! Hahahaha!"},
+			{"text":"Oh yeah, come to papa, you ugly little cunt!"},
+			{"text":"I've got some bullets here with your name on 'em! And they're gonna write my name in your chest!"},
+			{"text":"Ha! You're gonna need a stimpak for that wound!"},
+			{"text":"Come on motherfucker get some!"},
+			{"text":"Eat lead you ugly son of a bitch!"},
+			{"text":"I don't want to set the woooooorld on fire! I just want to start a flame in your heart!"},
+			{"text":"Lick my tube steak you piece of shit!"}
+		],
+		"need_help":[
+		],
+		"pursuing":[
+			{"text":"No problemo. Flank 'em and shank 'em."}
+		],
+		"running":[
+		],
+		"hull_90":[
+			{"text":"I think my balls just went on strike."}
+		],
+		"hull_50":[
+			{"text":"Agh! Fucking die! Jesus!"},
+			{"text":"That odd-shaped pipe's probably nothing... but if it is something, let the record show that I'm a terrible fucking mechanic."}
+		],
+		"hull_30":[
+			{"text":"I'm hit! Fuck!"},
+			{"text":"Holy shit that fucking hurts!"},
+			{"text":"Agh! You wouldn't shoot a man with glasses, would you?!?"}
+		],
+		"overload":[
+			{"text":"Oh, this? This happens. It's called the Vincent effect. Named after the famous scientist, what's his name, Jean-Bapt-Penis or something."},
+			{"text":"Holy fucking shit. This is what they call a 'white knuckle' moment. Well, I don't know if my knuckles are white but I know my undies ain't."}
+		],
+		"death":[
+		],
+		"victory":[
+			{"text":"Looks like we hit 'em where it hurts. Right in the dick."},
+			{"text":"Looks like that's the last of 'em."},
+			{"text":"Is it wrong to hurt people? I really don't give a fuck."},
+			{"text":"The rape train has no brakes."},
+			{"text":"Like bakin' biscuits."},
+			{"text":"Fighting with you really gets the blood pumping. Been a long time since my heart felt anything besides chems and cholesterol."},
+			{"text":"Just another day in the sector."},
+			{"text":"Fish in a... whatya call it... barrel."},
+			{"text":"That fight went as smooth as apple butter."},
+			{"text":"That, my friend, is how you bring the pain."}
+		]
+	}
+}

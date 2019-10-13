@@ -1,0 +1,104 @@
+{
+	"name":"Craig Boone",
+	"personalities":["reckless", "aggressive", "steady"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["falloutnewvegas", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Contact!"},
+			{"text":"Got a group coming our way."},
+			{"text":"Company!"},
+			{"text":"We could do a lot of damage."},
+			{"text":"I've got your back."},
+			{"text":"I'll follow your lead."},
+			{"text":"We're not alone."},
+			{"text":"I'm ready when you are."}
+		],
+		"start_boss":[
+			#{"text":"Stay sharp."},
+			{"text":"This isn't gonna end well."},
+			{"text":"I want to be a part of this."},
+			#{"text":"Not my strong suit, but okay."},
+			{"text":"I think this is exactly what I've been waiting for."},
+			#{"text":"Right with you."},
+			{"text":"I hope this isn't a mistake."},
+			#{"text":"I'm glad you're here."}
+		],
+		"retreat":[
+			{"text":"Let's get out of this first."},
+			{"text":"Gotta pull back!"},
+			{"text":"Let's get out of here."},
+			{"text":"I'm going to stay. See if I can hold them off."},
+			{"text":"Fall back!"},
+			{"text":"Let's go."}
+		],
+		"out_of_missiles":[
+			{"text":"That's the last of the missiles."},
+			{"text":"Empty."}
+		],
+		"engaged":[
+			{"text":"Got you in my sights."},
+			{"text":"I'm taking the shot."},
+			{"text":"Eat this."},
+			{"text":"You're gonna get what's coming to you."},
+			{"text":"You're mine."},
+			
+		],
+		"need_help":[
+		],
+		"pursuing":[
+			{"text":"Can't run from me."},
+			{"text":"Heads up!"},
+			{"text":"Spotted!"}
+		],
+		"running":[
+			{"text":"Get the hell away!"},
+			{"text":"Hey, look out!"},
+		],
+		"hull_90":[
+			{"text":"I don't know who you think you're kidding."},
+			{"text":"You're asking for it."}
+		],
+		"hull_50":[
+			{"text":"Dammit!"},
+			{"text":"Ah, hell."},
+		],
+		"hull_30":[
+			{"text":"Maybe it's my time."}
+		],
+		"overload":[
+		],
+		"death":[
+			{"text":"Heh... I knew you'd be the death of me."},
+			{"text":"So this is how it ends."},
+			{"text":"We all gotta go sometime."}
+		],
+		"victory":[
+			{"text":"All clear."},
+			{"text":"All right, it's over."},
+			{"text":"All this was only ever going to play out one way."},
+			{"text":"Good working with you."},
+			{"text":"Guess we made it."},
+			{"text":"Ha! If only it was this easy all the time."},
+			{"text":"Huh. We made it through after all. Not sure what to make of that."},
+			{"text":"I guess I shouldn't be surprised."},
+			{"text":"I think our dealings are done here."},
+			{"text":"I think we're clear."},
+			{"text":"It's a hell of a thing having someone with your ability looking out for me."},
+			{"text":"Ought to give the rest of them something to think about."},
+			{"text":"That was some kind of stunt we pulled."},
+			{"text":"That's what I do best."},
+			{"text":"The last thing you never see."},
+			{"text":"There was no choice in what I did."},
+			{"text":"There's no controlling war. No sense regretting what you can't stop."},
+			{"text":"They got what they had coming. Glad we were the ones to deliver it."},
+			{"text":"Thumbs down, you son of a bitch."},
+			{"text":"We got those bastards plenty good today."},
+			{"text":"We won."},
+			{"text":"Wish there were more of them. I wasn't done yet."},
+		]
+	}
+}

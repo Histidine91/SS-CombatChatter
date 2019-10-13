@@ -1,0 +1,127 @@
+{
+	"name":"Mike",
+	"personalities":["steady", "aggressive", "cautious"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["falloutnewvegas", "game", "letsplay", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Hey, I bet I can kill more than you."},
+			{"text":"I'll give you the first shot."},
+			{"text":"We shouldn't pick fights with the locals. Just let the locals pick fights with us."},	
+			{"text":"We can always claim they went crazy and attacked us."},
+			{"text":"Don't worry, I'll do all the work."},
+			{"text":"This time, let's try not to die."},
+			{"text":"Where did these guys come from?"},
+			{"text":"Oh, what's going on now?"},
+			{"text":"I will defer to your judgment on this."},
+			{"text":"I'm ready, I'm game."},
+			{"text":"Shouldn't be a problem."},
+			{"text":"Didn't expect these guys to show up."},
+			{"text":"Why don't we just take care of this issue?"},
+			{"text":"Looks like we have to take 'em out."},
+			{"text":"Let's share things with them. Things like missiles."},
+			{"text":"We're only hostile to people who are openly hostile to us."},
+			{"text":"Alright, we got your back this time."},
+			{"text":"Hold on, hold on, we have problems."},
+			{"text":"Are you thinking what I'm thinking?"},
+		],
+		"start_boss":[
+			{"text":"This is, uh, not normally the kind of thing that we fight, but..."},
+			{"text":"Let's be careful, that thing looks scary!"},
+			{"text":"What in the heck am I looking at here?"},
+		],		
+		"retreat":[
+			{"text":"Okay, let's run!"},
+			{"text":"Run, Forrest, run!"},
+			{"text":"Let's get out of here!"}
+		],
+		"out_of_missiles":[
+			{"text":"Sure, let's just expend all of our missiles..."},
+			{"text":"Good news! We're all out of missiles!"},
+		],
+		"engaged":[
+			{"text":"You're not very good at butchering people, are ya?"},
+			{"text":"Go after him, not me."},
+			{"text":"Sharing is caring!"},
+			{"text":"Don't worry, I'll take this one out."},
+			{"text":"Take that, you easy-to-kill weakling!"},
+			{"text":"Cogelo!"},
+			{"text":"Tear 'em apart!"},
+			{"text":"Why don't you come on?"},
+			{"text":"I have an idea, hold on."},
+			{"text":"You give 'em a vicious tongue-lashing. That'll teach 'em."},
+			{"text":"Oh, please die."},
+			{"text":"Can you feel this?"},
+			{"text":"Hold on, I have the perfect solution to this problem..."},
+			{"text":"Die die die!"},
+			{"text":"Sic semper robotus!"},
+			{"text":"At least you won't go quietly. You'll probably go crying and screaming."},
+			{"text":"Maybe you're just dead."},
+			{"text":"Here I am! Rock you like a hurricane!"},
+			{"text":"You are ten pounds of ugly in a two pound sack."}
+		],
+		"need_help":[
+			{"text":"I could use some help over here!"},
+			{"text":"Help!"},
+			{"text":"Stop it! Stop laughing and kill them!"},
+			{"text":"You know what would be wonderful? If you stopped playing with these guys and helped me."},
+		],
+		"pursuing":[
+			{"text":"Are you thinking what I'm thinking?"},
+			{"text":"Shouldn't be a problem."},
+			{"text":"While we can see 'em, let's just finish 'em off."},
+			{"text":"Hey, I bet I can kill more than you."},
+			{"text":"I'll give you the first shot."},
+		],
+		"running":[
+			{"text":"I'm sorry, I apologize, it's your problem now!"},
+			{"text":"Oh god, incoming!"},
+			{"text":"Yeah, uh, I think I'll just leave this one to you."}
+		],
+		"hull_90":[
+			{"text":"The only thing that's hurt is my pride."},
+			{"text":"Normally I have to pay to get treated like this."},
+			{"text":"I'm fine, don't worry about me!"},
+		],
+		"hull_50":[
+			{"text":"O-okay, we're starting to take some hits..."},
+			{"text":"I am at half hull. This is not good."},
+			{"text":"Augh! Fuck you!"},
+		],
+		"hull_30":[
+			{"text":"I'm gonna need repairs after this, that's for sure!"},
+			{"text":"We-we're reporting a lot of damage right now, but I'm sure we'll be fine!"},
+			{"text":"Oh, that - that's not great."}
+		],
+		"overload":[
+			{"text":"I didn't know that would happen!"},
+			{"text":"I'm sorry! I'm not good with computers like you are!"}
+		],
+		"death":[
+			{"text":"This is ending poorly!"},
+			{"text":"I can't believe something like this would happen."},
+			{"text":"I am down, yes..."},
+			{"text":"Everything's on fire! Everything is terrible!"}
+		],
+		"victory":[
+			{"text":"You see that shot?"},
+			{"text":"I think that was all the enemies, I'm sure there won't be any more..."},
+			{"text":"Don't think about it. Let's just go."},
+			{"text":"We didn't even have the opportunity to slaughter everybody."},
+			{"text":"Praise be to Lord Death!"},
+			{"text":"I guess as long as you're having fun..."},
+			{"text":"All glory to you, Lord Death!"},
+			{"text":"Make sure he's super-dead."},
+			{"text":"Well, there are a lot of corpses."},
+			{"text":"The reason I hang out with you is because you make life a little more interesting."},
+			{"text":"I'm sure that was the last we'll ever hear of them."},
+			{"text":"Yeah, that's down for the count."},
+			{"text":"Should we go back in time and try that again?"},
+			{"text":"We're done here. We came, we saw, we shot a bunch of people..."},
+			{"text":"Why do we have to kill everybody?"},
+		],
+	}
+}

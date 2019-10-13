@@ -1,0 +1,166 @@
+{
+	"name":"randomness_default",
+	"personalities":[],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			{"text":"It begins..."},	# normal
+			{"text":"Gunnery control, scan for targets."},	# pro
+			{"text":"Win the battle, win the war."},	# normal
+			{"text":"What could possibly go wrong?"},	# aggr
+			{"text":"Set reactor output to combat levels."},	# pro
+			{"text":"All hands to battle stations!"},	# normal
+			{"text":"Let's play this by the numbers."},	# pro
+			{"text":"Let us get down to business."},	# aggr
+			{"text":"Charging weapon systems."},	# normal
+			{"text":"Kill or be killed."},	# aggr
+		],
+		"retreat":[
+			{"text":"They told me this ship is fast!"},	# aggr
+			{"text":"Discretion is the better part of valor."},	# pro
+			{"text":"Roger that, let's get out of here."},	# normal
+			{"text":"Live to fight another day."},	# pro
+			{"text":"Today is not my day to be one with the void."},	# pro
+			{"text":"Count me out, I don't get paid enough for this!"},	# normal
+			{"text":"Retreat to the rally point."},	# pro
+			{"text":"Full burn away from here, I want those engines melting!"},	# normal
+			{"text":"I'm out of here, Godspeed to the rest of you."},	# normal
+			{"text":"Let's get the hell out of here!"},	# aggr
+		],
+		"out_of_missiles":[
+			{"text":"What do you mean my missiles are depleted?"},	# aggr
+			{"text":"Ordnance is dry!"},	# normal
+			{"text":"Missile racks are out of ordnance."},	# pro
+			{"text":"Our missiles are depleted, none remain on-board."},	# normal
+			{"text":"Fire everything! Ah shit, we fired all our missiles already?"},	# aggr
+			{"text":"We have used all of our expendable ordnance."},	# pro
+			{"text":"Out of missiles."},	# pro
+			{"text":"I really could use some boomers right about now..."},	# aggr
+			{"text":"Missile racks are empty."},	# pro
+			{"text":"Well, just fired the last of my missiles."},	# normal
+		],
+		"engaged":[
+			{"text":"It's raining megatons over here!"},	# normal
+			{"text":"This fire is thick."},	# pro
+			{"text":"This is a target rich environment."},	# aggr
+			{"text":"We are under heavy fire!"},	# normal
+			{"text":"Attempting to attain BFM advantage."},	# pro
+			{"text":"Encountering heavy resistance."},	# pro
+			{"text":"This party has only just started!"},	# aggr
+			{"text":"Engaging in close quarters combat."},	# aggr
+			{"text":"Pressing the advantage."},	# normal
+			{"text":"It is time to conclude this battle."},	# pro
+		],
+		"need_help":[
+			{"text":"This isn't good, requesting backup."},	# pro
+			{"text":"Cycle long free drinks to whoever saves my hide!"},	# aggr
+			{"text":"Stumbled into a kill box over here, please assist!"},	# normal
+			{"text":"Up shit creek without a paddle, please help me!"},	# normal
+			{"text":"Not going to last much longer, can I get some backup?"},	# normal
+			{"text":"I need help over here like yesterday!"},	# aggr
+			{"text":"This is going to hell in a handbasket!"},	# aggr
+			{"text":"I don't think I am going to make it without reinforcements."},	# pro
+			{"text":"Mission outcome is looking... Not good."},	# pro
+			{"text":"I need a squad over here ASAP!"},	# normal
+		],
+		"pursuing":[
+			{"text":"Gunnery control, open fire!"},	# normal
+			{"text":"Fire, FIRE! Don't let them through!"},	# normal
+			{"text":"Firing for effect."},	# pro
+			{"text":"Helm, initiate flank speed."},	# pro
+			{"text":"Light em up!"},	# aggr
+			{"text":"Leave no survivors, I want that ship a smoldering wreck!"},	# aggr
+			{"text":"Bracket and fire for effect."},	# pro
+			{"text":"Kill them! Kill them until they are dead!"},	# aggr
+			{"text":"Shoot to kill."},	# pro
+			{"text":"Closing in on my target."},	# normal
+		],
+		"running":[
+			{"text":"Initiating tactical retreat."},	# pro
+			{"text":"Incoming! Evade, evade!"},	# aggr
+			{"text":"We need to back off a little bit."},	# normal
+			{"text":"Helm, break off so we can dissipate flux safely."}, # normal
+			{"text":"Too hot for comfort over here!"},	# aggr
+			{"text":"Helm, pull back to safety."},	# normal
+			{"text":"We have overextended."},	# pro
+			{"text":"God dammit, we are in over our heads!"},	# aggr
+			{"text":"Pulling back, we should reform our battle lines."},	# pro
+			{"text":"This position is untenable."},	# pro
+		],
+		"hull_90":[
+			{"text":"Hull is taking fire."},	# normal
+			{"text":"Son of a bitch, just painted this thing last week."},	# aggr
+			{"text":"We have sustained light damage."},	# pro
+			{"text":"Tis but a scratch."},	# aggr
+			{"text":"Ah! There goes my drink, what a waste."},	# aggr
+			{"text":"Prepare a damage control team, the battle has only just begun."},	# pro
+			{"text":"Taking hits, but are OK for now."},	# normal
+			{"text":"My ship is taking damage, but I will return the favor tenfold!"},	# aggr
+			{"text":"Armor plating has been breached, but internal compartments are still holding."},	# pro
+			{"text":"My ship is taking damage but so far it remains non-critical."},	# normal
+		],
+		"hull_50":[
+			{"text":"Shit, taking heavy damage!"},	# aggr
+			{"text":"Leaking atmosphere over here!"},	# normal
+			{"text":"That last hit just took out the canteen, looks like it's take out."},	# aggr
+			{"text":"That was a nuke! Or worse..."},	# normal
+			{"text":"Engineering is reporting hull breaches!"},	# pro
+			{"text":"Is that one of my crew I can see outside the aft window?"},	# aggr
+			{"text":"Fix that reactor coolant leak!"},	# pro
+			{"text":"I'm hit! I'm hit!"},	# normal
+			{"text":"Bulkheads are rupturing!"},	# pro
+			{"text":"Damage is reaching internal compartments!"},	# normal
+		],
+		"hull_30":[
+			{"text":"This rustbucket is coming apart at the seams!"},	# normal
+			{"text":"I'm not ready to die yet!"},	# aggr
+			{"text":"Port side magazine is cooking off!"},	# normal
+			{"text":"Come on baby, don't break apart on me yet!"},	# normal
+			{"text":"Half the bridge crew just got spaced!"},	# normal
+			{"text":"All hands, prepare to abandon ship!"},	# pro
+			{"text":"The reactor's coolant pressure is dropping!"},	# pro
+			{"text":"Bulkheads are buckling, I am not going to last much longer!"},	# pro
+			{"text":"This is it folks, now or never!"},	# aggr
+			{"text":"I shall find honor in death, just hopefully not today!"},	# aggr
+		],
+		"overload":[
+			{"text":"Flux systems have redlined!"},	# normal
+			{"text":"The reactor can't take this!"},	# normal
+			{"text":"Who set off sparklers on my bridge!?"},	# aggr
+			{"text":"My ship's flux just tipped into the red!"},	# aggr
+			{"text":"The flux capacitors are bleeding out!"},	# aggr
+			{"text":"Systems have overloaded!"},	# pro
+			{"text":"The power grid can't cope!"},	# pro
+			{"text":"They are going to blow out the reactor at this rate!"},	# normal
+			{"text":"Flux capacitors have overloaded!"},	# pro
+			{"text":"Electrical systems are fried!"},	# normal
+		],
+		"death":[
+			{"text":"Fuck everythi-"},	# aggr
+			{"text":"I die so you may live."},	# pro
+			{"text":"FUCK ME!"},	# aggr
+			{"text":"An honorable death."},	# pro
+			{"text":"My ship has a reactor brea-"},	# normal
+			{"text":"Get to the esca-"},	# normal
+			{"text":"The ship is volatile, get away from us!"},	# pro
+			{"text":"Not like this!"},	# aggr
+			{"text":"Tell my wife and kids I love them."},	# normal
+			{"text":"I didn't think I would die like this..."},	# normal
+		],
+		"victory":[
+			{"text":"Heh, look at them scatter like roaches."},	# aggr
+			{"text":"Glorious victory, let us drink to commemorate!"},	# normal
+			{"text":"Like shooting Volturnian lobster in a barrel."},	# aggr
+			{"text":"We taught them the meaning of ship superiority."},	# pro
+			{"text":"Peace through superior firepower."},	# pro
+			{"text":"Just be glad that it is over with."},	# normal
+			{"text":"Seems like it wasn't my time yet."},	# normal
+			{"text":"That was damn fine shooting boys."},	# pro
+			{"text":"Haha, tell your friends, this show has only just started!"},	# aggr
+			{"text":"The battle is won, let us not forget the dead."},	# pro
+		],
+	}
+}
