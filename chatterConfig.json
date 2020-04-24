@@ -4,6 +4,7 @@
 	"selfChatter":false,	# if true, player flagship will have chatter as well
 	"factionSpecificCharacters": false,	# not all faction's officers will have all characters
 	"personalityChanceScaling": true,	# make characters with only 1-2 allowed personalities have higher chance to be picked
+	"genderChanceScaling": 1.5,	# make gender-specific characters more likely to be picked
 	
 	# at least this proportion of the ship's weapon OPs should be in missiles, else it won't print "out of missiles" messages
 	"minMissileOPFractionForChatter": 0.2,

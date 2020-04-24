@@ -304,10 +304,9 @@ public class ChatterDataManager {
 						weight *= 2f;
 					else if (numPersonalities == 2)
 						weight *= 1.2f;
-					
-					int numGenders = character.gender.size();
-					if (numGenders == 1)
-						weight *= 1.5f;
+				}
+				if (character.gender.size() == 1) {
+					weight *= ChatterConfig.genderChanceScaling;
 				}
 				
 				picker.add(character.id, weight);
