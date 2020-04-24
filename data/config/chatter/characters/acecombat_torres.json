@@ -1,0 +1,79 @@
+{
+	"name":"Matias Torres",
+	"personalities":["aggressive", "reckless"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1.25,
+	"categoryTags":["othermedia", "game", "acecombat"],
+	
+	"lines":{
+		"start":[
+			{"text":"I've got a ton of things I want to tell the people I'm going to kill!"},
+			{"text":"It's a ritual. A ritual to end the lives of men."},
+			{"text":"It'll make a fine sideshow for our scheme to kill a million people."},
+			{"text":"Imagine you're just about to be killed. Why am I going to be killed, you ask?"},
+			{"text":"Gunnery is about killing the people on board. And it will be done with reason from beginning to end."},
+			{"text":"We seek not a conflict, but rather a restoration of balance. A judgement."},
+		],
+		"start_boss":[
+			{"text":"It's a requiem."},
+			{"text":"It's salvation on a far grander scale."},
+			{"text":"Don't you see? A million lives are about to be snuffed out in senseless cruelty."},
+			{"text":"We must save those souls that died chained to the prison of ethics!"},
+		],
+		"retreat":[
+			{"text":"He walked all over it with his dirty boots! Over the crisp, white sheets of my bed that I had just made!"},
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"Commence firing!"},
+			{"text":"Fire away!"},
+			{"text":"Let me tell you a story. Back when I was a gunnery officer..."},
+			{"text":"Prepare for naval gunfire!"},
+		],
+		"need_help":[
+			{"text":"Your lives carry weight! It gives you the right to take the lives of others!"},
+			{"text":"We'll have to kill them all if we are to live!"},
+		],
+		"pursuing":[
+			{"text":"That'll be another few hundred lives taken."},
+			{"text":"He lacks the drive."},
+			{"text":"Full speed ahead."},
+		],
+		"running":[
+			{"text":"It seems we're not done yet."},
+			{"text":"Go die! You have permission to take off!"},
+		],
+		"hull_90":[
+			{"text":"That's it! Keep firing! Crush their lives under the weight of your lead!"},
+			{"text":"I will not allow our perserverance to be desecrated!"},
+			{"text":"Yes! Do you see the lives being lost?"},
+		],
+		"hull_50":[
+			{"text":"If you wish to live, then you must let go of your life!"},
+			{"text":"Be not afraid! Did you not leave your fears behind at the bottom of the abyss?"},		
+		],
+		"hull_30":[
+			{"text":"Because they wanted to steal from you, to torment you, to burn you, to cut you apart!"},
+			{"text":"Imagine! It was for your sins, your actions and your vengeance! There has to be a reason!"},
+		],
+		"overload":[
+			{"text":"The souls of the dead are coming together like the pieces of a puzzle!"},
+			{"text":"What do you know of beauty?"},
+			#{"text":"That is what makes it elegant!"},
+		],
+		"death":[
+			#{"text":"Deliverance!"},
+			{"text":"Salvation!"},
+			{"text":"Don't you see? One million! One million lives!"},
+		],
+		"victory":[
+			#{"text":"That is the difference."},
+			{"text":"That did make for a good sideshow."},
+			{"text":"Only then will they let go of their weapons."},
+			{"text":"Let me know when the bodies... I mean the debris stops raining."},
+			{"text":"Then sprinkle death over all of it, and the formula is complete!"},
+		],
+	}
+}
