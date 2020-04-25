@@ -19,6 +19,8 @@ import com.fs.starfarer.api.combat.WeaponAPI;
 import com.fs.starfarer.api.combat.WeaponAPI.WeaponType;
 import com.fs.starfarer.api.fleet.FleetGoal;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.fleet.FleetMemberType;
+import com.fs.starfarer.api.graphics.SpriteAPI;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.util.IntervalUtil;
@@ -30,7 +32,9 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.histidine.chatter.utils.GeneralUtils;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.Set;
 import org.histidine.chatter.ChatterConfig;
@@ -38,12 +42,19 @@ import org.histidine.chatter.ChatterLine;
 import org.histidine.chatter.ChatterLine.MessageType;
 import org.histidine.chatter.ChatterDataManager;
 import org.histidine.chatter.utils.StringHelper;
+import org.lazywizard.lazylib.ui.FontException;
+import org.lazywizard.lazylib.ui.LazyFont;
+import org.lazywizard.lazylib.ui.LazyFont.DrawableString;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
 
 public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
 	public static Logger log = Global.getLogger(ChatterCombatPlugin.class);
+	
+	public static final boolean DEBUG_MODE = false;
 	
 	public static final float PRIORITY_PER_MESSAGE = 20;
 	public static final float PRIORITY_DECAY = 3;
@@ -52,24 +63,44 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final Set<MessageType> LOW_IMPORTANCE_CHATTER_TYPES = new HashSet<>();
 	public static final Set<MessageType> FLOAT_CHATTER_TYPES = new HashSet<>();
 	public static final float MAX_TIME_FOR_INTRO = 8;
-	public static final float MESSAGE_INTERVAL = 3;
-	public static final float MESSAGE_INTERVAL_IDLE = 6;
-	public static final float MESSAGE_INTERVAL_FLOAT = 6;
+	public static final float MESSAGE_INTERVAL = 3;			// global, for non-floater text
+	public static final float MESSAGE_INTERVAL_IDLE = 5;	// global, for non-floater text
+	public static final float MESSAGE_INTERVAL_FLOAT = 6;	// per ship
 	public static final float ANTI_REPETITION_DIVISOR = 3;
+	public static final float ANTI_REPETITION_DIVISOR_FLOATER = 5;
+	
+	// Message box parameters	
+	public static final boolean DRAW_BOX = false;
+	public static final int BOX_WIDTH = 400;
+	public static final int BOX_NAME_WIDTH = 144;
+	public static final int BOX_TEXT_WIDTH = BOX_WIDTH - BOX_NAME_WIDTH - 8;
+	public static final int BOX_OFFSET_X = 16;
+	public static final int BOX_OFFSET_Y = 160;
+	public static final int BOX_HEIGHT = 240;
+	public static final int BOX_FONT_SIZE = 16;
+	public static final Color BOX_COLOR = Color.CYAN;
+	
+	public static final Vector2f NAME_POS = new Vector2f(8, -8);
+	public static final Vector2f TEXT_POS = new Vector2f(BOX_NAME_WIDTH + 16, -8);
+	public static LazyFont font;
+	protected static boolean fontLoaded = false;
 	
 	protected CombatEngineAPI engine;
 	protected IntervalUtil interval = new IntervalUtil(0.4f, 0.5f);
 	protected Map<FleetMemberAPI, ShipStateData> states = new HashMap<>();
-	protected Map<String, Float> messageCooldown = new HashMap<>();
 	protected Set<FleetMemberAPI> ignore = new HashSet<>();
+	protected List<BoxMessage> boxMessages = new LinkedList<>();
 	
 	protected FleetMemberAPI lastTalker = null;
 	protected float timeElapsed = 0;
 	protected float lastMessageTime = -9999;
+	protected float messageBoxLimiter = 0;
 	protected float priorityThreshold = 0;	// if this is high, low priority messages won't be displayed
 	protected boolean introDone = false;
 	protected boolean victory = false;
 	protected int victoryIncrement = 0;
+	
+	protected boolean wantDebugChat = DEBUG_MODE;
 	
 	// TODO externalise
 	static {
@@ -103,6 +134,18 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		FLOAT_CHATTER_TYPES.add(MessageType.PURSUING);
 		FLOAT_CHATTER_TYPES.add(MessageType.NEED_HELP);
 		FLOAT_CHATTER_TYPES.add(MessageType.RUNNING);
+	}
+	
+	protected static void loadFont() {
+		fontLoaded = true;
+		try
+		{
+			font = LazyFont.loadFont("graphics/fonts/insignia16a.fnt");
+		}
+		catch (FontException ex)
+		{
+			throw new RuntimeException("Failed to load font", ex);
+		}
 	}
 	
 	protected float getRandomForStringSeed(String seed)
@@ -199,13 +242,21 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return data;
 	}
 	
-	protected String getShipName(FleetMemberAPI member)
+	protected String getShipName(FleetMemberAPI member, boolean includeClass)
 	{
 		String shipName = "";
-		if (member.isFighterWing())
-			shipName = member.getHullSpec().getHullName() + " wing";
-		else
-			shipName = member.getShipName() + " (" + member.getHullSpec().getHullName() + "-class)";
+		if (member.isFighterWing()) {
+			shipName = member.getHullSpec().getHullName();
+			if (includeClass) shipName = StringHelper.getStringAndSubstituteToken(
+					"chatter_general", "wing", "$wing", shipName);
+		}
+		else {
+			shipName = member.getShipName();
+			if (includeClass) shipName += " (" + StringHelper.getStringAndSubstituteToken(
+					"chatter_general", "class", "$class", member.getHullSpec().getHullName())
+					+ ")";
+		}
+			
 		return shipName;
 	}
 	
@@ -216,7 +267,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return MESSAGE_TYPE_MAX_PRIORITY.get(category);
 	}
 	
-	protected boolean hasLine(FleetMemberAPI member, MessageType category, boolean useAntiRepetition)
+	protected boolean hasLine(FleetMemberAPI member, MessageType category, boolean floater, boolean useAntiRepetition)
 	{
 		if (isIgnored(member)) return false;
 		
@@ -232,15 +283,16 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (useAntiRepetition)
 		{
 			int count = lines.size();
-			if (Math.random() > (count / ANTI_REPETITION_DIVISOR))
+			float divisor = floater ? ANTI_REPETITION_DIVISOR_FLOATER : ANTI_REPETITION_DIVISOR;
+			if (Math.random() > (count / divisor))
 				return false;
 		}
 		return true;
 	}
 	
-	protected boolean hasLine(FleetMemberAPI member, MessageType category)
+	protected boolean hasLine(FleetMemberAPI member, MessageType category, boolean floater)
 	{
-		return hasLine(member, category, true);
+		return hasLine(member, category, floater, true);
 	}
 	
 	protected boolean haveBoss()
@@ -269,10 +321,17 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return states.get(member);
 	}
 	
-	protected Color getShipNameColor(FleetMemberAPI member)
-	{
+	protected Color getShipNameColor(FleetMemberAPI member) {
 		if (member.isAlly()) return Misc.getHighlightColor();
 		return Global.getSettings().getColor("textFriendColor");
+	}
+	
+	protected Color getShipNameColor(FleetMemberAPI member, float alpha)
+	{
+		Color color = getShipNameColor(member);
+		if (alpha == 1) return color;
+		color = new Color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, alpha);
+		return color;
 	}
 	
 	protected boolean isFloatingMessage(MessageType category)
@@ -281,6 +340,26 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!ChatterConfig.lowImportanceChatter)
 			floater = floater || LOW_IMPORTANCE_CHATTER_TYPES.contains(category);
 		return floater;
+	}
+	
+	protected void addMessageBoxMessage(ShipStateData stateData, FleetMemberAPI member, 
+			String message, MessageType category) 
+	{
+		if (!ChatterConfig.chatterBox) return;
+		if (messageBoxLimiter >= 7)
+			return;
+				
+		float requiredInterval = MESSAGE_INTERVAL_FLOAT * 2;
+		if (stateData.lastFloatMessageType != category) requiredInterval *= 0.5f;
+		if (category == MessageType.ENGAGED) requiredInterval *= 2.5f;
+		if (timeElapsed < stateData.lastFloatMessageTime + requiredInterval)
+			return;
+		
+		float charge = 3;
+		if (member.isAlly()) charge = 4.5f;
+		
+		boxMessages.add(new BoxMessage(member, message));
+		messageBoxLimiter += charge;
 	}
 	
 	/**
@@ -324,13 +403,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (ChatterDataManager.getCharacterData(character) == null)
 			character = "default";
 		
-		if (!hasLine(member, category))
+		if (!hasLine(member, category, floater))
 			return false;
 		
 		List<ChatterLine> lines = ChatterDataManager.getCharacterData(character).lines.get(category);		
 		ChatterLine line = (ChatterLine)GeneralUtils.getRandomListElement(lines);
 		String message = "\"" + line.text + "\"";
-		String name = getShipName(member);
+		String name = getShipName(member, true);
 		Color textColor = Global.getSettings().getColor("standardTextColor");
 		if (category == MessageType.HULL_50)
 			textColor = Color.YELLOW;
@@ -346,9 +425,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			Vector2f pos = ship.getLocation();
 			Vector2f textPos = new Vector2f(pos.x, pos.y + ship.getCollisionRadius());
 			engine.addFloatingText(textPos, message, 32, textColor, ship, 0, 0);
+			addMessageBoxMessage(stateData, member, message, category);
 			stateData.lastFloatMessageTime = timeElapsed;
 			stateData.lastFloatMessageType = category;
-			//log.info(name + ": " + message + " (" + category.toString() + ")");
+			
 			return false;
 		}
 		
@@ -386,12 +466,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			Global.getSoundPlayer().playUISound("cr_allied_warning", 1, 1);
 		else if (category == MessageType.HULL_30)
 			Global.getSoundPlayer().playUISound("cr_allied_malfunction", 1, 1);
-		if (!meetsPriorityThreshold(member, category) || !hasLine(member, category))
+		if (!meetsPriorityThreshold(member, category) || !hasLine(member, category, false))
 		{
 			// short form
 			String message1 = " " + StringHelper.getString("chatter_general", "isAt") + " ";
 			String message2 = amount + "% " + StringHelper.getString("chatter_general", "hull") + "!";
-			String name = getShipName(member);
+			String name = getShipName(member, true);
 			Color textColor = Global.getSettings().getColor("standardTextColor");
 			if (category == MessageType.HULL_50)
 				textColor = Color.YELLOW;
@@ -414,11 +494,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printOverloadMessage(FleetMemberAPI member)
 	{
-		if (!meetsPriorityThreshold(member, MessageType.OVERLOAD) || !hasLine(member, MessageType.OVERLOAD))
+		if (!meetsPriorityThreshold(member, MessageType.OVERLOAD) || !hasLine(member, MessageType.OVERLOAD, false))
 		{
 			// short form
 			String message = " " + StringHelper.getString("chatter_general", "hasOverloaded") + "!";
-			String name = getShipName(member);
+			String name = getShipName(member, true);
 			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Color.CYAN, message);
 			return false;
 		}
@@ -435,11 +515,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printOutOfMissilesMessage(FleetMemberAPI member)
 	{
-		if (!meetsPriorityThreshold(member, MessageType.OUT_OF_MISSILES) || !hasLine(member, MessageType.OUT_OF_MISSILES))
+		if (!meetsPriorityThreshold(member, MessageType.OUT_OF_MISSILES) || !hasLine(member, MessageType.OUT_OF_MISSILES, false))
 		{
 			// short form
 			String message = " " + StringHelper.getString("chatter_general", "outOfMissiles");
-			String name = getShipName(member);
+			String name = getShipName(member, true);
 			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Global.getSettings().getColor("standardTextColor"), message);
 			return false;
 		}
@@ -504,7 +584,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				if (ChatterConfig.allyChatter) weight *= 0.5f;
 				else continue;
 			}
-			if (!hasLine(member, category))
+			if (!hasLine(member, category, false))
 				continue;
 			if (floater) {
 				ShipAPI ship = fm.getShipFor(member);
@@ -524,14 +604,46 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return picker.pick();
 	}
 	
+	protected void timeoutBoxMessages(float time) {
+		messageBoxLimiter -= time;
+		if (messageBoxLimiter < 0) messageBoxLimiter = 0;
+		
+		List<BoxMessage> toRemove = new ArrayList<>();
+		for (BoxMessage msg : boxMessages) {
+			msg.ttl -= time;
+			if (msg.ttl <= 0) {
+				toRemove.add(msg);
+			}
+		}
+		boxMessages.removeAll(toRemove);
+	}
+	
+	protected void addDebugChat() {
+		FleetMemberAPI member = Global.getFactory().createFleetMember(FleetMemberType.SHIP, "paragon_Elite");
+		member.setShipName("ISS Talky Man");
+		boxMessages.add(new BoxMessage(member, "dorime"));
+		boxMessages.add(new BoxMessage(member, "the quick brown fox jumps over the lazy dog"));
+		boxMessages.add(new BoxMessage(member, "ameno"));
+		boxMessages.add(new BoxMessage(member, "This is a long string. It will fill most of the box. This is a haiku."));
+	}
+	
 	@Override
 	public void advance(float amount, List<InputEventAPI> events) {
 		if (engine == null) return;
-		if (engine.isPaused()) return;
-		if (engine.isSimulation()) return;
 		if (Global.getCurrentState() == GameState.TITLE) return;
 		
+		if (wantDebugChat) {
+			addDebugChat();
+			wantDebugChat = false;
+		}
+		if (!DEBUG_MODE && engine.isSimulation()) return;
+		
+		drawMessages();
+		
+		if (engine.isPaused()) return;
+		
 		//log.info("Advancing: " + amount);
+		timeoutBoxMessages(amount);
 		
 		timeElapsed += amount;
 		priorityThreshold -= amount * PRIORITY_DECAY;
@@ -741,8 +853,140 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				stateData.isPlayer = isPlayer;
 				stateData.dead = ship.isAlive();
 			}
-			
 		}
+	}
+	
+	/**
+     * GL11 to start, when you want render text of Lazyfont.
+     */
+    public static void openGL11ForText()
+    {
+        GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
+        GL11.glMatrixMode(GL11.GL_PROJECTION);
+        GL11.glPushMatrix();
+        GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
+        GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+    }
+
+    /**
+     * GL11 to close, when you want render text of Lazyfont.
+     */
+    public static void closeGL11ForText()
+    {
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glPopMatrix();
+        GL11.glPopAttrib();
+    }
+	
+	/**
+	 * Draws a message line in the text box.
+	 * @param message
+	 * @param remainingHeight Available height remaining in the box. If the new message's
+	 * height exceeds this amount, do not draw.
+	 * @return Height of the message.
+	 */
+	public float drawMessage(BoxMessage message, float remainingHeight)
+    {
+		float alpha = engine.isUIShowingDialog() ? 0.5f : 1;
+		Color color = getShipNameColor(message.ship, alpha);
+		DrawableString str = font.createText(getShipName(message.ship, false), 
+				color, BOX_FONT_SIZE, BOX_NAME_WIDTH);
+		
+		color = Misc.getTextColor();
+		color = new Color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, alpha);
+		DrawableString str2 = font.createText(message.text, 
+				color, BOX_FONT_SIZE, BOX_TEXT_WIDTH);
+		
+		float height = Math.max(str.getHeight(), str2.getHeight());
+		if (height < 40) height = 40;
+		if (height > remainingHeight) {
+			return 99999;
+		}
+		
+		// draw portrait;
+		String sprite = null;
+		if (!message.ship.getCaptain().isDefault()) {
+			sprite = message.ship.getCaptain().getPortraitSprite();
+		}
+		else if (DEBUG_MODE) {
+			sprite = "graphics/portraits/portrait_ai2.png";
+		}
+		if (sprite != null) {
+			GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
+			GL11.glPushMatrix();
+			SpriteAPI sprite2 = Global.getSettings().getSprite(sprite);
+			float sizeMult = 32/sprite2.getWidth();
+			GL11.glScalef(sizeMult, sizeMult, 1);
+			sprite2.setAlphaMult(alpha);
+			sprite2.render(-128, -160);
+			GL11.glPopMatrix();
+			GL11.glPopAttrib();
+		}
+		
+		str.draw(NAME_POS);
+		str2.draw(TEXT_POS);
+		return height;
+	}
+	
+	public void drawMessages() 
+	{
+		if (!ChatterConfig.chatterBox) return;
+		if (engine == null || !engine.isUIShowingHUD() || engine.getCombatUI().isShowingCommandUI())
+		{
+			return;
+		}
+		
+		if (!fontLoaded || DEBUG_MODE) loadFont();
+		
+		openGL11ForText();
+		
+		GL11.glTranslatef(Display.getWidth() - BOX_WIDTH - BOX_OFFSET_X, 
+				Display.getHeight() - BOX_OFFSET_Y, 0);
+		
+		float remainingHeight = BOX_HEIGHT - 8 * 2;
+		for (int i=boxMessages.size() - 1; i>=0; i--) 
+		{
+			BoxMessage msg = boxMessages.get(i);
+			float height = drawMessage(msg, remainingHeight);
+			GL11.glTranslatef(0, -height - 4, 0);
+			remainingHeight -= height + 4;
+			if (remainingHeight < 14)
+				break;
+		}
+		closeGL11ForText();
+	}
+	
+	public void drawBox() {
+		if (!DRAW_BOX || !ChatterConfig.chatterBox) return;
+		
+		float alpha = engine.getCombatUI().getCommandUIOpacity();
+		
+		GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
+		GL11.glMatrixMode(GL11.GL_PROJECTION);
+		GL11.glPushMatrix();
+		GL11.glLoadIdentity();
+		
+		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
+		GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
+		GL11.glLineWidth(1);
+		GL11.glTranslatef(Display.getWidth() - BOX_WIDTH - BOX_OFFSET_X, 
+				Display.getHeight() - BOX_OFFSET_Y, 0);
+		GL11.glColor4f(BOX_COLOR.getRed(), BOX_COLOR.getGreen(), BOX_COLOR.getBlue(), alpha);
+		
+		GL11.glBegin(GL11.GL_LINE_LOOP);		
+		GL11.glVertex2i(0, 0);
+		GL11.glVertex2i(BOX_WIDTH, 0);
+		GL11.glVertex2i(BOX_WIDTH, -BOX_HEIGHT);
+		GL11.glVertex2i(0, -BOX_HEIGHT);
+		GL11.glEnd();
+		
+		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glPopMatrix();
+		GL11.glPopAttrib();
 	}
 
 	@Override
@@ -751,6 +995,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
 	@Override
 	public void renderInUICoords(ViewportAPI vapi) {
+		if (Global.getCurrentState() == GameState.TITLE)
+			return;
+		if (engine == null || !engine.isUIShowingHUD() || engine.getCombatUI().isShowingCommandUI())
+		{
+			return;
+		}
+		
+		drawBox();
 	}
 
 	@Override
@@ -761,6 +1013,17 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
 	@Override
 	public void processInputPreCoreControls(float arg0, List<InputEventAPI> arg1) {
+	}
+	
+	protected static class BoxMessage {
+		public FleetMemberAPI ship;
+		public String text;
+		public float ttl = DEBUG_MODE? 99999 : 7;
+		
+		public BoxMessage(FleetMemberAPI ship, String text) {
+			this.ship = ship;
+			this.text = text;
+		}
 	}
 	
 	protected static class ShipStateData

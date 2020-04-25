@@ -10,7 +10,6 @@ import org.json.JSONArray;
 
 public class GeneralUtils {
 	
-	// get rid of the LazyLib requirement
 	public static <T> T getRandomListElement(List<T> list)
 	{
 		if (list.isEmpty())

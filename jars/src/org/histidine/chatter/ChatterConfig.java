@@ -16,6 +16,7 @@ public class ChatterConfig {
 	public static boolean lowImportanceChatter = true;
 	public static boolean allyChatter = true;
 	public static boolean selfChatter = false;
+	public static boolean chatterBox = false;
 	public static boolean factionSpecificCharacters = true;
 	public static float minMissileOPFractionForChatter = 0.2f;
 	public static boolean personalityChanceScaling = true;
@@ -30,6 +31,8 @@ public class ChatterConfig {
 			lowImportanceChatter = settings.optBoolean("lowImportanceChatter", lowImportanceChatter);
 			allyChatter = settings.optBoolean("allyChatter", allyChatter);
 			selfChatter = settings.optBoolean("selfChatter", selfChatter);
+			chatterBox = settings.optBoolean("chatterBox", chatterBox);
+			
 			factionSpecificCharacters = settings.optBoolean("factionSpecificCharacters", factionSpecificCharacters);
 			minMissileOPFractionForChatter = (float)settings.optDouble("minMissileOPFractionForChatter", minMissileOPFractionForChatter);
 			personalityChanceScaling = settings.optBoolean("personalityChanceScaling", personalityChanceScaling);

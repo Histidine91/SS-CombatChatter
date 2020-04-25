@@ -4,5 +4,8 @@
 		"hasOverloaded":"has overloaded",
 		"hull":"hull",
 		"outOfMissiles":"is out of missiles",
+		
+		"wing":"$wing wing",
+		"class":"$class-class",
 	},
 }
