@@ -3,8 +3,10 @@ package org.histidine.chatter.combat;
 import com.fs.starfarer.api.GameState;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.characters.PersonAPI;
+import com.fs.starfarer.api.combat.CombatAssignmentType;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.CombatFleetManagerAPI;
+import com.fs.starfarer.api.combat.CombatFleetManagerAPI.AssignmentInfo;
 import com.fs.starfarer.api.combat.CombatTaskManagerAPI;
 import com.fs.starfarer.api.combat.DeployedFleetMemberAPI;
 import com.fs.starfarer.api.combat.EveryFrameCombatPlugin;
@@ -666,12 +668,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		boolean printed = false;
+		CombatTaskManagerAPI playerManager = engine.getFleetManager(FleetSide.PLAYER).getTaskManager(false);
 		
 		// victory message
 		if (!victory)
 		{
 			CombatTaskManagerAPI enemyManager = engine.getFleetManager(FleetSide.ENEMY).getTaskManager(false);
-			CombatTaskManagerAPI playerManager = engine.getFleetManager(FleetSide.PLAYER).getTaskManager(false);
 			if (enemyManager.isInFullRetreat() && !enemyManager.isPreventFullRetreat() 
 					&& engine.getFleetManager(FleetSide.ENEMY).getGoal() != FleetGoal.ESCAPE)
 			{
@@ -823,14 +825,18 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 					boolean engaged = flags.hasFlag(AIFlags.HAS_INCOMING_DAMAGE) && !flags.hasFlag(AIFlags.BACK_OFF)
 							&& !flags.hasFlag(AIFlags.PURSUING);
 					boolean pursuing = flags.hasFlag(AIFlags.PURSUING) && !engaged;
-					boolean running = flags.hasFlag(AIFlags.BACKING_OFF) && flags.hasFlag(AIFlags.IN_CRITICAL_DPS_DANGER);
+					boolean running = false;//!engaged && !pursuing && 
+							//(flags.hasFlag(AIFlags.BACKING_OFF) || flags.hasFlag(AIFlags.BACKING_OFF));
+					AssignmentInfo assign = playerManager.getAssignmentFor(ship);
+					if (assign != null && assign.getType() == CombatAssignmentType.RETREAT)
+						running = true;
 					
 					if ((canPrint || !printed))
 					{
-						if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
-							printed = printRandomMessage(member, MessageType.NEED_HELP);
-						else if (!isFighter && running && !stateData.running)
+						if (!isFighter && running && !stateData.running)
 							printed = printRandomMessage(member, MessageType.RUNNING);
+						else if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
+							printed = printRandomMessage(member, MessageType.NEED_HELP);
 						else if (!isFighter && engaged && !stateData.engaged)
 							printed = printRandomMessage(member, MessageType.ENGAGED);
 						else if (pursuing && !stateData.pursuing)	// fighters can say this
