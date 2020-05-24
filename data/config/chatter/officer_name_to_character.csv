@@ -1,0 +1,6 @@
+id,first name,last name,character
+# unique string,"if one name is specified, check if it matches","if both are, must match both",
+# for multiple matching entries the first one is picked,two-name matches are preferred,,
+# note that if the character name is same as the officer's full name it automatically matches without checking this file,,,
+doomguy1,Doom,Marine,doom_comicguy
+doomguy2,Doom,Slayer,doom_comicguy

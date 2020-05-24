@@ -36,6 +36,7 @@ public class ChatterDataManager {
 	public static final String CHARACTERS_LIST = CONFIG_DIR + "characters.csv";
 	public static final String FACTION_TAGS_FILE = CONFIG_DIR + "factiontags.csv";
 	public static final String CHARACTER_FACTIONS_FILE = CONFIG_DIR + "character_factions.csv";
+	public static final String NAME_TO_CHARACTER_FILE = CONFIG_DIR + "officer_name_to_character.csv";
 	public static final String HULL_FACTION_PREFIX_FILE = CONFIG_DIR + "hull_prefixes.csv";
 	public static final String SHIP_NAME_FACTION_PREFIX_FILE = CONFIG_DIR + "ship_name_prefixes.csv";
 	public static final String EXCLUDED_HULL_FILE = CONFIG_DIR + "excluded_hulls.csv";
@@ -49,6 +50,7 @@ public class ChatterDataManager {
 	public static final Set<String> EXCLUDED_HULLS = new HashSet<>();
 	public static final Set<String> BOSS_SHIPS = new HashSet<>();
 	
+	public static final List<NameToCharacterMapping> NAME_TO_CHARACTER = new ArrayList<>();
 	public static final List<String[]> FACTION_HULL_PREFIXES = new ArrayList<>();
 	public static final List<String[]> FACTION_SHIPNAME_PREFIXES = new ArrayList<>();
 	
@@ -166,6 +168,25 @@ public class ChatterDataManager {
 				}
 			}
 			
+			// map for officer names getting specific characters
+			debugPrint("Loading officer name to character file map");
+			JSONArray name2Char = Global.getSettings().getMergedSpreadsheetDataForMod("id", NAME_TO_CHARACTER_FILE, "chatter");
+			for(int x = 0; x < name2Char.length(); x++)
+			{
+				String id = "<unknown>";
+				try {
+					JSONObject row = name2Char.getJSONObject(x);
+					id = row.getString("id");
+					if (id.isEmpty()) continue;
+					String firstName = row.optString("first name", null);
+					String lastName = row.optString("last name", null);
+					String character = row.getString("character");
+					NAME_TO_CHARACTER.add(new NameToCharacterMapping(id, firstName, lastName, character));
+				} catch (JSONException ex) {
+					log.error("Failed to load officer name–character mapping for " + id, ex);
+				}
+			}
+			
 			// map for getting faction ID based on hull ID prefix (e.g. ii_olympus is an II ship)
 			debugPrint("Loading hull prefixes");
 			JSONArray prefixes = Global.getSettings().getMergedSpreadsheetDataForMod("prefix", HULL_FACTION_PREFIX_FILE, "chatter");
@@ -175,6 +196,7 @@ public class ChatterDataManager {
 				try {
 					JSONObject row = prefixes.getJSONObject(x);
 					prefix = row.getString("prefix");
+					if (prefix.isEmpty()) continue;
 					String faction = row.getString("faction");
 					FACTION_HULL_PREFIXES.add(new String[]{prefix, faction});
 				} catch (JSONException ex) {
@@ -191,6 +213,7 @@ public class ChatterDataManager {
 				try {
 					JSONObject row = prefixes2.getJSONObject(x);
 					prefix = row.getString("prefix");
+					if (prefix.isEmpty()) continue;
 					String faction = row.getString("faction");
 					FACTION_SHIPNAME_PREFIXES.add(new String[]{prefix, faction});
 				} catch (JSONException ex) {
@@ -206,6 +229,7 @@ public class ChatterDataManager {
 				try {
 					JSONObject row = excluded.getJSONObject(x);
 					String hullId = row.getString("hull id");
+					if (hullId.isEmpty()) continue;
 					EXCLUDED_HULLS.add(hullId);
 				} catch (JSONException ex) {}
 			}
@@ -218,6 +242,7 @@ public class ChatterDataManager {
 				try {
 					JSONObject row = bosses.getJSONObject(x);
 					String hullId = row.getString("hull id");
+					if (hullId.isEmpty()) continue;
 					BOSS_SHIPS.add(hullId);
 				} catch (JSONException ex) {}
 			}
@@ -247,6 +272,56 @@ public class ChatterDataManager {
 		return false;
 	}
 	
+	/**
+	 * Attempts to match an officer name to a chatter character based on their name.
+	 * @param name The officer's name object.
+	 * @return The character ID of the best match.
+	 */
+	public static String getBestNameMatch(FullName name) {
+		for (ChatterCharacter character : CHARACTERS)
+		{
+			if (character.name.equals(name.getFullName())) {
+				return character.id;		
+			}
+		}
+		
+		String bestMatch = null;
+		int bestScore = 0;
+		for (NameToCharacterMapping map : NAME_TO_CHARACTER) {
+			int score = 0;
+			if (map.firstName != null) {
+				log.info("First name: " + name.getFirst());
+				if (map.firstName.equals(name.getFirst()))
+					score += 1;
+				else continue;
+			}
+			if (map.lastName != null) {
+				log.info("Last name: " + name.getLast());
+				if (map.lastName.equals(name.getLast()))
+					score += 1;
+				else continue;
+			}
+			
+			if (score > bestScore) {
+				bestMatch = map.characterId;
+				bestScore = score;
+			}
+		}
+		
+		return bestMatch;
+	}
+	
+	/**
+	 * Picks a new chatter character for the specified officer, 
+	 * or retrieves it from memory if available.
+	 * @param captain
+	 * @param ship
+	 * @param engine
+	 * @param save If true and certain conditions are met (not in a mission, 
+	 * not a fighter, and not a generic captain), save the selected character 
+	 * to memory and persistent data.
+	 * @return
+	 */
 	public static String getCharacterForOfficer(PersonAPI captain, FleetMemberAPI ship, 
 			CombatEngineAPI engine, boolean save)
 	{
@@ -264,6 +339,8 @@ public class ChatterDataManager {
 		boolean isCampaign = engine != null && (engine.isInCampaign() || engine.isInCampaignSim());
 		boolean isFighter = ship.isFighterWing();
 		
+		save = save && !isMission && !captain.isDefault() && !isFighter;
+		
 		String factionId = captain.getFaction().getId();
 		if (captain.getMemoryWithoutUpdate().contains("$originalFaction"))
 		{
@@ -276,6 +353,15 @@ public class ChatterDataManager {
 			if (factionId.isEmpty())
 				factionId = getFactionIDFromHullID(ship.getHullId());
 			//log.info("Detected faction for ship " + ship.getShipName() + " as " + factionId);
+		}
+		
+		// Auto assign from officer name if appropriate
+		if (!captain.isDefault()) {
+			String id = getBestNameMatch(captain.getName());
+			if (id != null) {
+				if (save) saveCharacter(captain, id);
+				return id;
+			}
 		}
 		
 		debugPrint("Getting character for faction " + factionId);
@@ -333,8 +419,7 @@ public class ChatterDataManager {
 		if (charId == null) return "default";
 		
 		//log.info("Assigning character " + charId + " to officer " + captain.getName().getFullName());
-		if (save && !isMission && !captain.isDefault() && !isFighter)
-			saveCharacter(captain, charId);
+		if (save) saveCharacter(captain, charId);
 		return charId;
 	}
 	
@@ -517,7 +602,7 @@ public class ChatterDataManager {
 	}
 	
 	/**
-	 * Saves an assigned character for an officer to memory and persistent data
+	 * Saves an assigned character for an officer to memory and persistent data.
 	 * @param person
 	 * @param character
 	 */
@@ -562,6 +647,25 @@ public class ChatterDataManager {
 		{
 			String character = ChatterDataManager.getCharacterForOfficer(officerF, member, null, false);
 			log.info("  " + character);
+		}
+	}
+	
+	/**
+	 * Defines mapping of officers with certain names to chatter characters.
+	 */
+	public static class NameToCharacterMapping {
+		// first/last terminology matches what game uses, although I dislike it
+		public String id;
+		public String firstName;
+		public String lastName;
+		public String characterId;
+		
+		public NameToCharacterMapping(String id, String firstName, String lastName, String characterId) 
+		{
+			this.id = id;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.characterId = characterId;
 		}
 	}
 }
