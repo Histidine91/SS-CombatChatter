@@ -863,30 +863,30 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	}
 	
 	/**
-     * GL11 to start, when you want render text of Lazyfont.
-     */
-    public static void openGL11ForText()
-    {
-        GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-        GL11.glMatrixMode(GL11.GL_PROJECTION);
-        GL11.glPushMatrix();
-        GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
-        GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-    }
+	 * GL11 to start, when you want render text of Lazyfont.
+	 */
+	public static void openGL11ForText()
+	{
+		GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
+		GL11.glMatrixMode(GL11.GL_PROJECTION);
+		GL11.glPushMatrix();
+		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
+		GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+	}
 
-    /**
-     * GL11 to close, when you want render text of Lazyfont.
-     */
-    public static void closeGL11ForText()
-    {
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glPopMatrix();
-        GL11.glPopAttrib();
-    }
+	/**
+	 * GL11 to close, when you want render text of Lazyfont.
+	 */
+	public static void closeGL11ForText()
+	{
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glPopMatrix();
+		GL11.glPopAttrib();
+	}
 	
 	/**
 	 * Draws a message line in the text box.
@@ -896,12 +896,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 * @return Height of the message.
 	 */
 	public float drawMessage(BoxMessage message, float remainingHeight)
-    {
+	{
+		// prepare ship name text
 		float alpha = engine.isUIShowingDialog() ? 0.5f : 1;
 		Color color = getShipNameColor(message.ship, alpha);
 		DrawableString str = font.createText(getShipName(message.ship, false), 
 				color, BOX_FONT_SIZE, BOX_NAME_WIDTH);
 		
+		// prepare message text
 		color = Misc.getTextColor();
 		color = new Color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, alpha);
 		DrawableString str2 = font.createText(message.text, 
@@ -922,6 +924,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			sprite = "graphics/portraits/portrait_ai2.png";
 		}
 		if (sprite != null) {
+			// pushing/popping attrib is needed to keep sprite from messing with text opacity
 			GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 			GL11.glPushMatrix();
 			SpriteAPI sprite2 = Global.getSettings().getSprite(sprite);
