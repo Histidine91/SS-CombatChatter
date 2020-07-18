@@ -107,3 +107,11 @@ FNV collection (compiled by AzyWng)
   * fnv_vincentvincent
   * fnv_hopelies
   * fnv_velius
+  
+Nintendo (compiled by MShadowy)
+* starfox_andross
+* starfox_area6
+* starfox_mechbeth
+
+Red Hook Studios (compiled by MShadowy)
+* dd_narrator

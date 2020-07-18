@@ -1,0 +1,63 @@
+{
+	"name":"Area6",
+	"personalities":["cautious","steady"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "starfox"],
+	
+	"lines":{
+		"start":[
+			{"text":"Entering enemy air defense zone!"},
+			{"text":"Everybody stay alert!"}
+		],
+		"start_boss":[
+			{"text":"Enemy ahead! This ones different..."},
+		],
+		"retreat":[
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"Shoot 'em down, we're bein marked!"},
+			{"text":"We're gonna break through that fleet!"},
+			{"text":"Hold still and let me shoot you!"}
+		],
+		"need_help":[
+			{"text":"What's taking you so long Fox?"},
+			{"text":"They're on me! I'm getting careless!"}
+		],
+		"pursuing":[
+			{"text":"Let's clean up this mess!"},
+			{"text":"Yeah, Yeah!"}
+		],
+		"running":[
+			{"text":"Do you copy? Emergency maneuvers!"}
+		],
+		"hull_90":[
+			{"text":"They've broken through the first line!"}
+		],
+		"hull_50":[
+			{"text":"They're through the second line!"},
+			{"text":"Fire! Fire! Don't let 'em through!"}
+		],
+		"hull_30":[
+			{"text":"The last line has been breached!"},
+			{"text":"Dang! Deploy it now!"}
+		],
+		"overload":[
+			{"text":"These guys are crazy!"},
+			{"text":"Crud! We were so close to Venom!"},
+			{"text":"No!!!"}
+		],
+		"death":[
+			{"text":"Aaaaarrghh!"},
+			{"text":"My emperor... I've failed you!"},
+			{"text":"You'll never defeat Andross!!!"}
+		],
+		"victory":[
+			{"text":"Hoo! That was too close!"},
+			{"text":"We’re heading out! All units report."}
+		],
+	}
+}

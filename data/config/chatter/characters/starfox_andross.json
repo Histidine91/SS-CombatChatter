@@ -1,0 +1,63 @@
+{
+	"name":"Andross",
+	"personalities":["steady","aggressive","reckless"],
+	"gender":["m","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "starfox"],
+	
+	"lines":{
+		"start":[
+			{"text":"I'm looking forward to this."},
+			{"text":"With my mighty intellect, the universe shall soon be mine to command as I see fit."},
+			{"text":"Well, if it isn't the son of James McCloud."}
+		],
+		"start_boss":[
+			{"text":"I've been waiting for you, Star Fox!"},
+		],
+		"retreat":[
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"Those tin cans are no match for me."},
+			{"text":"You will die, just like your father!"},
+			{"text":"Well, Peppers got you eating out of his paws, just like your father... hasn't he?"}
+		],
+		"need_help":[
+			{"text":"Ha ha ha, you can NEVER defeat ME!"}
+		],
+		"pursuing":[
+			{"text":"I'm looking forward to this..."}
+		],
+		"running":[
+			{"text":"You claim to fight for peace, but have you any idea what that means?"}
+		],
+		"hull_90":[
+			{"text":"Your foolish efforts are futile!! Your Arwings have no chance against me!!"},
+			{"text":"It's foolish to come against me!"}
+		],
+		"hull_50":[
+			{"text":"This will be the your last battle!!"},
+			{"text":"You won't live long enough to regret your foolhardy bravado, Fox."}
+		],
+		"hull_30":[
+			{"text":"You know that I control the Galaxy!"},
+			{"text":"Ah.. your choice of routes took me by surprise! Your father was a reckless fighter too... But this will be your last battle!"}
+			
+		],
+		"overload":[
+			{"text":"Only I have the brains to rule Lylat!"},
+			{"text":"NOW, you will feel TRUE pain!"}
+		],
+		"death":[
+			{"text":"Aaaaarrghh!"},
+			{"text":"If I go down I'm taking you with me!"},
+			{"text":"Nooooooo!!!"}
+		],
+		"victory":[
+			{"text":"Hahaha!"},
+			{"text":"Opposing me is truly a death sentence. Huhahahaha! Just ask your father."}
+		],
+	}
+}

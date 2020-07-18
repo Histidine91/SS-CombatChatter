@@ -1,0 +1,60 @@
+{
+	"name":"Mechbeth",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "starfox"],
+	
+	"lines":{
+		"start":[
+			{"text":"Here come the little hyena's now."},
+			{"text":"Heh heh heh..."}
+		],
+		"retreat":[
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"What's wrong? Come a little closer..."},
+			{"text":"Take THIS!"},
+			{"text":"Here ya go!"}
+		],
+		"need_help":[
+			{"text":"Now step on the gas!"},
+			{"text":"They're not takin' me seriously..."}
+		],
+		"pursuing":[
+			{"text":"Now step on the gas!"}
+		],
+		"running":[
+			{"text":"Now step on the gas!"},
+			{"text":"I'll lure these guys to the front."}
+		],
+		"hull_90":[
+			{"text":"Dang! Detatch the rear vehicle."},
+			{"text":"Step on the gas!"}
+		],
+		"hull_50":[
+			{"text":"I didn't expect to have to use this..."},
+			{"text":"Try this!"},
+			{"text":"Step on the gas!"}
+		],
+		"hull_30":[
+			{"text":"You're very lucky."},
+			{"text":"What's wrong?"},
+			{"text":"Step on the gas!"}
+		],
+		"overload":[
+			{"text":"No! Get away!"}
+		],
+		"death":[
+			{"text":"I can't stop IIITTT!"},
+			{"text":"Gwagghh!"},
+			{"text":"No!!! Hit the Brakes!"}
+		],
+		"victory":[
+			{"text":"You're too slow, time to end this!"}
+		],
+	}
+}
