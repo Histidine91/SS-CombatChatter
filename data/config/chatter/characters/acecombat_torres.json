@@ -12,7 +12,7 @@
 			{"text":"It's a ritual. A ritual to end the lives of men."},
 			{"text":"It'll make a fine sideshow for our scheme to kill a million people."},
 			{"text":"Imagine you're just about to be killed. Why am I going to be killed, you ask?"},
-			{"text":"Gunnery is about killing the people on board. And it will be done with reason from beginning to end."},
+			{"text":"Gunnery is about killing the people on board."},
 			{"text":"We seek not a conflict, but rather a restoration of balance. A judgement."},
 		],
 		"start_boss":[
@@ -20,6 +20,7 @@
 			{"text":"It's salvation on a far grander scale."},
 			{"text":"Don't you see? A million lives are about to be snuffed out in senseless cruelty."},
 			{"text":"We must save those souls that died chained to the prison of ethics!"},
+			{"text":"The world shall be horrified by the number of lives we will take."},
 		],
 		"retreat":[
 			{"text":"He walked all over it with his dirty boots! Over the crisp, white sheets of my bed that I had just made!"},
@@ -31,6 +32,8 @@
 			{"text":"Fire away!"},
 			{"text":"Let me tell you a story. Back when I was a gunnery officer..."},
 			{"text":"Prepare for naval gunfire!"},
+			#{"text":"Fools."},
+			{"text":"Open vents!"},
 		],
 		"need_help":[
 			{"text":"Your lives carry weight! It gives you the right to take the lives of others!"},
@@ -62,6 +65,7 @@
 			{"text":"The souls of the dead are coming together like the pieces of a puzzle!"},
 			{"text":"What do you know of beauty?"},
 			#{"text":"That is what makes it elegant!"},
+			{"text":"A sign of an ill omen!"},
 		],
 		"death":[
 			#{"text":"Deliverance!"},
