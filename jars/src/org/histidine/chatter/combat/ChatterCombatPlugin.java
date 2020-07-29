@@ -79,7 +79,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final int BOX_OFFSET_X = 16;
 	public static final int BOX_OFFSET_Y = 160;
 	public static final int BOX_HEIGHT = 240;
-	public static final int BOX_FONT_SIZE = 16;
 	public static final Color BOX_COLOR = Color.CYAN;
 	
 	public static final Vector2f NAME_POS = new Vector2f(8, -8);
@@ -142,7 +141,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		fontLoaded = true;
 		try
 		{
-			font = LazyFont.loadFont("graphics/fonts/insignia16a.fnt");
+			font = LazyFont.loadFont(Global.getSettings().getString("chatter_boxFont"));
 		}
 		catch (FontException ex)
 		{
@@ -244,7 +243,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return data;
 	}
 	
-	protected String getShipName(FleetMemberAPI member, boolean includeClass)
+	protected String getShipName(FleetMemberAPI member, boolean includeClass) {
+		return getShipName(member, includeClass, false);
+	}
+	
+	protected String getShipName(FleetMemberAPI member, boolean includeClass, boolean useOfficerName)
 	{
 		String shipName = "";
 		if (member.isFighterWing()) {
@@ -253,6 +256,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 					"chatter_general", "wing", "$wing", shipName);
 		}
 		else {
+			if (useOfficerName && !member.getCaptain().isDefault()) {
+				return member.getCaptain().getNameString();
+			}
+			
 			shipName = member.getShipName();
 			if (includeClass) shipName += " (" + StringHelper.getStringAndSubstituteToken(
 					"chatter_general", "class", "$class", member.getHullSpec().getHullName())
@@ -349,6 +356,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	{
 		if (!ChatterConfig.chatterBox) return;
 		if (messageBoxLimiter >= 7)
+			return;
+		if (ChatterConfig.chatterBoxOfficerMode && (member.getCaptain() == null || member.getCaptain().isDefault()))
 			return;
 				
 		float requiredInterval = MESSAGE_INTERVAL_FLOAT * 2;
@@ -897,17 +906,20 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	public float drawMessage(BoxMessage message, float remainingHeight)
 	{
+		int fontSize = Global.getSettings().getInt("chatter_boxFontSize");
+		
 		// prepare ship name text
 		float alpha = engine.isUIShowingDialog() ? 0.5f : 1;
 		Color color = getShipNameColor(message.ship, alpha);
-		DrawableString str = font.createText(getShipName(message.ship, false), 
-				color, BOX_FONT_SIZE, BOX_NAME_WIDTH);
+		String name = getShipName(message.ship, false, ChatterConfig.chatterBoxOfficerMode);
+		if (name == null || name.isEmpty()) name = "<unknown>";	// safety
+		DrawableString str = font.createText(name,	color, fontSize, BOX_NAME_WIDTH);
 		
 		// prepare message text
 		color = Misc.getTextColor();
 		color = new Color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, alpha);
 		DrawableString str2 = font.createText(message.text, 
-				color, BOX_FONT_SIZE, BOX_TEXT_WIDTH);
+				color, fontSize, BOX_TEXT_WIDTH);
 		
 		float height = Math.max(str.getHeight(), str2.getHeight());
 		if (height < 40) height = 40;
