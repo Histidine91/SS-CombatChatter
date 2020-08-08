@@ -197,6 +197,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			ignore.add(member);
 			return true;
 		}
+		// non-fighter fleet member that's fighter-sized
+		if (!member.isFighterWing() && member.getHullSpec().getHullSize() == HullSize.FIGHTER) {
+			ignore.add(member);
+			return true;
+		}
 		
 		// ignore modules
 		ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
