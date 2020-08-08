@@ -3,7 +3,7 @@
 	"allyChatter":true,
 	"selfChatter":false,	# if true, player flagship will have chatter as well
 	"chatterBox":true,	# adds (some) floating text to a message box on right side of screen (in addition to displaying it over the speaking ship)
-	"chatterBoxOfficerMode":true,	# only named officers appear in chatbox, and it prints their name instead of the ship's name
+	"chatterBoxOfficerMode":false,	# only named officers appear in chatbox, and it prints their name instead of the ship's name
 	"factionSpecificCharacters": false,	# not all faction's officers will have all characters
 	"personalityChanceScaling": true,	# make characters with only 1-2 allowed personalities have higher chance to be picked
 	"genderChanceScaling": 1.5,	# make gender-specific characters more likely to be picked
