@@ -18,7 +18,7 @@
 			{"text":"For the love of God, get me outta here!"}
 		],
 		"out_of_missiles":[
-			{"text":"Negative ammo. I’m spent."},
+			{"text":"Negative ammo. I'm spent."},
 			{"text":"Missiles dry."}
 		],
 
@@ -32,12 +32,12 @@
 		"need_help":[
 			{"text":"Requesting immediate assistance!"},
 			{"text":"Help! Now, dammit, now!"},
-			{"text":"There’s heavy fire in this zone!"}
+			{"text":"There's heavy fire in this zone!"}
 		],
 
 		"pursuing":[
 			{"text":"Solid copy. Hauling ass."},
-			{"text":"Goin’ in for the kill."},
+			{"text":"Goin' in for the kill."},
 			{"text":"Roger that. Rolling out."}
 		],
 
@@ -46,28 +46,28 @@
 		],
 
 		"hull_90":[
-			{"text":"They’ve got me locked down!"},
+			{"text":"They've got me locked down!"},
 			{"text":"Taking fire!"}
 		],
 
 		"hull_50":[
-			{"text":"I’m taking heavy fire over here!"},
+			{"text":"I'm taking heavy fire over here!"},
 			{"text":"Do something! I'm taking heavy fire."}
 		],
 
 		"hull_30":[
 			{"text":"No... no, I wanna go home!"},
-			{"text":"What? No! What’s happening? This isn’t right! This isn’t right!"},
+			{"text":"What? No! What's happening? This isn't right! This isn't right!"},
 			{"text":"Help! Help! Someone help!"}
 		],
 
 		"overload":[
 			{"text":"Watch the flux!"},
-			{"text":"They’ve got me fluxed out!"}
+			{"text":"They've got me fluxed out!"}
 		],
 
 		"death":[
-			{"text":"This thing’s gonna blow!"},
+			{"text":"This thing's gonna blow!"},
 			{"text":"Get to the pods! Now, damnit, now!"},
 			{"text":"EVAC! We need Ev... [signal lost]"}
 		],
