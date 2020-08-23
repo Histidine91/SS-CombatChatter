@@ -107,7 +107,11 @@ FNV collection (compiled by AzyWng)
   * fnv_vincentvincent
   * fnv_hopelies
   * fnv_velius
-  
+ 
+Bandai Namco (compiled by Histidine)
+* acecombat_torres
+* acecombat_count
+
 Nintendo (compiled by MShadowy)
 * starfox_andross
 * starfox_area6
@@ -115,3 +119,13 @@ Nintendo (compiled by MShadowy)
 
 Red Hook Studios (compiled by MShadowy)
 * dd_narrator
+
+Monolith Productions (compiled by Avanitia)
+* blood_caleb
+
+Avanitia
+* drunk_gopnik
+* knight_of_ludd
+
+Scipio:
+* gentleman2

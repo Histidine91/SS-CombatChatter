@@ -1,0 +1,70 @@
+{
+	"name":"Knight of Ludd",
+	"personalities":["steady", "aggressive"],
+	"gender":["f", "m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["original"],
+	
+	"lines":{
+		"start":[
+			{"text":"For Ludd!"},
+			{"text":"Prepare to smite the heretics."},
+			{"text":"Are Hammers ready to launch?"},
+		],
+		"start_boss":[
+			{"text":"We'll need a lot of firepower for this one."},
+			{"text":"My lord, Ludd, help us."},
+		],
+		"retreat":[
+			{"text":"We run, so we can spread word of Ludd another day."},
+			{"text":"Forgive me for running, My Lord."},
+		],
+		"out_of_missiles":[
+			{"text":"We're out of holy missiles!"},
+			{"text":"Hopefully we used them well."},
+		],
+		"need_help":[
+			{"text":"By Ludd, send help!"},
+			{"text":"Requesting support."},	
+		],
+		"engaged":[
+			{"text":"Watch out, we might get shot."},
+			{"text":"Open fire, aim at structural vulnerability."},
+			{"text":"How many more do we have to kill?"},
+		],
+		"pursuing":[
+			{"text":"Leave none of blasphemers alive!"},
+			{"text":"Don't let them run!"},
+		],
+		"running":[
+			{"text":"It's not worth losing our lives, disengage."},
+			{"text":"Reverse course! May Ludd help us."},
+		],
+		"hull_90":[
+			{"text":"Minimum damage sustained, fix the damage now."},
+			{"text":"Prepare damage control, we might lose more people."},
+		],
+		"hull_50":[
+			{"text":"By the Ludd, that hurt."},
+			{"text":"Launch ALL missiles if we have any!"},
+		],
+		"hull_30":[
+			{"text":"Well, it's good that I don't use these consoles to aim, I'd be screwed otherwise."},
+			{"text":"What the hell helmsman, get us the hell out of here."},
+		],
+		"overload":[
+			{"text":"I hope we won't end up on the wrong end of a missile barrage now."},
+			{"text":"Flux grid is temporarily overloaded, send help."},
+			{"text":"Damage control crews, move faster!"},
+		],
+		"death":[
+			{"text":"By the-"},
+			{"text":"Looks like we're going to Heaven today."},
+		],
+		"victory":[
+			{"text":"Let us pray for the dead."},
+			{"text":"Prayer after the battle at chapel onboard, presence mandatory."}
+		],
+	}
+}

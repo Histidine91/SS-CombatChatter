@@ -1,0 +1,67 @@
+{
+	"name":"Caleb",
+	"personalities":["reckless", "aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "blood"],
+	
+	"lines":{
+		"start":[
+			{"text":"Good, bad, I'm the one with the gun."},
+			{"text":"Time to start piling up the bodies!"},
+			{"text":"I'll have a BLT, that's a lettuce, tomato, and blood sandwich. Hold the mayo, huh? HA HA HA!"},
+			{"text":"I live... AGAIN!"},
+		],
+		"start_boss":[
+			{"text":"I'm your best reason to be afraid."},
+			{"text":"Fool! You are already dead!"},
+			{"text":"This promises to be fun!"},
+		],
+		"retreat":[
+			{"text":"What in the hell? What is this, some kind of freaky time warp acid trip?"},
+		],
+		"out_of_missiles":[
+			{"text":"Gah, leftovers."},
+			{"text":"Amateurs..."},
+		],
+		"need_help":[
+		],
+		"engaged":[
+			{"text":"How do you like your flesh cooked?"},
+			{"text":"They're gonna need a bucket and a mop when I'm done with you!"},
+			{"text":"Lambs to the slaughter..."},
+			{"text":"I am death, who want some?"},
+		],
+		"pursuing":[
+			{"text":"When you get to hell, tell them I sent you. You will get a group discount."},
+		],
+		"running":[
+			{"text":"But I like my hands bloody."},
+		],
+		"hull_90":[
+			{"text":"Now now, no need to get worked up!"},
+			{"text":"I'm gonna have to put you down!"},
+		],
+		"hull_50":[
+			{"text":"No one can stop me!"},
+			{"text":"I hate mimes."},
+		],
+		"hull_30":[
+			{"text":"Now you're going to pay!"},
+			{"text":"They're gonna need a bucket and a mop when I'm done with you!"},
+			{"text":"Well that's ONE way to open somebody up, but not nearly as quick or fun as my method!"},
+		],
+		"overload":[
+			{"text":"This looks...extraordinarily bad."},
+		],
+		"death":[
+			{"text":"Looks like my train's come in."},
+			{"text":"I never said I was smart."},
+		],
+		"victory":[
+			{"text":"Now, where did all those gun-toting madmen get to..."},
+			{"text":"Another day, another corpse."}
+		],
+	}
+}

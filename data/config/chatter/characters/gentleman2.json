@@ -1,0 +1,77 @@
+{
+	"name":"Gentleman 2",
+	"personalities":["steady", "aggressive"],
+	"gender":["f", "m"],
+	"chance":1,
+	"talkativeness":1.5,
+	"categoryTags":["original"],
+	
+	"lines":{
+		"start":[
+			{"text":"How barbaric!"},
+			{"text":"We shall give them a thrashing!"},
+			{"text":"All hands, prepare for boarding actions."},
+			{"text":"Oh dear, the vagabonds wish to dance."},
+		],
+		"start_boss":[
+			{"text":"The Goliath to my David!"},
+			{"text":"Affix bayonets gentlemen! Prepare for a proper scrap."},
+			{"text":"Oh dear, I don't believe they're going to talk reasonably about this...."},
+		],
+		"retreat":[
+			{"text":"Backwards at a steady pace!"},
+			{"text":"Even Hannibal had his low points... I will return!"},
+		],
+		"out_of_missiles":[
+			{"text":"I dare say, I believe I'm out of missiles."},
+			{"text":"That clunk informs me to the fact that we're out of missiles."},
+			{"text":"The audacity of these knaves to be still standing after all of that!"},
+		],
+		"need_help":[
+			{"text":"Could I perhaps get reinforced?"},
+			{"text":"Not a favorable situation for me lads, a bit of help please?"},
+			{"text":"I'm in a spot of bother right now, assistance is now paramount to my survival."},		
+		],
+		"engaged":[
+			{"text":"Take that you rapscallions!"},
+			{"text":"Oh my... How beautiful."},
+			{"text":"I don't wish to kill you my friend! But alas, money is a fine incentive"},
+			{"text":"They show spirit!"},
+		],
+		"pursuing":[
+			{"text":"Engage them! Quick as you can!"},
+			{"text":"Flank speed! And don't spare the horses."},
+		],
+		"running":[
+			{"text":"Goodbye my friends, I wish you the best of luck."},
+			{"text":"The shoe is on the other foot I dare say..."},
+		],
+		"hull_90":[
+			{"text":"That only hurt my pride, they shall pay."},
+			{"text":"Don't knock over the wine you barbarians!"},
+		],
+		"hull_50":[
+			{"text":"Hmmm, not a great place to be in, no?"},
+			{"text":"Alas, they may actually pose a threat."},
+			{"text":"Multiple hull breaches! Nothing new I suppose."},
+		],
+		"hull_30":[
+			{"text":"Oh dear, my mortality is becoming quite apparent."},
+			{"text":"I have not yet begun to fight!"},
+			{"text":"Oh dear, death is not on my agenda for today."},
+		],
+		"overload":[
+			{"text":"What a splendid array of colors!"},
+			{"text":"I could've managed that better..."},
+			{"text":"Perhaps the enemy will be honorable enough to not take advantage?"},
+		],
+		"death":[
+			{"text":"I shall rest under the shade of those trees..."},
+			{"text":"A true Captain will go down with his vessel!"},
+		],
+		"victory":[
+			{"text":"What a lovely little scrap!"},
+			{"text":"I knew we'd triumph over those barbarians!"},
+		],
+	}
+}

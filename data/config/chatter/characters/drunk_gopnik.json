@@ -1,0 +1,67 @@
+{
+	"name":"Drunk Gopnik",
+	"personalities":["aggressive", "steady"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["original", "slav"],
+	
+	"lines":{
+		"start":[
+			{"text":"No time to drink like now."},
+			{"text":"Look at us. We're *never* fully sober."},
+			{"text":"Who toooold youuuu we're nooot fineeeee?"},
+		],
+		"start_boss":[
+			{"text":"Gimme a bottle from the fridge!"},
+			{"text":"Damn it, so much for making drinks."},
+		],
+		"retreat":[
+			{"text":"Why aaare weee retreating? We aaare fiiiineeee..."},
+		],
+		"out_of_missiles":[
+			{"text":"Keep firing! Fire some more! Wha?... Oh, we're out..."},
+			{"text":"Whhhy are theey so strong...."},
+		],
+		"need_help":[
+			{"text":"I neeeed heeeeelp!"},
+			{"text":"I want bad man to go away.."},
+			{"text":"Aahhhhhh!"},
+		],
+		"engaged":[
+			{"text":"Youuuu likeee that?"},
+			{"text":"Ooooo, pretty lights.."},
+			{"text":"Opa! Thissss is some real action! ....I think"},
+		],
+		"pursuing":[
+			{"text":"Eh? Why are they running?"},
+		],
+		"running":[
+			{"text":"I'll live to drink another day!"},
+		],
+		"hull_90":[
+			{"text":"Heh... funny noises.."},
+			{"text":"My panel is all flashy, it'ssss sooo pretty.."},
+		],
+		"hull_50":[
+			{"text":"That'ssss not a fun screaming is it?"},
+			{"text":"Has the party already started? ...Aw man"},
+		],
+		"hull_30":[
+			{"text":"That'ssss not a fun noise..."},
+			{"text":"New window! Nice! ...wait, not nice...."},
+			{"text":"Whhhhy me? I just want to drink in peace."},
+		],
+		"overload":[
+			{"text":"...Sparkly..."},
+		],
+		"death":[
+			{"text":"Is my time up already?"},
+			{"text":"~Oh danny boy, the pipes, the pipes are calling!~"},
+		],
+		"victory":[
+			{"text":"...Wha? We were fighting...?"},
+			{"text":"*snoring sounds*"},
+		],
+	}
+}

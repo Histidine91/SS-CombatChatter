@@ -1,0 +1,82 @@
+{
+	"name":"Count",
+	"personalities":["steady", "aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1.5,
+	"categoryTags":["othermedia", "game", "acecombat"],
+	
+	"lines":{
+		"start":[
+			{"text":"All right, I'm taking command."},
+			{"text":"I'll take up command. Any objections?"},
+			{"text":"I'll show you all how it's done."},
+			{"text":"The one with the highest score wins."},
+			{"text":"These guys won't know what hit 'em."}
+		],
+		"start_boss":[
+			{"text":"Only the strong survive out here."},
+			{"text":"Let's settle who's best once and for all."},
+			{"text":"Now I finally get my chance to show off."}
+		],
+		"retreat":[
+			{"text":"As we say in my house, there's a thin line between bravery and stupidity."},
+			{"text":"Man, I need missions that can help me improve my score, not this crap."},
+			{"text":"That's what you get for half-assing it."}
+		],
+		"out_of_missiles":[
+		],
+		"need_help":[
+			{"text":"We just run if they shoot us, right?"},
+			{"text":"Damnit, I'm taking fire!"},
+			{"text":"Damn assholes!"}
+		],
+		"pursuing":[
+			{"text":"No way anyone's gonna take the top score from me."},
+			{"text":"Target in sight."},
+			{"text":"I'm going in first."},
+			{"text":"First come, first served."}
+		],
+		"running":[
+			{"text":"Sorry, but I'm out of here."},
+			{"text":"You guys do whatever you want. I'm going off by myself."},
+			{"text":"I've still got top score."},
+			{"text":"All right, I'll leave you to your fun."}
+		],
+		"hull_90":[
+			{"text":"Lucky shot."},
+			{"text":"Let the real battle begin!"},
+			{"text":"Don't get excited. It's beginner's luck."},
+			{"text":"You want a gold-plated toilet, too?"}
+		],
+		"hull_50":[
+			{"text":"Give me a break!"},
+			{"text":"I'm not checking out yet."},
+			{"text":"Hey, I'm being serious here!"},
+			{"text":"Come on baby, stay with me just a bit more."}
+		],
+		"hull_30":[
+			{"text":"Come on, that's enough, right? Let's get out of here!"},
+			{"text":"Where's the order to retreat!?"},
+			{"text":"Son of a bitch!"}
+		],
+		"overload":[
+			{"text":"I can't focus on attacking like this!"},
+			{"text":"Honestly, this pisses me off more than it scares me."},
+			{"text":"Hey, knock that off, would you?"},
+			{"text":"What a pain in the ass."},
+			{"text":"That ain't funny."}
+		],
+		"death":[
+			{"text":"No, no, no, no!"}
+		],
+		"victory":[
+			{"text":"Anyone got a smoke?"},
+			{"text":"Be sure to include in the report how much ass I kicked."},
+			{"text":"No rest for the wicked."},
+			{"text":"That looks like the last of them."},
+			{"text":"It's like watching a fireworks display."},
+			{"text":"Okay, still hungry for more."}
+		]
+	}
+}
