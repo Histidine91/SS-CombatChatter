@@ -116,9 +116,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.NEED_HELP, 5f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.ENGAGED, 5f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.OUT_OF_MISSILES, 8f);
-		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_90, 20f);
-		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_50, 40f);
-		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_30, 60f);
+		//MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_90, 20f);
+		//MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_50, 40f);
+		//MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.HULL_30, 60f);
 		MESSAGE_TYPE_MAX_PRIORITY.put(MessageType.DEATH, 15f);
 		
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.START);
@@ -184,9 +184,21 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return name;
 	}
 	
+	protected ShipAPI getShipForMember(FleetMemberAPI member) 
+	{
+		ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
+		if (ship == null) ship = engine.getFleetManager(FleetSide.ENEMY).getShipFor(member);
+		return ship;
+	}
+	
 	protected boolean isIgnored(FleetMemberAPI member)
 	{
 		if (ignore.contains(member)) return true;
+		
+		if (!ChatterConfig.allyChatter && member.isAlly()) {
+			ignore.add(member);
+			return true;
+		}
 		if (ChatterDataManager.EXCLUDED_HULLS.contains(member.getHullId()))
 		{
 			ignore.add(member);
@@ -203,12 +215,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return true;
 		}
 		
-		// ignore modules
-		ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
+		
+		ShipAPI ship = getShipForMember(member);
 		if (ship != null)
 		{
-			DeployedFleetMemberAPI deployedMember = engine.getFleetManager(FleetSide.PLAYER).getDeployedFleetMemberEvenIfDisabled(ship);
-			if (deployedMember != null && deployedMember.isStationModule())
+			// ignore modules
+			if (ship.getParentStation() != null)
 			{
 				ignore.add(member);
 				return true;
@@ -228,7 +240,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (isIgnored(member)) return null;
 		
 		ShipStateData data = new ShipStateData();
-		ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
+		ShipAPI ship = getShipForMember(member);
 		if (ship != null) {
 			data.hull = ship.getHullLevel();
 			//data.maxOPs = ship.getHullSpec().
@@ -241,8 +253,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			}
 			if (data.maxOPs <= 0 || data.missileOPs < data.maxOPs * ChatterConfig.minMissileOPFractionForChatter)
 				data.canWriteOutOfMissiles = false;	// don't bother writing out of missiles message
+			
+			data.isEnemy = ship.getOwner() == 1;
 		}
 		data.characterId = getCharacterForFleetMember(member);
+		
 		
 		states.put(member, data);
 		return data;
@@ -378,17 +393,23 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		messageBoxLimiter += charge;
 	}
 	
+	protected boolean printRandomMessage(FleetMemberAPI member, MessageType category) {
+		return printRandomMessage(member, category, null);
+	}
+	
 	/**
 	 * Writes a random message of the appropriate category, based on the {@code member}'s assigned character
 	 * @param member
 	 * @param category
-	 * @return true if message was printed to message field
+	 * @param genericFallback
+	 * @return true if a non-fallback message was printed to message field
 	 */
-	protected boolean printRandomMessage(FleetMemberAPI member, MessageType category)
+	protected boolean printRandomMessage(FleetMemberAPI member, MessageType category, String genericFallback)
 	{
 		if (isIgnored(member)) return false;
 		
 		boolean floater = isFloatingMessage(category);
+		boolean enemy = getShipStateData(member).isEnemy;
 		
 		if (!floater && !meetsPriorityThreshold(member, category))
 		{
@@ -419,24 +440,54 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (ChatterDataManager.getCharacterData(character) == null)
 			character = "default";
 		
-		if (!hasLine(member, category, floater))
-			return false;
+		boolean fallback = false;
 		
-		List<ChatterLine> lines = ChatterDataManager.getCharacterData(character).lines.get(category);		
-		ChatterLine line = (ChatterLine)GeneralUtils.getRandomListElement(lines);
-		String message = "\"" + line.text + "\"";
+		// If this character doesn't have a line for that category, or failed the anti-repetition check...
+		if (!hasLine(member, category, floater)) {
+			// Don't print anything if enemy, or no generic fallback is specified,
+			// or this doesn't meet our priority threshold for messages
+			
+			if (enemy) return false;
+			if (genericFallback == null) return false;
+			if (!meetsPriorityThreshold(member, category)) return false;
+			
+			// Fine, use the fallback
+			fallback = true;
+		}
+		
+		String message;
+		ChatterLine line = null;
+		if (!fallback) {
+			List<ChatterLine> lines = ChatterDataManager.getCharacterData(character).lines.get(category);		
+			line = (ChatterLine)GeneralUtils.getRandomListElement(lines);
+			message = "\"" + line.text + "\"";
+		} else {
+			message = genericFallback;
+		}
+
 		String name = getShipName(member, true);
-		Color textColor = Global.getSettings().getColor("standardTextColor");
-		if (category == MessageType.HULL_50)
-			textColor = Color.YELLOW;
-		else if (category == MessageType.HULL_30)
-			textColor = Misc.getNegativeHighlightColor();
-		else if (category == MessageType.OVERLOAD)
-			textColor = Color.CYAN;
+		Color textColor;
+		switch (category) {
+			case HULL_50:
+				textColor = Color.YELLOW;
+				break;
+			case HULL_30:
+				textColor = Misc.getNegativeHighlightColor();
+				break;
+			case OVERLOAD:
+				textColor = Color.CYAN;
+				break;
+			default:
+				textColor = Global.getSettings().getColor("standardTextColor");
+				break;
+		}
+		
+		if (line != null && line.sound != null)
+			Global.getSoundPlayer().playUISound(line.sound, 1, 1);
 		
 		if (floater)
 		{
-			ShipAPI ship = engine.getFleetManager(FleetSide.PLAYER).getShipFor(member);
+			ShipAPI ship = getShipForMember(member);
 			if (ship == null) return false;
 			Vector2f pos = ship.getLocation();
 			Vector2f textPos = new Vector2f(pos.x, pos.y + ship.getCollisionRadius());
@@ -448,16 +499,21 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return false;
 		}
 		
-		engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Misc.getTextColor(), ": ", textColor, message);
-		if (line.sound != null)
-			Global.getSoundPlayer().playUISound(line.sound, 1, 1);
+		if (fallback) {
+			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, textColor, message);
+		}
+		else {
+			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Misc.getTextColor(), ": ", textColor, message);
+		}
 		
-		lastMessageTime = timeElapsed;
-		//log.info("Time elapsed: " + lastMessageTime);
-		priorityThreshold += PRIORITY_PER_MESSAGE;
-		lastTalker = member;
+		if (!fallback) {
+			lastMessageTime = timeElapsed;
+			//log.info("Time elapsed: " + lastMessageTime);
+			priorityThreshold += PRIORITY_PER_MESSAGE;
+			lastTalker = member;
+		}
 		
-		return true;
+		return !fallback;
 	}
 	
 	protected boolean meetsPriorityThreshold(FleetMemberAPI member, MessageType category)
@@ -470,7 +526,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	}
 	
 	/**
-	 * Writes hull damage warning messages
+	 * Writes hull damage warning messages, and also plays a sound.
 	 * @param member
 	 * @param category Can be HULL_30, HULL_50 or HULL_90
 	 * @param amount Number to write in short form message (30, 50 or 90)
@@ -478,71 +534,42 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printHullMessage(FleetMemberAPI member, MessageType category, int amount)
 	{
-		if (category == MessageType.HULL_50)
-			Global.getSoundPlayer().playUISound("cr_allied_warning", 1, 1);
-		else if (category == MessageType.HULL_30)
-			Global.getSoundPlayer().playUISound("cr_allied_malfunction", 1, 1);
-		if (!meetsPriorityThreshold(member, category) || !hasLine(member, category, false))
-		{
-			// short form
-			String message1 = " " + StringHelper.getString("chatter_general", "isAt") + " ";
-			String message2 = amount + "% " + StringHelper.getString("chatter_general", "hull") + "!";
-			String name = getShipName(member, true);
-			Color textColor = Global.getSettings().getColor("standardTextColor");
+		boolean enemy = getShipStateData(member).isEnemy;
+		
+		if (!enemy) {
 			if (category == MessageType.HULL_50)
-				textColor = Color.YELLOW;
+				Global.getSoundPlayer().playUISound("cr_allied_warning", 1, 1);
 			else if (category == MessageType.HULL_30)
-				textColor = Misc.getNegativeHighlightColor();
-			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, 
-					Global.getSettings().getColor("standardTextColor"), message1, textColor, message2);
-			return false;
+				Global.getSoundPlayer().playUISound("cr_allied_malfunction", 1, 1);
 		}
-		else
-		{
-			return printRandomMessage(member, category);
-		}
+		
+		// short form message as fallback
+		String message1 = " " + StringHelper.getString("chatter_general", "isAt") + " ";
+		String message2 = amount + "% " + StringHelper.getString("chatter_general", "hull") + "!";
+		
+		return printRandomMessage(member, category, message1 + " " + message2);
 	}
 	
 	/**
-	 * Writes overload warning messages
+	 * Writes overload warning messages.
 	 * @param member
 	 * @return true if long form message was printed, false otherwise
 	 */
 	protected boolean printOverloadMessage(FleetMemberAPI member)
 	{
-		if (!meetsPriorityThreshold(member, MessageType.OVERLOAD) || !hasLine(member, MessageType.OVERLOAD, false))
-		{
-			// short form
-			String message = " " + StringHelper.getString("chatter_general", "hasOverloaded") + "!";
-			String name = getShipName(member, true);
-			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Color.CYAN, message);
-			return false;
-		}
-		else
-		{
-			return printRandomMessage(member, MessageType.OVERLOAD);
-		}
+		String fallback = " " + StringHelper.getString("chatter_general", "hasOverloaded") + "!";
+		return printRandomMessage(member, MessageType.OVERLOAD, fallback);
 	}
 	
 	/**
-	 * Writes missile depletion warning messages
+	 * Writes missile depletion warning messages.
 	 * @param member
 	 * @return true if long form message was printed, false otherwise
 	 */
 	protected boolean printOutOfMissilesMessage(FleetMemberAPI member)
 	{
-		if (!meetsPriorityThreshold(member, MessageType.OUT_OF_MISSILES) || !hasLine(member, MessageType.OUT_OF_MISSILES, false))
-		{
-			// short form
-			String message = " " + StringHelper.getString("chatter_general", "outOfMissiles");
-			String name = getShipName(member, true);
-			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Global.getSettings().getColor("standardTextColor"), message);
-			return false;
-		}
-		else
-		{
-			return printRandomMessage(member, MessageType.OUT_OF_MISSILES);
-		}
+		String fallback = " " + StringHelper.getString("chatter_general", "outOfMissiles");
+		return printRandomMessage(member, MessageType.OUT_OF_MISSILES, fallback);
 	}
 	
 	protected void playIntroMessage(List<FleetMemberAPI> deployed)
@@ -576,23 +603,22 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	/**
 	 * Picks a random FleetMemberAPI to say a "team" message, such as the battle start or retreat messages.
 	 * @param members The FleetMemberAPIs to choose a random speaker from (usually this is engine.getFleetManager(FleetSide.PLAYER).getDeployedCopy())
+	 * @param category
 	 * @return
 	 */
 	protected FleetMemberAPI pickRandomMemberFromList(List<FleetMemberAPI> members, MessageType category)
-	{
-		CombatFleetManagerAPI fm = engine.getFleetManager(FleetSide.PLAYER);
-		if (fm == null) return null;	// this can rarely happen?
-		
+	{		
 		boolean floater = isFloatingMessage(category);
 		WeightedRandomPicker<FleetMemberAPI> picker = new WeightedRandomPicker<>();
 		for (FleetMemberAPI member : members)
 		{
 			//if (member.isFighterWing()) continue;
 			if (isIgnored(member)) continue;
-			if (fm.getShipFor(member) == null) continue;
+			ShipAPI ship = getShipForMember(member);
+			if (ship == null) continue;
 			
-			if (fm.getShipFor(member) == engine.getPlayerShip() && !ChatterConfig.selfChatter) continue;	// being player-piloted;
-			if (fm.getShipFor(member).isHulk()) continue;
+			if (ship == engine.getPlayerShip() && !ChatterConfig.selfChatter) continue;	// being player-piloted;
+			if (ship.isHulk()) continue;
 			float weight = 1;	//GeneralUtils.getHullSizePoints(member);
 			if (member.getCaptain() != null && !member.getCaptain().isDefault()) weight *= 4;
 			if (member.isFighterWing()) weight *= 0.5f;
@@ -600,10 +626,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				if (ChatterConfig.allyChatter) weight *= 0.5f;
 				else continue;
 			}
+			if (getShipStateData(member).isEnemy) {
+				if (ChatterConfig.enemyChatter) weight *= 0.5f;
+				else continue;
+			}
+			
 			if (!hasLine(member, category, false))
 				continue;
 			if (floater) {
-				ShipAPI ship = fm.getShipFor(member);
 				if (!Global.getCombatEngine().getViewport().isNearViewport(ship.getLocation(), ship.getCollisionRadius()))
 					continue;
 			}
@@ -643,6 +673,22 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		boxMessages.add(new BoxMessage(member, "This is a long string. It will fill most of the box. This is a haiku."));
 	}
 	
+	protected List<FleetMemberAPI> getDeployed() {
+		List<FleetMemberAPI> list = engine.getFleetManager(FleetSide.PLAYER).getDeployedCopy();
+		if (ChatterConfig.enemyChatter) list.addAll(engine.getFleetManager(FleetSide.ENEMY).getDeployedCopy());
+		return list;
+	}
+	
+	protected List<FleetMemberAPI> getDead() {
+		List<FleetMemberAPI> list = engine.getFleetManager(FleetSide.PLAYER).getDisabledCopy();
+		list.addAll(engine.getFleetManager(FleetSide.PLAYER).getDestroyedCopy());
+		if (ChatterConfig.enemyChatter) {
+			list.addAll(engine.getFleetManager(FleetSide.ENEMY).getDisabledCopy());
+			list.addAll(engine.getFleetManager(FleetSide.ENEMY).getDestroyedCopy());
+		}
+		return list;
+	}
+	
 	@Override
 	public void advance(float amount, List<InputEventAPI> events) {
 		if (engine == null) return;
@@ -667,12 +713,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		interval.advance(amount);
 		if (!interval.intervalElapsed()) return;
 		
-		CombatFleetManagerAPI fm = engine.getFleetManager(FleetSide.PLAYER);
-		if (fm == null) return;
+		CombatFleetManagerAPI pfm = engine.getFleetManager(FleetSide.PLAYER);
 		
-		List<FleetMemberAPI> deployed = fm.getDeployedCopy();
-		List<FleetMemberAPI> dead = fm.getDisabledCopy();
-		dead.addAll(fm.getDestroyedCopy());
+		List<FleetMemberAPI> deployed = getDeployed();
+		List<FleetMemberAPI> dead = getDead();
 		//if (deployed.isEmpty()) return;
 		
 		if (!introDone)
@@ -723,12 +767,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		{
 			if (isIgnored(member)) continue;
 			if (member.isFighterWing()) continue;
-			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
 			
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
 			
-			ShipAPI ship = fm.getShipFor(member);
+			ShipAPI ship = getShipForMember(member);
 			if (ship == null || !ship.isAlive()) continue;
 			
 			if (stateData.isPlayer && !ChatterConfig.selfChatter) // being player-piloted
@@ -756,7 +799,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		for (FleetMemberAPI member : dead)
 		{
 			if (isIgnored(member)) continue;
-			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
 			ShipStateData stateData = getShipStateData(member);
 			
 			if (!stateData.dead) {
@@ -775,12 +817,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			boolean isFighter = member.isFighterWing();
 			//if (member.isFighterWing()) continue;
 			if (isIgnored(member)) continue;
-			if (!ChatterConfig.allyChatter && member.isAlly()) continue;
 			
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
 			if (stateData.isPlayer && !ChatterConfig.selfChatter) continue;
-			ShipAPI ship = fm.getShipFor(member);
+			ShipAPI ship = getShipForMember(member);
 			if (ship == null) continue;
 			
 			if (!ship.isAlive() && !stateData.dead) {
@@ -1062,6 +1103,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		public boolean pursuing = false;
 		public boolean backingOff = false;
 		public boolean running = false;
+		public boolean isEnemy = false;
 		public boolean canWriteOutOfMissiles = true;
 		public int missileOPs = 0;
 		public int maxOPs = 0;
