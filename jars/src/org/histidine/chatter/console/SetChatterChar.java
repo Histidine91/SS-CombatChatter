@@ -7,6 +7,7 @@ import com.fs.starfarer.api.characters.PersonAPI;
 import java.util.ArrayList;
 import java.util.List;
 import org.histidine.chatter.ChatterDataManager;
+import org.histidine.chatter.combat.ChatterCombatPlugin;
 import org.lazywizard.console.BaseCommand;
 import org.lazywizard.console.CommandUtils;
 import org.lazywizard.console.CommonStrings;
@@ -16,7 +17,7 @@ public class SetChatterChar implements BaseCommand {
 
 	@Override
 	public CommandResult runCommand(String args, CommandContext context) {
-		if (!context.isInCampaign()) {
+		if (context == CommandContext.COMBAT_MISSION) {
 			Console.showMessage(CommonStrings.ERROR_CAMPAIGN_ONLY);
 			return CommandResult.WRONG_CONTEXT;
 		}
@@ -94,6 +95,11 @@ public class SetChatterChar implements BaseCommand {
 		}
 		
 		ChatterDataManager.saveCharacter(selectedOfficer, charID);
+		ChatterCombatPlugin plugin = ChatterCombatPlugin.getInstance();
+		if (plugin != null) {
+			plugin.setCharacterForOfficer(selectedOfficer, charID);
+		}
+		
 		Console.showMessage("Assigning character " + charID + " to officer " + selectedOfficer.getName().getFullName());
 		return CommandResult.SUCCESS;
 	}

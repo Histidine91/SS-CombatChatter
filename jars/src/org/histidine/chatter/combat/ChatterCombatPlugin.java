@@ -56,6 +56,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
 	public static Logger log = Global.getLogger(ChatterCombatPlugin.class);
 	
+	public static final String DATA_KEY = "chatter_plugin";
 	public static final boolean DEBUG_MODE = false;
 	
 	public static final float PRIORITY_PER_MESSAGE = 20;
@@ -149,6 +150,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 	}
 	
+	public static ChatterCombatPlugin getInstance() {
+		return (ChatterCombatPlugin)Global.getCombatEngine().getCustomData().get(DATA_KEY);
+	}
+	
 	protected float getRandomForStringSeed(String seed)
 	{
 		if (seed == null || seed.isEmpty()) return (float)Math.random();
@@ -184,6 +189,17 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (rand.nextFloat() > 0.5) name += "2";
 		
 		return name;
+	}
+	
+	// Called from SetChatterChar console command
+	public void setCharacterForOfficer(PersonAPI officer, String charId) {
+		for (Map.Entry<FleetMemberAPI, ShipStateData> tmp : states.entrySet()) {
+			FleetMemberAPI member = tmp.getKey();
+			if (member.getCaptain() == officer) {
+				tmp.getValue().characterId = charId;
+				return;
+			}
+		}
 	}
 	
 	protected ShipAPI getShipForMember(FleetMemberAPI member) 
@@ -825,8 +841,15 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			ShipStateData stateData = getShipStateData(member);
 			if (stateData.dead) continue;
 			if (stateData.isPlayer && !ChatterConfig.selfChatter) continue;
+			
 			ShipAPI ship = getShipForMember(member);
 			if (ship == null) continue;
+			
+			boolean player = ship == engine.getPlayerShip();
+			if (player != stateData.isPlayer) {
+				stateData.isPlayer = player;
+				stateData.characterId = getCharacterForFleetMember(member);
+			}
 			
 			if (!ship.isAlive() && !stateData.dead) {
 				if (!printed && !isFighter)
@@ -909,14 +932,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				//log.info(member.getShipName() + " pursuing target? " + flags.hasFlag(AIFlags.PURSUING));
 				//log.info(member.getShipName() + " running? " + flags.hasFlag(AIFlags.RUN_QUICKLY));
 				//log.info(member.getShipName() + " needs help? " + flags.hasFlag(AIFlags.NEEDS_HELP));
-			}
-			
-			// only update isPlayer state at the very end, after death message checks
-			// this is to keep death message from playing for player ship
-			boolean isPlayer = ship == engine.getPlayerShip();
-			if (isPlayer != stateData.isPlayer) {
-				stateData.isPlayer = isPlayer;
-				stateData.dead = ship.isAlive();
 			}
 		}
 	}
@@ -1080,6 +1095,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public void init(CombatEngineAPI engine) {
 		log.info("Chatter plugin initialized");
 		this.engine = engine;
+		engine.getCustomData().put(DATA_KEY, this);
 	}
 
 	@Override
