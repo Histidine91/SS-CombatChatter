@@ -157,7 +157,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	}
 	
 	protected String getCharacterForFleetMember(FleetMemberAPI member)
-	{	
+	{
+		ShipAPI ship = getShipForMember(member);
+		boolean enemy = ship != null && ship.getOwner() == 1;
 		PersonAPI captain = member.getCaptain();
 		if ((captain != null && !captain.isDefault()) || engine.isMission() || member.isFighterWing())
 		{
@@ -215,7 +217,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return true;
 		}
 		
-		
 		ShipAPI ship = getShipForMember(member);
 		if (ship != null)
 		{
@@ -242,6 +243,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		ShipStateData data = new ShipStateData();
 		ShipAPI ship = getShipForMember(member);
 		if (ship != null) {
+			//log.info("Creating data for ship " + member.getShipName() + ", side " + ship.getOwner());
 			data.hull = ship.getHullLevel();
 			//data.maxOPs = ship.getHullSpec().
 			for (WeaponAPI wep : ship.getAllWeapons())
@@ -352,6 +354,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	protected Color getShipNameColor(FleetMemberAPI member) {
 		if (member.isAlly()) return Misc.getHighlightColor();
+		if (getShipStateData(member).isEnemy) return Global.getSettings().getColor("textEnemyColor");
 		return Global.getSettings().getColor("textFriendColor");
 	}
 	
@@ -387,7 +390,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return;
 		
 		float charge = 3;
-		if (member.isAlly()) charge = 4.5f;
+		if (member.isAlly() || stateData.isEnemy) charge = 4.5f;
+		if (messageBoxLimiter + charge > 10)
+			return;
 		
 		boxMessages.add(new BoxMessage(member, message));
 		messageBoxLimiter += charge;
@@ -408,8 +413,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	{
 		if (isIgnored(member)) return false;
 		
-		boolean floater = isFloatingMessage(category);
 		boolean enemy = getShipStateData(member).isEnemy;
+		boolean floater = enemy || isFloatingMessage(category);
 		
 		if (!floater && !meetsPriorityThreshold(member, category))
 		{
@@ -520,7 +525,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	{
 		float threshold = priorityThreshold;
 		if (lastTalker == member) threshold *= 2f;
-		if (member.isAlly()) threshold *= 2f;
+		if (member.isAlly() || getShipStateData(member).isEnemy) threshold *= 2f;
 		
 		return (getMessageMaxPriority(category) >= threshold);
 	}
@@ -713,8 +718,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		interval.advance(amount);
 		if (!interval.intervalElapsed()) return;
 		
-		CombatFleetManagerAPI pfm = engine.getFleetManager(FleetSide.PLAYER);
-		
 		List<FleetMemberAPI> deployed = getDeployed();
 		List<FleetMemberAPI> dead = getDead();
 		//if (deployed.isEmpty()) return;
@@ -722,7 +725,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!introDone)
 		{
 			//log.info("Trying to play intro message");
-			playIntroMessage(deployed);
+			playIntroMessage(engine.getFleetManager(FleetSide.PLAYER).getDeployedCopy());
 		}
 		
 		boolean printed = false;
@@ -791,6 +794,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				printed = printHullMessage(member, MessageType.HULL_90, 90);
 			
 			stateData.hull = hull;
+			stateData.isEnemy = ship.getOwner() == 1;
 		}
 		
 		boolean canPrint = printed;
