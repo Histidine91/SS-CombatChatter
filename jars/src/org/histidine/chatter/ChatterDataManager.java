@@ -290,13 +290,13 @@ public class ChatterDataManager {
 		for (NameToCharacterMapping map : NAME_TO_CHARACTER) {
 			int score = 0;
 			if (map.firstName != null) {
-				log.info("First name: " + name.getFirst());
+				//log.info("First name: " + name.getFirst());
 				if (map.firstName.equals(name.getFirst()))
 					score += 1;
 				else continue;
 			}
 			if (map.lastName != null) {
-				log.info("Last name: " + name.getLast());
+				//log.info("Last name: " + name.getLast());
 				if (map.lastName.equals(name.getLast()))
 					score += 1;
 				else continue;
