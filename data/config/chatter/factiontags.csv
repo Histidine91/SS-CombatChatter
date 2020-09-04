@@ -7,7 +7,6 @@ luddic_church,"military,christian"
 knights_of_ludd,"military,christian"
 luddic_path,"free,criminal,christian"
 pirates,criminal
-player_npc,"military,corporate,free"
 independent,free
 persean,military
 derelict,robot
@@ -25,6 +24,7 @@ exigency,"military,corporate"
 exipirated,"free,criminal"
 firestorm_federation,military
 fob,
+fpe,military
 gmda,"corporate,criminal,free"
 hiigaran_descendants,military
 infected,zombie
@@ -37,8 +37,6 @@ mayorate,"military,criminal"
 metelson,"military,corporate"
 neutrinocorp,"military,corporate"
 new_galactic_order,military
-nil,
-noir,
 oculus,military
 ORA,"military,free"
 ori,military
@@ -48,7 +46,7 @@ rori,"free,criminal"
 pack,free
 patnavy,military
 pbc,military
-scion,
+scalartech,military
 SCY,"military,criminal"
 shadow_industry,military
 spire,military
@@ -57,6 +55,7 @@ sun_ice,"military,free"
 sun_ici,military
 sylphon,corporate
 syndicate_asp,"military,corporate"
+tahlan_legioinfernalis,criminal
 templars,"military,christian"
 tiandong,"military,corporate"
 valkyrian,military
