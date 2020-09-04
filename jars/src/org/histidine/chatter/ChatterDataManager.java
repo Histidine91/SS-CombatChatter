@@ -311,6 +311,14 @@ public class ChatterDataManager {
 		return bestMatch;
 	}
 	
+	public static String getFactionFromShip(FleetMemberAPI ship) {
+		String factionId = getFactionIDFromShipNamePrefix(ship.getShipName());
+		if (factionId.isEmpty())
+			factionId = getFactionIDFromHullID(ship.getHullId());
+			
+		return factionId;
+	}
+	
 	/**
 	 * Picks a new chatter character for the specified officer, 
 	 * or retrieves it from memory if available.
@@ -349,10 +357,7 @@ public class ChatterDataManager {
 		
 		if (isMission)
 		{
-			factionId = getFactionIDFromShipNamePrefix(ship.getShipName());
-			if (factionId.isEmpty())
-				factionId = getFactionIDFromHullID(ship.getHullId());
-			//log.info("Detected faction for ship " + ship.getShipName() + " as " + factionId);
+			factionId = getFactionFromShip(ship);
 		}
 		
 		// Auto assign from officer name if appropriate

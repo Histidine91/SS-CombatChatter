@@ -23,6 +23,7 @@ import com.fs.starfarer.api.fleet.FleetGoal;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.graphics.SpriteAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Personalities;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.util.IntervalUtil;
@@ -164,7 +165,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected String getCharacterForFleetMember(FleetMemberAPI member)
 	{
 		ShipAPI ship = getShipForMember(member);
-		boolean enemy = ship != null && ship.getOwner() == 1;
+		
 		PersonAPI captain = member.getCaptain();
 		if ((captain != null && !captain.isDefault()) || engine.isMission() || member.isFighterWing())
 		{
@@ -172,18 +173,24 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		String name = "default";
-		//CrewXPLevel xpLevel = member.getCrewXPLevel();
-		boolean timid = false;
-		if (member.getHullSpec().getHints().contains(ShipTypeHints.CIVILIAN))// && !(xpLevel == CrewXPLevel.VETERAN || xpLevel == CrewXPLevel.ELITE))
-			timid = true;
-		//else if (xpLevel == CrewXPLevel.GREEN)
-		//	timid = true;
+		String personality = "";
+		if (captain != null)
+			personality = captain.getPersonalityAPI().getId();
+		
+		if (captain != null && captain.isDefault()) {
+			//log.info("Default captain has personality " + personality);
+		}
+		
+		boolean timid = member.getHullSpec().getHints().contains(ShipTypeHints.CIVILIAN) || personality.equals(Personalities.TIMID);
+		boolean aggressive = personality.equals(Personalities.AGGRESSIVE) || personality.equals(Personalities.RECKLESS);
 		
 		//else if (xpLevel == CrewXPLevel.ELITE) name = "default_professional";
 		int hash = member.getShipName() != null ? member.getShipName().hashCode() : (int)(Math.random() * 65536);
 		Random rand = new Random(hash);
 		if (timid) 
 			name = "default_timid";
+		else if (aggressive)
+			name = "default_aggressive";
 		else if (rand.nextFloat() > 0.5) 
 			name = "default_professional";
 		if (rand.nextFloat() > 0.5) name += "2";
@@ -242,6 +249,18 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				ignore.add(member);
 				return true;
 			}
+			
+			boolean isEnemy = ship.getOwner() == 1;
+			if (isEnemy)
+			{
+				String faction = ChatterDataManager.getFactionFromShip(member);
+				if (ChatterConfig.noEnemyChatterFactions.contains(faction)
+						|| !ChatterConfig.enemyChatter) {
+					//log.info("Enemy ship " + member.getShipName() + " being ignored: " + faction);
+					ignore.add(member);
+					return true;
+				}
+			}
 		}
 		
 		return false;
@@ -273,6 +292,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				data.canWriteOutOfMissiles = false;	// don't bother writing out of missiles message
 			
 			data.isEnemy = ship.getOwner() == 1;
+			data.isPlayer = ship == engine.getPlayerShip();
 		}
 		data.characterId = getCharacterForFleetMember(member);
 		
@@ -512,7 +532,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (ship == null) return false;
 			Vector2f pos = ship.getLocation();
 			Vector2f textPos = new Vector2f(pos.x, pos.y + ship.getCollisionRadius());
-			engine.addFloatingText(textPos, message, 32, textColor, ship, 0, 0);
+			engine.addFloatingText(textPos, message, Global.getSettings().getInt("chatter_floaterFontSize"), textColor, ship, 0, 0);
 			addMessageBoxMessage(stateData, member, message, category);
 			stateData.lastFloatMessageTime = timeElapsed;
 			stateData.lastFloatMessageType = category;
@@ -648,8 +668,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				else continue;
 			}
 			if (getShipStateData(member).isEnemy) {
-				if (ChatterConfig.enemyChatter) weight *= 0.5f;
-				else continue;
+				weight *= 0.5f;
 			}
 			
 			if (!hasLine(member, category, false))
@@ -793,14 +812,19 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			ShipAPI ship = getShipForMember(member);
 			if (ship == null || !ship.isAlive()) continue;
 			
+			float hull = ship.getHullLevel();
+			float oldHull = stateData.hull;
+			
+			stateData.hull = hull;
+			stateData.isEnemy = ship.getOwner() == 1;
+			
 			if (stateData.isPlayer && !ChatterConfig.selfChatter) // being player-piloted
 			{
-				stateData.hull = ship.getHullLevel();
 				continue;
 			}
 			
-			float hull = ship.getHullLevel();
-			float oldHull = stateData.hull;
+			if (stateData.isEnemy && Math.random() < 0.5f)
+				continue;
 			
 			if (hull <= 0.3 && oldHull > 0.3)
 				printed = printHullMessage(member, MessageType.HULL_30, 30);
@@ -808,9 +832,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				printed = printHullMessage(member, MessageType.HULL_50, 50);
 			else if (hull <= 0.9 && oldHull > 0.9)
 				printed = printHullMessage(member, MessageType.HULL_90, 90);
-			
-			stateData.hull = hull;
-			stateData.isEnemy = ship.getOwner() == 1;
 		}
 		
 		boolean canPrint = printed;
@@ -851,20 +872,25 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				stateData.characterId = getCharacterForFleetMember(member);
 			}
 			
+			// Second check for death state? Not sure if needed
 			if (!ship.isAlive() && !stateData.dead) {
 				if (!printed && !isFighter)
 					printed = printRandomMessage(member, MessageType.DEATH);
 				stateData.dead = true;
 				continue;
 			}
+			
 			boolean overloaded = false;
 			if (ship.getFluxTracker() != null) 
 			{
 				overloaded = ship.getFluxTracker().getOverloadTimeRemaining() > 2;
 			}
 			
-			if (!isFighter && overloaded && !stateData.overloaded)
-				printed = printOverloadMessage(member);
+			if (!isFighter && overloaded && !stateData.overloaded) {
+				if (!stateData.isEnemy || Math.random() < 0.5f)
+					printed = printOverloadMessage(member);
+			}
+				
 			
 			stateData.overloaded = overloaded;
 			
@@ -895,7 +921,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				}
 				if (!haveMissileAmmo) {
 					stateData.canWriteOutOfMissiles = false;
-					printOutOfMissilesMessage(member);
+					if (!stateData.isEnemy || Math.random() < 0.5f)
+						printOutOfMissilesMessage(member);
 				}
 			}
 			
@@ -913,7 +940,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 					if (assign != null && assign.getType() == CombatAssignmentType.RETREAT)
 						running = true;
 					
-					if ((canPrint || !printed))
+					if ((canPrint || !printed) && (!stateData.isEnemy || Math.random() < 0.5f))
 					{
 						if (!isFighter && running && !stateData.running)
 							printed = printRandomMessage(member, MessageType.RUNNING);

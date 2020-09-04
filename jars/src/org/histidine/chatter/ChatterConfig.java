@@ -24,6 +24,7 @@ public class ChatterConfig {
 	public static boolean personalityChanceScaling = true;
 	public static float genderChanceScaling = 1.5f;
 	public static Set<String> disallowedTags = null;
+	public static Set<String> noEnemyChatterFactions = null;
 	
 	public static Logger log = Global.getLogger(ChatterConfig.class);
 	
@@ -43,6 +44,7 @@ public class ChatterConfig {
 			genderChanceScaling = (float)settings.optDouble("genderChanceScaling", genderChanceScaling);
 			
 			disallowedTags = new HashSet<>(GeneralUtils.JSONArrayToStringList(settings.optJSONArray("disallowedTags")));
+			noEnemyChatterFactions = new HashSet<>(GeneralUtils.JSONArrayToStringList(settings.optJSONArray("noEnemyChatterFactions")));
 		} 
 		catch (IOException | JSONException ex) {
 			log.error(ex);
