@@ -5,10 +5,8 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.CombatAssignmentType;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
-import com.fs.starfarer.api.combat.CombatFleetManagerAPI;
 import com.fs.starfarer.api.combat.CombatFleetManagerAPI.AssignmentInfo;
 import com.fs.starfarer.api.combat.CombatTaskManagerAPI;
-import com.fs.starfarer.api.combat.DeployedFleetMemberAPI;
 import com.fs.starfarer.api.combat.EveryFrameCombatPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
@@ -153,6 +151,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	public static ChatterCombatPlugin getInstance() {
 		return (ChatterCombatPlugin)Global.getCombatEngine().getCustomData().get(DATA_KEY);
+	}
+	
+	public Map<FleetMemberAPI, ShipStateData> getShipStates() {
+		return states;
 	}
 	
 	protected float getRandomForStringSeed(String seed)
@@ -301,7 +303,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return data;
 	}
 	
-	protected String getShipName(FleetMemberAPI member, boolean includeClass) {
+	public String getShipName(FleetMemberAPI member, boolean includeClass) {
 		return getShipName(member, includeClass, false);
 	}
 	
@@ -1140,7 +1142,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 	}
 	
-	protected static class ShipStateData
+	public static class ShipStateData
 	{
 		public String characterId = "default";
 		public boolean isPlayer = false;

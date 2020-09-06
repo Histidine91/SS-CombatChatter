@@ -542,6 +542,9 @@ public class ChatterDataManager {
 	public static List<PersonAPI> getOfficers(boolean includePlayer)
 	{
 		List<PersonAPI> officers = new ArrayList<>();
+		if (Global.getSector().getPlayerFleet() == null) {
+			return officers;	// called from menu mission, probably
+		}
 		
 		for (OfficerDataAPI officer : Global.getSector().getPlayerFleet().getFleetData().getOfficersCopy())
 		{
