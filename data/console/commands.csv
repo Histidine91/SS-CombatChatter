@@ -2,6 +2,7 @@ command,class,tags,syntax,help
 PrintChatterChars,org.histidine.chatter.console.PrintChatterChars,"campaign,combat,combatchatter","printchatterchars [""current""/""battle""/""all""]","""current""/no argument: Writes the saved chatter characters for all officers that have served with the player.
 ""battle"": Writes the chatter characters used in the current battle (including allied/enemy ships as applicable).
 ""all"": List all available chatter characters."
-SetChatterChar,org.histidine.chatter.console.SetChatterChar,"campaign,combatchatter",setchatterchar <officer name> <character ID>,"Assigns the specified chatter character to the officer in the player fleet with the best match for the provided name. Note: Full name is searched first, then surname, then given name"
+SetChatterChar,org.histidine.chatter.console.SetChatterChar,"campaign,combat,combatchatter",setchatterchar <officer name> <character ID>,"Assigns the specified chatter character to the officer in the player fleet with the best match for the provided name. Note: Full name is searched first, then surname, then given name"
 ClearChatterChars,org.histidine.chatter.console.ClearChatterChars,"campaign,combatchatter",clearchatterchars,Unsets chatter characters for all current/past officers.
 ValidateCharacterFaction,org.histidine.chatter.console.ValidateCharacterFaction,"campaign,combat,combatchatter",validatecharacterfaction <character ID> <faction ID>,Debug: Check if the character can be used for the specified faction.
+PrintChatterTags,org.histidine.chatter.console.PrintChatterTags,"campaign,combat,combatchatter",printchattertags,Debug: List all character tags in the game and the characters that use them.
