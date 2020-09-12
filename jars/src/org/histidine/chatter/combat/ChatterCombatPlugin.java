@@ -281,6 +281,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		ShipAPI ship = getShipForMember(member);
 		if (ship != null) {
 			//log.info("Creating data for ship " + member.getShipName() + ", side " + ship.getOwner());
+			data.ship = ship;
 			data.hull = ship.getHullLevel();
 			//data.maxOPs = ship.getHullSpec().
 			for (WeaponAPI wep : ship.getAllWeapons())
@@ -451,7 +452,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	{
 		if (isIgnored(member)) return false;
 		
-		boolean enemy = getShipStateData(member).isEnemy;
+		ShipStateData stateData = getShipStateData(member);
+		
+		boolean enemy = stateData.isEnemy;
 		boolean floater = enemy || isFloatingMessage(category);
 		
 		if (!floater && !meetsPriorityThreshold(member, category))
@@ -469,7 +472,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return false;
 		}
 		
-		ShipStateData stateData = getShipStateData(member);
 		if (floater)
 		{
 			float requiredInterval = MESSAGE_INTERVAL_FLOAT;
@@ -489,7 +491,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!hasLine(member, category, floater)) {
 			// Don't print anything if enemy, or no generic fallback is specified,
 			// or this doesn't meet our priority threshold for messages
-			
 			if (enemy) return false;
 			if (genericFallback == null) return false;
 			if (!meetsPriorityThreshold(member, category)) return false;
@@ -530,12 +531,18 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		if (floater)
 		{
-			ShipAPI ship = getShipForMember(member);
-			if (ship == null) return false;
+			ShipAPI ship = getShipStateData(member).ship;
+			if (ship == null) {
+				return false;
+			}
 			Vector2f pos = ship.getLocation();
 			Vector2f textPos = new Vector2f(pos.x, pos.y + ship.getCollisionRadius());
 			engine.addFloatingText(textPos, message, Global.getSettings().getInt("chatter_floaterFontSize"), textColor, ship, 0, 0);
-			addMessageBoxMessage(stateData, member, message, category);
+			
+			if (!rollFilterEnemyAndDefault(member)) {
+				addMessageBoxMessage(stateData, member, message, category);
+			}
+				
 			stateData.lastFloatMessageTime = timeElapsed;
 			stateData.lastFloatMessageType = category;
 			
@@ -568,6 +575,36 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return (getMessageMaxPriority(category) >= threshold);
 	}
 	
+	protected boolean rollFilterEnemyAndDefault(FleetMemberAPI member) 
+	{
+		PersonAPI captain = member.getCaptain();
+		boolean enemy = getShipStateData(member).isEnemy;
+		
+		// always allow player ships
+		if (!enemy && !member.isAlly())
+			return false;
+		
+		return rollFilterEnemyAndDefault(enemy, 
+				captain == null || captain.isDefault());
+	}
+	
+	/**
+	 * Used to reduce the rate at which enemies and default officers play messages.
+	 * @param isEnemy
+	 * @param isDefault
+	 * @return False if we should play the message, true otherwise.
+	 */
+	protected boolean rollFilterEnemyAndDefault(boolean isEnemy, boolean isDefault) 
+	{
+		if (isEnemy && Math.random() < 0.5f) {
+			return true;
+		}
+		if (isDefault && Math.random() < 0.5f) {
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * Writes hull damage warning messages, and also plays a sound.
 	 * @param member
@@ -578,6 +615,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected boolean printHullMessage(FleetMemberAPI member, MessageType category, int amount)
 	{
 		boolean enemy = getShipStateData(member).isEnemy;
+		if (rollFilterEnemyAndDefault(member))
+			return false;
 		
 		if (!enemy) {
 			if (category == MessageType.HULL_50)
@@ -600,6 +639,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printOverloadMessage(FleetMemberAPI member)
 	{
+		if (rollFilterEnemyAndDefault(member))
+			return false;
+		
 		String fallback = " " + StringHelper.getString("chatter_general", "hasOverloaded") + "!";
 		return printRandomMessage(member, MessageType.OVERLOAD, fallback);
 	}
@@ -611,6 +653,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printOutOfMissilesMessage(FleetMemberAPI member)
 	{
+		if (rollFilterEnemyAndDefault(member))
+			return false;
+		
 		String fallback = " " + StringHelper.getString("chatter_general", "outOfMissiles");
 		return printRandomMessage(member, MessageType.OUT_OF_MISSILES, fallback);
 	}
@@ -715,9 +760,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		boxMessages.add(new BoxMessage(member, "This is a long string. It will fill most of the box. This is a haiku."));
 	}
 	
-	protected List<FleetMemberAPI> getDeployed() {
+	protected List<FleetMemberAPI> getDeployed(boolean includeEnemy) {
 		List<FleetMemberAPI> list = engine.getFleetManager(FleetSide.PLAYER).getDeployedCopy();
-		if (ChatterConfig.enemyChatter) list.addAll(engine.getFleetManager(FleetSide.ENEMY).getDeployedCopy());
+		if (includeEnemy) list.addAll(engine.getFleetManager(FleetSide.ENEMY).getDeployedCopy());
 		return list;
 	}
 	
@@ -755,7 +800,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		interval.advance(amount);
 		if (!interval.intervalElapsed()) return;
 		
-		List<FleetMemberAPI> deployed = getDeployed();
+		List<FleetMemberAPI> deployed = getDeployed(ChatterConfig.enemyChatter);
+		List<FleetMemberAPI> deployedFriendly = getDeployed(false);
 		List<FleetMemberAPI> dead = getDead();
 		//if (deployed.isEmpty()) return;
 		
@@ -779,7 +825,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				victoryIncrement++;
 				if (victoryIncrement >= 3)
 				{
-					FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.VICTORY);
+					FleetMemberAPI random = pickRandomMemberFromList(deployedFriendly, MessageType.VICTORY);
 					if (random != null)
 					{
 						printRandomMessage(random, MessageType.VICTORY);
@@ -792,7 +838,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			{
 				if (engine.getContext().getPlayerGoal() != FleetGoal.ESCAPE)
 				{
-					FleetMemberAPI random = pickRandomMemberFromList(deployed, MessageType.RETREAT);
+					FleetMemberAPI random = pickRandomMemberFromList(deployedFriendly, MessageType.RETREAT);
 					if (random != null)
 					{
 						printRandomMessage(random, MessageType.RETREAT);
@@ -813,6 +859,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			
 			ShipAPI ship = getShipForMember(member);
 			if (ship == null || !ship.isAlive()) continue;
+			else stateData.ship = ship;
 			
 			float hull = ship.getHullLevel();
 			float oldHull = stateData.hull;
@@ -824,9 +871,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			{
 				continue;
 			}
-			
-			if (stateData.isEnemy && Math.random() < 0.5f)
-				continue;
 			
 			if (hull <= 0.3 && oldHull > 0.3)
 				printed = printHullMessage(member, MessageType.HULL_30, 30);
@@ -846,11 +890,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			
 			if (!stateData.dead) {
 				//log.info(member.getShipName() + " is dead!");
-				stateData.dead = true;
 				if (stateData.isPlayer && !ChatterConfig.selfChatter) // being player-piloted
 				{
 					continue;
 				}
+				stateData.dead = true;
 				printRandomMessage(member, MessageType.DEATH);
 			}
 		}
@@ -889,8 +933,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			}
 			
 			if (!isFighter && overloaded && !stateData.overloaded) {
-				if (!stateData.isEnemy || Math.random() < 0.5f)
-					printed = printOverloadMessage(member);
+				printed = printOverloadMessage(member);
 			}
 				
 			
@@ -1145,6 +1188,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static class ShipStateData
 	{
 		public String characterId = "default";
+		public ShipAPI ship;
 		public boolean isPlayer = false;
 		public boolean dead = false;
 		public boolean engaged = false;
