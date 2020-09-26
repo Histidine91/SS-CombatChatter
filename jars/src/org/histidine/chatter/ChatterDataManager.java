@@ -162,9 +162,9 @@ public class ChatterDataManager {
 					CHARACTERS.add(character);
 					CHARACTERS_MAP.put(characterId, character);
 				} catch (IOException | JSONException ex) {	// can't read character file
-					log.error("Error loading character " + characterId + ": " + ex);
+					throw new RuntimeException("Error loading chatter character " + characterId, ex);
 				} catch (RuntimeException rex) {	// character file missing?
-					log.error("Error loading character, file missing? " + characterId + ": " + rex);
+					throw new RuntimeException("Error loading chatter character" + characterId + ", file missing?", rex);
 				}
 			}
 			
