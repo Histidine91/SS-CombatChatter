@@ -1,7 +1,9 @@
 prefix,faction
 AL_,approlight
+anvil_,anvil_industries
 brdy_,blackrock_driveyards
 diableavionics_,diableavionics
+domres_,domres
 exigency_,exigency
 exipirated_,exipirated
 FOB_,fob
@@ -10,6 +12,7 @@ ii_,interstellarimperium
 ilk_,mayorate
 istl_,dassault_mikoyan
 junk_pirates_,junk_pirates
+mess_,mess
 mi_,metelson
 ms_,shadow_industry
 neutrino_,neutrinocorp
