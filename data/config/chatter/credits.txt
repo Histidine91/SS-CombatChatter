@@ -108,7 +108,7 @@ FNV collection (compiled by AzyWng)
   * fnv_hopelies
   * fnv_velius
  
-Bandai Namco (compiled by Histidine)
+Bandai Namco (dumped by Keystone, compiled by Histidine)
 * acecombat_torres
 * acecombat_count
 
@@ -129,3 +129,13 @@ Avanitia
 
 Scipio:
 * gentleman2
+
+(sorry I forgot who, please let me know!)
+* ace
+
+EA Games (compiled by SCC)
+* generals_overlord
+* generals_scud (unused)
+* generals_granger
+* generals_tao
+* generals_thrax

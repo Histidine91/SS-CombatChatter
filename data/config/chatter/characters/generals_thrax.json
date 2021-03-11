@@ -1,0 +1,87 @@
+{
+	"name":"Dr. Thrax",
+	"personalities":["aggressive", "reckless"],
+	"gender":["m"],
+	"chance":0,
+	"talkativeness":1,
+	"categoryTags":["game", "c&c", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Ready for another chemistry lesson?"},
+			{"text":"Give up now, and I'll guarantee you'll breathe."},
+			{"text":"The first sample is free!"},
+			{"text":"More victim- I mean, volunteers for my experiments! *laughter*"},
+			{"text":"So many defences, captain, and all USELESS!"},
+			{"text":"Now, make your stand against me, doctor Thrax, and once your forces have breathed their last breath, I can return to my experiments."},
+		],
+		"start_boss":[
+			{"text":"You'll come for the toxins, but you'll stay... because you're dead! *laughter*"},
+			{"text":"Now, it is just you and me, captain."},
+			{"text":"Watch out, captain. This ship might not be safe, but then, what is around here, huh? *laughter*"},
+			{"text":"It's so hard to find a doctor these days who will make house calls! Ah, but doctor Thrax still does! Ahahahahhhaha!"},
+		],		
+		"retreat":[
+		    {"text":"Maybe you'll consider a peace offering, huh? An antidote, perhaps?"},
+		    {"text":"Ehh, perhaps I shouldn't have gotten my degree from a mail order college."},
+		    {"text":"Aw, what do you have against toxins? Have you seen what they put in the food these days?"},
+		],
+		"out_of_missiles":[
+			{"text":"Have a taste of my own medicine!"},
+			{"text":"Oh, it is not so bad. You should only feel a long and painful burning after this."},
+			{"text":"Good to the last drop."},
+		],
+		"engaged":[
+			{"text":"One taste and you'll never go back, even if you wanted to!"},
+			{"text":"Silent, but deadly."},
+			{"text":"The suspense... It's killing you! *laughter*"},
+			{"text":"Are you going to attack me, or are you afraid of what you're going to find at my base, huh?"},
+			{"text":"Eee! My brave crew! How can you do this to them? What did they ever do to- oh, oh wait, nevermind."},
+		],
+		"need_help":[
+		    {"text":"You'll regret intruding on my experiments, captain."},
+		    {"text":"Did I give you the permission to come in?"},
+		    {"text":"What are you doing in here? The recipes are mine!"},
+		    {"text":"You are a fool to come to me, captain."},
+		],
+		"pursuing":[
+			{"text":"Ohhh, you're going to like this, captain! O, no wait, no, you won't! *laughter*"},
+			{"text":"Every moment you delay, you die a little bit more!"},
+			{"text":"Ahh! I see you!"},
+			{"text":"Ah, you didn't really need that, anyway. *laughter*"},
+			#{"text":"My toxins and your troops certainly have a chemistry, eh?"},
+			{"text":"You are out of flux, captain. Now it is time for me to come and play. *laughter*"},
+		],
+		"running":[
+			{"text":"Every moment you delay, you die a little bit more."},
+			{"text":"I'll give you a breather, before my next attack."},
+		],
+		"hull_90":[
+		    {"text":"Hm! You inconvenience me, captain."},
+		    {"text":"Geh! My precious chemicals! Do you know how long it takes to mix those?"},
+		],
+		"hull_50":[
+		    {"text":"Hey! I had my wine collection in there!"},
+		    {"text":"I didn't need that anyway."},
+		    {"text":"Stop destroying my ship, captain, or I will make things unpleasant for you."},
+		],
+		"hull_30":[
+		    {"text":"Ah, you destroyed my bridge! Oh well, I never liked my commanders anyway!"},
+		    {"text":"Ah! Get away from me! You will not defeat me, captain, do you hear me?"},
+		],
+		"overload":[
+			{"text":"Er, captain, we have a clogged nozzle. Give me a second to fix it."},
+			{"text":"Flux? I don't want to hear about the flux!"},
+		],
+		"death":[
+		    {"text":"No, no! I am defeated! Now, where is that cyanide capsule..."},
+		    {"text":"Perhaps I inhaled too many of my own toxins. You can't possibly be defeating me!"},
+		],
+		"victory":[
+			{"text":"Would you like the green, or the blue? Both are equally satisfying. *laughter*"},
+			{"text":"Ohh, you thought my toxins were ineffective. Now look what happened to you, captain!"},
+			{"text":"See, you can tell when they're *mwah* just right, when the flesh falls off the bone!"},
+			{"text":"You are defeated, captain. Perhaps this will teach you to defy doctor Thrax! *laughter*"},
+		],
+	}
+}

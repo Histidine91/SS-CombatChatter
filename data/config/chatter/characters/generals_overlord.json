@@ -1,0 +1,60 @@
+{
+	"name":"Overlord Tank",
+	"personalities":["reckless", "aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["game", "c&c", "generals", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"This will be over, soon."},
+			{"text":"They are puny."},
+			{"text":"What do you need?"},
+		],
+		"start_boss":[
+			{"text":"Extra large."},
+			{"text":"This better be good."},
+			{"text":"It is time. Are you ready?"}
+		],		
+		"retreat":[
+			{"text":"Leave now."},
+			{"text":"They will beg for mercy."},
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"Nothing in our way."},
+			{"text":"I will take care of it."},
+		],
+		"need_help":[
+		],
+		"pursuing":[
+			{"text":"What is next?"},
+			{"text":"In a moment."},
+			{"text":"I will crush."}
+		],
+		"running":[
+		],
+		"hull_90":[
+		    {"text":"I am in control."},
+		],
+		"hull_50":[
+		    {"text":"I am big."},
+			{"text":"I see."},
+		],
+		"hull_30":[
+		    {"text":"Smooth it out."},
+			{"text":"It won't be long."},
+		],
+		"overload":[
+			{"text":"Is that all?"},
+		],
+		"death":[
+		    {"text":"Dismissed."},
+		],
+		"victory":[
+			{"text":"They are nothing."},
+		],
+	}
+}

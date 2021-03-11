@@ -4,3 +4,5 @@ id,first name,last name,character
 # note that if the character name is same as the officer's full name it automatically matches without checking this file,,,
 doomguy1,Doom,Marine,doom_comicguy
 doomguy2,Doom,Slayer,doom_comicguy
+generals_tao,Shi Tao,Tsing,generals_tao
+generals_thrax,,Thrax,generals_thrax

@@ -1,0 +1,60 @@
+{
+	"name":"SCUD Launcher (C&C Generals)",
+	"personalities":["aggressive", "steady"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1.2,
+	"categoryTags":["game", "c&c", "generals", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Release the SCUD."},
+			{"text":"Load the SCUD!"},
+			{"text":"Getting in range."},
+		],
+		"start_boss":[
+			{"text":"Without delay!"},
+			{"text":"Poised to strike."},
+		],		
+		"retreat":[
+			{"text":"We'll send them running."},
+			{"text":"It won't be long."},
+		],
+		"out_of_missiles":[
+			{"text":"Up, up, up!"},
+		],
+		"engaged":[
+			{"text":"I've been waiting for this!"},
+			{"text":"Positioning for launch cycle!"},
+		],
+		"need_help":[
+		],
+		"pursuing":[
+			{"text":"Devastation on its way."},
+			{"text":"Moving carefully - just close enough."},
+		],
+		"running":[
+			{"text":"They are too close, ram them!"}
+		],
+		"hull_90":[
+		    {"text":"Heheheheheheheehh!"}
+		],
+		"hull_50":[
+		    {"text":"Don't let them hurt the SCUD!"},
+			{"text":"The tragedy will come."},
+		],
+		"hull_30":[
+		    {"text":"Look at my beautiful weapon!"},
+		],
+		"overload":[
+			{"text":"They are against us!"},
+		],
+		"death":[
+		    {"text":"Shall I push the button?"},
+		],
+		"victory":[
+			{"text":"Something for the masses."},
+			{"text":"Sweet essention of doom."},
+		],
+	}
+}

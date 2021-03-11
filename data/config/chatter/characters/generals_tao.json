@@ -1,0 +1,88 @@
+{
+	"name":"Tsing Shi Tao",
+	"personalities":["aggressive", "reckless", "steady"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["game", "c&c", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Soon your fleet will glow like the Sun."},
+			{"text":"How do you expect to fight this? Your weapons are no match for my power."},
+			{"text":"You better bring a lot of sunblock with you."},
+			{"text":"All forces, prepare for the next assault."},
+		],
+		"start_boss":[
+			{"text":"Now, where did I put those launch codes..."},
+			{"text":"I hope your readout isn't down, I'd hate for you to miss what's coming next."},
+			{"text":"How many nukes you think it will take me to destroy that new weapon, commander?"},
+		],		
+		"retreat":[
+		    {"text":"We have suffered great loses at your hand, but this is not over yet."},
+		    {"text":"Another moment and I would have reduced you to dust."},
+		    {"text":"Ha, you are lucky to have survived this battle intact. Challenge me again, if you dare."},
+		],
+		"out_of_missiles":[
+			{"text":"Don't worry, the warheads are on their way."},
+			{"text":"Okay, commander, that's enough, I'm running out of nukes!"},
+			{"text":"We have been waiting for you! Please, accept our gifts."},
+			{"text":"No missiles? Who could think of such a thing."},
+		],
+		"engaged":[
+			{"text":"Melt! Everything must melt!"},
+			{"text":"The glow! The wonderful glow! Can you not see it?"},
+			{"text":"Ah, I think this is your half-life."},
+			{"text":"More gifts, commander. Our generosity is limitless!"},
+			{"text":"Soon, you'll be nothing but radioactive waste."},
+			{"text":"You cannot stand against my might, captain!"},
+		],
+		"need_help":[
+			{"text":"Ahh, no! My warheads, my beautiful warheads! You will pay!"},	
+			{"text":"Huh. I cannot believe you are beating me. Perhaps you'll give me a moment to rest?"},	
+			{"text":"Coming to inspect the nukes, captain? You can look, but don't touch."},	
+		],
+		"pursuing":[
+			{"text":"This is only the beginning. The beginning of the end, heheheh."},
+			{"text":"Is the heat getting to you?"},
+			{"text":"Oh, maybe you're having a meltdown, huh?"},
+			{"text":"Your defences crack like so many egg shells."},
+			{"text":"And now, for my final attack! Hold on, captain, you're going to like this. Oh, wait, no, you won't! Hahaha!"},
+			{"text":"Ohh, I see your power is down. Should I send you some nuclear energy? Hahahaha!"},
+			{"text":"Withdrawing those ships? Captain, if you wanted to clear that space, I could have done it for you!"},
+		],
+		"running":[
+			{"text":"Sorry for the delay, just gathering my forces."},
+			{"text":"Remember - don't look directly at the blast."},
+			{"text":"Why do you want to blow up my ordnance anyway, captain?"},
+		],
+		"hull_90":[
+		    {"text":"Are you ready for more?"},
+		    {"text":"Now the battle begins in its earnest. Prepare yourselves."},
+		    {"text":"Gah! Get out of my face. I will not ask you twice!"},
+		],
+		"hull_50":[
+		    {"text":"At least it's a dry heat."},
+		    {"text":"Eventually, someone has to win the arms race. Else, what is the point of racing?"},
+		    {"text":"Get away from my reactors, captain."},
+		],
+		"hull_30":[
+		    {"text":"The end is near."},
+		    {"text":"Time to put on your lead underwear."},
+		    {"text":"Hey, hey! Do you have an idea how much that fusion reactor costs?"},
+		],
+		"overload":[
+			{"text":"Ahh, what, I am out of power? How can I be out of power?!"},
+			{"text":"Someone get me more power, now!"},
+		],
+		"death":[
+		    {"text":"Ahh, no! My warheads, my beautiful warheads! You will pay, captain!"},
+		    {"text":"I'd be careful, captain. These nuclear reactors tend to leak."},
+		],
+		"victory":[
+			{"text":"You call that a super weapon? It breaks like a toy!"},
+			{"text":"Welcome to the party, commander. I hope you can excuse the mess."},
+			{"text":"Might makes right. Would you not agree, commander?"},
+		],
+	}
+}

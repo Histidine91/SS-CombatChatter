@@ -1,0 +1,85 @@
+{
+	"name":"Malcolm \"Ace\" Granger",
+	"personalities":["aggressive", "steady", "cautious"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["game", "c&c", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Hey captain, you ever seen a Thunder up close? Heheheh."},
+			#{"text":"Hey captain, you see that stealth fighter? Heheheh."},
+			#{"text":"Your ships are no match for my fighters, general."},
+			{"text":"Do you know how to stop a Warthog, captain? Hmm, me neither! Hahaha!"},
+		],
+		"start_boss":[
+			{"text":"Would you look at that. Domain military spending at its best."},
+			{"text":"Don't worry, commander. This is just the quiet before the storm."},
+			{"text":"Hmm, that's a lot of point defence, captain. Think it will be enough to calm the fear?"},
+		],		
+		"retreat":[
+		    {"text":"I salute your superior tactics."},
+		    {"text":"I guess it's time for me to go find a good airline job."},
+		    {"text":"You may have won the battle, captain, but the war is far from over!"},
+		],
+		"out_of_missiles":[
+			{"text":"Bombs away!"},
+			{"text":"Sh, did you hear that? Oh, I wouldn't worry. It's probably nothin'. Heh heh."},
+			{"text":"Here come the bombs!"},
+			{"text":"Bombs away, punk!"},
+		],
+		"engaged":[
+			{"text":"Here comes the rain of terror!"},
+			{"text":"How are you enjoying the shock and awe, captain?"},
+			{"text":"I don't appreciate you shooting down my fighters, captain."},
+			{"text":"Watch the void, commander. We're gonna put on an airshow."},
+			{"text":"You don't mind if we drop in, do you, captain?"},
+		],
+		"need_help":[
+			{"text":"Cowards! Stop hiding and fight!"},	
+			{"text":"All forces, regroup!"},
+		    {"text":"Send reinforcements. Repeat, send reinforcements."},
+		],
+		"pursuing":[
+			{"text":"Everyone, attack!"},
+			{"text":"Death from above!"},
+			{"text":"Don't seem fair, does it, captain?"},
+			{"text":"Wanna see it again? Heheheheh."},
+			{"text":"Ready or not - here I come."},
+		],
+		"running":[
+			{"text":"It's time to pull the goalies - everyone attack!"},
+			{"text":"Sorry commander, just taking a lunch break. Be with you in a minute."},
+			{"text":"You forced me to use guns. I hate using guns."},
+			{"text":"Get out of my air space, captain."},
+			{"text":"The enemy is in our perimeter, all fighters return to carrier."},
+		],
+		"hull_90":[
+		    {"text":"I'm done playing with you, captain."},
+			{"text":"Were you planning on using... Harsh language now?"},
+		],
+		"hull_50":[
+		    {"text":"You're in for it now."},
+		    {"text":"Everybody find cover!"},
+		    {"text":"You'll regret destroying that hangar, captain."},
+		],
+		"hull_30":[
+		    {"text":"I'll get you for this, captain."},
+		    {"text":"They're coming in the back door!"},
+		    {"text":"Curse you, captain! You hit another hangar and I'll come for you personally."},
+		],
+		"overload":[
+			{"text":"Ouch! That must have been expensive."},
+			{"text":"Hey, how about we call this one a draw?"},
+		],
+		"death":[
+		    {"text":"I can't believe you beat me, captain."},
+		    {"text":"Mhh, looks like you defeated me this time, captain."},
+		],
+		"victory":[
+			{"text":"It's awfully quiet out there. You didn't leave, did you?"},
+			{"text":"I win, you lose. What more is there to say?"},
+		],
+	}
+}

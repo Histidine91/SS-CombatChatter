@@ -1,0 +1,83 @@
+{
+	"name":"Ace",
+	"personalities":["aggressive", "reckless"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["original"],
+	
+	"lines":{
+		"start":[
+			{"text":"Time to have some fun."},
+			{"text":"Firestarter!"},
+			{"text":"Once, I was weak like you. I got over it."},
+			{"text":"Let's do it honourably - form a line and I'll duel all of you!"},
+		],
+		"start_boss":[
+			{"text":"I made a bet on Eventide and I don't plan to lose it!"},
+			{"text":"Big one. Let me paint it red!"},
+			{"text":"Bring it."},
+		],		
+		"retreat":[
+			{"text":"Another day."},
+			{"text":"We shall meet again soon."},
+			{"text":"So close."},
+			{"text":"I was told there would be fun."},
+		],
+		"out_of_missiles":[
+			{"text":"I knew I should have gotten more vents!"},
+			{"text":"No more fireworks, it better have been enough."},
+			{"text":"Missiles - fired, enemies - fried."},
+		],
+		"engaged":[
+			{"text":"One by one, bodies falling into the void."},
+			{"text":"My flux meter is bigger than yours."},
+			{"text":"Send them running!"},
+		],
+		"need_help":[
+			{"text":"I overextended, lend me a hand while I'm still there!"},
+			{"text":"Someone cover me!"},
+			{"text":"Nah, it's fine, it's fine. It will be fine."},
+		],
+		"pursuing":[
+			{"text":"Run, run, run. You can't escape my gun."},
+			{"text":"I'm on their heels."},
+			{"text":"Hey, where do you think you're going?"},
+		],
+		"running":[
+			{"text":"I'm getting outnumbered - finally!"},
+			{"text":"This is turning into a fair fight."},
+			{"text":"Let's check the backwards speed of this ship."},
+		],
+		"hull_90":[
+		    {"text":"That's nothing, barely a dent."},
+		    {"text":"Unbreakable!"},
+		    {"text":"I'll make this a favourable trade."},
+		],
+		"hull_50":[
+		    {"text":"You've got me real angry now. Did you really want it?"},
+			{"text":"You'll have to do better than this to take me down!"},
+			{"text":"I'l do it. I'll kill you."},
+		],
+		"hull_30":[
+		    {"text":"I'll bring you down if that's the last thing I'll ever do!"},
+		    {"text":"Come on, stick together for just few seconds more."},
+		    {"text":"You better dig me out of this pile of scrap afterwards, commander!"},
+		],
+		"overload":[
+			{"text":"Gah! Just a moment too late!"},
+			{"text":"No, no, no!"},
+			{"text":"Alright, just keep it cool..."},
+		],
+		"death":[
+		    {"text":"Aww, I almost got him..."},
+		    {"text":"Fair, I admit you got me good. This time."},
+		    {"text":""},
+		],
+		"victory":[
+			{"text":"They'll make flicks about me in Fikenhild!"},
+			{"text":"Another day, another victory."},
+			{"text":"Nihil novi sub sole."},
+		],
+	}
+}
