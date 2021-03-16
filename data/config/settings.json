@@ -1,5 +1,6 @@
 {
 	"chatter_boxFont":"graphics/fonts/insignia16a.fnt",
+	"chatter_introFont":"graphics/fonts/orbitron24aabold.fnt",
 	"chatter_boxFontSize":16,
 	"chatter_floaterFontSize":32,
 

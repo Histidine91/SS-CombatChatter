@@ -23,8 +23,10 @@ public class ChatterConfig {
 	public static float minMissileOPFractionForChatter = 0.2f;
 	public static boolean personalityChanceScaling = true;
 	public static float genderChanceScaling = 1.5f;
+	public static boolean fleetIntro = true;
 	public static Set<String> disallowedTags = null;
 	public static Set<String> noEnemyChatterFactions = null;
+	public static Set<String> introSplashFleetTypes = null;
 	
 	public static Logger log = Global.getLogger(ChatterConfig.class);
 	
@@ -43,11 +45,14 @@ public class ChatterConfig {
 			personalityChanceScaling = settings.optBoolean("personalityChanceScaling", personalityChanceScaling);
 			genderChanceScaling = (float)settings.optDouble("genderChanceScaling", genderChanceScaling);
 			
+			fleetIntro = settings.optBoolean("fleetIntro", fleetIntro);
+			
 			disallowedTags = new HashSet<>(GeneralUtils.JSONArrayToStringList(settings.optJSONArray("disallowedTags")));
 			noEnemyChatterFactions = new HashSet<>(GeneralUtils.JSONArrayToStringList(settings.optJSONArray("noEnemyChatterFactions")));
+			introSplashFleetTypes = new HashSet<>(GeneralUtils.JSONArrayToStringList(settings.optJSONArray("introSplashFleetTypes")));
 		} 
 		catch (IOException | JSONException ex) {
-			log.error(ex);
+			throw new RuntimeException("Failed to load chatter config", ex);
 		}
 	}
 }

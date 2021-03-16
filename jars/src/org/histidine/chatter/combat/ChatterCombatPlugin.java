@@ -2,7 +2,10 @@ package org.histidine.chatter.combat;
 
 import com.fs.starfarer.api.GameState;
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.campaign.BattleAPI;
+import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
+import com.fs.starfarer.api.combat.BattleCreationContext;
 import com.fs.starfarer.api.combat.CombatAssignmentType;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.CombatFleetManagerAPI.AssignmentInfo;
@@ -21,11 +24,13 @@ import com.fs.starfarer.api.fleet.FleetGoal;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.graphics.SpriteAPI;
+import com.fs.starfarer.api.impl.campaign.ids.MemFlags;
 import com.fs.starfarer.api.impl.campaign.ids.Personalities;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
+import com.fs.starfarer.api.util.Pair;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +39,8 @@ import org.apache.log4j.Logger;
 import org.histidine.chatter.utils.GeneralUtils;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Random;
@@ -81,10 +88,28 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final int BOX_HEIGHT = 240;
 	public static final Color BOX_COLOR = Color.CYAN;
 	
+	// Fleet intro parameters
+	public static final float SPLASH_IMAGE_WIDTH = 0.5f;
+	public static final float SPLASH_IMAGE_HEIGHT = 0.6f;
+	public static final float SPLASH_TEXT_WIDTH = 0.5f;
+	public static final float SPLASH_TEXT_HEIGHT = 0.1f;
+	public static final float SPLASH_TEXT_YPOS = 0.35f;
+	public static final float SPLASH_ALPHA = 0.75f;
+	public static final float SPLASH_ALPHA_IMAGE = 0.35f;
+	public static final float SPLASH_IMAGE_TIME_IN = 0.5f;
+	public static final float SPLASH_IMAGE_TIME_OUT = 0.5f;
+	public static final float SPLASH_TEXT_TIME_DELAY = 0.5f;
+	public static final float SPLASH_TEXT_TIME_IN = 0.5f;
+	public static final float SPLASH_TEXT_TIME_PEAK = 2.5f;
+	public static final float SPLASH_TEXT_TIME_OUT = 0.5f;
+	
 	public static final Vector2f NAME_POS = new Vector2f(8, -8);
 	public static final Vector2f TEXT_POS = new Vector2f(BOX_NAME_WIDTH + 16, -8);
+	
 	public static LazyFont font;
+	public static LazyFont fontIntro;
 	protected static boolean fontLoaded = false;
+	public static int lastBattleHash;
 	
 	protected CombatEngineAPI engine;
 	protected IntervalUtil interval = new IntervalUtil(0.4f, 0.5f);
@@ -98,10 +123,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected float messageBoxLimiter = 0;
 	protected float priorityThreshold = 0;	// if this is high, low priority messages won't be displayed
 	protected boolean introDone = false;
+	protected boolean introSplashDone = false;
 	protected boolean victory = false;
 	protected int victoryIncrement = 0;
 	
-	protected boolean wantDebugChat = DEBUG_MODE;
+	protected FleetIntro intro;
+	
+	protected boolean wantDebugChat = false;
 	
 	// TODO externalise
 	static {
@@ -142,6 +170,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		try
 		{
 			font = LazyFont.loadFont(Global.getSettings().getString("chatter_boxFont"));
+			fontIntro = LazyFont.loadFont(Global.getSettings().getString("chatter_introFont"));
 		}
 		catch (FontException ex)
 		{
@@ -399,7 +428,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	protected Color getShipNameColor(FleetMemberAPI member, float alpha)
 	{
-		Color color = getShipNameColor(member);
+		return getColorWithAlpha(getShipNameColor(member), alpha);
+	}
+	
+	protected Color getColorWithAlpha(Color color, float alpha) {
 		if (alpha == 1) return color;
 		color = new Color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, alpha);
 		return color;
@@ -520,6 +552,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				break;
 			case OVERLOAD:
 				textColor = Color.CYAN;
+				break;
+			case OUT_OF_MISSILES:
+				textColor = Color.pink;
 				break;
 			default:
 				textColor = Global.getSettings().getColor("standardTextColor");
@@ -660,11 +695,114 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return printRandomMessage(member, MessageType.OUT_OF_MISSILES, fallback);
 	}
 	
+	protected CampaignFleetAPI getFleetFromBattle(BattleAPI battle) {
+		
+		float playerStrength = Global.getSector().getPlayerFleet().getEffectiveStrength();
+		CampaignFleetAPI bestFallback = null;
+		
+		List<Pair<CampaignFleetAPI, Float>> fleetsSorted = new ArrayList<>();
+		
+		for (CampaignFleetAPI fleet :  battle.getNonPlayerSide()) {
+			float strength = fleet.getEffectiveStrength();
+			fleetsSorted.add(new Pair<>(fleet, strength));
+		}
+		Collections.sort(fleetsSorted, FLEET_COMPARE);
+		
+		for (Pair<CampaignFleetAPI, Float> entry : fleetsSorted) {
+			CampaignFleetAPI fleet = entry.one;
+			float strength = entry.two;
+			
+			
+			String name = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_name");
+			String sprite = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_sprite");
+			Float maxStrength = null;
+			if (fleet.getMemoryWithoutUpdate().contains("$chatter_introSplash_maxPlayerStrength"))
+				fleet.getMemoryWithoutUpdate().getFloat("$chatter_introSplash_maxPlayerStrength");
+			
+			// Don't show splash if the player's fleet sufficiently overpowers the "boss" fleet
+			if (maxStrength != null && maxStrength < playerStrength)
+				continue;
+			
+			// this fleet has custom intro settings, it's a priority
+			if (name != null || sprite != null || maxStrength != null) {
+				return fleet;
+			}
+			
+			// this fleet is a station or a permitted fleet type
+			// hold on to it while we look to see if any of the fleets have custom intro settings
+			// in which case, that fleet would take priority
+			else if (bestFallback == null)
+			{
+				if (fleet.isStationMode() && strength > playerStrength * 0.65f) 
+				{
+					bestFallback = fleet;
+					continue;
+				}
+				String type = fleet.getMemoryWithoutUpdate().getString(MemFlags.MEMORY_KEY_FLEET_TYPE);
+				log.info("Fleet " + fleet.getNameWithFaction() + " has type " + type 
+						+ " (" + ChatterConfig.introSplashFleetTypes.contains(type) 
+						+ "), strength " + strength);
+				log.info("Player strength: " + playerStrength);
+				if (type != null && ChatterConfig.introSplashFleetTypes.contains(type)
+						&& strength > playerStrength * 0.8f) 
+				{
+					bestFallback = fleet;
+					continue;
+				}
+			}
+		}
+		
+		return bestFallback;
+	}
+	
+	protected void processFleetIntro() 
+	{
+		if (introSplashDone) return;
+		
+		if (DEBUG_MODE) {
+			String name = "Special Task Group – Mouth of Minerva";
+			String image = Global.getSector().getFaction("hegemony").getCrest();
+
+			intro = new FleetIntro(name, image);
+			introSplashDone = true;
+			return;
+		}
+		introSplashDone = true;
+		
+		if (!ChatterConfig.fleetIntro) return;
+		
+		if (engine.getFleetManager(FleetSide.PLAYER).getGoal() == FleetGoal.ESCAPE)
+			return;
+		
+		CampaignFleetAPI player = Global.getSector().getPlayerFleet();
+		if (player != null) {
+			BattleAPI battle = Global.getSector().getPlayerFleet().getBattle();
+			if (battle == null) return;
+			
+			CampaignFleetAPI enemy = getFleetFromBattle(battle);
+			if (enemy == null) return;
+			if (enemy.hashCode() == lastBattleHash)	return;
+			
+			log.info("Picked fleet " + enemy.getNameWithFactionKeepCase());
+
+			lastBattleHash = enemy.hashCode();
+
+			String name = enemy.getName().toUpperCase();
+			String image = enemy.getFaction().getCrest();
+
+			intro = new FleetIntro(name, image);
+		} else {
+			return;
+		}
+	}
+	
 	protected void playIntroMessage(List<FleetMemberAPI> deployed)
 	{
+		processFleetIntro();
 		if (timeElapsed > MAX_TIME_FOR_INTRO) {
 			log.info("Too late for intro message: " + timeElapsed);
 			introDone = true;
+			return;
 		}
 		else {
 			MessageType type = MessageType.START;
@@ -788,6 +926,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!DEBUG_MODE && engine.isSimulation()) return;
 		
 		drawMessages();
+		drawIntro(amount);
 		
 		if (engine.isPaused()) return;
 		
@@ -1050,7 +1189,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		Color color = getShipNameColor(message.ship, alpha);
 		String name = getShipName(message.ship, false, ChatterConfig.chatterBoxOfficerMode);
 		if (name == null || name.isEmpty()) name = "<unknown>";	// safety
-		DrawableString str = font.createText(name,	color, fontSize, BOX_NAME_WIDTH);
+		DrawableString str = font.createText(name, color, fontSize, BOX_NAME_WIDTH);
 		
 		// prepare message text
 		color = Misc.getTextColor();
@@ -1090,6 +1229,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return height;
 	}
 	
+	/**
+	 * Draws messages on the side of the screen (in the "text box").
+	 */
 	public void drawMessages() 
 	{
 		if (!ChatterConfig.chatterBox) return;
@@ -1118,6 +1260,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		closeGL11ForText();
 	}
 	
+	/**
+	 * Draws the box around the chatter side messages.
+	 */
 	public void drawBox() {
 		if (!DRAW_BOX || !ChatterConfig.chatterBox) return;
 		
@@ -1146,6 +1291,120 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		GL11.glPopMatrix();
 		GL11.glPopAttrib();
 	}
+	
+	/**
+	 * Draws the box for the fleet intro splash.
+	 */
+	public void drawIntroBox() {
+		if (intro == null) return;
+		float sizeMult = intro.getSizeMult();
+		if (sizeMult <= 0) {
+			return;
+		}
+		
+		if (!fontLoaded || DEBUG_MODE) loadFont();
+		float alphaMult = engine.isUIShowingDialog() ? 0.5f : 1;
+		float alpha = SPLASH_ALPHA * alphaMult;
+				
+		// draw text box
+		GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
+		GL11.glMatrixMode(GL11.GL_PROJECTION);
+		GL11.glPushMatrix();
+		GL11.glLoadIdentity();
+		
+		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
+		GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
+		GL11.glLineWidth(1);
+		GL11.glColor4f(1, 1, 1, alpha);
+		
+		GL11.glTranslatef(Display.getWidth()/2, 
+				Display.getHeight() * SPLASH_TEXT_YPOS, 0);	
+		GL11.glScalef(sizeMult, 1, 1);
+		int halfX = Math.round(Display.getWidth() * SPLASH_TEXT_WIDTH/2 * sizeMult);
+		int halfY = Math.round(Display.getHeight() * SPLASH_TEXT_HEIGHT/2);
+		GL11.glBegin(GL11.GL_LINE_LOOP);		
+		GL11.glVertex2i(-halfX, halfY);
+		GL11.glVertex2i(halfX, halfY);
+		GL11.glVertex2i(halfX, -halfY);
+		GL11.glVertex2i(-halfX, -halfY);
+		GL11.glEnd();
+		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glPopMatrix();
+		GL11.glPopAttrib();
+	}
+	
+	/**
+	 * Draws the text and image for the fleet intro splash.
+	 * @param elapsed Elapsed time passed to the <code>advance()</code> method calling this method.
+	 */
+	public void drawIntro(float elapsed) {
+		//if (true) return;
+		if (intro == null) {
+			return;
+		}
+		
+		if (!engine.isUIShowingHUD() || engine.getCombatUI().isShowingCommandUI())
+		{
+			return;
+		}
+		
+		if (engine.isPaused())
+			elapsed = 0;
+		
+		float sizeMult = intro.getSizeMult();
+		float alphaMult = intro.getAlphaMult() * (engine.isUIShowingDialog() ? 0.5f : 1);
+		if (alphaMult < 0) {
+			intro = null;
+			return;
+		}
+		
+		if (!fontLoaded || DEBUG_MODE) loadFont();
+		float alpha = SPLASH_ALPHA_IMAGE * alphaMult;
+		openGL11ForText();
+		
+		// draw logo
+		GL11.glPushMatrix();
+		GL11.glTranslatef(Display.getWidth()/2, Display.getHeight()/2, 0);
+		SpriteAPI sprite = Global.getSettings().getSprite(intro.sprite);
+		float spriteSizeMult = Display.getHeight()/sprite.getHeight() * SPLASH_IMAGE_HEIGHT;
+		GL11.glScalef(spriteSizeMult, spriteSizeMult, 1);
+		sprite.setAlphaMult(alpha);
+		sprite.renderAtCenter(0, 0);
+		GL11.glPopMatrix();
+		
+		// draw text
+		alpha = SPLASH_ALPHA * alphaMult;
+		int textHeight = Math.round(SPLASH_TEXT_HEIGHT * Display.getHeight()/2);
+		int textMaxWidth = Math.round(SPLASH_TEXT_WIDTH * Display.getWidth());
+		
+		GL11.glTranslatef(Display.getWidth()/2, Display.getHeight() * SPLASH_TEXT_YPOS, 0);
+		
+		DrawableString str = fontIntro.createText(StringHelper.getString("chatter_general", "fleetIntroMessage"), 
+				getColorWithAlpha(Color.YELLOW, alpha), textHeight, textMaxWidth);
+		GL11.glPushMatrix();
+		GL11.glScalef(sizeMult, 1, 1);
+		GL11.glTranslatef(-str.getWidth()/2, str.getHeight(), 0);
+		str.draw(0, 0);
+		GL11.glPopMatrix();
+		
+		// shrink text to fit in the box
+		while (true) {
+			str = fontIntro.createText("\\\\" + intro.name + "\\\\", getColorWithAlpha(Color.WHITE, alpha), textHeight);
+			if (str.getWidth() <= textMaxWidth) break;
+			
+			textHeight = Math.round(textHeight * 0.75f); 
+		}
+		
+		GL11.glPushMatrix();
+		GL11.glScalef(sizeMult, 1, 1);
+		GL11.glTranslatef(-str.getWidth()/2, 0, 0);
+		str.draw(0, 0);
+		GL11.glPopMatrix();
+		
+		closeGL11ForText();
+				
+		intro.elapsed += elapsed;
+	}
 
 	@Override
 	public void renderInWorldCoords(ViewportAPI vapi) {
@@ -1161,6 +1420,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		drawBox();
+		drawIntroBox();
 	}
 
 	@Override
@@ -1205,4 +1465,61 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		public float lastFloatMessageTime = -999;
 		public MessageType lastFloatMessageType = MessageType.START;
 	}
+	
+	public static class FleetIntro
+	{
+		public static final float TOTAL_TTL = SPLASH_TEXT_TIME_DELAY + SPLASH_TEXT_TIME_IN + SPLASH_TEXT_TIME_PEAK + SPLASH_TEXT_TIME_OUT;
+		
+		public String name;
+		public String sprite;
+		public float elapsed;
+		
+		public FleetIntro(String name, String sprite) {
+			this.name = name.toUpperCase();
+			this.sprite = sprite;
+		}
+		
+		// I should probably have gotten a proper interpolation method but meh
+		public float getSizeMult() {
+			if (elapsed < SPLASH_TEXT_TIME_DELAY) {
+				return 0;
+			}
+			else if (elapsed < SPLASH_TEXT_TIME_DELAY + SPLASH_TEXT_TIME_IN) {
+				float timer = elapsed - SPLASH_TEXT_TIME_DELAY;
+				return timer/SPLASH_TEXT_TIME_IN;
+			}
+			else if (elapsed < SPLASH_TEXT_TIME_DELAY + SPLASH_TEXT_TIME_IN + SPLASH_TEXT_TIME_PEAK) {
+				return 1;
+			}
+			
+			else if (elapsed < TOTAL_TTL) {
+				float timer = elapsed - (TOTAL_TTL - SPLASH_TEXT_TIME_OUT);
+				return 1 - (timer/SPLASH_TEXT_TIME_OUT);
+			}
+			else
+				return -1;
+		}
+		
+		public float getAlphaMult() {
+			if (elapsed < SPLASH_IMAGE_TIME_IN) {
+				return elapsed/SPLASH_IMAGE_TIME_IN;
+			}
+			else if (elapsed > TOTAL_TTL) {
+				return -1;
+			}
+			else if (elapsed > TOTAL_TTL - SPLASH_IMAGE_TIME_OUT) {
+				float timer = elapsed - (TOTAL_TTL - SPLASH_IMAGE_TIME_OUT);
+				return 1 - (timer/SPLASH_IMAGE_TIME_OUT);
+			}
+			else
+				return 1;
+		}
+	}
+	
+	public static final Comparator<Pair<CampaignFleetAPI, Float>> FLEET_COMPARE = new Comparator<Pair<CampaignFleetAPI, Float>>() {
+		@Override
+		public int compare(Pair<CampaignFleetAPI, Float> f1, Pair<CampaignFleetAPI, Float> f2) {
+			return Float.compare(f1.two, f2.two);
+		}
+	};
 }

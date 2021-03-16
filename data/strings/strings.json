@@ -7,5 +7,7 @@
 		
 		"wing":"$wing wing",
 		"class":"$class-class",
+		
+		"fleetIntroMessage":"-- CAUTION --",
 	},
 }
