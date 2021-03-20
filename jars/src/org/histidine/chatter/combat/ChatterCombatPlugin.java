@@ -255,6 +255,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			ignore.add(member);
 			return true;
 		}
+		if (member.getHullSpec().hasTag("no_combat_chatter")) {
+			ignore.add(member);
+			return true;
+		}
 		if (ChatterDataManager.EXCLUDED_HULLS.contains(member.getHullId()))
 		{
 			ignore.add(member);
