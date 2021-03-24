@@ -1,0 +1,37 @@
+{
+    "chatter":{
+		# fleet logo priority: fleet memory key, then flagship-logo mapping here, then faction roundel here, then faction crest
+		# similar priorities exist for fleet name and sound that gets played
+		
+		"flagshipToLogoMap":{
+			#"my_hull_id":"path/to/image.png",
+		},
+		"flagshipToNameMap":{
+			#"my_hull_id":"Super Ultra Elite Fleet",
+		},
+		"flagshipToSoundMap":{
+			#"my_hull_id":"alarm_sound_id_in_sounds.json",
+		},
+		
+		# don't need to be in settings.json, the mod will load them on application startup
+		"factionRoundels":{
+			"hegemony":"graphics/factions/roundel_hegemony.png",
+			"independent":"graphics/factions/roundel_neutral_traders.png",
+			"luddic_church":"graphics/factions/roundel_luddic_church.png",
+			"luddic_path":"graphics/factions/roundel_luddic_path.png",
+			"persean":"graphics/factions/roundel_persean_league.png",
+			"pirates":"graphics/factions/roundel_pirates.png",
+			"remnant":"graphics/factions/roundel_ai_remnant.png",
+			"sindrian_diktat":"graphics/factions/roundel_sindrian_diktat.png",
+			"tritachyon":"graphics/factions/roundel_tritachyon.png",
+			"neutral":"graphics/factions/roundel_neutral.png",
+			
+			"famous_bounty":"graphics/factions/roundel_neutral.png",
+			"hvb_hostile":"graphics/factions/roundel_black_market.png",
+		},
+		
+		"factionSounds":{
+			#"hegemony":"music_campaign_defeat_theme",
+		},
+    }
+}

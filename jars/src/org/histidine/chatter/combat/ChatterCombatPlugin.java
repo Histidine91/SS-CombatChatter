@@ -5,7 +5,6 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.BattleAPI;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
-import com.fs.starfarer.api.combat.BattleCreationContext;
 import com.fs.starfarer.api.combat.CombatAssignmentType;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.combat.CombatFleetManagerAPI.AssignmentInfo;
@@ -32,6 +31,7 @@ import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.Pair;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
+import data.scripts.util.MagicSettings;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -719,6 +719,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			
 			String name = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_name");
 			String sprite = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_sprite");
+			String sound = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_sound");
 			Float maxStrength = null;
 			if (fleet.getMemoryWithoutUpdate().contains("$chatter_introSplash_maxPlayerStrength"))
 				fleet.getMemoryWithoutUpdate().getFloat("$chatter_introSplash_maxPlayerStrength");
@@ -728,9 +729,15 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				continue;
 			
 			// this fleet has custom intro settings, it's a priority
-			if (name != null || sprite != null || maxStrength != null) {
+			if (name != null || sprite != null || maxStrength != null || sound != null) 
+			{
 				return fleet;
 			}
+			
+			// defined flagship, has priority
+			if (fleet.getFlagship() != null
+					&& MagicSettings.getStringMap("chatter", "flagshipToLogoMap").get(fleet.getFlagship().getHullId()) != null) 
+				return fleet;
 			
 			// this fleet is a station or a permitted fleet type
 			// hold on to it while we look to see if any of the fleets have custom intro settings
@@ -743,10 +750,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 					continue;
 				}
 				String type = fleet.getMemoryWithoutUpdate().getString(MemFlags.MEMORY_KEY_FLEET_TYPE);
-				log.info("Fleet " + fleet.getNameWithFaction() + " has type " + type 
-						+ " (" + ChatterConfig.introSplashFleetTypes.contains(type) 
-						+ "), strength " + strength);
-				log.info("Player strength: " + playerStrength);
 				if (type != null && ChatterConfig.introSplashFleetTypes.contains(type)
 						&& strength > playerStrength * 0.8f) 
 				{
@@ -764,10 +767,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (introSplashDone) return;
 		
 		if (DEBUG_MODE) {
-			String name = "Special Task Group – Mouth of Minerva";
+			String name = "Wololo";
 			String image = Global.getSector().getFaction("hegemony").getCrest();
 
-			intro = new FleetIntro(name, image);
+			intro = new FleetIntro(name, image, null);
 			introSplashDone = true;
 			return;
 		}
@@ -791,10 +794,24 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
 			lastBattleHash = enemy.hashCode();
 
-			String name = enemy.getName().toUpperCase();
-			String image = enemy.getFaction().getCrest();
-
-			intro = new FleetIntro(name, image);
+			String name = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_name");
+			if (name == null && enemy.getFlagship() != null) 
+				name = MagicSettings.getStringMap("chatter", "flagshipToNameMap").get(enemy.getFlagship().getHullId());
+			if (name == null && enemy.getName() != null) name = enemy.getName().toUpperCase();
+			if (name == null) name = "ERROR no name found";
+			
+			String image = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_sprite");
+			if (image == null && enemy.getFlagship() != null) 
+				image = MagicSettings.getStringMap("chatter", "flagshipToLogoMap").get(enemy.getFlagship().getHullId());
+			if (image == null) image = MagicSettings.getStringMap("chatter", "factionRoundels").get(enemy.getFaction().getId());
+			if (image == null) image = enemy.getFaction().getCrest();
+			
+			String sound = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_sound");
+			if (sound == null && enemy.getFlagship() != null) 
+				sound = MagicSettings.getStringMap("chatter", "flagshipToSoundMap").get(enemy.getFlagship().getHullId());
+			if (sound == null) sound = MagicSettings.getStringMap("chatter", "factionSounds").get(enemy.getFaction().getId());
+			
+			intro = new FleetIntro(name, image, sound);
 		} else {
 			return;
 		}
@@ -1315,24 +1332,22 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glPushMatrix();
 		GL11.glLoadIdentity();
-		
 		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
 		GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
 		GL11.glLineWidth(1);
-		GL11.glColor4f(1, 1, 1, alpha);
-		
 		GL11.glTranslatef(Display.getWidth()/2, 
 				Display.getHeight() * SPLASH_TEXT_YPOS, 0);	
 		GL11.glScalef(sizeMult, 1, 1);
 		int halfX = Math.round(Display.getWidth() * SPLASH_TEXT_WIDTH/2 * sizeMult);
 		int halfY = Math.round(Display.getHeight() * SPLASH_TEXT_HEIGHT/2);
-		GL11.glBegin(GL11.GL_LINE_LOOP);		
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glColor4f(1, 1, 1, alpha);
 		GL11.glVertex2i(-halfX, halfY);
 		GL11.glVertex2i(halfX, halfY);
 		GL11.glVertex2i(halfX, -halfY);
 		GL11.glVertex2i(-halfX, -halfY);
-		GL11.glEnd();
 		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glEnd();
 		GL11.glPopMatrix();
 		GL11.glPopAttrib();
 	}
@@ -1342,7 +1357,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 * @param elapsed Elapsed time passed to the <code>advance()</code> method calling this method.
 	 */
 	public void drawIntro(float elapsed) {
-		//if (true) return;
 		if (intro == null) {
 			return;
 		}
@@ -1378,13 +1392,15 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		// draw text
 		alpha = SPLASH_ALPHA * alphaMult;
-		int textHeight = Math.round(SPLASH_TEXT_HEIGHT * Display.getHeight()/2);
+		if (intro.textHeight == null)
+			intro.textHeight = Math.round(SPLASH_TEXT_HEIGHT * Display.getHeight()/2);
+		
 		int textMaxWidth = Math.round(SPLASH_TEXT_WIDTH * Display.getWidth());
 		
 		GL11.glTranslatef(Display.getWidth()/2, Display.getHeight() * SPLASH_TEXT_YPOS, 0);
 		
 		DrawableString str = fontIntro.createText(StringHelper.getString("chatter_general", "fleetIntroMessage"), 
-				getColorWithAlpha(Color.YELLOW, alpha), textHeight, textMaxWidth);
+				getColorWithAlpha(Color.YELLOW, alpha), intro.textHeight, textMaxWidth);
 		GL11.glPushMatrix();
 		GL11.glScalef(sizeMult, 1, 1);
 		GL11.glTranslatef(-str.getWidth()/2, str.getHeight(), 0);
@@ -1393,10 +1409,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		// shrink text to fit in the box
 		while (true) {
-			str = fontIntro.createText("\\\\" + intro.name + "\\\\", getColorWithAlpha(Color.WHITE, alpha), textHeight);
-			if (str.getWidth() <= textMaxWidth) break;
+			str = fontIntro.createText(StringHelper.getString("chatter_general", "fleetIntroBracketStart")  
+					+ intro.name + StringHelper.getString("chatter_general", "fleetIntroBracketEnd"), 
+					getColorWithAlpha(Color.WHITE, alpha), intro.textHeight);
+			if (str.getWidth() <= textMaxWidth - 4) break;
 			
-			textHeight = Math.round(textHeight * 0.75f); 
+			intro.textHeight = Math.round(intro.textHeight * 0.75f);
 		}
 		
 		GL11.glPushMatrix();
@@ -1404,10 +1422,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		GL11.glTranslatef(-str.getWidth()/2, 0, 0);
 		str.draw(0, 0);
 		GL11.glPopMatrix();
-		
 		closeGL11ForText();
-				
+		
+		float elapsedPrev = intro.elapsed;
 		intro.elapsed += elapsed;
+		if (elapsedPrev < SPLASH_TEXT_TIME_DELAY && intro.elapsed > SPLASH_TEXT_TIME_DELAY) {
+			log.info("Playing intro sound");
+			Global.getSoundPlayer().playUISound(intro.sound, 1, 1);
+		}
 	}
 
 	@Override
@@ -1476,11 +1498,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		public String name;
 		public String sprite;
+		public String sound;
 		public float elapsed;
+		public Integer textHeight;
 		
-		public FleetIntro(String name, String sprite) {
+		public FleetIntro(String name, String sprite, String sound) {
 			this.name = name.toUpperCase();
 			this.sprite = sprite;
+			this.sound = sound != null ? sound : "chatter_fleet_intro";
 		}
 		
 		// I should probably have gotten a proper interpolation method but meh
