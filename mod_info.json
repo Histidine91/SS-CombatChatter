@@ -2,10 +2,14 @@
   "id":"chatter",
   "name":"Combat Chatter",
   "author":"Histidine",
-  "version":"1.11",
+  "version":"1.11.1",
   "utility":true,
-  "description":"talky-man broke thog's tusk. TALKY-MAN BROKE THOG'S TUSK!!\n\nRequires LazyLib",
-  "gameVersion":"0.9.1a",
+  "description":"talky-man broke thog's tusk. TALKY-MAN BROKE THOG'S TUSK!!\n\nRequires LazyLib, MagicLib",
+  "gameVersion":"0.95a-RC9",
   "jars":["jars/CombatChatter.jar"],
+  "dependencies": [
+    {"id": "lw_lazylib", "name": "LazyLib"},
+    {"id": "MagicLib", "name": "MagicLib"},
+  ],
   "modPlugin":"org.histidine.chatter.scripts.ChatterModPlugin",
 }
