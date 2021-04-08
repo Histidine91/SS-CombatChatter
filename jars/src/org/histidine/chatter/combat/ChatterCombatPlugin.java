@@ -437,6 +437,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	protected Color getColorWithAlpha(Color color, float alpha) {
 		if (alpha == 1) return color;
+		if (alpha > 1) alpha = 1;
+		if (alpha < 0) alpha = 0;
 		color = new Color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, alpha);
 		return color;
 	}
@@ -767,10 +769,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (introSplashDone) return;
 		
 		if (DEBUG_MODE) {
-			String name = "Wololo";
-			String image = Global.getSector().getFaction("hegemony").getCrest();
+			String name = "unknown";
+			String image = "graphics/factions/roundel_omega.png";
 
 			intro = new FleetIntro(name, image, null);
+			intro.hasStatic = true;
 			introSplashDone = true;
 			return;
 		}
@@ -1324,9 +1327,22 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		if (!fontLoaded || DEBUG_MODE) loadFont();
+		
 		float alphaMult = engine.isUIShowingDialog() ? 0.5f : 1;
 		float alpha = SPLASH_ALPHA * alphaMult;
-				
+		float offsetX = 0, offsetY = 0;
+		
+		if (intro.hasStatic) {
+			double rand = Math.random();
+			if (rand < 0.2f) alpha -= 0.3f;
+			else if (rand > 0.8f) alpha -= 0.1f;
+			if (alpha > 1) alpha = 1;
+			if (alpha < 0) alpha = 0;
+			
+			offsetX = (float)(Math.random() * 1);
+			offsetY = (float)(Math.random() * 1);
+		}
+		
 		// draw text box
 		GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
@@ -1335,8 +1351,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
 		GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
 		GL11.glLineWidth(1);
-		GL11.glTranslatef(Display.getWidth()/2, 
-				Display.getHeight() * SPLASH_TEXT_YPOS, 0);	
+		GL11.glTranslatef(Display.getWidth()/2 + offsetX, 
+				Display.getHeight() * SPLASH_TEXT_YPOS + offsetY, 0);	
 		GL11.glScalef(sizeMult, 1, 1);
 		int halfX = Math.round(Display.getWidth() * SPLASH_TEXT_WIDTH/2 * sizeMult);
 		int halfY = Math.round(Display.getHeight() * SPLASH_TEXT_HEIGHT/2);
@@ -1378,11 +1394,24 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		if (!fontLoaded || DEBUG_MODE) loadFont();
 		float alpha = SPLASH_ALPHA_IMAGE * alphaMult;
+		float offsetX = 0, offsetY = 0;
+		
+		if (intro.hasStatic) {
+			double rand = Math.random();
+			if (rand < 0.2f) alpha -= 0.3f;
+			else if (rand > 0.8f) alpha -= 0.1f;
+			if (alpha > 1) alpha = 1;
+			if (alpha < 0) alpha = 0;		
+			
+			offsetX = (float)(Math.random() * 1);
+			offsetY = (float)(Math.random() * 1);
+		}
+		
 		openGL11ForText();
 		
 		// draw logo
 		GL11.glPushMatrix();
-		GL11.glTranslatef(Display.getWidth()/2, Display.getHeight()/2, 0);
+		GL11.glTranslatef(Display.getWidth()/2 + offsetX, Display.getHeight()/2 + offsetY, 0);
 		SpriteAPI sprite = Global.getSettings().getSprite(intro.sprite);
 		float spriteSizeMult = Display.getHeight()/sprite.getHeight() * SPLASH_IMAGE_HEIGHT;
 		GL11.glScalef(spriteSizeMult, spriteSizeMult, 1);
@@ -1392,12 +1421,20 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		// draw text
 		alpha = SPLASH_ALPHA * alphaMult;
+		if (intro.hasStatic) {
+			double rand = Math.random();
+			if (rand < 0.2f) alpha -= 0.3f;
+			else if (rand > 0.8f) alpha -= 0.1f;
+			if (alpha > 1) alpha = 1;
+			if (alpha < 0) alpha = 0;
+		}
+		
 		if (intro.textHeight == null)
 			intro.textHeight = Math.round(SPLASH_TEXT_HEIGHT * Display.getHeight()/2);
 		
 		int textMaxWidth = Math.round(SPLASH_TEXT_WIDTH * Display.getWidth());
 		
-		GL11.glTranslatef(Display.getWidth()/2, Display.getHeight() * SPLASH_TEXT_YPOS, 0);
+		GL11.glTranslatef(Display.getWidth()/2 + offsetX, Display.getHeight() * SPLASH_TEXT_YPOS + offsetY, 0);
 		
 		DrawableString str = fontIntro.createText(StringHelper.getString("chatter_general", "fleetIntroMessage"), 
 				getColorWithAlpha(Color.YELLOW, alpha), intro.textHeight, textMaxWidth);
@@ -1501,6 +1538,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		public String sound;
 		public float elapsed;
 		public Integer textHeight;
+		public boolean hasStatic;
 		
 		public FleetIntro(String name, String sprite, String sound) {
 			this.name = name.toUpperCase();
