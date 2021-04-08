@@ -20,10 +20,15 @@ public class ChatterModPlugin extends BaseModPlugin
 	
 	@Override
 	public void onApplicationLoad() throws Exception {
-		// preload roundels
+		// preload images
 		if (ChatterConfig.fleetIntro) {
 			Map<String, String> roundels = MagicSettings.getStringMap("chatter", "factionRoundels");
 			for (String path : roundels.values()) {
+				Global.getSettings().loadTexture(path);
+			}
+			
+			Map<String, String> flagshipToLogo = MagicSettings.getStringMap("chatter", "flagshipToLogoMap");
+			for (String path : flagshipToLogo.values()) {
 				Global.getSettings().loadTexture(path);
 			}
 		}

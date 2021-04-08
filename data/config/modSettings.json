@@ -4,10 +4,12 @@
 		# similar priorities exist for fleet name and sound that gets played
 		
 		"flagshipToLogoMap":{
-			#"my_hull_id":"path/to/image.png",
+			"ziggurat":"graphics/factions/roundel_ai_remnant.png",
+			"tesseract":"graphics/factions/roundel_omega.png",
 		},
 		"flagshipToNameMap":{
-			#"my_hull_id":"Super Ultra Elite Fleet",
+			"ziggurat":"unknown",
+			"tesseract":"unknown",
 		},
 		"flagshipToSoundMap":{
 			#"my_hull_id":"alarm_sound_id_in_sounds.json",
@@ -19,6 +21,7 @@
 			"independent":"graphics/factions/roundel_neutral_traders.png",
 			"luddic_church":"graphics/factions/roundel_luddic_church.png",
 			"luddic_path":"graphics/factions/roundel_luddic_path.png",
+			"omega":"graphics/factions/roundel_omega.png",
 			"persean":"graphics/factions/roundel_persean_league.png",
 			"pirates":"graphics/factions/roundel_pirates.png",
 			"remnant":"graphics/factions/roundel_ai_remnant.png",
