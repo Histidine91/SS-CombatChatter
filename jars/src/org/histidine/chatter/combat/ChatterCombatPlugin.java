@@ -179,6 +179,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	}
 	
 	public static ChatterCombatPlugin getInstance() {
+		if (Global.getCombatEngine() == null) return null;
 		return (ChatterCombatPlugin)Global.getCombatEngine().getCustomData().get(DATA_KEY);
 	}
 	
