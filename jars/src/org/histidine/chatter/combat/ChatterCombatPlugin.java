@@ -50,6 +50,7 @@ import org.histidine.chatter.ChatterLine;
 import org.histidine.chatter.ChatterLine.MessageType;
 import org.histidine.chatter.ChatterDataManager;
 import org.histidine.chatter.utils.StringHelper;
+import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.ui.FontException;
 import org.lazywizard.lazylib.ui.LazyFont;
 import org.lazywizard.lazylib.ui.LazyFont.DrawableString;
@@ -723,16 +724,19 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			String name = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_name");
 			String sprite = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_sprite");
 			String sound = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_sound");
+			Boolean hasStatic = null;
+			if (fleet.getMemoryWithoutUpdate().contains("$chatter_introSplash_maxPlayerStrength"))
+				hasStatic = fleet.getMemoryWithoutUpdate().getBoolean("$chatter_introSplash_static");
 			Float maxStrength = null;
 			if (fleet.getMemoryWithoutUpdate().contains("$chatter_introSplash_maxPlayerStrength"))
-				fleet.getMemoryWithoutUpdate().getFloat("$chatter_introSplash_maxPlayerStrength");
+				maxStrength = fleet.getMemoryWithoutUpdate().getFloat("$chatter_introSplash_maxPlayerStrength");
 			
 			// Don't show splash if the player's fleet sufficiently overpowers the "boss" fleet
 			if (maxStrength != null && maxStrength < playerStrength)
 				continue;
 			
 			// this fleet has custom intro settings, it's a priority
-			if (name != null || sprite != null || maxStrength != null || sound != null) 
+			if (name != null || sprite != null || maxStrength != null || sound != null || hasStatic != null) 
 			{
 				return fleet;
 			}
@@ -797,27 +801,32 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			log.info("Picked fleet " + enemy.getNameWithFactionKeepCase());
 
 			lastBattleHash = enemy.hashCode();
+			String flag = enemy.getFlagship().getHullId();
 
 			String name = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_name");
 			if (name == null && enemy.getFlagship() != null) 
-				name = MagicSettings.getStringMap("chatter", "flagshipToNameMap").get(enemy.getFlagship().getHullId());
+				name = MagicSettings.getStringMap("chatter", "flagshipToNameMap").get(flag);
 			if (name == null && enemy.getName() != null) name = enemy.getName().toUpperCase();
 			if (name == null) name = "ERROR no name found";
 			
 			String image = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_sprite");
 			if (image == null && enemy.getFlagship() != null) 
-				image = MagicSettings.getStringMap("chatter", "flagshipToLogoMap").get(enemy.getFlagship().getHullId());
+				image = MagicSettings.getStringMap("chatter", "flagshipToLogoMap").get(flag);
 			if (image == null) image = MagicSettings.getStringMap("chatter", "factionRoundels").get(enemy.getFaction().getId());
 			if (image == null) image = enemy.getFaction().getCrest();
 			
 			String sound = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_sound");
 			if (sound == null && enemy.getFlagship() != null) 
-				sound = MagicSettings.getStringMap("chatter", "flagshipToSoundMap").get(enemy.getFlagship().getHullId());
+				sound = MagicSettings.getStringMap("chatter", "flagshipToSoundMap").get(flag);
 			if (sound == null) sound = MagicSettings.getStringMap("chatter", "factionSounds").get(enemy.getFaction().getId());
 			
 			intro = new FleetIntro(name, image, sound);
-		} else {
-			return;
+			
+			if (enemy.getMemoryWithoutUpdate().contains("$chatter_introSplash_maxPlayerStrength"))
+				intro.hasStatic = enemy.getMemoryWithoutUpdate().getBoolean("$chatter_introSplash_static");
+			else if (MagicSettings.getList("chatter", "flagshipsWithStatic").contains(flag)) {
+				intro.hasStatic = true;
+			}
 		}
 	}
 	
@@ -1348,6 +1357,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glPushMatrix();
+		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glLoadIdentity();
 		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
 		GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
@@ -1365,8 +1375,54 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		GL11.glVertex2i(-halfX, -halfY);
 		GL11.glColor4f(1, 1, 1, 1);
 		GL11.glEnd();
+		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glPopMatrix();
 		GL11.glPopAttrib();
+	}
+	
+	public static final int SPOT_MIN_SIZE = 3;
+	public static final int SPOT_MAX_SIZE = 12;
+	public static final WeightedRandomPicker<Float[]> SPOT_COLOR = new WeightedRandomPicker<>();
+	
+	static {
+		SPOT_COLOR.add(new Float[] {1f, 0f, 0f});
+		SPOT_COLOR.add(new Float[] {0f, 1f, 0f});
+		SPOT_COLOR.add(new Float[] {0f, 0f, 1f});
+	}
+	
+	public void drawIntroStatic() {
+		if (intro == null) return;
+		float sizeMult = intro.getSizeMult();
+		if (sizeMult <= 0) {
+			return;
+		}
+		if (!intro.hasStatic) return;
+		
+		GL11.glPushMatrix();
+		GL11.glTranslatef(Display.getWidth()/2, Display.getHeight()/2, 0);
+		GL11.glEnable(GL11.GL_BLEND);
+		int maxDist = Math.round(Display.getHeight() * SPLASH_IMAGE_HEIGHT / 2);
+		
+		int numSpots = MathUtils.getRandomNumberInRange(64, 256);
+		float alpha = intro.getAlphaMult() * 0.6f;
+		for (int i=0; i<numSpots; i++) {
+			int x = MathUtils.getRandomNumberInRange(-maxDist, maxDist);
+			int y = MathUtils.getRandomNumberInRange(-maxDist, maxDist);
+			float w = MathUtils.getRandomNumberInRange(SPOT_MIN_SIZE, SPOT_MAX_SIZE)/2;
+			float h = MathUtils.getRandomNumberInRange(SPOT_MIN_SIZE, SPOT_MAX_SIZE)/2;
+			
+			Float [] color = SPOT_COLOR.pick();
+			GL11.glColor4f(color[0], color[1], color[2], alpha);
+			GL11.glBegin(GL11.GL_POLYGON);
+			GL11.glVertex2f(x-w, y-h);
+			GL11.glVertex2f(x+w, y-h);
+			GL11.glVertex2f(x+w, y+h);
+			GL11.glVertex2f(x-w, y+h);
+			GL11.glEnd();
+		}
+		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glPopMatrix();
 	}
 	
 	/**
@@ -1441,9 +1497,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		DrawableString str = fontIntro.createText(StringHelper.getString("chatter_general", "fleetIntroMessage"), 
 				getColorWithAlpha(Color.YELLOW, alpha), baseHeight, textMaxWidth);
 		GL11.glPushMatrix();
+		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glScalef(sizeMult, 1, 1);
 		GL11.glTranslatef(-str.getWidth()/2, str.getHeight(), 0);
 		str.draw(0, 0);
+		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glPopMatrix();
 		
 		// shrink text to fit in the box
@@ -1486,6 +1544,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		drawBox();
 		drawIntroBox();
+		drawIntroStatic();
 	}
 
 	@Override

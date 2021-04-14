@@ -4,7 +4,7 @@
 		# similar priorities exist for fleet name and sound that gets played
 		
 		"flagshipToLogoMap":{
-			"ziggurat":"graphics/factions/roundel_ai_remnant.png",
+			"ziggurat":"graphics/factions/roundel_tritachyon.png",
 			"tesseract":"graphics/factions/roundel_omega.png",
 		},
 		"flagshipToNameMap":{
@@ -14,6 +14,8 @@
 		"flagshipToSoundMap":{
 			#"my_hull_id":"alarm_sound_id_in_sounds.json",
 		},
+		
+		"flagshipsWithStatic":["ziggurat", "tesseract"],
 		
 		# don't need to be in settings.json, the mod will load them on application startup
 		"factionRoundels":{
