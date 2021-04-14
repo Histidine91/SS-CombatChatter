@@ -139,3 +139,9 @@ EA Games (compiled by SCC)
 * generals_granger
 * generals_tao
 * generals_thrax
+
+Sector D2 (compiled by AlexAtheos):
+* pw_crimson1
+
+Sector D2 (compiled by Volkssnake):
+* pw_prez

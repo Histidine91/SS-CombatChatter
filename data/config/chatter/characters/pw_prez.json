@@ -1,0 +1,80 @@
+{
+	"name":"Robin \"President\" Kuo",
+	"personalities":["steady", "aggressive"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1.25,
+	"categoryTags":["othermedia", "game", "projectwingman"],
+	
+	"lines":{
+		"start":[
+			{"text":"Ready to roll."},
+			{"text":"Weapons and radar all operational."},
+			{"text":"Lets make the cash flow."},
+			{"text":"Adjusting IFF to new parameters."},
+			{"text":"Let it rip!"}
+		],
+		"start_boss":[
+			{"text":"I've never seen so many ships in one place."},
+			{"text":"Here we go, Engaging!"},
+			{"text":"Go get him! Kill him! Kill him!"},
+			{"text":"I dont know if I can do this... I'm braced."},
+		],
+		"retreat":[
+			{"text":"I don't wanna die, damnit! Move it!"},
+			{"text":"Why are we sticking around? We need to go!"},
+		],
+		"out_of_missiles":[
+			{"text":"Missiles away!"}
+		],
+		"need_help":[
+			{"text":"Hey! What about me?!"},
+			{"text":"We need to go!"},
+		],
+		"pursuing":[
+			{"text":"Right where I want you."},
+			{"text":"Tracking targets."},
+			{"text":"It's all lined up."}
+		],
+		"running":[
+			{"text":"What are we even doing!"},
+			{"text":"I don't wanna die!"},
+		],
+		"hull_90":[
+			#{"text":"Enemy locking on!"},
+			{"text":"Incoming! Incoming!"},
+			#{"text":"Hot damn!"}
+			{"text":"Woah, I felt that in my teeth."},
+			{"text":"Reporting damage."},
+		],
+		"hull_50":[
+			{"text":"We've taken a hit! Systems are still up!"},
+			{"text":"Don't know if we can take another hit like that!"},
+			{"text":"I- I dont think I can take much more of this."},
+			{"text":"I swear to God I'll throw my neck out!"}
+		],
+		"hull_30":[
+			{"text":"Oh God, please not now after all this, please God"},
+			{"text":"Ah God, evade it!"},
+			{"text":"*cough* Still in this fight!"},
+		],
+		"overload":[
+			{"text":"Eat my ass."},
+			{"text":"Break!"},
+			{"text":"W-was that my fault?"},
+			{"text":"You're really pushing me to my limit."},
+			{"text":"Piss off you yuppie!"}
+		],
+		"death":[
+			{"text":"I cant keep up... I cant."},
+			{"text":"I'm sorry..."}
+		],
+		"victory":[
+			{"text":"We really caught them with their pants down."},
+			{"text":"You make my job easy as usual."},
+			{"text":"Think we can afford to share a bottle of Red?"},
+			{"text":"I'm in the black for the week."},
+			{"text":"Thats right, you better get out of my radar range!"}
+		]
+	}
+}
