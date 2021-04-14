@@ -1430,15 +1430,16 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (alpha < 0) alpha = 0;
 		}
 		
+		int baseHeight = Math.round(SPLASH_TEXT_HEIGHT * Display.getHeight()/2);
 		if (intro.textHeight == null)
-			intro.textHeight = Math.round(SPLASH_TEXT_HEIGHT * Display.getHeight()/2);
+			intro.textHeight = baseHeight;
 		
 		int textMaxWidth = Math.round(SPLASH_TEXT_WIDTH * Display.getWidth());
 		
 		GL11.glTranslatef(Display.getWidth()/2 + offsetX, Display.getHeight() * SPLASH_TEXT_YPOS + offsetY, 0);
 		
 		DrawableString str = fontIntro.createText(StringHelper.getString("chatter_general", "fleetIntroMessage"), 
-				getColorWithAlpha(Color.YELLOW, alpha), intro.textHeight, textMaxWidth);
+				getColorWithAlpha(Color.YELLOW, alpha), baseHeight, textMaxWidth);
 		GL11.glPushMatrix();
 		GL11.glScalef(sizeMult, 1, 1);
 		GL11.glTranslatef(-str.getWidth()/2, str.getHeight(), 0);
