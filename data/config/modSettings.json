@@ -4,10 +4,12 @@
 		# similar priorities exist for fleet name and sound that gets played
 		
 		"flagshipToLogoMap":{
+			"guardian":"graphics/factions/roundel_domain_explorarium.png",
 			"ziggurat":"graphics/factions/roundel_tritachyon.png",
 			"tesseract":"graphics/factions/roundel_omega.png",
 		},
 		"flagshipToNameMap":{
+			"guardian":"Guardian",
 			"ziggurat":"unknown",
 			"tesseract":"unknown",
 		},
