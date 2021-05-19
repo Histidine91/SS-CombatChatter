@@ -6,7 +6,7 @@ import data.scripts.util.MagicSettings;
 import java.util.Map;
 import org.histidine.chatter.ChatterConfig;
 import org.histidine.chatter.ChatterDataManager;
-import org.histidine.chatter.campaign.SetMercFactionScript;
+import org.histidine.chatter.campaign.ChatterCampaignListener;
 
 public class ChatterModPlugin extends BaseModPlugin
 {
@@ -14,7 +14,7 @@ public class ChatterModPlugin extends BaseModPlugin
 	
 	@Override
 	public void onGameLoad(boolean newGame) {
-		Global.getSector().addTransientListener(new SetMercFactionScript());
+		Global.getSector().addTransientListener(new ChatterCampaignListener());
 		ChatterDataManager.loadCharacters();
 	}
 	

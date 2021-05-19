@@ -3,6 +3,8 @@
 	"chatter_introFont":"graphics/fonts/orbitron24aabold.fnt",
 	"chatter_boxFontSize":16,
 	"chatter_floaterFontSize":32,
+	
+	"chatter_renameBounties":true,
 
 	"plugins":{
 		"ChatterCombatPlugin":"org.histidine.chatter.combat.ChatterCombatPlugin",
