@@ -56,12 +56,7 @@ public class SetChatterChar implements BaseCommand {
 			List<String> officerFullNames = new ArrayList<>();
 			List<String> officerLastNames = new ArrayList<>();
 			List<String> officerFirstNames = new ArrayList<>();
-			List<PersonAPI> officersOrdered = new ArrayList<>();
-			for (OfficerDataAPI officer : Global.getSector().getPlayerFleet().getFleetData().getOfficersCopy())
-			{
-				officersOrdered.add(officer.getPerson());
-			}
-			officersOrdered.add(Global.getSector().getPlayerPerson());
+			List<PersonAPI> officersOrdered = ChatterDataManager.getOfficers(true);
 			
 			for (PersonAPI person : officersOrdered)
 			{

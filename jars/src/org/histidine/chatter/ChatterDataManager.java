@@ -535,7 +535,7 @@ public class ChatterDataManager {
 	}
 	
 	/**
-	 * Returns a list of officers in the player fleet
+	 * Returns a list of officers in the player fleet.
 	 * @param includePlayer Include the player character
 	 * @return
 	 */
@@ -546,15 +546,23 @@ public class ChatterDataManager {
 			return officers;	// called from menu mission, probably
 		}
 		
+		if (includePlayer)
+		{
+			PersonAPI playerPerson = Global.getSector().getPlayerPerson();
+			officers.add(playerPerson);
+		}
 		for (OfficerDataAPI officer : Global.getSector().getPlayerFleet().getFleetData().getOfficersCopy())
 		{
 			PersonAPI person = officer.getPerson();
 			officers.add(person);
 		}
-		if (includePlayer)
+		// iterate over fleet members too, to get AI core captains
+		for (FleetMemberAPI member : Global.getSector().getPlayerFleet().getFleetData().getMembersListCopy())
 		{
-			PersonAPI playerPerson = Global.getSector().getPlayerPerson();
-			officers.add(playerPerson);
+			PersonAPI captain = member.getCaptain();
+			if (captain != null && !captain.isDefault() && !officers.contains(captain)) {
+				officers.add(captain);
+			}
 		}
 		
 		return officers;
