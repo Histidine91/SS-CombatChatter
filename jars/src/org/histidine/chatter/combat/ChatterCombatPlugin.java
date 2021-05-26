@@ -331,6 +331,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			
 			data.isEnemy = ship.getOwner() == 1;
 			data.isPlayer = ship == engine.getPlayerShip();
+			log.info(String.format("Adding ship %s, isEnemy %s", member.getShipName(), ship.getOwner()));
 		}
 		data.characterId = getCharacterForFleetMember(member);
 		
@@ -356,7 +357,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				return member.getCaptain().getNameString();
 			}
 			
-			shipName = member.getShipName();
+			ShipAPI ship = getShipForMember(member);
+			if (ship != null) shipName = ship.getName();
+			else shipName = member.getShipName();
 			if (includeClass) shipName += " (" + StringHelper.getStringAndSubstituteToken(
 					"chatter_general", "class", "$class", member.getHullSpec().getHullName())
 					+ ")";
@@ -428,6 +431,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	protected Color getShipNameColor(FleetMemberAPI member) {
 		if (member.isAlly()) return Misc.getHighlightColor();
+		ShipAPI ship = getShipForMember(member);
+		if (ship != null && ship.isAlly()) return Misc.getHighlightColor();
+		
 		if (getShipStateData(member).isEnemy) return Global.getSettings().getColor("textEnemyColor");
 		return Global.getSettings().getColor("textFriendColor");
 	}
@@ -725,7 +731,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			String sprite = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_sprite");
 			String sound = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_sound");
 			Boolean hasStatic = null;
-			if (fleet.getMemoryWithoutUpdate().contains("$chatter_introSplash_maxPlayerStrength"))
+			if (fleet.getMemoryWithoutUpdate().contains("$chatter_introSplash_static"))
 				hasStatic = fleet.getMemoryWithoutUpdate().getBoolean("$chatter_introSplash_static");
 			Float maxStrength = null;
 			if (fleet.getMemoryWithoutUpdate().contains("$chatter_introSplash_maxPlayerStrength"))
@@ -958,6 +964,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			wantDebugChat = false;
 		}
 		if (!DEBUG_MODE && engine.isSimulation()) return;
+		
+		// Is this an ongoing battle we joined, leading to fast-forward?
+		// if so, block fleet intro message
+		if (amount > 1) {
+			introSplashDone = true;
+		}
 		
 		drawMessages();
 		drawIntro(amount);
@@ -1388,6 +1400,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		SPOT_COLOR.add(new Float[] {1f, 0f, 0f});
 		SPOT_COLOR.add(new Float[] {0f, 1f, 0f});
 		SPOT_COLOR.add(new Float[] {0f, 0f, 1f});
+		SPOT_COLOR.add(new Float[] {1f, 1f, 1f});
 	}
 	
 	public void drawIntroStatic() {
@@ -1404,7 +1417,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		int maxDist = Math.round(Display.getHeight() * SPLASH_IMAGE_HEIGHT / 2);
 		
 		int numSpots = MathUtils.getRandomNumberInRange(64, 256);
-		float alpha = intro.getAlphaMult() * 0.6f;
+		float alpha = intro.getAlphaMult() * 0.5f;
 		for (int i=0; i<numSpots; i++) {
 			int x = MathUtils.getRandomNumberInRange(-maxDist, maxDist);
 			int y = MathUtils.getRandomNumberInRange(-maxDist, maxDist);
