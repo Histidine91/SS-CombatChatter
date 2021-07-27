@@ -1,0 +1,91 @@
+{
+	"name":"AWACS Galaxy",
+	"personalities":["cautious", "steady", "aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "projectwingman"],
+	
+	"lines":{
+		"start":[
+			{"text":"We've got inbound. Greenlight to engage."},
+			{"text":"We are cleared to engage."},
+			{"text":"Soften up the enemy, but try to keep the good stuff intact."},
+			{"text":"Things are getting busy. You're free to engage any enemy signatures starting now."},
+			{"text":"We've got alarms raising in ships and on carriers. We're on the clock, so make it snappy."},
+			{"text":"Alright, ramblers, let’s get rambling. Anything and everything is free for the taking."},
+			{"text":"Shoot down the enemy. Let them know we have control."},
+			{"text":"Proceed to what area you think you can take on first and engage!"},
+		],
+		"start_boss":[
+			{"text":"We have large contacts inbound."},
+			{"text":"IFF confirmed! Significant enemy contacts identified! This is it!"},
+			{"text":"Radar tags all across the board! Incoming!"},
+			{"text":"We've got some really, really intense energy readings coming up."},
+			{"text":"Total destruction of the enemy’s combat forces are our prime objective for this operation."},
+		],		
+		"retreat":[
+			{"text":"Seems like the tactical retreat is in full swing."},
+			{"text":"Tighten up comms. Let's keep it business from here on out."},
+			{"text":"Come on, I'd rather not inherit a graveyard."},
+		],
+		"out_of_missiles":[
+			{"text":"Missiles out!"},
+		],
+		"engaged":[
+			{"text":"Rack them up and knock 'em down."},
+			{"text":"Heads up."},
+			{"text":"We’re taking the bait. We just gotta thread this needle as best we can."},
+			{"text":"Let's start tying the noose!"},
+			{"text":"Accept nothing less than total superiority."},
+		],
+		"need_help":[
+			{"text":"Check your radios! I can't raise anyone on the horn!"},
+			{"text":"Hello?! Hello?! Is anyone out there?!"},
+		],
+		"pursuing":[
+			{"text":"That should give everyone else some wiggle room."},
+			{"text":"Oh, lookie here! That jamming is just plummeting! Keep hitting 'em!"},
+			{"text":"Shut up, keep fighting. We still got bogeys."},
+			{"text":"If they want to get uppity, be my guest."},
+		],
+		"running":[
+			{"text":"We're done here."},
+			{"text":"We're mercenaries, not heartless. Break off."},
+			{"text":"Not our problem."},
+			{"text":"Pull out while we've got a chance!"},
+		],
+		"hull_90":[
+			{"text":"Tire them out! They're only human!"},
+			{"text":"This stranglehold must be established."},
+			{"text":"It's a fair fight, now!"},
+		],
+		"hull_50":[
+			{"text":"Holy shit!"},
+			{"text":"We don't take these things out, we're gonna be up to our necks in shit!"},
+			{"text":"Aw, come on, what the hell?"},
+		],
+		"hull_30":[
+			{"text":"Hey, pilot, get us out of the AO, now!"},
+			{"text":"Our sensors just blew out! Everyone brace!"},
+			{"text":"No running from this one, huh."},
+		],
+		"overload":[
+			{"text":"Well, that didn't take long."},
+			{"text":"Hold on a second!"},
+		],
+		"death":[
+			{"text":"By God..."},
+			{"text":"Shit. Shit!"},
+		],
+		"victory":[
+			{"text":"Spot on support, you lucky bastards. Resistance is no factor."},
+			{"text":"If we keep racking up kills like that, we're gonna need a bigger offshore account."},
+			{"text":"It's harder to create than it is to destroy."},
+			{"text":"All threats eliminated and scopes are clear! Good stuff!"},
+			{"text":"After this mission, don’t tell me I never do anything for you."},
+			{"text":"Alright, salvage what you need to get out of here! We can celebrate when we’re back in port!"},
+			{"text":"Hey, pop that champagne bottle I got in the fire extinguisher box! I don’t give a damn if we get the consoles wet! We’re rich after this mission! Rich!"},
+		],
+	}
+}

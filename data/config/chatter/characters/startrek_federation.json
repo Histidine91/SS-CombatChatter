@@ -1,0 +1,75 @@
+{
+	"name":"Federation",
+	"personalities":["steady", "cautious", "aggressive"],
+	"gender":["m", "f"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["startrek", "tv", "othermedia", "original"],
+	
+	"lines":{
+		"start":[
+			{"text":"Helm, close to weapons range. Tactical, fire at will."},
+			{"text":"Full power to weapons, prepare for contact."},
+			{"text":"I was hoping we could settle this amicably, but you leave us no choice."},
+			{"text":"Red alert. Raise shields."},
+			{"text":"Engage."}
+		],
+		"start_boss":[
+			{"text":"All hands, prepare for contact. Helm, Attack Pattern Omega."},
+			{"text":"This ends here. I won't let you threaten any more innocent lives!"},
+			{"text":"Engineering, I hope you're ready to give me some miracles."}
+		],		
+		"retreat":[
+			{"text":"Helm, full impulse! Get us out of here!"},
+			{"text":"We've done all we can, we need to get out of here."}
+		],
+		"out_of_missiles":[
+			{"text":"Torpedo racks depleted."},
+			{"text":"We're out of torpedoes."},
+			{"text":"Fire torpedoes, full spr-- what do you mean we're out of torpedoes?!"}
+		],
+		"engaged":[
+			{"text":"Helm, Attack Pattern Alpha!"},
+			{"text":"Tactical, Attack Pattern Beta!"},
+			{"text":"Shields holding. Tactical, return fire."}
+		],
+		"need_help":[
+			{"text":"Helm, evasive maneuvers!"},
+			{"text":"Helm, Attack Pattern Delta!"}
+		],
+		"pursuing":[
+			{"text":"Don't let them get away!"},
+			{"text":"Full power to engines!"}
+		],
+		"running":[
+			{"text":"Helm, full impulse! Get us out of here!"},
+			{"text":"We've done all we can, we need to get out of here."}
+		],
+		"hull_90":[
+			{"text":"Structural integrity field at ninety percent and falling."},
+			{"text":"Minor hull breach. Damage control teams, report."}
+		],
+		"hull_50":[
+			{"text":"Structural integrity field at fifty percent and falling."},
+			{"text":"Hull breaches on multiple decks."}
+		],
+		"hull_30":[
+			{"text":"Structural integrity field at thirty percent and falling. Begin evacuation procedures."}
+		],
+		"overload":[
+			{"text":"Engineering reports plasma conduit overloads on multiple decks."},
+			{"text":"Medical to the bridge!"},
+			{"text":"Brace for impact!"},
+			{"text":"Engineering, status report!"}
+		],
+		"death":[
+			{"text":"All crew to escape pods."},
+			{"text":"It has been an honour."}
+		],
+		"victory":[
+			{"text":"That's one less threat to the sector."},
+			{"text":"A shame we had to resort to violence."},
+			{"text":"I would've preferred a diplomatic approach, but this will have to do."}
+		],
+	}
+}

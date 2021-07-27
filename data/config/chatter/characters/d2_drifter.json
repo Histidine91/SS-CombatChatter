@@ -1,0 +1,71 @@
+{
+	"name":"The Drifter",
+	"personalities":["steady","reckless","aggressive"],
+	"gender":["m"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["destiny","game","othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"All right all right all right..."},
+			{"text":"Lock 'n' load!"},
+			{"text":"Y'all ready to bang knuckles?"}
+		],
+		"start_boss":[
+			{"text":"High-value target, on the field!"}
+		],		
+		"retreat":[
+			{"text":"Let's bounce!"}
+		],
+		"out_of_missiles":[
+			{"text":"Shoot, all outta missiles..."},
+			{"text":"Aw, and I was just gettin' warmed up!"}
+		],
+		"engaged":[
+			{"text":"These boys really know how to dance!"},
+			{"text":"Alright, enough foolin' around!"},
+			{"text":"Let's eat!"}
+		],
+		"need_help":[
+			{"text":"Could use a hand over here!"},
+			{"text":"Don't just stand there, do somethin'!"}
+		],
+		"pursuing":[
+			{"text":"Woo! Are you having fun yet? I am!"},
+			{"text":"Tear 'em up!"},
+			{"text":"Let's be bad guys!"}
+		],
+		"running":[
+			{"text":"I'm outta here!"}
+		],
+		"hull_90":[
+			{"text":"Just a scratch."},
+			{"text":"I'm doin' fine, worry about the other guys!"}
+		],
+		"hull_50":[
+			{"text":"These guys sure are spoilin' for a fight!"},
+			{"text":"Well, this sure could be goin' better..."}
+		],
+		"hull_30":[
+			{"text":"Boy, I think they woke up pissed!"},
+			{"text":"Uhhh... this ain't lookin' good."}
+		],
+		"overload":[
+			{"text":"Hold onto your ghosts!"},
+			{"text":"Woo! The best gunfights happen on the frontier!"}
+		],
+		"death":[
+			{"text":"Dammi-*ksssht*"},
+			{"text":"Damn!"},
+			{"text":"What th-"}
+		],
+		"victory":[
+			{"text":"And that's how you do it!"},
+			{"text":"Woo!"},
+			{"text":"Yee-haw!"},
+			{"text":"Yeeeah!"},
+			{"text":"Ding! Ding! Ding!"}
+		],
+	}
+}

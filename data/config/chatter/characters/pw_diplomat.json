@@ -1,0 +1,81 @@
+{
+	"name":"Diplomat",
+	"personalities":["aggressive", "reckless"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1.25,
+	"categoryTags":["othermedia", "game", "projectwingman"],
+	
+	"lines":{
+		"start":[
+			{"text":"You gonna let us loose?"},
+			{"text":"Weapon safeties are off. Let's see how much these ships pay out."},
+			{"text":"I could’ve lived my entire life planetbound. Give me space any day."},
+			{"text":"Hell of a day to be bringing multi-lock weapons out."},
+			{"text":"You know I wanted to pilot starliners as a kid. Oh... how far I've fallen."},
+			{"text":"I'm always all business. My best investment? This multimillion dollar war machine."},
+		],
+		"start_boss":[
+			{"text":"Guess we're in it, now..."},
+			{"text":"Us versus that... Yup, that’s what we’re doing now. N-no big deal, right? Right?"},
+			{"text":"Who the hell thought this was a good idea?!"},
+			{"text":"Ah, shit."},
+			{"text":"The hell is this?"},
+		],		
+		"retreat":[
+			{"text":"Let's go while we have the window."},
+			{"text":"Careful's my last name and safety’s my mom. Let's go."},
+		],
+		"out_of_missiles":[
+			{"text":"Damn, we're out. Can someone else cover for us?"},
+		],
+		"engaged":[
+			{"text":"Nothing like a dance-off. Merging now."},
+			{"text":"We’re free range, now."},
+			{"text":"Guess we're doing this. I'm throwing in!"},
+		],
+		"need_help":[
+			{"text":"Wew. Hah, see, real easy. I can do this with one hand behind my back. Yep, that’s me. Help."},
+			{"text":"Hey guys, lend us a hand here?"},
+		],
+		"pursuing":[
+			{"text":"Ah, just surrender already, damnit."},
+			{"text":"Nobody needs to die. Not when this fight's about to be over."},
+			{"text":"Why are you even trying?! God damn, just surrender already! Don't make me do this!"},
+		],
+		"running":[
+			{"text":"Yeah, nope, I’m winchester anyway, let’s go!"},
+			{"text":"You don't get to tell me twice. I'm out."}, 
+			{"text":"We should be getting out of the AO, out of this country!"},
+		],
+		"hull_90":[
+			{"text":"Some seasoned pilots we’ve got here. Damn!"},
+			{"text":"Yeah, I ain't getting paid enough to be shot at like this!"},
+			{"text":"Oh, man. Is it me, or am I smelling smoke on the bridge?"},
+		],
+		"hull_50":[
+			{"text":"I'm barely keeping up!"},
+			{"text":"Ah, God damn, still going at it, huh? Fine, we’ll play ball!"},
+			{"text":"I'd take a year off after this if I had a choice."},
+		],
+		"hull_30":[
+			{"text":"I.. I just need to lay down somewhere..."},
+			{"text":"Heads on a swivel! Now!"},
+			{"text":"Ugh, it feels like I’m gonna bite through my teeth, here!"},
+		],
+		"overload":[
+			{"text":"A little more warning would have been nice!"},
+			{"text":"How in God’s name are we not dead...?"},
+			{"text":"I don't like our odds here!"},
+		],
+		"death":[
+			{"text":"[radio silence]"},
+			{"text":"It's alright, I probably deserved it at some point."},
+			{"text":"How did you...?"},
+		],
+		"victory":[
+			{"text":"You think we could reserve some nice quarters next time we dock? you know, in exchange for our good work out here."},
+			{"text":"They wanted to go down fighting. Stupid bastards."},
+		],
+	}
+}

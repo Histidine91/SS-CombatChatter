@@ -12,22 +12,30 @@
 			{"text":"Enemy sighted!"},
 			{"text":"Ha! Mere target practice!"}
 		],
+		"start_boss":[
+			{"text":"This battle will bring much glory to our house!"},
+			{"text":"Fight well, and if necessary, die well!"},
+			{"text":"Today is a good day to die!"}
+		],
 		"retreat":[
 			{"text":"We WILL fight another day."},
 			{"text":"On our honour."}
 		],
 		"need_help":[
 			{"text":"We are surrounded by enemies! Keep firing!"},
-			{"text":"Join us in glorious battle!"}
+			{"text":"Join us in glorious battle!"},
+			{"text":"They are on us like a pack of rabid targ!"}
 		],
 		"pursuing":[
 			{"text":"They are running in fear!"},
 			{"text":"Ha! They are afraid to die in battle!"},
 			{"text":"COWARDS!"},
-			{"text":"Let them run. Their cowardice will stalk them."}
+			{"text":"Let them run. Their cowardice will stalk them."},
+			{"text":"Send them howling to Gre'thor like the cowards they are!"}
 		],
 		"running":[
-			{"text":"The battle has soured!"}
+			{"text":"The battle has soured!"},
+			{"text":"Only a fool fights in a burning house!"}
 		],
 		"hull_90":[
 			{"text":"Interesting. Maybe they can fight after all."},
@@ -35,13 +43,13 @@
 		],
 		"hull_50":[
 			{"text":"At last! A worthy adversary."},
-			{"text":"Impressive!"}
+			{"text":"Impressive!"},
+			{"text":"Filthy petaQ'!"}
 		],
 		"hull_30":[
 			{"text":"Today is a good day to die!"},
 			{"text":"Sto'vo'kor awaits!"},
 			{"text":"There is no dishonour in death."}
-			
 		],
 		"overload":[
 			{"text":"Systems not responding!"},
@@ -49,13 +57,14 @@
 			{"text":"*sounds of console being thumped repeatedly*"}
 		],
 		"death":[
-			{"text":"Qa'pla'!"},
-			{"text":"Sto'vo'kor!"},
-			{"text":"Filthy pa'taq!"}
+			{"text":"Qapla'!"},
+			{"text":"Sto'vo'kor!"}
 		],
 		"victory":[
+			{"text":"Qapla'!"},
 			{"text":"An easy victory!"},
 			{"text":"Another victory for the Empire!"},
+			{"text":"If winning is not important, why keep score?"},
 			{"text":"We have honoured our houses."}
 		],
 	}

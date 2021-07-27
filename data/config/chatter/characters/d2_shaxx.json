@@ -1,0 +1,69 @@
+{
+	"name":"Lord Shaxx",
+	"personalities":["steady","reckless","aggressive"],
+	"gender":["m"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["destiny","game","othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Engage and execute all targets."},
+			{"text":"No holding back!"},
+			{"text":"Stick together, team."}
+		],
+		"start_boss":[
+			{"text":"If they want war, GIVE THEM WAR!"},
+			{"text":"Wipe. Them. Out."}
+		],		
+		"retreat":[
+			{"text":"This isn't over yet!"},
+			{"text":"Fall back, we're overextended!"}
+		],
+		"out_of_missiles":[
+			{"text":"Out of missiles?! I'm not sure who to be angry at!"},
+			{"text":"Out of missiles?! That can't be right!"}
+		],
+		"engaged":[
+			{"text":"Don't let up!"},
+			{"text":"Let's crush them!"}
+		],
+		"need_help":[
+			{"text":"The enemy is everywhere!"},
+			{"text":"We're surrounded! Stand together!"}
+		],
+		"pursuing":[
+			{"text":"Wipe them out!"},
+			{"text":"Get back here, I'm not finished!"}
+		],
+		"running":[
+			{"text":"I've seen enough, I'm calling this one!"}
+		],
+		"hull_90":[
+			{"text":"Show me more!"},
+			{"text":"Did you see that shot? He's a danger only to himself!"}
+		],
+		"hull_50":[
+			{"text":"No holding back!"},
+			{"text":"We're not dead yet!"}
+		],
+		"hull_30":[
+			{"text":"This isn't over yet!"},
+			{"text":"Defeat is imminent..."},
+			{"text":"We go down fighting!"}
+		],
+		"overload":[
+			{"text":"What? Where's my catharsis? Boo!"},
+			{"text":"What? What?! How?!"}
+		],
+		"death":[
+			{"text":"Fight forever!"},
+			{"text":"Defeat comes for us all..."}
+		],
+		"victory":[
+			{"text":"Victory!"},
+			{"text":"Our legend grows!"},
+			{"text":"Another battle won. Onto the next fight."}
+		],
+	}
+}

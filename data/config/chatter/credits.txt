@@ -19,7 +19,10 @@ cjusa:
 
 Serenitis/Paramount:
 * startrek_ferengi
-* startrek_klingon
+* startrek_klingon (edited by Arcalane)
+
+Arcalane/Paramount:
+* startrek_federation
 
 Love in Space:
 * sunrider_ava
@@ -112,6 +115,13 @@ Bandai Namco (dumped by Keystone, compiled by Histidine)
 * acecombat_torres
 * acecombat_count
 
+Bandai Namco (compiled by Unit9461)
+* acecombat_archange
+* acecombat_sacs
+
+Bandai Namco (compiled by Volkssnake)
+* acecombat_pixy
+
 Nintendo (compiled by MShadowy)
 * starfox_andross
 * starfox_area6
@@ -142,6 +152,14 @@ EA Games (compiled by SCC)
 
 Sector D2 (compiled by AlexAtheos):
 * pw_crimson1
+* pw_comic
+* pw_diplomat
+* pw_kaiser
+* pw_galaxy
 
 Sector D2 (compiled by Volkssnake):
 * pw_prez
+
+Bungie (compiled by Arcalane)
+* d2_drifter
+* d2_shaxx

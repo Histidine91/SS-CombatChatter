@@ -1,0 +1,70 @@
+{
+	"name":"SACS Squadron",
+	"personalities":["steady","aggressive", "reckless"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "acecombat"],
+	
+	"lines":{
+		"start":[
+			{"text":"I'll show you what a proud cog can do."},
+			{"text":"We are but cogs with wings! Our powers will crush the enemy!"},
+			{"text":"The captain's plans are infallible, as such we will never know defeat!"},
+		],
+		"start_boss":[
+			{"text":"This is not a suicide mission! Shoot them all down and let's go home!"},
+		],
+		"retreat":[
+			{"text":"Break! Break!"},
+		],
+		"out_of_missiles":[
+			{"text":"We've launched a boatful of ordnance, and still they won't even flinch!"},
+		],
+		"engaged":[
+			{"text":"Come on, I dare you!"},
+			{"text":"I'll swat you right out of the void!"},
+			
+			{"text":"Go! Rip the wings off those degenerates!"},
+			{"text":"I'll turn their craft into a wreath."},
+		],
+		"need_help":[
+			{"text":"Enemy is on my six!"},
+			{"text":"That bandit's too close."},
+		],
+		"pursuing":[
+			{"text":"I'll go head on and take him down with me!"},
+			{"text":"I'll prove myself by taking him down."},
+		],
+		"running":[
+			{"text":"I'll get his attention, you finish him off!"},
+		],
+		"hull_90":[
+			{"text":"Victory is achieved through perseverance and perservere we will!"},
+			{"text":"I hereby swear that I will be a proud, brave and vigilant soldier."},
+		],
+		"hull_50":[
+			{"text":"Our salvation is not yet at hand!"},
+			{"text":"The only lives you'll take are from us!"},
+			{"text":"To uphold the honor of our nation and its military."},		
+		],
+		"hull_30":[
+			{"text":"Salvation is nigh!"},
+			{"text":"To submit to the orders of my superiors."},
+			{"text":"If I go down it's up to you!"},
+		],
+		"overload":[
+			{"text":"We're dead men walking, why should we fear death?"},
+			{"text":"Get this done, you hear me?"},
+			{"text":"This guy's nuts, but he sure is good."},
+		],
+		"death":[
+			{"text":"Caaptaaii-!"},
+			{"text":"Salva-!"},
+		],
+		"victory":[
+			{"text":"We are here not to allow our allies to retreat, but to advance!"},
+			{"text":"For salvation!"},
+		],
+	}
+}
