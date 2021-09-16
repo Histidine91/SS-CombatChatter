@@ -18,6 +18,7 @@ public class ChatterCharacter {
 	public float chance = 1;
 	public float talkativeness = 1;
 	public Set<String> allowedFactions = new HashSet<>();
+	public boolean allowedForAI;
 	public final Map<MessageType, List<ChatterLine>> lines = new HashMap<>();
 	public boolean isDefault = false;
 }

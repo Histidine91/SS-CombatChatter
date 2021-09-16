@@ -23,6 +23,7 @@ public class ChatterConfig {
 	public static float minMissileOPFractionForChatter = 0.2f;
 	public static boolean personalityChanceScaling = true;
 	public static float genderChanceScaling = 1.5f;
+	public static boolean restrictAICharacters = true;
 	public static boolean fleetIntro = true;
 	public static Set<String> disallowedTags;
 	public static Set<String> noEnemyChatterFactions;
@@ -45,6 +46,7 @@ public class ChatterConfig {
 			minMissileOPFractionForChatter = (float)settings.optDouble("minMissileOPFractionForChatter", minMissileOPFractionForChatter);
 			personalityChanceScaling = settings.optBoolean("personalityChanceScaling", personalityChanceScaling);
 			genderChanceScaling = (float)settings.optDouble("genderChanceScaling", genderChanceScaling);
+			restrictAICharacters = settings.optBoolean("restrictAICharacters", restrictAICharacters);
 			
 			fleetIntro = settings.optBoolean("fleetIntro", fleetIntro);
 			

@@ -8,6 +8,7 @@
 	"factionSpecificCharacters": false,	# not all faction's officers will have all characters
 	"personalityChanceScaling": true,	# make characters with only 1-2 allowed personalities have higher chance to be picked
 	"genderChanceScaling": 1.5,	# make gender-specific characters more likely to be picked
+	"restrictAICharacters": true,	# only certain characters can be used for AI officers, controlled by character_factions.csv
 	"fleetIntro":true,	# intro splash for some fleet types, Project Wingman style
 	
 	# at least this proportion of the ship's weapon OPs should be in missiles, else it won't print "out of missiles" messages

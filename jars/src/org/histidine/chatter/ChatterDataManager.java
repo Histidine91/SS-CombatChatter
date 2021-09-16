@@ -46,7 +46,11 @@ public class ChatterDataManager {
 	public static final List<ChatterCharacter> CHARACTERS = new ArrayList<>();
 	public static final Map<String, ChatterCharacter> CHARACTERS_MAP = new HashMap<>();
 	public static final Map<String, Set<String>> FACTION_TAGS = new HashMap<>();
+	
+	// first String key is character ID
+	// value is a map where the key is a faction ID or tag ("military", "corporate", etc.) and value is its score (-1, 0 or 1);
 	public static final Map<String, Map<String, Integer>> CHARACTER_FACTIONS = new HashMap<>();
+	
 	public static final Set<String> EXCLUDED_HULLS = new HashSet<>();
 	public static final Set<String> BOSS_SHIPS = new HashSet<>();
 	
@@ -158,6 +162,7 @@ public class ChatterDataManager {
 					}
 					
 					character.allowedFactions = getAllowedFactionsForCharacter(character.id);
+					character.allowedForAI = isValidAICharacter(character.id);
 					
 					CHARACTERS.add(character);
 					CHARACTERS_MAP.put(characterId, character);
@@ -379,11 +384,19 @@ public class ChatterDataManager {
 				if (!character.gender.contains(gender)) continue;
 			}
 			
-			if (!isFighter && ChatterConfig.factionSpecificCharacters 
+			// if captain is an AI, check if this character is allowed for AIs
+			if (captain.isAICore() && ChatterConfig.restrictAICharacters && !character.allowedForAI) 
+			{
+				continue;
+			}
+			// check if this character is allowed for captain's faction (except for fighters)
+			else if (!isFighter && ChatterConfig.factionSpecificCharacters 
 					&& !character.allowedFactions.contains(factionId)) 
 				continue;
 			
 			//debugPrint("\tFaction allowed to use character " + character.id);
+			String personalityId = captain.getPersonalityAPI().getId();
+			log.info(String.format("Captain %s has personality %s", captain.getNameString(), personalityId));
 			
 			if (character.personalities.contains(captain.getPersonalityAPI().getId()))
 			{
@@ -440,6 +453,20 @@ public class ChatterDataManager {
 			}
 		}
 		return allowedFactions;
+	}
+	
+	protected static boolean isValidAICharacter(String charId) {
+		if (!CHARACTER_FACTIONS.containsKey(charId)) {
+			return true;
+		}
+		try {
+			Map<String, Integer> charFactionEntry = CHARACTER_FACTIONS.get(charId);
+			Integer aiScore = charFactionEntry.get("ai");
+			return aiScore >= 1;
+		} catch (Exception ex) {
+			
+		}
+		return true;
 	}
 	
 	protected static boolean isCharacterAllowedForFaction(String charId, String factionId)
