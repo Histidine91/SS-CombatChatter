@@ -21,5 +21,6 @@
 	
 	"introSplashFleetTypes":[
 		"personBounty", "exerelinInvasionFleet", "vengeanceFleet", "nex_specialForces", "famousBounty",
-	]
+	],
+	"introSplashFactions":["remnant", "mess", "mess_remnant", "blade_breakers"]	# TODO
 }

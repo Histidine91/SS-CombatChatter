@@ -762,9 +762,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 					bestFallback = fleet;
 					continue;
 				}
+				
 				String type = fleet.getMemoryWithoutUpdate().getString(MemFlags.MEMORY_KEY_FLEET_TYPE);
-				if (type != null && ChatterConfig.introSplashFleetTypes.contains(type)
-						&& strength > playerStrength * 0.8f) 
+				boolean validTypeOrFaction = (type != null && ChatterConfig.introSplashFleetTypes.contains(type))
+						|| ChatterConfig.introSplashFactions.contains(fleet.getFaction().getId());
+				
+				if (validTypeOrFaction && strength > playerStrength * 0.8f) 
 				{
 					bestFallback = fleet;
 					continue;
