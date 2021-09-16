@@ -1,6 +1,6 @@
 {
-	"name":"Larry Foulke",
-	"personalities":["steady", "aggressive"],
+	"name":"Larry \"Pixy\" Foulke",
+	"personalities":["steady", "aggressive", "reckless"],
 	"gender":["m"],
 	"chance":1,
 	"talkativeness":1.25,
@@ -9,63 +9,100 @@
 	"lines":{
 		"start":[
 			{"text":"Here comes the snow..."},
-			{"text":"Time to dive into the fireworks!"},
 			{"text":"Be ready to pay up, we'll be back before you know it."},
-			{"text":"Proceed with caution."}
+			{"text":"Proceed with caution."},
+			{"text":"It's starting to come down."},
+			{"text":"You'd better have our pay ready and waiting."},
+			{"text":"Here it comes. Let's fly into the center."},
+			{"text":"Let's do this right. We've got the pride it takes to win."},
+			{"text":"We've got radar contact. They've come to greet us at the door."},
 		],
 		"start_boss":[
 			{"text":"This is gonna cost you extra."},
 			{"text":"Those who survive a long time on the battlefield start to think they're invincible."},
-			{"text":"It's not over, buddy. This is where it all starts. You know what I'm talkin' about, right?"}
+			{"text":"It's not over, buddy. This is where it all starts. You know what I'm talkin' about, right?"},
+			{"text":"Nobody wants to bail out into a flaming star. We're counting on you, captain."},
+			{"text":"No affiliations or ranks to hinder us. The only rule of engagement is to survive."},
+			{"text":"This is where it all starts. You know what I'm talkin' about, right?"},
+			{"text":"There's only one way, Buddy. You've gotta fight for what you believe in."},
+			{"text":"No manual's gonna tell you how to fight this battle."},
 		],
 		"retreat":[
 			{"text":"Yeah, well. I've had my fill of goin' home without wings."},
 			{"text":"We're going to start over from scratch."},
-			{"text":"This is bad, I'm outta here."}
+			{"text":"We will survive."},
+			#{"text":"Guess they've come to pick on the dead again."},
+			{"text":"Don't worry, I'll catch up."},
+			{"text":"Roger, I'll cover you."},
+			{"text":"Roger, I'll watch your back."},
 		],
 		"out_of_missiles":[
+			{"text":"This war would end if we could blow everything up."},
+			{"text":"Negative, no ammo left. All I've got is regular ordinance."},
+		],
+		"engaged":[
+			{"text":"Dead men's words hold no meaning."},
+			{"text":"Looks like we've both still got what it takes."},
+			{"text":"Time to dive into the fireworks!"},
+			{"text":"Let's get up close and personal!"},
+			{"text":"If you get shot down, crash where I can't see."},
 		],
 		"need_help":[
-			{"text":"Give me some orders!"},
+			{"text":"Ruthless attacks aren't gonna cut it with these guys."},
+			{"text":"These guys know what they're doing. Don't let up, even when they're locked on."},
+			{"text":"These guys aren't half bad."},
 			{"text":"Dont underestimate these guys."}
 		],
 		"pursuing":[
 			{"text":"They're in a panic out there. We just might be able to win this."},
-			{"text":"We gotta strike while the iron's hot!"},
+			{"text":"Atta way! Mop 'em up nice and quick!"},
+			{"text":"It takes more than just a fancy ship to fly like that. You've gotta fight for what you believe in."},
+			{"text":"We gotta strike while the iron's hot."},
 			{"text":"Lets wrap things up here."}
 		],
 		"running":[
 			{"text":"They're gonna give us all they've got."},
 			{"text":"It seems they're on to us."},
 			{"text":"There's so many of them!"},
+			{"text":"This is bad! I'm outta here!"},
 		],
 		"hull_90":[
-			{"text":"These guys know what they're doing."},
 			{"text":"You fired up? Come shoot me down."},
-			{"text":"Be careful."}
+			{"text":"Those who survive a long time on the battlefield start to think they're invincible. I bet you do too, Buddy."},
+			{"text":"This is gonna cost you extra."},
+			{"text":"Things are gonna get tricky if reinforcements show up."},
 		],
 		"hull_50":[
-			{"text":"Things are gonna get tricky if reinforcements show up."},
 			{"text":"Fire away, coward!"},
-			{"text":"What's going on?"}
+			{"text":"I don't have time for that. It's every man for himself."},
+			{"text":"This chunk of space doesn't sit well with me."},
+			{"text":"When we face each other, we can finally see our true selves!"},
+			{"text":"Guess they really don't want us to get through..."},
 		],
 		"hull_30":[
 			{"text":"What the hell happened?!"},
 			{"text":"It's time."},
-			{"text":"This is where we go our seperate ways."}
+			{"text":"You're here to pull me off in a magical carriage... to hell I suppose..."},
+			{"text":"We've opened up Pandora's box!"},
+			{"text":"These guys are definitely pros. I can't find a weakness."},
 		],
 		"overload":[
 			{"text":"Dammit!"},
 			{"text":"Come on!"},
-			{"text":"What! Now?"}
+			{"text":"What! Now?"},
+			{"text":"I'm in a jam here, just give me a minute."},
 		],
 		"death":[
-			{"text":"This twisted game needs to be reset."}
+			{"text":"Damn them all..."},
+			{"text":"This twisted game needs to be reset."},
+			{"text":"This is where we go our separate ways."},
 		],
 		"victory":[
 			{"text":"I got a feeling you and me are gonna get along just fine. Buddy."},
 			{"text":"Yo, buddy. Still alive?"},
+			{"text":"Those guys are history. Let's wrap things up here."},
 			{"text":"Yo buddy, you've got everyone fired up and believing in miracles."},
+			{"text":"You hear that warm welcome? It's the sweet sound of victory."},
 			{"text":"Looks like we live to see another day."}
 		]
 	}

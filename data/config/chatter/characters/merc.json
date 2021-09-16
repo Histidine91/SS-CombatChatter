@@ -1,0 +1,103 @@
+{
+	"name":"Merc",
+	"personalities":["steady", "aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.8,
+	"talkativeness":1,
+	"categoryTags":["original"],
+	
+	"lines":{
+		"start":[
+			{"text":"Point us at 'em."},
+			{"text":"Let's see how good of a ship this thing is."},
+			{"text":"Another day on the job."},
+			{"text":"Orders?"},
+			{"text":"Preliminary check's finished."},
+			{"text":"Standing by."},
+			{"text":"Nunquam non paratus."},
+		],
+		"start_boss":[
+			{"text":"Better get a raise after this eh?."},
+			{"text":"SAFETY OVERRIDE!"},
+			{"text":"Hell or Highwater."},
+		],		
+		"retreat":[
+			{"text":"Regroup."},
+			{"text":"Mission Failed, we'll get em' next time."},
+			{"text":"*Sigh*"},
+			{"text":"Hey whatever works for you, I'm in it for the money."},
+			{"text":"What the hell was that shit?"},
+		],
+		"out_of_missiles":[
+			{"text":"Ordnance's all burned out."},
+			{"text":"Ordinance officer says we're all out. Crap."},
+			{"text":"Then use your guns dammit!"},
+			{"text":"Hey don't look at me, I'm just piloting the ship no?"},
+		],
+		"engaged":[
+			{"text":"Switch all power to frontal weapons."},
+			{"text":"Going into the offensive."},
+			{"text":"Light em' up!"},
+			{"text":"Engaging."},
+			{"text":"Let's make use of those ordnance points!"},
+			{"text":"Engaging close quarter! Watch for friendlies!"},
+		],
+		"need_help":[
+			{"text":"Christ they're tough."},
+			{"text":"Command, requesting immediate backup."},
+			{"text":"I'm paid to fight."},
+			{"text":"Holding out still, what's the ETA on reinforcement?"},
+		],
+		"pursuing":[
+			{"text":"Dun't feel right, but I'm not paid to give opinions."},
+			{"text":"Commencing Sweeping Pattern"},
+			{"text":"Running's not an option."},
+			{"text":"Let's round em' up boys!"},
+			{"text":"Commencing Search and Destroy patrol."},
+		],
+		"running":[
+			{"text":"Close enough, scramming for cover."},
+			{"text":"That won't do, we're pulling back."},
+			{"text":"Looking for an opening."},
+			{"text":"Activity spike on my coordinates! Going dark!"},
+			{"text":"Disengaging! Please assist!"},
+		],
+		"hull_90":[
+		    {"text":"Reporting minor hull breach."},
+		    {"text":"Armor's cracked!"},
+		    {"text":"Get yourself together men! Lest shit's hits the fan!"},
+		],
+		"hull_50":[
+		    {"text":"What is going on back there?!"},
+			{"text":"Vessel's still ship worthy, continuing the assault."},
+			{"text":"Armor's pinched!"},
+		],
+		"hull_30":[
+		    {"text":"Barely in combat condition, requesting clearance to retreat, over."},
+		    {"text":"Damage control's not responding, where are they dammit!?"},
+		    {"text":"Combat capability's severely reduced, requesting to retreat."},
+		],
+		"overload":[
+			{"text":"Replace those coolant tanks stat!."},
+			{"text":"*Electronic's buzzing* Fixing the problem right now"},
+			{"text":"Cooling system's failing!."},
+			{"text":"Grr, remind me to upgrade flux vents after this."},
+		],
+		"death":[
+		    {"text":"Going down!"},
+		    {"text":"System's going critical- *Connection Lost*"},
+			{"text":"Good luck commander."},
+		],
+		"victory":[
+			{"text":"Sector's clear."},
+			{"text":"We better disperse commander."},
+			{"text":"Sending status report."},
+			{"text":"Sweeping for survivors."},
+			{"text":"That's how you do it!"},
+			{"text":"Ab ipso ferro commander."},
+			{"text":"Astra inclinant, sed non obligant."},
+			{"text":"Outstanding performance team."},
+			{"text":"Let's regroup and plan the next move."},
+		],
+	}
+}

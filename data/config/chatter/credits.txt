@@ -115,7 +115,7 @@ Bandai Namco (dumped by Keystone, compiled by Histidine)
 * acecombat_torres
 * acecombat_count
 
-Bandai Namco (compiled by Unit9461)
+Bandai Namco (compiled by Unit9461 and AlexAtheos)
 * acecombat_archange
 * acecombat_sacs
 
@@ -163,3 +163,12 @@ Sector D2 (compiled by Volkssnake):
 Bungie (compiled by Arcalane)
 * d2_drifter
 * d2_shaxx
+
+Seele
+* agent
+* merc
+* corpo
+* negotiator
+
+Marauder Interactive (compiled by Avanitia)
+* deadsun_executor

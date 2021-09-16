@@ -5,28 +5,32 @@
 	"chance":1,
 	"talkativeness":1,
 	"categoryTags":["othermedia", "game", "acecombat"],
-	
+	#https://www.youtube.com/watch?v=xCaL0ouBUak
 	"lines":{
 		"start":[
 			{"text":"I want to understand the enemy."},
 			{"text":"I'll take it from here."},
-			{"text":"Think you can keep up with me?"},
+			{"text":"This should prove to be fun."},
+			{"text":"I'm testing this ship. You must find your own space."},
+			{"text":"I see a great deal of promise here."},
 		],
 		"start_boss":[
-			{"text":"There are pilots like you in every generation, and I've felled every last one of them."},
-			{"text":"I'm testing this craft, you must find your own sky."},
+			{"text":"There are pilots like you in every generation. And I've felled every last one of them."},
+			{"text":"The better one's mine."},
+			{"text":"Let me test them, to see if they're truly worthy."},
 		],
 		"retreat":[
-			{"text":"This is Sol Squadron, head home."},
-			{"text":"Must I continue to gaze upon this failure?"},
+			{"text":"Head home. It's not safe to stick around here if we lose our fleet."},
+			{"text":"Must I continue to gaze upon my failure?"},
 		],
 		"out_of_missiles":[
-			#{"text":"Sol 1, Fox 2."},
+			{"text":"Missile did not connect. That wasn't the plan."},
 		],
 		"engaged":[
 			{"text":"You're quite the entertainer, but the show's over with this next shot."},
 			{"text":"He's fast, and decisive, flies like a true veteran."},
 			{"text":"Next shot will find its mark."},
+			{"text":"Think you can keep up with me?"},
 		],
 		"need_help":[
 			{"text":"Seems like he's trying to draw me in after him, not a bad plan, actually."},
@@ -36,6 +40,7 @@
 		"pursuing":[
 			{"text":"Get closer!"},
 			{"text":"Eject, while you can still talk."},
+			{"text":"You're still not fast enough."},
 		],
 		"running":[
 			{"text":"No, that's not it, that will not do."},
@@ -43,18 +48,20 @@
 		],
 		"hull_90":[
 			{"text":"Not bad."},
+			{"text":"My status is fine. Do not interfere."},
 			{"text":"My status? Well... I'm feeling a little excited."},
 			{"text":"It's just like you say, the enemy has experienced fighters in their midst."},
 		],
 		"hull_50":[
-			{"text":"Beyond machine assistance, I see."},
-			{"text":"This aircraft is my body..."},
-			{"text":"This weapon is not enough."},		
+			{"text":"Beyond the limits of machine assistance, I see."},
+			{"text":"This ship is my body. If it is not enough, I must put my soul into it."},
+			{"text":"This weapon is not enough."},
 		],
 		"hull_30":[
 			{"text":"If they are not enough, I must put my soul into it."},
 			{"text":"Perhaps it is my punishment..."},
-			{"text":"Let me test him then, to see if he's truly worthy."},
+			{"text":"Am I destined to simply wither away, and lose the freedom to fly the open void as I once did?"},
+			{"text":"I never wanted to create anything and now here I am, clinging to life."},
 		],
 		"overload":[
 			{"text":"The enemy is no pushover."},
@@ -62,13 +69,17 @@
 			{"text":"[MACHINE VOICE]: OVER G, OVER G."},
 		],
 		"death":[
+			{"text":"You must find someone to guide you. I am not that person."},
 			{"text":"This was all due to my ego."},
+			{"text":"Don't waste your life. Dedicate it to reclaiming that which you call home."},
+			{"text":"In the end, I was unable to create anything."},
 			{"text":"I unleashed pure chaos onto this world, just so I could keep my wings."},
 		],
 		"victory":[
 			{"text":"Nice work."},
 			{"text":"Well done."},
 			{"text":"Mission proved to be fun."},
+			{"text":"They weren't bad."},
 		],
 	}
 }

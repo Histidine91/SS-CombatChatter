@@ -1,0 +1,65 @@
+{
+	"name":"Emperor's Executor",
+	"personalities":["aggressive", "reckless"],
+	"gender":["m", "f"],
+	"chance":1,
+	"talkativeness":0.9,
+	"categoryTags":["othermedia", "game", "houseofthedyingsun"],
+	
+	"lines":{
+		"start":[
+			{"text":"Navigation systems online."},
+			{"text":"Range is optimal, swinging around."},
+		],
+		"start_boss":[
+			{"text":"Flagship is on scans, we're have company."},
+			{"text":"Flagship in play."},
+		],
+		"retreat":[
+		],
+		"out_of_missiles":[
+			{"text":"Heavy weapon stock empty."},
+			{"text":"Missile tubes empty."},
+		],
+		"engaged":[
+			{"text":"Weapon systems check commencing."},
+			{"text":"Bringing all weapons to bear."},
+			{"text":"Shooting the target."},
+		],
+		"need_help":[
+			{"text":"Requesting support."},
+			{"text":"Taking enemy fire, requesting support."},
+		],
+		"pursuing":[
+			{"text":"Target info in, moving to pursue."},
+			{"text":"Moving in to attack."},
+		],
+		"running":[
+			{"text":"Primary objective failed, exfill."},
+		],
+		"hull_90":[
+			{"text":"Taking hits, reactor holding."},
+		],
+		"hull_50":[
+			{"text":"Taking a beating over here."},
+		],
+		"hull_30":[
+			{"text":"I can't shake 'em!"},
+		],
+		"overload":[
+			{"text":"Taking fire, taking fire!"},
+		],
+		"death":[
+			{"text":"Sinking."},
+			{"text":"We're going down, fires on deck one through four."},
+		],
+		"victory":[
+			{"text":"Primary objective complete, moving out at your command."},
+			{"text":"Primary objective complete, exfill coordinates are in."},
+		],
+	}
+}
+
+
+
+
