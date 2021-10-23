@@ -1275,6 +1275,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		str.draw(NAME_POS);
 		str2.draw(TEXT_POS);
+		str.dispose();
+		str2.dispose();
 		return height;
 	}
 	
