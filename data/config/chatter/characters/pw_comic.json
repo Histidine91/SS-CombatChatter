@@ -10,19 +10,19 @@
 		"start":[
 			{"text":"Punching in."},
 			{"text":"Hmmm, this might actually be worth my time."},
-			{"text":"Let’s go for gold."},
+			{"text":"Let's go for gold."},
 			{"text":"Awfully stormy for this time of year."},
 			{"text":"Gotta love the payout on ships."},
 		],
 		"start_boss":[
 			{"text":"Buck up. We're taking this thing down."},
 			{"text":"I always preferred normal patrols to these things, even with the better payout. Pain in my ass to take down."},
-			{"text":"That’s a lot of ships. What gives?"},
+			{"text":"That's a lot of ships. What gives?"},
 			{"text":"Woah, this is new."},
 			{"text":"My readings are going off the wire!"},
 		],		
 		"retreat":[
-			{"text":"Even when I’m an admiral, I still end up burning away."},
+			{"text":"Even when I'm an admiral, I still end up burning away."},
 			{"text":"We've been made, let's punch it."},
 		],
 		"out_of_missiles":[
@@ -30,8 +30,8 @@
 		],
 		"engaged":[
 			{"text":"Merging to engage! Show me a fight!"},
-			{"text":"Hang tight, we’re moving in."},
-			{"text":"Copy, let’s make some scratch. Turning to intercept."},
+			{"text":"Hang tight, we're moving in."},
+			{"text":"Copy, let's make some scratch. Turning to intercept."},
 			{"text":"'bout time. Engaging."},
 		],
 		"need_help":[
@@ -46,8 +46,8 @@
 			{"text":"Rack them up! Let me at them!"},
 		],
 		"running":[
-			{"text":"Ah, frickin’ knew it, I’m outta here."},
-			{"text":"Square up, you pansies! You’re not backing off!"},
+			{"text":"Ah, frickin' knew it, I'm outta here."},
+			{"text":"Square up, you pansies! You're not backing off!"},
 			{"text":"God, what are these idiots doing?"},
 		],
 		"hull_90":[
@@ -79,7 +79,7 @@
 		"victory":[
 			{"text":"This wasn't much of a fight. I think we're fine by my mark."},
 			{"text":"Good to know we still know our way around a dogfight."},
-			{"text":"We’re the better pilots, that’s how. Screw ’em all. I wish they stayed."},
+			{"text":"We're the better pilots, that's how. Screw 'em all. I wish they stayed."},
 			{"text":"One hell of a night out, I think."},
 			{"text":"This war's gotta end at some point. I'm just glad to be picking up what pay I can."},
 		],

@@ -20,10 +20,10 @@
 			{"text":"Better get a raise after this eh?."},
 			{"text":"SAFETY OVERRIDE!"},
 			{"text":"Hell or Highwater."},
-		],		
+		],
 		"retreat":[
 			{"text":"Regroup."},
-			{"text":"Mission Failed, we'll get em' next time."},
+			{"text":"Mission failed, we'll get em' next time."},
 			{"text":"*Sigh*"},
 			{"text":"Hey whatever works for you, I'm in it for the money."},
 			{"text":"What the hell was that shit?"},
@@ -50,10 +50,10 @@
 		],
 		"pursuing":[
 			{"text":"Dun't feel right, but I'm not paid to give opinions."},
-			{"text":"Commencing Sweeping Pattern"},
+			{"text":"Commencing sweeping pattern."},
 			{"text":"Running's not an option."},
 			{"text":"Let's round em' up boys!"},
-			{"text":"Commencing Search and Destroy patrol."},
+			{"text":"Commencing search and destroy patrol."},
 		],
 		"running":[
 			{"text":"Close enough, scramming for cover."},
@@ -63,19 +63,19 @@
 			{"text":"Disengaging! Please assist!"},
 		],
 		"hull_90":[
-		    {"text":"Reporting minor hull breach."},
-		    {"text":"Armor's cracked!"},
-		    {"text":"Get yourself together men! Lest shit's hits the fan!"},
+			{"text":"Reporting minor hull breach."},
+			{"text":"Armor's cracked!"},
+			{"text":"Get yourself together men! Lest shit's hits the fan!"},
 		],
 		"hull_50":[
-		    {"text":"What is going on back there?!"},
+			{"text":"What is going on back there?!"},
 			{"text":"Vessel's still ship worthy, continuing the assault."},
 			{"text":"Armor's pinched!"},
 		],
 		"hull_30":[
-		    {"text":"Barely in combat condition, requesting clearance to retreat, over."},
-		    {"text":"Damage control's not responding, where are they dammit!?"},
-		    {"text":"Combat capability's severely reduced, requesting to retreat."},
+			{"text":"Barely in combat condition, requesting clearance to retreat, over."},
+			{"text":"Damage control's not responding, where are they dammit!?"},
+			{"text":"Combat capability's severely reduced, requesting to retreat."},
 		],
 		"overload":[
 			{"text":"Replace those coolant tanks stat!."},
@@ -84,9 +84,9 @@
 			{"text":"Grr, remind me to upgrade flux vents after this."},
 		],
 		"death":[
-		    {"text":"Going down!"},
-		    {"text":"System's going critical- *Connection Lost*"},
-			{"text":"Good luck commander."},
+			{"text":"Going down!"},
+			{"text":"System's going critical- *connection lost*"},
+			{"text":"Good luck... commander."},
 		],
 		"victory":[
 			{"text":"Sector's clear."},

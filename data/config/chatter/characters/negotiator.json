@@ -1,6 +1,6 @@
 {
 	"name":"Negotiator",
-	"personalities":["timid", "steady", "aggressive"],
+	"personalities":["timid", "cautious", "steady"],
 	"gender":["f", "m", "n"],
 	"chance":0.8,
 	"talkativeness":1.2,
@@ -9,7 +9,7 @@
 	"lines":{
 		"start":[
 			{"text":"I thought we're going to do this through diplomacy?!"},
-			{"text":"Such crude way to settle a dispute."},
+			{"text":"Such a crude way to settle a dispute."},
 			{"text":"Atleast they're polite enough to kill us themselves rather than sending an assassin."},
 			{"text":"Don't put your hopes up on me commander."},
 			{"text":"War, my good man, is what happens when language fails"},
@@ -27,7 +27,7 @@
 		"retreat":[
 			{"text":"I'm falling back! To my cabin!."},
 			{"text":"Take me back to safety!"},
-			{"text":"Retreat? Retreat where we're in space!"},
+			{"text":"Retreat? Retreat where, we're in space!"},
 			{"text":"Retreat? So I just go the other way right?"},
 			{"text":"Better than getting fried I guess."},
 			{"text":"Out of my league command, retreating."},
@@ -61,25 +61,25 @@
 			{"text":"I'd like to have a word with them."},
 		],
 		"running":[
-			{"text":"Bella! Horrida bella!."},
+			{"text":"Bella! Horrida bella!"},
 			{"text":"Evade! EVADE!"},
 			{"text":"Don't let them close!"},
 			{"text":"Galatia taught me enough NOT to maintain this engagement! PULL BACK!"},
 		],
 		"hull_90":[
-		    {"text":"So as I were saying this is Chicomoztoc made steel! nigh impenetrable I tell you- *Boom*"},
-		    {"text":"Off to a rough start."},
-		    {"text":"AGH! they've gone through!"},
+			{"text":"So as I were saying this is Chicomoztoc made steel! nigh impenetrable I tell you- *Boom*"},
+			{"text":"Off to a rough start."},
+			{"text":"AGH! they've gone through!"},
 		],
 		"hull_50":[
-		    {"text":"Where are we at? WHAT? HALF?!"},
+			{"text":"Where are we at? WHAT? HALF?!"},
 			{"text":"So that's half of the ship's gone."},
 			{"text":"'Second in command here, Captain's in their cabin sleeping away.'"},
 		],
 		"hull_30":[
-		    {"text":"Absit."},
-		    {"text":"I'M A GOVERNMENT LEGISLATIVE, YOU SHAN'T KILL ME."},
-		    {"text":"A DIPLOMAT ON THE FRONT? WHAT WAS I THINKING?!"},
+			{"text":"Absit."},
+			{"text":"I'M A GOVERNMENT LEGISLATIVE, YOU SHAN'T KILL ME."},
+			{"text":"A DIPLOMAT ON THE FRONT? WHAT WAS I THINKING?!"},
 			{"text":"My cabin! THEY TOOK OUT MY CABIN! KILL THEM ALL- *Clang* 'Second hand taking over'."},
 		],
 		"overload":[
@@ -89,10 +89,10 @@
 			{"text":"Damn lights almost gave me a heart attack!"},
 		],
 		"death":[
-		    {"text":"Ad altere Dei."},
-		    {"text":"I should've stayed in my office."},
+			{"text":"Ad altere Dei."},
+			{"text":"I should've stayed in my office."},
 			{"text":"And so I am granted peace."},
-		    {"text":"Apologies for my incompetence commander."},
+			{"text":"Apologies for my incompetence commander."},
 		],
 		"victory":[
 			{"text":"Hoc voluerunt."},
