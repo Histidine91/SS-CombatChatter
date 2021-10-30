@@ -396,7 +396,7 @@ public class ChatterDataManager {
 			
 			//debugPrint("\tFaction allowed to use character " + character.id);
 			String personalityId = captain.getPersonalityAPI().getId();
-			log.info(String.format("Captain %s has personality %s", captain.getNameString(), personalityId));
+			//log.info(String.format("Captain %s has personality %s", captain.getNameString(), personalityId));
 			
 			if (character.personalities.contains(captain.getPersonalityAPI().getId()))
 			{
