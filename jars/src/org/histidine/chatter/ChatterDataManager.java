@@ -350,7 +350,8 @@ public class ChatterDataManager {
 		else if (captain.isMale()) gender = "m";
 		boolean isMission = engine != null && engine.isMission();
 		boolean isCampaign = engine != null && (engine.isInCampaign() || engine.isInCampaignSim());
-		boolean isFighter = ship.isFighterWing();
+		boolean isFighter = ship != null && ship.isFighterWing();
+		boolean aiCore = captain.isAICore();
 		
 		save = save && !isMission && !captain.isDefault() && !isFighter;
 		
@@ -380,12 +381,12 @@ public class ChatterDataManager {
 			if (isCharacterDisallowedByTag(character))
 				continue;
 			
-			if (!isMission && !isFighter) {
+			if (!isMission && !isFighter && !aiCore) {
 				if (!character.gender.contains(gender)) continue;
 			}
 			
 			// if captain is an AI, check if this character is allowed for AIs
-			if (captain.isAICore() && ChatterConfig.restrictAICharacters && !character.allowedForAI) 
+			if (aiCore && ChatterConfig.restrictAICharacters && !character.allowedForAI) 
 			{
 				continue;
 			}
@@ -398,7 +399,7 @@ public class ChatterDataManager {
 			String personalityId = captain.getPersonalityAPI().getId();
 			//log.info(String.format("Captain %s has personality %s", captain.getNameString(), personalityId));
 			
-			if (character.personalities.contains(captain.getPersonalityAPI().getId()))
+			if (aiCore || character.personalities.contains(personalityId))
 			{
 				if (!isFighter) debugPrint("\tAllowed to pick character: " + character.id);
 				float weight = character.chance;
@@ -419,7 +420,7 @@ public class ChatterDataManager {
 		}
 		
 		// try to not have duplicate chatter chars among our fleet's officers (unless we've run out)
-		if ( !ship.isAlly() && !isFighter && isCampaign)
+		if ( (ship == null || !ship.isAlly()) && !isFighter && isCampaign)
 		{
 			Set<String> usedChars = getUsedCharacters();
 			for (String usedChar : usedChars) {
