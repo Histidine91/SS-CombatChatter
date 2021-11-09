@@ -12,7 +12,7 @@
 			{"text":"Such a crude way to settle a dispute."},
 			{"text":"Atleast they're polite enough to kill us themselves rather than sending an assassin."},
 			{"text":"Don't put your hopes up on me commander."},
-			{"text":"War, my good man, is what happens when language fails"},
+			{"text":"War, my good man, is what happens when language fails."},
 			{"text":"Why am I here again?"},
 			{"text":"Well that's diplomacy out of the window."},
 			{"text":"Hold your position, let me speak to their leader."},
@@ -22,7 +22,7 @@
 			{"text":"I've heard of rumours, but THIS?."},
 			{"text":"OH. NO. YOU- YOU'RE NOT ACTUALLY TRYING TO FIGHT THEM ARE YOU?!"},
 			{"text":"I can tell diplomacy won't work on them."},
-			{"text":"Alea iacta est"},
+			{"text":"Alea iacta est."},
 		],		
 		"retreat":[
 			{"text":"I'm falling back! To my cabin!."},
