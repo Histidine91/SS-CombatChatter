@@ -38,7 +38,6 @@ public class ChatterDataManager {
 	public static final String CHARACTER_FACTIONS_FILE = CONFIG_DIR + "character_factions.csv";
 	public static final String NAME_TO_CHARACTER_FILE = CONFIG_DIR + "officer_name_to_character.csv";
 	public static final String HULL_FACTION_PREFIX_FILE = CONFIG_DIR + "hull_prefixes.csv";
-	public static final String SHIP_NAME_FACTION_PREFIX_FILE = CONFIG_DIR + "ship_name_prefixes.csv";
 	public static final String EXCLUDED_HULL_FILE = CONFIG_DIR + "excluded_hulls.csv";
 	public static final String BOSS_SHIP_FILE = CONFIG_DIR + "boss_ships.csv";
 	public static final String CHARACTER_MEMORY_KEY = "$chatterChar";
@@ -56,7 +55,7 @@ public class ChatterDataManager {
 	
 	public static final List<NameToCharacterMapping> NAME_TO_CHARACTER = new ArrayList<>();
 	public static final List<String[]> FACTION_HULL_PREFIXES = new ArrayList<>();
-	public static final List<String[]> FACTION_SHIPNAME_PREFIXES = new ArrayList<>();
+	public static final Map<String, String> FACTION_SHIPNAME_PREFIXES = new HashMap<>();
 	
 	public static final boolean DEBUG_MODE = false;
 	
@@ -211,19 +210,11 @@ public class ChatterDataManager {
 		
 			// map for getting faction ID based on ship name's prefix (e.g. TTS for Tri-Tachyon)
 			debugPrint("Loading ship name prefixes");
-			JSONArray prefixes2 = Global.getSettings().getMergedSpreadsheetDataForMod("prefix", SHIP_NAME_FACTION_PREFIX_FILE, "chatter");
-			for(int x = 0; x < prefixes2.length(); x++)
+			for (FactionAPI faction : Global.getSector().getAllFactions())
 			{
-				String prefix = "<unknown>";
-				try {
-					JSONObject row = prefixes2.getJSONObject(x);
-					prefix = row.getString("prefix");
-					if (prefix.isEmpty()) continue;
-					String faction = row.getString("faction");
-					FACTION_SHIPNAME_PREFIXES.add(new String[]{prefix, faction});
-				} catch (JSONException ex) {
-					log.error("Failed to load ship name prefix – faction mapping for " + prefix, ex);
-				}
+				String prefix = faction.getShipNamePrefix();
+				if (prefix == null || prefix.isEmpty()) continue;
+				FACTION_SHIPNAME_PREFIXES.put(prefix, faction.getId());
 			}
 			
 			// hull exclusion
@@ -320,7 +311,7 @@ public class ChatterDataManager {
 		String factionId = getFactionIDFromShipNamePrefix(ship.getShipName());
 		if (factionId.isEmpty())
 			factionId = getFactionIDFromHullID(ship.getHullId());
-			
+		
 		return factionId;
 	}
 	
@@ -531,10 +522,10 @@ public class ChatterDataManager {
 	{
 		if (shipName == null) return "";
 		//log.info("Getting faction for ship name " + shipName);
-		for (String[] mapEntry : FACTION_SHIPNAME_PREFIXES)
+		for (String prefix : FACTION_SHIPNAME_PREFIXES.keySet())
 		{
-			if (shipName.startsWith(mapEntry[0] + " "))
-				return mapEntry[1];
+			if (shipName.startsWith(prefix + " "))
+				return FACTION_SHIPNAME_PREFIXES.get(prefix);
 		}
 		return "";
 	}
