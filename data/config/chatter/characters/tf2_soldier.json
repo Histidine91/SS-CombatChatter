@@ -1,0 +1,86 @@
+{
+	"name":"The Soldier",
+	"personalities":["aggressive","reckless"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["tf2", "game", "othermedia", "meme"],
+	
+	"lines":{
+		"start":[
+			{"text":"Screaming Eagles!"},
+			{"text":"Give 'em hell boys!"},
+			{"text":"This is my world. You are not welcome in my world!"},
+			{"text":"We have you surrounded, at least from this side!"},
+			{"text":"AT-TEEENNN-TION!"},
+			{"text":"Scientists in the future have studied your ass for centuries - and sent me back in time to kick it!"},
+		],
+		"retreat":[
+			{"text":"Last one alive, lock the door!"},
+			{"text":"Well that went pear-shaped fast!"},
+		],
+		"out_of_missiles":[
+			{"text":"No guts, no glory!"},
+			{"text":"All gave some, some gave all!"},
+		],
+		"engaged":[
+			{"text":"You're in a big fat hurry to die, son."},
+			{"text":"I joined this fleet just to kill maggots like you."},
+			{"text":"Attaaack!"},
+			{"text":"C'mere sister!"},
+			{"text":"If you know what's good for ya, you will run!"},
+			{"text":"I am going to strangle you with your own frilly training bra!"},
+		],
+		"need_help":[
+			{"text":"I need some help!"},
+			{"text":"Need some help here!"},
+			{"text":"Rally round! Cover me!"},
+		],
+		"pursuing":[
+			{"text":"C'mere cupcake!"},
+			{"text":"Go go go! Charge!"},
+			{"text":"You run fast, my bullets run faster."},
+			{"text":"Take your lumps like a man, Private Twinkletoes."},
+		],	
+		"running":[
+			{"text":"Let's go!"},
+			{"text":"Move out!"},
+			{"text":"Move, move, move!"},
+		],
+		"hull_90":[
+			{"text":"Get with the program!"},
+			{"text":"Less talk, more fight!"},
+			{"text":"You cannot burn me!"},
+		],
+		"hull_50":[
+			{"text":"You cannot kill me! I do not have time to bleed!"},
+			{"text":"Pain is weakness leaving the body"},
+			{"text":"You call that breaking my spine?"},
+		],
+		"hull_30":[
+			{"text":"You are all weak. You are all bleeders."},
+			{"text":"If I have to crack some skulls, I will."},
+			{"text":"I will not tolerate failure on my ship."},
+		],
+		"overload":[
+			{"text":"Are you all trying for a Section 8?"},
+			{"text":"You are the sorriest excuses for sailors I have ever seen!"},
+			{"text":"Down and give me twenty!"},
+			{"text":"Hit the showers, men."},
+		],
+		"death":[
+			{"text":"That was an amazing killing spree... by the other fleet!"},
+			{"text":"You are all dishonorably discharged!"},
+		],
+		"victory":[
+			{"text":"You've done me proud, boys!"},
+			{"text":"Everyone of you deserves a medal!"},
+			{"text":"The worm has turned, gentlemen!"},
+			{"text":"Time to inform your next of kin!"},
+			{"text":"You're dead, that's good, amen."},
+			{"text":"If God had wanted you to live, He would not have created me!"},
+			{"text":"Today is a good day!"},
+			{"text":"This is my rifle, this is my gun! You maggots stink and that's why we won!"},
+		],
+	}
+}

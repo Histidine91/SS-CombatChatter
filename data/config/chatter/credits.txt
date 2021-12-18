@@ -52,7 +52,8 @@ Mr. T:
 
 Valve:
 * tf2_demo (compiled by tongo)
-* tf2_heavy
+* tf2_heavy (edited by imba512)
+* tf2_soldier (compiled by imba512)
 
 Strategy First:
 * ja2_biff

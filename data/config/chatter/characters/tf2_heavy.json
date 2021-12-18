@@ -11,24 +11,39 @@
 			{"text":"All of you are dead!"},
 			{"text":"I have plan for you: more pain!"},
 			{"text":"Now is coward killing time!"},
-			{"text":"INCOMING!"}
+			{"text":"INCOMING!"},
 		],
 		"retreat":[
 			{"text":"Daagh, too many little men on this team!"},
 			{"text":"Ohhhh, it is sad day!"},
+			{"text":"How could this happen?"},
+		],
+		"engaged":[
+			{"text":"What's that? Kill them all? Good idea!"},
+			{"text":"I am amused by entire itty-bitty-teeny fleet!"},
+			{"text":"I am going to kill you, and kill you, and kill you!"},
+			{"text":"I will squash you like bug!"},
+			{"text":"You are no match for me!"},
+			{"text":"Your luck runs out!"},
 		],
 		"out_of_missiles":[
-			
+			{"text":"Uh, oh. Do I not have any missiles?"},
 		],
-		"need_help":[],
+		"need_help":[
+			{"text":"You! Stupid! Help me!"},
+			{"text":"HELP NOW!"},
+		],
 		"pursuing":[
 			{"text":"Hide, cowards!"},
 			{"text":"Here I come!"},
 			{"text":"I'm coming for you!"},
 			{"text":"Is good time to run, cowards!"},
+			{"text":"Fight me!"},
+			{"text":"Run coward! I will find you!"},
 		],
 		"running":[
-			
+			{"text":"We are done!"},
+			{"text":"Not good!"},
 		],
 		"hull_90":[
 			{"text":"I am bulletproof!"},
@@ -54,6 +69,9 @@
 			{"text":"I've yet to meet one that can outsmart bullet."},
 			{"text":"So much blood!"},
 			{"text":"I feel alive!"},
+			{"text":"We make good team!"},
+			{"text":"More rubble, less trouble!"},
+			{"text":"Who dares stand against me NOW?"},
 		],
 	}
 }

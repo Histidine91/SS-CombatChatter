@@ -1,0 +1,75 @@
+{
+	"name":"The Commodore",
+	"personalities":["cautious", "steady"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["starcraft2", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"Vessel operational."},
+			{"text":"Weapons charged and ready."},
+			{"text":"Who called in the fleet?"},
+			{"text":"Good day, commander."},
+			{"text":"Hailing frequencies open."},
+			{"text":"Let's hurry up and finish this attack."},	
+		],
+		"retreat":[
+			{"text":"All hands, prepare to disengage!"},
+		],
+		"out_of_missiles":[
+			{"text":"I've run out of vodka. And missiles."},
+		],
+		"engaged":[
+			{"text":"Full attack, all weapons!"},
+			{"text":"Engage!"},
+			{"text":"Cauterize the area!"},
+			{"text":"Shields up, weapons online."},
+			{"text":"Commencing bombardment."},
+		],
+		"need_help":[
+			{"text":"It's a trap!"},
+			{"text":"This makes me nervous!"},
+			{"text":"Mayday! Mayday!"},
+			{"text":"We are in a lot of trouble!"},			
+		],
+		"pursuing":[
+			{"text":"Take no prisoners"},
+			{"text":"Squadron en route"},
+			{"text":"Set a course"},
+			{"text":"Shoot them all!"},			
+		],
+		"running":[
+			{"text":"Let's go this way, really really fast!"},
+		],
+		"hull_50":[
+			{"text":"They spilled my drink!"},
+			{"text":"Don't panic!"},
+		],
+		"hull_30":[
+			{"text":"We're going down!"},
+			{"text":"Critical hull breach!"}
+		],
+		"hull_90":[
+			{"text":"They scratched the paint!"},
+			{"text":"What's with all these blinky lights?"}
+		],
+		"overload":[
+			{"text":"Where's my escape pod?"},
+			{"text":"We are out of synergy!"},
+			{"text":"Vessel overloaded!"},			
+		],
+		"death":[
+			{"text":"Abandon ship!"},
+			{"text":"You stay with the ship, I'm out!"},
+		],
+		"victory":[
+			{"text":"Ah, it's happy hour. Wonderful!"},
+			{"text":"Do svidanya, don't get any on 'ya."},
+			{"text":"Ah, how exciting!"},			
+			{"text":"I've lost my hat! Swing around, we'll pick it up."},
+			{"text":"This weapon is loaded, and so am I."},
+		],
+	}
+}
