@@ -10,15 +10,15 @@
 		"start":[
 			{"text":"Two birds with one stone. Easy enough, right?"},
 			{"text":"Let's just say there's a demand for people of our pedigree."},
-			{"text":"That’s our number. Let’s get to business."},
+			{"text":"That's our number. Let's get to business."},
 			{"text":"Do not count days, do not count miles! Count only the number of enemies you've killed! Go!"},
-			{"text":"Let’s get to business."},
+			{"text":"Let's get to business."},
 			{"text":"We're going in with the star to our backs."},
 		],
 		"start_boss":[
 			{"text":"I believe we'll make something of ourselves here."},
 			{"text":"The bigger the foe, the bigger the story."},
-			{"text":"I’m not in this for the money, remember. I’m here for history."},
+			{"text":"I'm not in this for the money, remember. I'm here for history."},
 		],		
 		"retreat":[
 			{"text":"It's better than nothing."},
@@ -29,7 +29,7 @@
 		],
 		"engaged":[
 			{"text":"This war isn't going to win itself."},
-			{"text":"Let’s not disappoint."},
+			{"text":"Let's not disappoint."},
 			{"text":"We have our window! Commence attack!"},
 			{"text":"We have the element of surprise! Let's act on it, ladies and gentlemen! Onward!"},
 			{"text":"Kill them all so they may never come back!"},
@@ -39,14 +39,14 @@
 			{"text":"I need every man I can get over here!"},
 		],
 		"pursuing":[
-			{"text":"Cause as much damage as you can and we’ll blow this war wide open!"},
+			{"text":"Cause as much damage as you can and we'll blow this war wide open!"},
 			{"text":"All units, no need to share! Everything is for the taking!"},
 			{"text":"Listen up! This is it."},
 			{"text":"Show them our signature! Strike them out of the sky and free this land!"},
 		],
 		"running":[
 			{"text":"Gotta make sure we have an exit strategy."},
-			{"text":"Let’s not overstay our welcome."},
+			{"text":"Let's not overstay our welcome."},
 			{"text":"Me and my soldiers don't fight losing wars."},
 			{"text":"We'll get back to it soon enough."},
 		],
@@ -60,7 +60,7 @@
 		"hull_50":[
 			{"text":"Dump countermeasures! Hit them head on!"},
 			{"text":"I think we've about overstayed our welcome."},
-			{"text":"They’ll tell stories about this, ladies and gents."},
+			{"text":"They'll tell stories about this, ladies and gents."},
 			{"text":"Only blood will pay for this contract alone."},
 		],
 		"hull_30":[
@@ -82,7 +82,7 @@
 		"victory":[
 			{"text":"We do understand your situation, but you know how this business goes."},
 			{"text":"What can we say? You get what you pay for."},
-			{"text":"Some people call this place \"the Devil's Sandbox\". So what does that mean when we’re the ones playing in it, huh?"},
+			{"text":"Some people call this place \"the Devil's Sandbox\". So what does that mean when we're the ones playing in it, huh?"},
 			{"text":"How many aces are earning their wings today, eh?"},
 			{"text":"Oh, it's a good day to be a captain! Dinner's on me!"},
 		],

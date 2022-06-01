@@ -21,14 +21,13 @@
 		],
 		"need_help":[],
 		"engaged":[
-			{"text":"I'm moving forward!"},
 			{"text":"You've been a bad boy..."},
-			{"text":"I have just the thing for you!"}
+			{"text":"I have just the thing for you!"},
+			{"text":"It's time for your medicine!"},
 		],
 		"pursuing":[
 			{"text":"I'm moving forward!"},
 			{"text":"Onward we go!"},
-			{"text":"It's time for your medicine!"},
 		],
 		"running":[
 			{"text":"Backwards we go!"},
