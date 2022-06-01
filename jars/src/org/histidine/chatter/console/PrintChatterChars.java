@@ -1,6 +1,7 @@
 package org.histidine.chatter.console;
 
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import java.util.List;
@@ -38,9 +39,15 @@ public class PrintChatterChars implements BaseCommand {
 			{
 				String officerName = officer.getName().getFullName();
 				String characterId = ChatterDataManager.getCharacterFromMemory(officer);
+				FleetMemberAPI member = getShipCommandedBy(officer);
 				ChatterCharacter character = ChatterDataManager.getCharacterData(characterId);
-				if (character != null)
-					Console.showMessage("  " + officerName + ": " + character.name + " (" + character.id + ")");
+				if (character != null) {
+					String str = String.format("  %s: %s (%s)", officerName, character.name, character.id);
+					if (member != null) str += String.format("; on ship %s (%s)", member.getShipName(), 
+							member.getHullSpec().getHullNameWithDashClass()); 
+					Console.showMessage(str);
+				}
+			
 			}
 		}
 		else if (arg.equalsIgnoreCase("all"))
@@ -65,6 +72,7 @@ public class PrintChatterChars implements BaseCommand {
 			{
 				String name = plugin.getShipName(entry.getKey(), true);
 				String character = entry.getValue().characterId;
+				String ship = null;
 				Console.showMessage("  " + name + ": " + character);
 			}
 		}
@@ -72,5 +80,14 @@ public class PrintChatterChars implements BaseCommand {
 			return CommandResult.BAD_SYNTAX;
 		
 		return CommandResult.SUCCESS;
+	}
+	
+	protected FleetMemberAPI getShipCommandedBy(PersonAPI captain) {
+		CampaignFleetAPI fleet = Global.getSector().getPlayerFleet();
+		if (fleet == null) return null;
+		for (FleetMemberAPI member : fleet.getFleetData().getMembersListCopy()) {
+			if (member.getCaptain() == captain) return member;
+		}
+		return null;
 	}
 }
