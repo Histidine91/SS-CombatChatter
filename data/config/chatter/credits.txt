@@ -131,6 +131,9 @@ Nintendo (compiled by MShadowy)
 Red Hook Studios (compiled by MShadowy)
 * dd_narrator
 
+Red Hook Studios (compiled by Bullet):
+* dd_reynauld
+
 Monolith Productions (compiled by Avanitia)
 * blood_caleb
 
@@ -173,3 +176,10 @@ Seele
 
 Marauder Interactive (compiled by Avanitia)
 * deadsun_executor
+
+Ghost Ship Games (compiled by Bullet):
+* drg_miner
+* drg_missioncontrol
+
+Bioware, user Bullet:
+* me_quarian

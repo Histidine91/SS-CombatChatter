@@ -1,0 +1,74 @@
+{
+	"name":"DRG Miner",
+	"personalities":["steady","aggressive","reckless"],
+	"gender":["m"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "deeprockgalactic", "game"],
+
+	"lines":{
+		"start":[
+			{"text":"Did I hear a rock and stone?"},
+			{"text":"If you don't rock and stone, you ain't coming' home!"},
+			{"text":"For Karl!"},
+			{"text":"Leave no dwarf behind!"},
+			{"text":"That guy in mission control, he really has a cozy job!"}
+		],
+		"start_boss":[
+			{"text":"DREADNOUGHT!"},
+			{"text":"This is it lads!"}
+		],
+		"retreat":[
+			{"text":"This is a friggin' hell hole!"},
+			{"text":"Next time, let's go somewhere nice."}
+		],
+		"out_of_missiles":[
+			{"text":"Got no ammo left!"},
+			{"text":"Don't think we'll find any nitra here..."}
+		],
+		"engaged":[
+			{"text":"Meet your maker, creep!"},
+			{"text":"It ain't a gun if it doesn't weigh at least one hundred pounds!"},
+			{"text":"I'm having the best time in my life right now!"}
+		],
+		"need_help":[
+			{"text":"Help!"},
+			{"text":"I could use a hand!"}
+		],
+		"pursuing":[
+			{"text":"Rock and stone, yeaah!"},
+			{"text":"Rock and roll!"},
+			{"text":"None can stand before us!"}
+		],
+		"running":[
+			{"text":"I'm outta here!"}
+		],
+		"hull_90":[
+			{"text":"OW! That hurt!"},
+			{"text":"A dwarf never dies!"}
+		],
+		"hull_50":[
+			{"text":"Bastards got me!"},
+			{"text":"Need a hand here!"}
+		],
+		"hull_30":[
+			{"text":"Somebody patch me up!"},
+			{"text":"I can't feel my beard! HELP!"}
+		],
+		"overload":[
+			{"text":"Deep Rock Galactic really need to provide better equipment!"},
+			{"text":"Deep Rock seriously need to invest in some better equipment!"}
+		],
+		"death":[
+			{"text":"I can't feel my beard!"},
+			{"text":"Deep Rock seriously needs to invest in some be- *explosion*"},
+			{"text":"Mommy!"}
+		],
+		"victory":[
+			{"text":"That's it lads! Rock and stone!"},
+			{"text":"Last one back to the fleet pays for the first round!"},
+			{"text":"Rock and stone! Yeah!"},
+			{"text":"We are unbreakable!"}
+		]
+	}
+}

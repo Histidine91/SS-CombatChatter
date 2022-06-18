@@ -1,0 +1,84 @@
+{
+	"name":"Quarian",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "masseffect"],
+	
+	"lines":{
+		"start":[
+			{"text":"Man the guns, get ready."},
+			{"text":"Fleet's in danger if we don't win."},
+			{"text":"Okay, I think we fixed the jury-rigging from last time..."},
+			{"text":"Combat stations, everyone."}
+		],
+		"start_boss":[
+			{"text":"Keelah! We'll need the whole fleet for that one..."}
+		],
+		"retreat":[
+			{"text":"Getting out while we still can!"},
+			{"text":"The survival of the fleet takes priority!"},
+			{"text":"Saving the ship! We live here, you know!"}
+		],
+		"out_of_missiles":[
+			{"text":"Out of missiles!"},
+			{"text":"Bosh'tet! I thought we had more ammunition!"},
+			{"text":"Keelah, we're out already!?"}
+		],
+		"engaged":[
+			{"text":"Engaging! For the fleet!"},
+			{"text":"Get ready to patch up, just in case..."},
+			{"text":"We're engaging now!"},
+			{"text":"Getting a bit of fire."}
+		],
+		"need_help":[
+			{"text":"Not good! Need some help!"},
+			{"text":"Keelah! It's worse than I thought!"},
+			{"text":"Repair teams, get ready! Now!"}
+		],
+		"pursuing":[
+			{"text":"Firing on them now!"},
+			{"text":"Pilot, chase em' down."},
+			{"text":"Gunnery teams, fire for effect!"},
+			{"text":"Engaging the target..."}
+		],
+		"running":[
+			{"text":"We overextended! Pulling back!"},
+			{"text":"Helm, get us out of there!"},
+			{"text":"Pulling back, that wasn't a good spot..."},
+			{"text":"Oh keelah, get us out of here!"}
+		],
+		"hull_90":[
+			{"text":"Gah! Taking hits!"},
+			{"text":"That one got the hull!"},
+			{"text":"Armor's broken in some places!"}
+		],
+		"hull_50":[
+			{"text":"Engineers! Now!"},
+			{"text":"Damage control is doing its best!"},
+			{"text":"Can't hold it together!"}
+		],
+		"hull_30":[
+			{"text":"Keelah! Fire's too much!"},
+			{"text":"Second in command's got a punctured suit!"},
+			{"text":"Bosh'tets got us, can't last much longer!"}
+		],
+		"overload":[
+			{"text":"Bosh'tet! Systems overheating!"},
+			{"text":"Heatsinks are overwhelmed!"},
+			{"text":"Ship's vulnerable!"}
+		],
+		"death":[
+			{"text":"No, no, NO-"},
+			{"text":"KEELAH!"},
+			{"text":"Aaah! NO!"}
+		],
+		"victory":[
+			{"text":"Whew. The fleet will persevere."},
+			{"text":"Excellent!"},
+			{"text":"Whew, that was a little close."},
+			{"text":"Minimal casualties, few suit ruptures..."}
+		]
+	}
+}

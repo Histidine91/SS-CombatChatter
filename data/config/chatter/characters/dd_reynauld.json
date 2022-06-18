@@ -1,0 +1,72 @@
+{
+	"name":"Darkest Dungeon Crusader",
+	"personalities":["aggressive","reckless","steady"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "darkestdungeon", "game"],
+
+	"lines":{
+		"start":[
+			{"text":"Forget not that our errand is holy and just! Light will prevail!"},
+			{"text":"Remain vigilant, my friends!"},
+			{"text":"Light, grant me the strength to overcome whatever appears on our path."},
+			{"text":"Our strength honors the light."}
+		],
+		"start_boss":[
+			{"text":"Unholy foulness! I will take you with me!"}
+		],
+		"retreat":[
+			{"text":"Light preserve us. The twilight deepens."},
+			{"text":"We must away! They drive out the light!"}
+		],
+		"out_of_missiles":[
+			{"text":"I've done enough."}
+		],
+		"engaged":[
+			{"text":"Thou art judged!"},
+			{"text":"I judge thee guilty!"},
+			{"text":"I banish thee!"},
+			{"text":"Light be our vanguard!"},
+			{"text":"OOONWAAARD!!"}
+		],
+		"need_help":[
+			{"text":"This formation is weak. Surely we shall perish."},
+			{"text":"There is blackness here! Cannot let it touch me!"}
+		],
+		"pursuing":[
+			{"text":"Stake the bonfire and tie the noose - justice is nigh!"},
+			{"text":"Light grace my strikes! Turn away the blackness!"},
+			{"text":"CHAAAARGE!"}
+		],
+		"running":[
+			{"text":"I-I am not retreating! This is a counter-advance!"}
+		],
+		"hull_90":[
+			{"text":"Light, protect me!"},
+			{"text":"The darkness sent them! They are emissaries of death!"}
+		],
+		"hull_50":[
+			{"text":"Oh, justice has failed me!"},
+			{"text":"WITHDRAW! I am beset!"}
+		],
+		"hull_30":[
+			{"text":"Why now, facing death, do I crave a different life?"},
+			{"text":"AAAGH! No... No! We must away! It is too powerful!"}
+		],
+		"overload":[
+			{"text":"Gods, no! You've left us open!"},
+			{"text":"It is futile."}
+		],
+		"death":[
+			{"text":"I give myself to the light..."},
+			{"text":"Is this to be my last battle?"}
+		],
+		"victory":[
+			{"text":"Truth prevails!"},
+			{"text":"Crushed by justice!"},
+			{"text":"GLORY AND HONOR! Ever thus to be brave, my friends!"},
+			{"text":"I have been judged worthy!"}
+		]
+	}
+}

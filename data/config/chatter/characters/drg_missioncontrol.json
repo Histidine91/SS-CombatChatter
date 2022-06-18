@@ -1,0 +1,67 @@
+{
+	"name":"DRG Mission control",
+	"personalities":["steady","aggressive","cautious", "timid"],
+	"gender":["m"],
+	"chance":0.5,
+	"talkativeness":2,
+	"categoryTags":["othermedia", "deeprockgalactic", "game"],
+
+	"lines":{
+		"start":[
+			{"text":"Vessel has cleared warm-up. Time to get to work, team."},
+			{"text":"The scanner just lit up like a Christmas tree!"},
+			{"text":"Time for a round of pest control, team."}
+		],
+		"start_boss":[
+			{"text":"We've got a hell of a blip heading your way team! Get ready!"},
+			{"text":"Something big is headed your way. Better prepare for the worst."}
+		],
+		"retreat":[
+			{"text":"Extraction commencing."}
+		],
+		"out_of_missiles":[
+			{"text":"Supply pod requisit- oh, wait..."}
+		],
+		"engaged":[
+			{"text":"Incoming! Smoke em' if you got em'!"},
+			{"text":"Here they come! Eradication protocol!"},
+			{"text":"Contact! Take em' out team!"}
+		],
+		"need_help":[
+			{"text":"Swarm! I repeat! Swarm!"},
+			{"text":"Swarm! It's a big one team!"}
+		],
+		"pursuing":[
+			{"text":"Hostiles are backing down. Finish them!"},
+			{"text":"The wave is significantly diminished. Well done, team!"},
+			{"text":"Wave is almost over!"}
+		],
+		"running":[
+			{"text":"Extraction commencing."}
+		],
+		"hull_90":[
+			{"text":"Ah for craps sake..."},
+			{"text":"Enemies engaging! Take em' out, we got work to do."}
+		],
+		"hull_50":[
+			{"text":"I advise that you get the enemies off of us before Management asks me to flood the lower decks with radon gas."},
+			{"text":"If this continues, Management has the power and will to close the bar! Is that what you want!?"}
+		],
+		"hull_30":[
+			{"text":"Orders from management: Stop dancing and get the shields up!"}
+		],
+		"overload":[
+			{"text":"Flux recalibration commencing!"},
+			{"text":"Flux capacitors are to be left alone and not hurled, kicked, tossed, or in any way moved around."}
+		],
+		"death":[
+			{"text":"Deep Rock Galactic thanks you for your service."}
+		],
+		"victory":[
+			{"text":"Nicely done, team. You've just secured yourself a nice bonus!"},
+			{"text":"All quotas met. Well done, team!"},
+			{"text":"Job well done! Bring it all home, team!"},
+			{"text":"Assignment completed."}
+		]
+	}
+}
