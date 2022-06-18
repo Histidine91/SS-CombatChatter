@@ -287,8 +287,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				return true;
 			}
 			
-			boolean isEnemy = ship.getOwner() == 1;
-			if (isEnemy)
+			boolean npc = ship.getOwner() == 1 || ship.isAlly();
+			if (npc)
 			{
 				String faction = ChatterDataManager.getFactionFromShip(member);
 				if (ChatterConfig.noEnemyChatterFactions.contains(faction)
@@ -331,6 +331,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			
 			data.isEnemy = ship.getOwner() == 1;
 			data.isPlayer = ship == engine.getPlayerShip();
+			data.officer = ship.getCaptain();
 			log.info(String.format("Adding ship %s, isEnemy %s", member.getShipName(), ship.getOwner()));
 		}
 		data.characterId = getCharacterForFleetMember(member);
@@ -1101,9 +1102,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (ship == null) continue;
 			
 			boolean player = ship == engine.getPlayerShip();
-			if (player != stateData.isPlayer) {
+			PersonAPI officer = ship.getCaptain();
+			if (player != stateData.isPlayer || officer != stateData.officer) {
 				stateData.isPlayer = player;
 				stateData.characterId = getCharacterForFleetMember(member);
+				stateData.officer = officer;
 			}
 			
 			// Second check for death state? Not sure if needed
@@ -1567,7 +1570,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
 	@Override
 	public void init(CombatEngineAPI engine) {
-		log.info("Chatter plugin initialized");
+		//log.info("Chatter plugin initialized");
 		this.engine = engine;
 		engine.getCustomData().put(DATA_KEY, this);
 	}
@@ -1592,6 +1595,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		public String characterId = "default";
 		public ShipAPI ship;
 		public boolean isPlayer = false;
+		public PersonAPI officer;
 		public boolean dead = false;
 		public boolean engaged = false;
 		public boolean needHelp = false;
