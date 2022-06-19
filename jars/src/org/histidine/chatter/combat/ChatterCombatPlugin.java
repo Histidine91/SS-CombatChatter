@@ -1256,22 +1256,25 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		// draw portrait;
-		String sprite = null;
+		String spritePath = null;
 		if (!message.ship.getCaptain().isDefault()) {
-			sprite = message.ship.getCaptain().getPortraitSprite();
+			spritePath = message.ship.getCaptain().getPortraitSprite();
 		}
 		else if (DEBUG_MODE) {
-			sprite = "graphics/portraits/portrait_ai2.png";
+			spritePath = "graphics/portraits/portrait_ai2.png";
 		}
-		if (sprite != null) {
+		if (spritePath != null) {
 			// pushing/popping attrib is needed to keep sprite from messing with text opacity
 			GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 			GL11.glPushMatrix();
-			SpriteAPI sprite2 = Global.getSettings().getSprite(sprite);
-			float sizeMult = 32/sprite2.getWidth();
+			SpriteAPI sprite = Global.getSettings().getSprite(spritePath);
+			float sizeMult = 32/sprite.getWidth();
+			float sizeMult2 = sprite.getWidth()/128;
 			GL11.glScalef(sizeMult, sizeMult, 1);
-			sprite2.setAlphaMult(alpha);
-			sprite2.render(-128, -160);
+			//sprite.setWidth(128);
+			//sprite.setHeight(128);
+			sprite.setAlphaMult(alpha);
+			sprite.render(-128 * sizeMult2, -160 * sizeMult2);
 			GL11.glPopMatrix();
 			GL11.glPopAttrib();
 		}
