@@ -81,9 +81,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	// Message box parameters	
 	public static final boolean DRAW_BOX = false;
-	public static final int BOX_WIDTH = 400;
+	public static final int PORTRAIT_WIDTH = 32;
+	public static final int BOX_WIDTH = 400 + PORTRAIT_WIDTH;
 	public static final int BOX_NAME_WIDTH = 144;
-	public static final int BOX_TEXT_WIDTH = BOX_WIDTH - BOX_NAME_WIDTH - 8;
 	public static final int BOX_OFFSET_X = 16;
 	public static final int BOX_OFFSET_Y = 160;
 	public static final int BOX_HEIGHT = 240;
@@ -1234,23 +1234,26 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	public float drawMessage(BoxMessage message, float remainingHeight)
 	{
-		int fontSize = Global.getSettings().getInt("chatter_boxFontSize");
+		float scale = Global.getSettings().getScreenScaleMult();
+		float fontSize = Global.getSettings().getInt("chatter_boxFontSize") * scale;
+		float boxWidth = BOX_NAME_WIDTH * scale;
+		float boxWidth2 = (BOX_WIDTH - BOX_NAME_WIDTH - PORTRAIT_WIDTH - 8) * scale;
 		
 		// prepare ship name text
 		float alpha = engine.isUIShowingDialog() ? 0.5f : 1;
 		Color color = getShipNameColor(message.ship, alpha);
 		String name = getShipName(message.ship, false, ChatterConfig.chatterBoxOfficerMode);
 		if (name == null || name.isEmpty()) name = "<unknown>";	// safety
-		DrawableString str = font.createText(name, color, fontSize, BOX_NAME_WIDTH);
+		DrawableString str = font.createText(name, color, fontSize, boxWidth);
 		
 		// prepare message text
 		color = Misc.getTextColor();
 		color = new Color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, alpha);
 		DrawableString str2 = font.createText(message.text, 
-				color, fontSize, BOX_TEXT_WIDTH);
+				color, fontSize, boxWidth2);
 		
 		float height = Math.max(str.getHeight(), str2.getHeight());
-		if (height < 40) height = 40;
+		if (height < 40 * scale) height = 40 * scale;
 		if (height > remainingHeight) {
 			return 99999;
 		}
@@ -1268,19 +1271,25 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 			GL11.glPushMatrix();
 			SpriteAPI sprite = Global.getSettings().getSprite(spritePath);
-			float sizeMult = 32/sprite.getWidth();
-			float sizeMult2 = sprite.getWidth()/128;
+			float sizeMult = PORTRAIT_WIDTH/sprite.getWidth() * scale;
+			float sizeMult2 = sprite.getWidth()/128 * scale;
 			GL11.glScalef(sizeMult, sizeMult, 1);
 			//sprite.setWidth(128);
 			//sprite.setHeight(128);
 			sprite.setAlphaMult(alpha);
+			// FIXME: vertical padding on portraits is not consistent between GUI scalings
+			// whether we render with offset or translate down and then up
 			sprite.render(-128 * sizeMult2, -160 * sizeMult2);
 			GL11.glPopMatrix();
 			GL11.glPopAttrib();
 		}
+		Vector2f namePos = new Vector2f(NAME_POS);
+		namePos.scale(scale);
+		Vector2f textPos = new Vector2f(TEXT_POS);
+		textPos.scale(scale);
 		
-		str.draw(NAME_POS);
-		str2.draw(TEXT_POS);
+		str.draw(namePos);
+		str2.draw(textPos);
 		str.dispose();
 		str2.dispose();
 		return height;
@@ -1297,21 +1306,24 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return;
 		}
 		
-		if (!fontLoaded || DEBUG_MODE) loadFont();
+		if (!fontLoaded) loadFont();
 		
 		openGL11ForText();
 		
-		GL11.glTranslatef(Display.getWidth() - BOX_WIDTH - BOX_OFFSET_X, 
-				Display.getHeight() - BOX_OFFSET_Y, 0);
+		float scale = Global.getSettings().getScreenScaleMult();
+		float bw = BOX_WIDTH * scale;
 		
-		float remainingHeight = BOX_HEIGHT - 8 * 2;
+		GL11.glTranslatef(Display.getWidth() - bw - BOX_OFFSET_X * scale + PORTRAIT_WIDTH * scale, 
+				Display.getHeight() - BOX_OFFSET_Y * scale, 0);
+		
+		float remainingHeight = (BOX_HEIGHT - 8 * 2) * scale;
 		for (int i=boxMessages.size() - 1; i>=0; i--) 
 		{
 			BoxMessage msg = boxMessages.get(i);
 			float height = drawMessage(msg, remainingHeight);
-			GL11.glTranslatef(0, -height - 4, 0);
-			remainingHeight -= height + 4;
-			if (remainingHeight < 14)
+			GL11.glTranslatef(0, -height - 4*scale, 0);
+			remainingHeight -= height + 4*scale;
+			if (remainingHeight < 14 * scale)
 				break;
 		}
 		closeGL11ForText();
@@ -1324,6 +1336,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!DRAW_BOX || !ChatterConfig.chatterBox) return;
 		
 		float alpha = engine.getCombatUI().getCommandUIOpacity();
+		float scale = Global.getSettings().getScreenScaleMult();
+		
+		float bw = BOX_WIDTH * scale;
+		float bh = BOX_HEIGHT * scale;
 		
 		GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
@@ -1333,15 +1349,15 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
 		GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
 		GL11.glLineWidth(1);
-		GL11.glTranslatef(Display.getWidth() - BOX_WIDTH - BOX_OFFSET_X, 
-				Display.getHeight() - BOX_OFFSET_Y, 0);
+		GL11.glTranslatef(Display.getWidth() - bw - BOX_OFFSET_X * scale, 
+				Display.getHeight() - BOX_OFFSET_Y * scale, 0);
 		GL11.glColor4f(BOX_COLOR.getRed(), BOX_COLOR.getGreen(), BOX_COLOR.getBlue(), alpha);
 		
 		GL11.glBegin(GL11.GL_LINE_LOOP);		
-		GL11.glVertex2i(0, 0);
-		GL11.glVertex2i(BOX_WIDTH, 0);
-		GL11.glVertex2i(BOX_WIDTH, -BOX_HEIGHT);
-		GL11.glVertex2i(0, -BOX_HEIGHT);
+		GL11.glVertex2f(0, 0);
+		GL11.glVertex2f(bw, 0);
+		GL11.glVertex2f(bw, -bh);
+		GL11.glVertex2f(0, -bh);
 		GL11.glEnd();
 		
 		GL11.glColor4f(1, 1, 1, 1);
@@ -1422,18 +1438,21 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		if (!intro.hasStatic) return;
 		
+		float scale = Global.getSettings().getScreenScaleMult();
+		
 		GL11.glPushMatrix();
-		GL11.glTranslatef(Display.getWidth()/2, Display.getHeight()/2, 0);
+		// using the SettingsAPI methods instead of the Display ones; unsure why but it's needed to get the static position right with UI scaling
+		GL11.glTranslatef(Global.getSettings().getScreenWidth()/2, Global.getSettings().getScreenHeight()/2, 0);
 		GL11.glEnable(GL11.GL_BLEND);
-		int maxDist = Math.round(Display.getHeight() * SPLASH_IMAGE_HEIGHT / 2);
+		float maxDist = Math.round(Display.getHeight() * SPLASH_IMAGE_HEIGHT / 2)/scale;
 		
 		int numSpots = MathUtils.getRandomNumberInRange(64, 256);
 		float alpha = intro.getAlphaMult() * 0.5f;
 		for (int i=0; i<numSpots; i++) {
-			int x = MathUtils.getRandomNumberInRange(-maxDist, maxDist);
-			int y = MathUtils.getRandomNumberInRange(-maxDist, maxDist);
-			float w = MathUtils.getRandomNumberInRange(SPOT_MIN_SIZE, SPOT_MAX_SIZE)/2;
-			float h = MathUtils.getRandomNumberInRange(SPOT_MIN_SIZE, SPOT_MAX_SIZE)/2;
+			float x = MathUtils.getRandomNumberInRange(-maxDist, maxDist);
+			float y = MathUtils.getRandomNumberInRange(-maxDist, maxDist);
+			float w = MathUtils.getRandomNumberInRange(SPOT_MIN_SIZE, SPOT_MAX_SIZE)/2/scale;
+			float h = MathUtils.getRandomNumberInRange(SPOT_MIN_SIZE, SPOT_MAX_SIZE)/2/scale;
 			
 			Float [] color = SPOT_COLOR.pick();
 			GL11.glColor4f(color[0], color[1], color[2], alpha);
