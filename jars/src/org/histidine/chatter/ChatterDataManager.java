@@ -10,6 +10,7 @@ import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.impl.campaign.events.OfficerManagerEvent;
+import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -85,7 +86,8 @@ public class ChatterDataManager {
 			for(int x = 0; x < tagsCSV.length(); x++)
 			{
 				JSONObject row = tagsCSV.getJSONObject(x);
-				String factionId = row.getString("faction");
+				String factionId = row.getString("faction");				
+				if (factionId == null || factionId.isEmpty()) continue;
 				String tagsStr = row.getString("tags");
 				String[] tagsArray = tagsStr.split(",");
 				Set<String> tags = new HashSet<>();
@@ -104,6 +106,7 @@ public class ChatterDataManager {
 			{
 				JSONObject row = charFactionsCSV.getJSONObject(x);
 				String characterId = row.getString("character");
+				if (characterId == null || characterId.isEmpty()) continue;
 				debugPrint("\tCharacter: " + characterId);
 				Map<String, Integer> factionCompat = new HashMap<>();
 				Iterator<?> factionsAndGroups = row.keys();
@@ -124,6 +127,8 @@ public class ChatterDataManager {
 			{
 				JSONObject row = charCSV.getJSONObject(x);
 				String characterId = row.getString("character");
+				if (characterId == null || characterId.isEmpty()) continue;
+				
 				try {
 					JSONObject characterEntry = Global.getSettings().loadJSON(CHARACTERS_DIR + characterId + ".json");
 					ChatterCharacter character = new ChatterCharacter();
@@ -346,7 +351,7 @@ public class ChatterDataManager {
 		boolean isMission = engine != null && engine.isMission();
 		boolean isCampaign = engine != null && (engine.isInCampaign() || engine.isInCampaignSim());
 		boolean isFighter = ship != null && ship.isFighterWing();
-		boolean aiCore = captain.isAICore();
+		boolean aiCore = captain.isAICore() || (ship != null && Misc.isAutomated(ship));
 		
 		save = save && !isMission && !captain.isDefault() && !isFighter;
 		
