@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.apache.log4j.Logger;
 import org.histidine.chatter.utils.GeneralUtils;
+import org.histidine.chatter.utils.LunaConfigHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -58,5 +59,6 @@ public class ChatterConfig {
 		catch (IOException | JSONException ex) {
 			throw new RuntimeException("Failed to load chatter config", ex);
 		}
+		LunaConfigHelper.initLunaConfig();
 	}
 }

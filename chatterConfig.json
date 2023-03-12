@@ -1,4 +1,6 @@
 {
+	# Note: With LunaLib, most (but not all) of these settings can be modified and saved ingame, in which case this file only serves to provide the default values
+	
 	"lowImportanceChatter":true,	# false makes most low-priority messages appear as floating text instead of in message field
 	"allyChatter":true,
 	"selfChatter":false,	# if true, player flagship will have chatter as well

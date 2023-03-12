@@ -12,4 +12,37 @@
 		"fleetIntroBracketStart":"\\\\ ",
 		"fleetIntroBracketEnd":" \\\\"
 	},
+	
+	"chatter_lunaSettings":{
+		"header_general":"General",
+		"header_ui":"UI",
+		"header_characters":"Characters",
+		
+		"name_lowImportanceChatter":"Low-importance chatter",
+		"tooltip_lowImportanceChatter":"If false, most low-priority messages appears as floating text instead of in message field.",
+		"name_allyChatter":"Ally chatter",
+		"tooltip_allyChatter":"Chatter by allied ships not under your control.",
+		"name_selfChatter":"Self-chatter",
+		"tooltip_selfChatter":"Chatter by your player ship.",
+		"name_enemyChatter":"Enemy chatter",
+		"tooltip_enemyChatter":"Chatter by enemy ships.",
+		"name_minMissileOPFractionForChatter":"Min. missile OP fraction",
+		"tooltip_minMissileOPFractionForChatter":"At least this proportion of the ship's weapon OPs should be in missiles in order to print \"out of missiles\" messages.",
+		
+		"name_chatterBox":"Chatter box",
+		"tooltip_chatterBox":"Adds (some) floating text to a message box on right side of screen (in addition to displaying it over the speaking ship).",
+		"name_chatterBoxOfficerMode":"Chatter box officer mode",
+		"tooltip_chatterBoxOfficerMode":"Only named officers appear in chatbox, and it prints their name instead of the ship's name.",
+		"name_fleetIntro":"Fleet intro",
+		"tooltip_fleetIntro":"Intro splash for some fleet types at the start of battles.",
+		
+		"name_factionSpecificCharacters":"Faction-specific characters",
+		"tooltip_factionSpecificCharacters":"Officers have a limited selection of possible characters based on the faction they're from.",
+		"name_restrictAICharacters":"Restrict AI characters",
+		"tooltip_restrictAICharacters":"Only certain characters can be used for AI officers.",
+		"name_personalityChanceScaling":"Personality chance scaling",
+		"tooltip_personalityChanceScaling":"Make characters with only 1-2 allowed personalities have higher chance to be picked.",
+		"name_genderChanceScaling":"Gender chance scaling",
+		"tooltip_genderChanceScaling":"Makes gender-specific characters more likely to be picked.",
+	}
 }
