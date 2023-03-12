@@ -46,6 +46,7 @@
 		"hull_90":[
 			{"text":"Nothing happened here! What? Hull breach?"},
 			{"text":"Not enough to kill me!"},
+			{"text":"Ugh, I'm shot and I don't like it!"}
 		],
 		"hull_50":[
 			{"text":"The other half won't be so easy!"},
