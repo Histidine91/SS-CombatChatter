@@ -26,7 +26,7 @@
 		"tooltip_selfChatter":"Chatter by your player ship.",
 		"name_enemyChatter":"Enemy chatter",
 		"tooltip_enemyChatter":"Chatter by enemy ships.",
-		"name_minMissileOPFractionForChatter":"Min. missile OP fraction",
+		"name_minMissileOPFractionForChatter":"Minimum missile OP fraction",
 		"tooltip_minMissileOPFractionForChatter":"At least this proportion of the ship's weapon OPs should be in missiles in order to print \"out of missiles\" messages.",
 		
 		"name_chatterBox":"Chatter box",

@@ -59,6 +59,8 @@ public class ChatterConfig {
 		catch (IOException | JSONException ex) {
 			throw new RuntimeException("Failed to load chatter config", ex);
 		}
-		LunaConfigHelper.initLunaConfig();
+		if (Global.getSettings().getModManager().isModEnabled("lunalib")) {
+			LunaConfigHelper.initLunaConfig();
+		}
 	}
 }

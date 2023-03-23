@@ -9,4 +9,10 @@
 	"plugins":{
 		"ChatterCombatPlugin":"org.histidine.chatter.combat.ChatterCombatPlugin",
 	},
+	
+	"graphics":{
+		"misc":{
+			"chatter_luna_icon":"graphics/chatter/icons/mod_icon.png",
+		}
+	}
 }
