@@ -551,7 +551,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (!fallback) {
 			List<ChatterLine> lines = ChatterDataManager.getCharacterData(character).lines.get(category);		
 			line = (ChatterLine)GeneralUtils.getRandomListElement(lines);
-			message = "\"" + line.text + "\"";
+			message = "\"" + line.getSubstitutedLine(member.getCaptain(), member) + "\"";
 		} else {
 			message = genericFallback;
 		}
@@ -1120,7 +1120,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			boolean overloaded = false;
 			if (ship.getFluxTracker() != null) 
 			{
-				overloaded = ship.getFluxTracker().getOverloadTimeRemaining() > 2;
+				overloaded = ship.getFluxTracker().getOverloadTimeRemaining() > 2.5f;
 			}
 			
 			if (!isFighter && overloaded && !stateData.overloaded) {
