@@ -10,6 +10,7 @@ import org.histidine.chatter.ChatterConfig;
 public class LunaConfigHelper implements LunaSettingsListener {
 	
 	public static final String MOD_ID = "chatter";
+	public static final String PREFIX = MOD_ID + "_";
 	
 	public static Logger log = Global.getLogger(LunaConfigHelper.class);
 
@@ -64,6 +65,7 @@ public class LunaConfigHelper implements LunaSettingsListener {
 
     public static Object loadSetting(String var, String type) {
         String mid = MOD_ID;
+		var = PREFIX + var;
         switch (type) {
             case "bool":
             case "boolean":
@@ -93,6 +95,8 @@ public class LunaConfigHelper implements LunaSettingsListener {
         }
         String mid = MOD_ID;
         String name = getString("name_" + var);
+		
+		var = PREFIX + var;
 
         switch (type) {
             case "boolean":
