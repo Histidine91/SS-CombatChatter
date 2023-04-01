@@ -1,0 +1,80 @@
+{
+	"name":"Roman",		## Lines are historical quotes taken from Rome: Total War loading screens
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["historical","original"],
+	
+	"lines":{
+		"start":[
+			{"text":"Let him who desires peace prepare for war."},
+			{"text":"Men grow tired of sleep, love, singing and dancing sooner than war."},
+			{"text":"Great empires are not maintained by timidity."},
+			{"text":"We do not ask how many enemies but where they are."},
+			{"text":"A disorderly mob is no more an army than a heap of building materials is a house."},
+		],
+		"start_boss":[
+			{"text":"Valour is superior to numbers."},
+			{"text":"Alea iacta est."},
+		],
+		"retreat":[
+			{"text":"To those that flee comes neither power nor glory."},
+			{"text":"A coward's mother does not weep."},
+			{"text":"War spares not the brave but the cowardly."},
+		],
+		"out_of_missiles":[
+			{"text":"The fortunes of war are always doubtful."},
+		],
+		"engaged":[
+			{"text":"Ah yes, mere infantry - poor beggars..."},
+			{"text":"The gods favor the bold."},
+			{"text":"In the moment of action remember the value of silence and order."},
+		],
+		"need_help":[
+			{"text":"Quick decisions are unsafe decisions."},
+			{"text":"It is a bad plan that cannot be altered."},
+		],
+		"pursuing":[
+			{"text":"The valiant profit more their country than the finest, cleverest speakers."},
+			{"text":"What system knows not our blood?"},
+			{"text":"In war we must be speedy."},
+		],	
+		"running":[
+			{"text":"Even the bravest men are frightened by sudden terrors."},
+			{"text":"When there is mutual fear, men think twice before they make aggression upon one another."},
+			{"text":"I am more afraid of our own mistakes than of our enemies' designs."},
+			{"text":"The man who runs away will fight again."},
+		],
+		"hull_90":[
+			{"text":"The god of war hates those who hesitate."},
+		],
+		"hull_50":[
+			{"text":"Even the bravest cannot fight beyond his strength."},
+			{"text":"He conquers who endures."},
+		],
+		"hull_30":[
+			{"text":"A brave man may fall, but he cannot yield."},
+			{"text":"It is the brave man's part to live with glory, or with glory die."},
+		],
+		"overload":[
+			{"text":"What can a soldier do who charges when out of breath?"},
+			{"text":"To blunder twice is not allowed in war."},
+		],
+		"death":[
+			{"text":"A glorious death is his who for his country falls."},
+			{"text":"Only the dead have seen the end of the war."},
+			{"text":"Only the brave enjoy noble and glorious deaths."},
+		],
+		"victory":[
+			{"text":"Let all be present and expect the palm, the prize of victory."},
+			{"text":"So ends the bloody business of the day."},
+			{"text":"Vae victus."},
+			{"text":"Veni, vidi, vici."},
+			{"text":"The strong did what they could, and the weak suffered what they must."},
+			{"text":"We make war that we may live in peace."},
+			{"text":"A dead enemy always smells good."},
+			{"text":"Let them hate us as long as they fear us."},
+		],
+	}
+}

@@ -1,0 +1,71 @@
+{
+	"name":"HL1 Scientist",
+	"personalities":["timid","cautious"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["halflife", "game", "othermedia", "meme"],
+	
+	"lines":{
+		"start":[
+			{"text":"You don't look as if you have any trouble killing things."},
+			{"text":"Shouldn't we try to capture a specimen?"},
+			{"text":"I just want to get out of this alive."},
+			{"text":"I certainly hope you know what you're doing."},
+			{"text":"Oh no, you're one of the... them. Can't we just get along?"},
+		],
+		"start_boss":[
+			{"text":"Those things, they're everywhere! We've got to get out of here!"},
+		],
+		"retreat":[
+			{"text":"I've got to get out of here!"},
+			{"text":"A failure of this magnitude is extremely improbable."},
+		],
+		"out_of_missiles":[
+			{"text":"Well, there goes our grant money."},
+		],
+		"engaged":[
+			{"text":"I don't suppose you'd reconsider?"},
+		],
+		"need_help":[
+			{"text":"No... No! No! Get it off me! Get it off! Get it off!"},
+			{"text":"Don't shoot! I'm with the science team!"},
+			{"text":"Surely someone will come and rescue us."},
+		],
+		"pursuing":[
+			{"text":"Well, i think it's rather stimulating, don't you?"},
+			{"text":"Fat lot of good that PhD does me now."},
+		],	
+		"running":[
+			{"text":"No, don't go that way!"},
+			{"text":"This is madness! I'm getting out of here!"},
+			{"text":"Oh dear!"},
+		],
+		"hull_90":[
+			{"text":"I seem to be wounded...but I can keep going."},
+			{"text":"This is all within theoretical limits."},
+			{"text":"I hope those containment parameters are still nominal."},
+		],
+		"hull_50":[
+			{"text":"Do you recall any of those emergency survival procedures?"},
+			{"text":"It can't get any worse than this."},
+		],
+		"hull_30":[
+			{"text":"Oh my God... we're doomed!"},
+			{"text":"I don't think I can last much longer."},
+		],
+		"overload":[
+			{"text":"Quick! It's about to go critical!"},
+			{"text":"That shouldn't happen."},
+		],
+		"death":[
+			{"text":"No, I don't want to die!"},
+			{"text":"*terrified screaming*"},
+		],
+		"victory":[
+			{"text":"With my brains and your brawn we'll make an excellent team."},
+			{"text":"I believe this will make for a notable paper, don't you?"},
+			{"text":"I predicted all of this, you know. All of it!"},
+		],
+	}
+}

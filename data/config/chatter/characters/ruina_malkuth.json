@@ -1,0 +1,83 @@
+{
+	"name":"Ruina_Malkuth", #NO there will not be any Malkuth breathing, shut up
+	"personalities":["steady","aggressive","reckless"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "libraryofruina"],
+	
+	"lines":{
+		"start":[
+			{"text":"Luck will be on our side, I'm sure of it. We'll succeed!"},
+			{"text":"Don't get too nervous and just do it as we practiced!"},
+			{"text":"I've got a good feeling that we'll make it!"},
+			{"text":"We're fully prepared now. They don't scare us any more!"},
+			{"text":"If I reroute things like this... Whoawhoawhoa, almost blew out the shields!"},
+		],
+		"start_boss":[
+			{"text":"That's... Scary, but I'm confident about this! Here they come!"},
+			{"text":"Crew, trust me and follow my lead! We'll do this, I know we will!"},
+		],	
+		"retreat":[
+			{"text":"Maybe I got too confident?"},
+			{"text":"It won't end like this, we're getting out of here!"},
+			{"text":"Not good! We need to get out of here!"},
+		],
+		"out_of_missiles":[
+			{"text":"O-oops. We're out of missiles..."},
+			{"text":"We're out of missiles? I thought we had more than that!"},
+			{"text":"Uh-oh, we ran out of missiles!"},
+		],
+		"engaged":[
+			{"text":"Don't get too nervous, we'll get them!"},
+			{"text":"Alright, here I come!"},
+			{"text":"Nice to meet you!"},
+		],
+		"need_help":[
+			{"text":"Maybe I got too confident?"},
+			{"text":"Oh no! We need help, fast!"},
+			{"text":"Sorry! We need some help!"},
+		],
+		"pursuing":[
+			{"text":"Whoa, did you see that..? I got them there!"},
+			{"text":"I'll take them down! Get back here!"},
+			{"text":"They're running! Winning is just gonna be a matter of time!"},
+		],
+		"running":[
+			{"text":"Incoming! Wah!"},
+			{"text":"Don't panic, everyone! We need to keep it together!"},
+			{"text":"We got in over our heads, don't blame yourself!"},
+		],
+		"hull_90":[
+			{"text":"Stay calm everyone! It's not that bad!"},
+			{"text":"Uh oh, they got some hits in!"},
+			{"text":"Ah! The hull's shaking!"},
+			{"text":"My ship is taking damage, but I won't give up!"},
+		],
+		"hull_50":[
+			{"text":"Gah! We're under heavy fire!"},
+			{"text":"I got too confident!"},
+			{"text":"Not good! The ship is in danger!"},
+		],
+		"hull_30":[
+			{"text":"No, I don't want it to end like this!"},
+			{"text":"Now or never! Don't give up!"},
+			{"text":"We can... Still win this!"},
+		],
+		"overload":[
+			{"text":"Don't blame yourselves! We'll handle the overload soon!"},
+			{"text":"Stay calm! Let the flux out..!"},
+			{"text":"Overload! Gah!"},
+		],
+		"death":[
+			{"text":"I thought I could do this much..."},
+			{"text":"I didn't want it to end like this..."},
+			{"text":"Am I really doing a good job...?"},
+		],
+		"victory":[
+			{"text":"We won, we really won! That means I helped, right?"},
+			{"text":"Good work, everyone! We all finished the job nicely!"},
+			{"text":"Let's retrieve the salvage and go back now!"},
+		],
+	}
+}

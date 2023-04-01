@@ -1,0 +1,74 @@
+{
+	"name":"Ruina_Chesed", #coffee guy!
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "libraryofruina"],
+	
+	"lines":{
+		"start":[
+			{"text":"Let's try our best and finish this job, so that everyone is safe~"},
+			{"text":"Don't be so down, crew~ I'm sure we can do this well."},
+			{"text":"There's no need to worry~ If we all do what we can, we'll make it."},
+			{"text":"It's not a good idea for us to overwork ourselves~"},
+		],
+		"start_boss":[
+			{"text":"We could lose everything if we hesitate."},
+			{"text":"Sometimes, you'll have to get bold in order to overcome some things."},
+		],	
+		"retreat":[
+			{"text":"I don't want anyone to die here. Retreating."},
+			{"text":"I'll retreat. Let's not make any more meaningless casualties."},
+			{"text":"That's it for me, then~ I'll take my leave."},
+		],
+		"out_of_missiles":[
+			{"text":"We've run out of missiles. I'm sure we put them to good use~"},
+			{"text":"It's time to change our tactics~ That was our last missile."},
+		],
+		"engaged":[
+			{"text":"It's a great shame, all of that technology wasted on weapons."},
+			{"text":"If only we could have followed a noble path together~"},
+			{"text":"If there's a meaning to this fight, we'll give it our best."},
+		],
+		"need_help":[
+			{"text":"We're in a bit of a situation~ I'd appreciate your help."},
+			{"text":"This might be a little too much for us~"},
+		],
+		"pursuing":[
+			{"text":"Sometimes, you'll have to get bold in order to protect something."},
+			{"text":"Good work, crew~ They're on the run, now."},
+			{"text":"Well done~ Let's take our time and get things done."},
+		],
+		"running":[
+			{"text":"We need to step back for a moment~"},
+			{"text":"There's no need to fret, we'll be back soon enough~"},
+		],
+		"hull_90":[
+			{"text":"We've taken damage. Let's try to avoid any meaningless losses."},
+			{"text":"There's nothing to be afraid of, for now."},
+		],
+		"hull_50":[
+			{"text":"We can make it through if we try."},
+			{"text":"There's no reason to be afraid, crew."},
+			{"text":"Try your best to make sure everyone's safe..."},
+		],
+		"hull_30":[
+			{"text":"This may be too much for us..."},
+			{"text":"I don't want any of us to die here."},
+		],
+		"overload":[
+			{"text":"We've overloaded. We need to try harder to minimize the damage."},
+			{"text":"There's no need to fret. I believe we can still do this."},
+		],
+		"death":[
+			{"text":"I guess this is as far as I can go..."},
+			{"text":"Was this... Just too much for me?"},
+		],
+		"victory":[
+			{"text":"See? We can make it through if we try. Good work, everyone~"},
+			{"text":"How about a nice cup of coffee for all~?"},
+			{"text":"I'm glad we could finish this~"},
+		],
+	}
+}

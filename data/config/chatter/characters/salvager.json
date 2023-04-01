@@ -1,0 +1,79 @@
+{
+	"name":"Salvager", #The fringe scavenger play style incarnate.
+	"personalities":["cautious","steady","aggressive","reckless"],
+	"gender":["m","f","n"],
+	"chance":0.7,
+	"talkativeness":1, #I, bullet, must formally state that I need supplies I NEED ALL OF THEM
+	"categoryTags":["original"],
+	
+	"lines":{
+		"start":[
+			{"text":"It's nothin' personal. We just need the supplies."},
+			{"text":"...Hope it's worth it."},
+			{"text":"That's a nice hull they got there. Maybe we could add it to the collection?"}, #ooh capital hehehehe
+			{"text":"Try not to break em' apart. We could use a couple of those hulls."}
+		],
+		"start_boss":[
+			{"text":"That one's really something. I wonder if we could recover it..."},
+			{"text":"Well, look at you. I'd bet you're just full of artifacts. Nanoforges, AI cores, relic components..."},
+		],		
+		"retreat":[
+			{"text":"Gettin' out of here. Better to lose some spare parts than the entire hull."},
+			{"text":"Retreating. I hope it's worth it."}
+		],
+		"out_of_missiles":[
+			{"text":"That's all our missiles. You sure we expanded those racks?"},
+			{"text":"...And that's the last missile. Hope we used em' well."}
+		],
+		"engaged":[
+			{"text":"Engaging! You look like you'll make some nice spare parts."},
+			{"text":"Alright. Time to earn our share of the loot."},
+			{"text":"Hah, this one looks like some good salvage."}
+		],
+		"need_help":[
+			{"text":"This one is givin' us some trouble. Must be hiding something good."},
+			{"text":"Need some help here, or we'll need to waste some of the salvage on patching."},
+			{"text":"Could use some support. When we win this, I'd like to take a look at those guns."},
+		],
+		"pursuing":[
+			{"text":"That one's running! Must have something good on em'."},
+			{"text":"Chase em' down. That one's a fine hull."},
+			{"text":"Take that one down. Can't wait to carve up that hold of theirs."}
+		],
+		"running":[
+			{"text":"Damn it, we're pullin' out for a second."},
+			{"text":"They're putting up a fight. We'll back off for a bit."}
+		],
+		"hull_90":[
+			{"text":"Armor's breached. I'm gonna have to fix that stuff later."},
+			{"text":"They're gettin' our soft hull. Kill em', so we don't need to waste our supplies."},
+		],
+		"hull_50":[
+			{"text":"This isn't good. Hull's taking some heavy hits."},
+			{"text":"This is gonna take a fortune in supplies to patch up..."},
+			{"text":"Crew's welding as fast as they can. We'll hold together."},
+		],
+		"hull_30":[
+			{"text":"Damn them! I'll rip that hull up for parts first!"},
+			{"text":"Ship's critical! There's too much heat for any repairs!"},
+			{"text":"Son of a... Must be trying to keep us away from some real good tech."},
+			{"text":"That one hit the hold. We're losing precious salvage..."},
+		],
+		"overload":[
+			{"text":"Damn those Mark 8 capacitors. Shoulda gone with the others..."},
+			{"text":"Overloaded. Gonna replace the conduits with ones ripped from the bastard who did that."},
+			{"text":"Systems are fried. Keep us covered so we can harvest those hulls."},
+		],
+		"death":[
+			{"text":"Seal the bulkheads! I need to- *Static*"},
+			{"text":"Better hope we can recover this hull..."},
+			{"text":"Can't hold together... Just gotta- *Static*"},
+		],
+		"victory":[
+			{"text":"Heh hah hah. These'll make for some good repairs."},
+			{"text":"Nice, nice. Think I see a fuel cell over there we can use, and a container of spare parts..."},
+			{"text":"Let's see what we'll find here. Blueprints, production chips, weapons..."},
+			{"text":"Excellent... Now, we strip em' for all they're worth."},
+		],
+	}
+}

@@ -1,0 +1,66 @@
+{
+	"name":"HL1 Barney",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["halflife", "game", "othermedia", "meme"],
+	
+	"lines":{
+		"start":[
+			{"text":"You think there's a cold beer for us at the end of all this?"},
+			{"text":"I'd like to get my hands on the guy responsible for this mess."},
+			{"text":"Looks like we're in for a long day today."},
+			{"text":"This area just doesn't feel right."},
+		],
+		"start_boss":[
+			{"text":"I have a bad feeling about this."},
+			{"text":"Okay, why not? Didn't want to die alone anyway."},
+		],
+		"retreat":[
+			{"text":"Let's get the hell out of here."},
+			{"text":"Roger that. Let's run like hell."},
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"Open fire!"},
+			{"text":"End of the line for you."},
+			{"text":"Hey, eat this you bastard!"},
+		],
+		"need_help":[
+			{"text":"Hey, step off, buddy!"},
+		],
+		"pursuing":[
+			{"text":"I'll bet that stings a bit."},
+			{"text":"It's okay, sir, I can take him!"},
+		],	
+		"running":[
+			{"text":"I'll be happy to survive this with all my parts."},
+			{"text":"Maybe help is on its way, but I'm not waiting around for it."},
+		],
+		"hull_90":[
+			{"text":"Heh, you're gonna wish you hadn't done that."},
+			{"text":"Took a little damage, but I can make it."},
+		],
+		"hull_50":[
+			{"text":"Any idea how many of our crew have died?"},
+			{"text":"Well, I got hit pretty hard."},
+		],
+		"hull_30":[
+			{"text":"It can't get any worse than this, can it?"},
+			{"text":"Sorry, sir, but I can't take much more of this."},
+		],
+		"overload":[
+			{"text":"What do you mean, overcharge?"},
+		],
+		"death":[
+			{"text":"I wish it hadn't come to this."},
+			{"text":"Make sure you don't-"},
+		],
+		"victory":[
+			{"text":"Hey, catch me later, I'll buy you a beer."},
+			{"text":"So, you think there's a future for us at the end all of this?"},
+		],
+	}
+}

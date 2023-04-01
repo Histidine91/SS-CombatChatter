@@ -1,0 +1,63 @@
+{
+	"name":"Lynn",
+	"personalities":["cautious", "steady", "aggressive"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["sunrider", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"What do you want, $playerLastName?"},
+			{"text":"Don't expect me to fawn over you!"},
+			{"text":"I hear you, $playerLastName."},
+		],
+		"retreat":[
+			{"text":"Tch! I'm falling back!"},
+		],
+		"out_of_missiles":[],
+		"need_help":[],
+		"engaged":[
+			{"text":"Hahahaha! Die!"},
+			{"text":"Now's the chance! Get them, $playerLastName!"},
+			{"text":"Don't send a human to do a Prototype's work!"},
+		],
+		"pursuing":[
+			{"text":"Underway!"},
+			{"text":"Hitting thrusters!"},
+			{"text":"Full speed ahead!"},
+		],
+		"running":[
+			{"text":"This isn't good..."},	
+			{"text":"This is dumb."},	
+		],
+		"hull_90":[
+			{"text":"Tch, that hit me, but it's not too bad."},
+			{"text":"Light damage!"},
+			{"text":"I've been grazed! Damage isn't too bad."},
+		],
+		"hull_50":[
+			{"text":"Ack! Be more careful, $playerLastName!"},
+			{"text":"I'm not immortal, you know! Watch what you're doing!"},
+			{"text":"My hull's beginning to fracture!"},
+		],
+		"hull_30":[
+			{"text":"Damnit $playerLastName, what are you doing?!"},
+			{"text":"I've been damaged! Damn you $playerLastName!"},
+			{"text":"I can't take much more of this!"},
+		],
+		"overload":[
+			{"text":"I got careless! My electronics are being fried!"},
+			{"text":"You're wasting my time..."},			
+		],
+		"death":[
+			{"text":"What the?!"},
+			{"text":"No way!"},
+		],
+		"victory":[
+			{"text":"Lights off!"},
+			{"text":"Hahahaha!"},
+			{"text":"He thought he had a chance! What an idiot!"},
+		],
+	}
+}

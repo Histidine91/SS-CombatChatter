@@ -1,0 +1,79 @@
+{
+	"name":"Hotshot",
+	"personalities":["steady","aggressive","reckless"], #timid pilots are not real
+	"gender":["m","f","n"],
+	"chance":0.8,
+	"talkativeness":1.5, #Bullet was here. How many one-liners can I fit in, I wonder...
+	"categoryTags":["original"],
+	
+	"lines":{
+		"start":[
+			{"text":"Alright, let's get this done."},
+			{"text":"Let's have some fun. Safety overrides!"},
+			{"text":"Alright alright, boys. Let's see what we got."},
+			{"text":"Ah, yeah. Time for a little test run."}
+		],
+		"start_boss":[
+			{"text":"Hit the overrides!! We're in for some fun!"},
+			{"text":"Now we've got some REAL action!"},
+		],		
+		"retreat":[
+			{"text":"Sure beats getting blown to shreds."},
+			{"text":"Dang. We're out of here."}
+		],
+		"out_of_missiles":[
+			{"text":"Shoulda gone for the expanded racks."},
+			{"text":"I got this, missiles or no missiles."}
+		],
+		"engaged":[
+			{"text":"Ready to crack those defenses."},
+			{"text":"You don't know who you're up against!"},
+			{"text":"Let's see what you've got!"}
+		],
+		"need_help":[
+			{"text":"I'm in a bit of trouble!"},
+			{"text":"Overextended. Rookie mistake. Damn it!"},
+			{"text":"Could use some cover fire over here!"},
+		],
+		"pursuing":[
+			{"text":"Haha! Yeah, you better run!"},
+			{"text":"This one's goin' in my trophy case."},
+			{"text":"Finally figured out who you're up against, huh?"},
+			{"text":"This one's got a life expectancy shorter than the High Hegemon! HAH!"},
+		],
+		"running":[
+			{"text":"They've got some fight in em'. I'll jump back into the fray in just a minute."},
+			{"text":"Think you can catch me?"}
+		],
+		"hull_90":[
+			{"text":"Nice, gettin' some real action over here."},
+			{"text":"Barely a dent. That all they got?"},
+		],
+		"hull_50":[
+			{"text":"Rch! Commander, you promised me a REAL challenge!"},
+			{"text":"That ain't all they got, brace up!"},
+			{"text":"Armor's shredded! We've still got some fight in us!"},
+		],
+		"hull_30":[
+			{"text":"C'mon, hang in there..!"},
+			{"text":"Haven't gone critical yet! Let's show em' who's boss!"},
+			{"text":"They don't have us yet!"},
+			{"text":"If we lose now, the commander's gonna have our heads!"},
+		],
+		"overload":[
+			{"text":"Damn! Cover us while we cool down!"},
+			{"text":"Flux is arcing everywhere. We got too confident."},
+			{"text":"Conduits burnt out. Now we've got some action!"},
+		],
+		"death":[
+			{"text":"They got me fair and square. Damn-!"},
+			{"text":"What do you MEAN the reactor's- *Static*"},
+			{"text":"You better drag my hardsuit outta here, commander!"},
+		],
+		"victory":[
+			{"text":"Hah, that's some sweet bridge cam footage."},
+			{"text":"Hell yeah! Was that some nice flying, or what?"},
+			{"text":"This one's goin' down in history!"},
+		],
+	}
+}

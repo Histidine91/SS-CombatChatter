@@ -1,0 +1,67 @@
+{
+	"name":"Ruina_Binah",
+	"personalities":["cautious","steady","aggressive","reckless"],
+	"gender":["m","f","n"], #debated going only female and neutral, but eh. Ambiguous enough to fit anyone
+	"chance":0.5,
+	"talkativeness":1.5, #binah is pretty verbose
+	"categoryTags":["othermedia", "game", "libraryofruina"],
+	
+	"lines":{
+		"start":[
+			{"text":"Let us begin."},
+			{"text":"Be calm."},
+			{"text":"Countless stars light the sky again today."},
+			{"text":"Your willingness to fight by my side is admirable, but try not to overwork yourselves."},
+		],
+		"start_boss":[
+			{"text":"There will be no obstacle you cannot overcome."},
+			{"text":"'Tis an ordeal to overcome, for them and for us."},
+		],	
+		"retreat":[
+			{"text":"It is too dangerous for us."},
+			{"text":"We depart."},
+		],
+		"out_of_missiles":[
+			{"text":"We must adapt in light of this setback."},
+			{"text":"No ammunition remains."},
+		],
+		"engaged":[
+			{"text":"If you move in haste, you are bound to miss certain things."},
+			{"text":"There is no obstacle we may not overcome."},
+		],
+		"need_help":[
+			{"text":"The circumstances are too dangerous for us, it would seem."}, #hell, might want to comment this one out. Binah doesn't show fear. 
+		],
+		"pursuing":[
+			{"text":"Now, sink into everlasting quietude."},
+			{"text":"This is nearing the end."},
+			{"text":"...They shall crumble."},
+		],
+		"running":[
+			{"text":"It must have been too much for my crew. Well done enduring it thus far."}, #This one is iffy. Probably wanna comment it out.
+		],
+		"hull_90":[
+			{"text":"A setback, and nothing more."},
+			{"text":"There is little to fear."},
+		],
+		"hull_50":[
+			{"text":"No one will blame you, crew."},
+			{"text":"Our armor managed to hold out for a good length of time."},
+		],
+		"hull_30":[
+			{"text":"A star can only truly be seen in the darkness..."},
+			{"text":"It was still too dangerous for us, I see..."},
+		],
+		"overload":[
+			{"text":"It must have been too much for us."},
+		],
+		"death":[
+			{"text":"..."},
+		],
+		"victory":[
+			{"text":"Excellent."},
+			{"text":"You have done well."},
+			{"text":"The closer to death one is, the freer one becomes."},
+		],
+	}
+}

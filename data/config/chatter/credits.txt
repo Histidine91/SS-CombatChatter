@@ -1,8 +1,8 @@
-Aron0621:
+Aron0621
 * default_aggressive
 * default_professional
 
-MesoTroniK:
+MesoTroniK
 * badass
 * default2
 * default_aggressive2
@@ -10,70 +10,72 @@ MesoTroniK:
 * default_timid2
 * foulmouth
 
-spoortje1: 
+spoortje1 
 * pirate
 
-cjusa:
+cjusa/cjuicy
 * flyboy
 * cowfolk
 
-Serenitis/Paramount:
+Serenitis/Paramount
 * startrek_ferengi
 * startrek_klingon (edited by Arcalane)
 
-Arcalane/Paramount:
+Arcalane/Paramount
 * startrek_federation
 
-Love in Space:
+Love in Space
 * sunrider_ava
 * sunrider_asaga
 * sunrider_claude
 * sunrider_icari
 * sunrider_kryska
+* sunrider_lynn
 * sunrider_sola
 
-Relic Entertainment / Games Workshop:
+Relic Entertainment / Games Workshop
 * dow_davianthule
 * dow_lukasalexander
 * dow2_diomedes
 * dow2_commissar
 
-Blizzard (compiled by Cycerin):
+Blizzard (compiled by Cycerin)
 * sc2_tychus
 
-One (One-Punch Man) (compiled by Cycerin):
+One (One-Punch Man) (compiled by Cycerin)
 * darklord
 
-Arnold Schwarzenegger:
+Arnold Schwarzenegger
 * arnold
 
-Mr. T:
+Mr. T
 * mr-t
 
-Valve:
+Valve
 * tf2_demo (compiled by tongo)
 * tf2_heavy (edited by imba512)
 * tf2_soldier (compiled by imba512)
+* tf2_engineer (compiled by Zumberge)
 
-Strategy First:
+Strategy First
 * ja2_biff
 * ja2_fox
 * ja2_miguel
 * ja2_magic
 * ja2_steroid
 
-Volition (compiled by MesoTroniK):
+Volition (compiled by MesoTroniK)
 * freespace_human1
 * freespace_human2
 * freespace_vasudan
 
-Michael Stewart, Steve Behling, Tom Grindberg, Edd Fear (compiled by MesoTroniK):
+Michael Stewart, Steve Behling, Tom Grindberg, Edd Fear (compiled by MesoTroniK)
 * doom_comicguy
 
-Shoot Them Later:
+Shoot Them Later
 * luddfanatic
 
-Matt Groening (compiled by Shoot Them Later):
+Matt Groening (compiled by Shoot Them Later)
 * bender
 
 Firaxis (compiled by Shoot Them Later)
@@ -107,7 +109,7 @@ FNV collection (compiled by AzyWng)
 * base game by Obsidian Entertainment:
   * fnv_boone
   * fnv_roseofsharoncassidy
-* Interesting NPCs mod: 
+* Interesting NPCs mod:
   * fnv_vincentvincent
   * fnv_hopelies
   * fnv_velius
@@ -131,7 +133,7 @@ Nintendo (compiled by MShadowy)
 Red Hook Studios (compiled by MShadowy)
 * dd_narrator
 
-Red Hook Studios (compiled by Bullet):
+Red Hook Studios (compiled by Bullet)
 * dd_reynauld
 
 Monolith Productions (compiled by Avanitia)
@@ -141,7 +143,7 @@ Avanitia
 * drunk_gopnik
 * knight_of_ludd
 
-Scipio:
+Scipio
 * gentleman2
 
 (sorry I forgot who, please let me know!)
@@ -154,14 +156,14 @@ EA Games (compiled by SCC)
 * generals_tao
 * generals_thrax
 
-Sector D2 (compiled by AlexAtheos):
+Sector D2 (compiled by AlexAtheos)
 * pw_crimson1
 * pw_comic
 * pw_diplomat
 * pw_kaiser
 * pw_galaxy
 
-Sector D2 (compiled by Volkssnake):
+Sector D2 (compiled by Volkssnake)
 * pw_prez
 
 Bungie (compiled by Arcalane)
@@ -177,9 +179,40 @@ Seele
 Marauder Interactive (compiled by Avanitia)
 * deadsun_executor
 
-Ghost Ship Games (compiled by Bullet):
+Ghost Ship Games (compiled by Bullet)
 * drg_miner
 * drg_missioncontrol
 
-Bioware, user Bullet:
+Bioware, user Bullet
 * me_quarian
+
+Zumberge
+* roman
+
+Valve (compiled by Zumberge)
+* hl1_barney
+* hl1_scientist
+
+Bulletkin
+* binary
+* shortphrases
+* salvager
+* sophisticated
+* hotshot
+* passionate
+
+Project Moon (compiled by Bulletkin, faction tagging by Caymon Joestar)
+* ruina_yesod
+* ruina_binah
+* ruina_chesed
+* ruina_gebura
+* ruina_hod
+* ruina_hokma
+* ruina_malkuth
+* ruina_myo
+* ruina_netzach
+* ruina_roland
+* ruina_tiphereth
+
+Digital Extremes (compiled by Bulletkin)
+* warframe_cephaloncy

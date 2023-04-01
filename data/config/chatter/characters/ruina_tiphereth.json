@@ -1,0 +1,81 @@
+{
+	"name":"Ruina_Tiphereth", #enoch not included
+	"personalities":["steady","aggressive","reckless"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "libraryofruina"],
+	
+	"lines":{
+		"start":[
+			{"text":"I hope there's no idiots who sit around like ducks in my crew."},
+			{"text":"Don't be stuffy, crew. Just stand straight!"},
+			{"text":"We have to get started, so buckle up."},
+			{"text":"We're not gonna let em' through so easily."},
+		],
+		"start_boss":[
+			{"text":"You won't get anything done if you sit there and keep saying you're scared!"},
+			{"text":"We can't make plans forever..."},
+		],	
+		"retreat":[
+			{"text":"Retreating. Sorry, I wasn't too helpful there..."},
+			{"text":"We're out of here."},
+		],
+		"out_of_missiles":[
+			{"text":"We're out of missiles! I told you to be patient with those!"},
+			{"text":"Damn it, we're out of missiles."},
+			{"text":"Out of missiles. We can still fight."},
+		],
+		"engaged":[
+			{"text":"Huff... Barely got em' there."},
+			{"text":"We'll be able to end this smoothly if we keep this up."},
+			{"text":"Don't get cocky."},
+		],
+		"need_help":[
+			{"text":"Not going to give up. We can still fight."},
+			{"text":"We're in a bad spot."},
+			{"text":"Could use some help, here."},
+		],
+		"pursuing":[
+			{"text":"Got you! Shouldn't have gotten cocky."},
+			{"text":"We've got them on the run!"},
+			{"text":"That's as far as you're gonna get with those skills."},
+		],
+		"running":[
+			{"text":"We've got incoming. Get us away, helm!"},
+			{"text":"Pulling back, don't wanna get reckless..."},
+			{"text":"They got us on the ropes for a second..."},
+		],
+		"hull_90":[
+			{"text":"Huff... Fire's getting thick."},
+			{"text":"We're taking hits, don't expect us to stop here."},
+			{"text":"This isn't the time to be discouraged. Get a move on, all of you!"},
+			{"text":"Armor's taking hits. We'll win this for sure."},
+		],
+		"hull_50":[
+			{"text":"Fire's no problem. ...I can still fight."},
+			{"text":"Can't let everyone die here... We need to think of a way out."},
+			{"text":"They got some of the hull. They won't have it their way any more."},
+		],
+		"hull_30":[
+			{"text":"I... I can still fight."},
+			{"text":"It's not over yet. We'll win this."},
+			{"text":"We're taking a lot of heat. I won't give up just yet."},
+		],
+		"overload":[
+			{"text":"I told you! You shouldn't have let the flux get so high!"},
+			{"text":"No problem. We'll be back in the fight in just a moment."},
+			{"text":"Overloaded. That won't discourage us forever."},
+		],
+		"death":[
+			{"text":"They already... Read my tactics..."},
+			{"text":"This'll end up taking a toll on the guys behind me..."},
+			{"text":"...Sorry, I wasn't too helpful there."},
+		],
+		"victory":[
+			{"text":"It was obvious we'd win. Thought we couldn't handle this much?"},
+			{"text":"See, actions speak louder than words."},
+			{"text":"Thanks, all. You did a pretty good job this time."},
+		],
+	}
+}

@@ -1,0 +1,81 @@
+{
+	"name":"Ruina_Netzach",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "libraryofruina"],
+	
+	"lines":{
+		"start":[
+			{"text":"The overbearing pressure and atmosphere of the battlefield... Not a fan of it."},
+			{"text":"I just wanna nap in the aft... I know I shouldn't."},
+			{"text":"*Sigh* I'm too tired for this. Can I rest for longer if I end this quickly?"},
+			{"text":"It's still my position, so I'll be giving orders, I guess."},
+			{"text":"How did I end up doing things like this..."},
+		],
+		"start_boss":[
+			{"text":"I'm being serious about this, if you couldn't tell..."},
+			{"text":"Guess I gotta show some effort to win this, at least..."},
+		],	
+		"retreat":[
+			{"text":"Retreating, at last..."},
+			{"text":"Withdrawing. Maybe now, I can get some sleep..."},
+			{"text":"Gonna retreat now, so I can get a nap in..."},
+		],
+		"out_of_missiles":[
+			{"text":"*Sigh* we're out of missiles, again..."},
+			{"text":"Out of missiles... Now this'll take longer..."},
+			{"text":"We're out of ammo... *Sigh*"},
+		],
+		"engaged":[
+			{"text":"Ah, I hope they go easy on someone as listless as me..."},
+			{"text":"It's still my job and all... So I'm trying, at least."},
+			{"text":"I'm doing my best to fight here, despite how I seem..."},
+		],
+		"need_help":[
+			{"text":"This is starting to get risky... *Sigh* ...I wanna retreat."},
+			{"text":"Maybe we shouldn't have strained ourselves too much."},
+		],
+		"pursuing":[
+			{"text":"I'm not the biggest fan of this rule where someone has to win..."},
+			{"text":"I don't really like that I have to keep doing more of this."},
+			{"text":"Maybe they should've tried not letting their guard down."},
+		],
+		"running":[
+			{"text":"*Sigh* We're gonna step back, for a moment..."},
+			{"text":"How did I end up needing to do this..."},
+			{"text":"We're pulling back, commander... *Sigh*"},
+		],
+		"hull_90":[
+			{"text":"This is getting more and more risky... *Sigh* Why can't we retreat?"},
+			{"text":"*Sigh* All I wanted was to catch a quick break..."},
+			{"text":"...I just wanna get this over with..."},
+		],
+		"hull_50":[
+			{"text":"Armor's broken..."},
+			{"text":"Under heavy fire... *Sigh* I'm being serious about this, if you couldn't tell..."},
+			{"text":"Fire's getting heavier... Can't catch a break."},
+		],
+		"hull_30":[
+			{"text":"I'm sure this isn't how my crew wanted to die, either... *Sigh*"},
+			{"text":"I just wanted to retreat..."},
+			{"text":"I'm doing my best here, despite how it looks..."},
+		],
+		"overload":[
+			{"text":"*Sigh* Someone get that overload handled..."},
+			{"text":"Overloaded... *Sigh*"},
+			{"text":"Too much flux, again... Why can't we just retreat?"},
+		],
+		"death":[
+			{"text":"Ah... Why's the end always just an empty void..."},
+			{"text":"Results aside, I guess I can sleep tight now..."},
+			{"text":"...Sorry I couldn't help much, I guess..."},
+		],
+		"victory":[
+			{"text":"They all must've fought hard to live. Probably were more desperate than I am..."},
+			{"text":"...I can call it a day now, Yeah?"},
+			{"text":"*Sigh* It's not too happy to be the winners, but good work anyways."},
+		],
+	}
+}

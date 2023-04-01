@@ -1,0 +1,70 @@
+{
+	"name":"Ruina_Roland", #I just wanted to say that Roland's great
+	"personalities":["cautious","steady","aggressive","reckless"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "libraryofruina"], #not sure about the tags, these are intended to be closer to the defaults. Give em whatever tags you want
+	
+	"lines":{
+		"start":[
+			{"text":"Let's go easy, now~ Best not to complicate things too much."},
+			{"text":"Well, things are looking smooth so far."},
+			{"text":"Tremble in the eternal pits of fear. ...Khh, felt like throwing a cool one-liner."},
+			{"text":"Let's start out slowly, no point getting nervous."},
+		],
+		"start_boss":[
+			{"text":"Alright, alright. Stay calm, and cooool your head."},
+			{"text":"Boy, they have no right to make me this nervous."},
+		],	
+		"retreat":[
+			{"text":"That's all I could take."},
+			{"text":"I'm outta here."},
+		],
+		"out_of_missiles":[
+			{"text":"Outta missiles. Don't panic, you guys."},
+			{"text":"That's all of our missiles. Better not get impatient."},
+		],
+		"engaged":[
+			{"text":"We'd better not get impatient and get things done for certain."},
+			{"text":"Alright, let's do this!"},
+			{"text":"Well, this'll be simple. No problem at all for me!"},
+		],
+		"need_help":[
+			{"text":"Uh, little help?"},
+			{"text":"Uh-oh. I could use some help."},
+		],
+		"pursuing":[
+			{"text":"Whew, that guy almost turned the tide and got me there."},
+			{"text":"Sector life makes you numb to this kind of stuff."},
+		],
+		"running":[
+			{"text":"Gotta go for a second."},
+			{"text":"That's a bit too much for me."},
+		],
+		"hull_90":[
+			{"text":"Don't panic, you guys. We gotta get used to this."},
+			{"text":"Whoops, that caught me off-guard..."},
+		],
+		"hull_50":[
+			{"text":"That's that, and this is this."},
+			{"text":"Can't get sloppy now."},
+		],
+		"hull_30":[
+			{"text":"Oh, this isn't good..."},
+			{"text":"Welp, can't expect others to look after your own life..."},
+		],
+		"overload":[
+			{"text":"It can't be helped. That's that, and this is this."},
+		],
+		"death":[
+			{"text":"...This is totally embarrassing."},
+			{"text":"It'd be too sucky to die without doing much at all..."},
+		],
+		"victory":[
+			{"text":"If only our great commander could recognize all my hard work~ ...They didn't hear that, did they?"},
+			{"text":"Looks like our jobs are done now, so let's get back and cop some rest."},
+			{"text":"That's that, and this is this."},
+		],
+	}
+}

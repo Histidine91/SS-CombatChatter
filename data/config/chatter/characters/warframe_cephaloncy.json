@@ -1,0 +1,81 @@
+{
+	"name":"Cephalon Cy",	#"Curt", #CEPHALON CY FROM THE HIT VIDEO GAME WARFRAME!? (Kinda)
+	"personalities":["cautious","steady","aggressive","reckless"], #timid pilots are STILL not real
+	"gender":["m","f","n"],
+	"chance":0.8,
+	"talkativeness":1.5,	# 1.75, #I love his lines
+	"categoryTags":["othergame", "media", "warframe"],	#you can rename it to WF_Cephalon_Cy if you want and add the othergame tag etc, up to you
+	
+	"lines":{
+		"start":[
+			{"text":"Enemy forces incoming. Optimists inbound."}, #I fucking love this line so much
+			{"text":"Entering operational theatre. Hit them until they do not get up."},
+			{"text":"Warships inbound. Full detachment, standard equipment. I want those amateurs out of my sight."},
+			{"text":"Enemies in-sector. Let's change that."}
+		],
+		"start_boss":[
+			{"text":"Primary target. Unknown warship template. Engage. Locate structural weak points. Kill them."},
+			{"text":"Unique enemy craft. One-of-a-kind. It would be terrible if someone broke it."},
+		],		
+		"retreat":[
+			{"text":"Aborting. Better then fail the mission than fail the crew."},
+			{"text":"Get out of there, we can try again later."}
+		],
+		"out_of_missiles":[
+			{"text":"Ammunition insufficient. Tactics adjusted."},
+			{"text":"That was our last munition."}
+		],
+		"engaged":[
+			{"text":"Alert: Enemy warship on-scope."},
+			{"text":"Threats inbound. Take the guns."},
+			{"text":"Targets on the board. Good hunting."},
+			{"text":"A clumsy formation. Our opponents possess more enthusiasm than talent."},
+			{"text":"We have company. Enemy warship on scope."}
+		],
+		"need_help":[
+			{"text":"Incoming fire, about to ring the doorbell."},
+			{"text":"Vessel is in peril."},
+			{"text":"Under attack. Assistance... appreciated."},
+		],
+		"pursuing":[
+			{"text":"I am seeing a lot of hull shrapnel. Enemy morale destabilizing."},
+			{"text":"Enemy crew are panicking. Keep it up."},
+			{"text":"Maintain anti-warship cover. They are about to break."},
+			{"text":"Enemy warships are falling back."},
+		],
+		"running":[
+			{"text":"Momentary withdrawal. We will be back soon."},
+			{"text":"Pulling back. Just for a moment."}
+		],
+		"hull_90":[
+			{"text":"Armor rupture. Breach risk. Cover needed."},
+			{"text":"Taking hull damage."},
+		],
+		"hull_50":[
+			{"text":"We have a hull rupture. Full-on breach imminent. Repair."},
+			{"text":"Crew, fire on board. Attention needed."},
+			{"text":"We are burning. Deal with it."},
+		],
+		"hull_30":[
+			{"text":"Priority repair order: Hull ruptures. Decompression risk."},
+			{"text":"Fix that breach or this vessel is a memory."},
+			{"text":"Not to nag, but in short order everything that inside this ship will be outside this ship."}, #fucking amazing line
+			{"text":"Hull integrity critical."},
+		],
+		"overload":[
+			{"text":"Electrical hazard. Flux components compromised. Repair."},
+			{"text":"Alert: System capacity: Low. Repair capacitor banks, immediately."},
+			{"text":"Power grid in critical condition."},
+		],
+		"death":[
+			{"text":"We have lost the day. Mission logged as failure."},
+			{"text":"You were unprepared. This is on me."},
+			{"text":"Mission failed. This is... Sub-optimal."},
+		],
+		"victory":[
+			{"text":"Enemy in retreat. Sector secured. Drawing a line under this one."},
+			{"text":"The enemy is no longer a viable threat. Your tactics were sound."},
+			{"text":"Not a bad warmup. Objectives met. Moving on."},
+		],
+	}
+}

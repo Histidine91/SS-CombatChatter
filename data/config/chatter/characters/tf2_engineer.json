@@ -1,0 +1,72 @@
+{
+	"name":"The Engineer",		## Team Fortress 2, Engineer, quotes taken from voice lines
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["tf2", "game", "othermedia", "meme"],
+	
+	"lines":{
+		"start":[
+			{"text":"You're all about to have a real bad day!"},
+			{"text":"Cowboy up!"},
+			{"text":"Move 'em out!"},
+			{"text":"Let's raise a ruckus!"},
+		],
+		"start_boss":[
+			{"text":"This ain't no scrim, boys!"},
+		],
+		"retreat":[
+			{"text":"That just ain't right!"},
+			{"text":"That there is just a sad display, boy."},
+		],
+		"out_of_missiles":[
+			{"text":"Well, that sours *my* milk."},
+		],
+		"engaged":[
+			{"text":"You're in a big fat hurry to die, son."},
+			{"text":"You done incurred my wrath, son."},
+			{"text":"Let's do this Texas style!"},
+		],
+		"need_help":[
+			{"text":"I need some doggone help!"},
+		],
+		"pursuing":[
+			{"text":"This thing ain't on auto-pilot, son!"},
+			{"text":"Not fast enough; not by a damn sight."},
+			{"text":"Outta mah way!  Outta mah way!"},
+		],	
+		"running":[
+			{"text":"Hell boys, we better man up in a big damn hurry."},
+			{"text":"Now I've seen everything!"},
+		],
+		"hull_90":[
+			{"text":"Come on boys!  These Yankees are all hat and no battle!"},
+			{"text":"I'm done playin' games with you, boy."},
+		],
+		"hull_50":[
+			{"text":"This losin' streak ends now!"},
+			{"text":"This is *not* doing my spine any favors!"},
+		],
+		"hull_30":[
+			{"text":"Guess it's up to me now."},
+		],
+		"overload":[
+			{"text":"Do I look like a mule, boys?  I can't carry this whole dang fleet!"},
+		],
+		"death":[
+			{"text":"That there is just a sad display, boy."},
+			{"text":"Damnit, damnit, damnit, damnit!"},
+		],
+		"victory":[
+			{"text":"That's what ya get!"},
+			{"text":"Whoooowee!  Makin' bacon!"},
+			{"text":"And another thing: You're ugly."},
+			{"text":"If ya done it, it ain't braggin'!"},
+			{"text":"Weren't no thing."},
+			{"text":"That there was a fine piece of work."},
+			{"text":"Nice work, fellas!"},
+			{"text":"Son, I never said this to anybody before, but I am *damn* proud of you!"},
+		],
+	}
+}

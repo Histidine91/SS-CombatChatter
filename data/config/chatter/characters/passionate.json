@@ -1,0 +1,78 @@
+{
+	"name":"Passionate",
+	"personalities":["cautious","steady","aggressive","reckless"], #Bullet says: Timid captains don't exist.
+	"gender":["f","n"],
+	"chance":0.6,
+	"talkativeness":1.5, #shes kinda chatty sometimes.
+	"categoryTags":["original"],
+	
+	"lines":{
+		"start":[
+			{"text":"To glorious battle! Uh- be careful, everyone."},
+			{"text":"For the glory of our cause!"},
+			{"text":"Fleet, enter formation. I don't want to lose any of our lives or hulls."},
+			{"text":"Form up, everyone. Comms officer, get ready to relay orders."}
+		],
+		"start_boss":[
+			{"text":"I- oh, stars... We can't lose our nerve..."},
+			{"text":"This is it. Death or glory. We'll slay them."},
+		],		
+		"retreat":[
+			{"text":"I-I take full responsibility! Helmsman, get us out!"},
+			{"text":"We did all we could. Ship in full retreat."}
+		],
+		"out_of_missiles":[
+			{"text":"No ammo left! I think we've still got this."},
+			{"text":"Oh, no... We're out of missiles."}
+		],
+		"engaged":[
+			{"text":"We meet the enemy in battle!"},
+			{"text":"We're engaging. Everyone, stick to your formations."},
+			{"text":"Crew, I'm counting on you..."}
+		],
+		"need_help":[
+			{"text":"They're stronger than we thought. We'll hold."},
+			{"text":"We're in trouble! Engineering teams, keep an eye on the flux!"},
+			{"text":"Eek! I- uh, need support!"},
+		],
+		"pursuing":[
+			{"text":"We're in pursuit! No mercy!"},
+			{"text":"In pursuit, what a rush!"},
+			{"text":"Gunnery crews, break them apart!"}
+		],
+		"running":[
+			{"text":"Eep- we need to pull back!"}
+		],
+		"hull_90":[
+			{"text":"Our armor's breached!"},
+			{"text":"Wah! I felt that all the way from the bridge!"},
+		],
+		"hull_50":[
+			{"text":"T-the hull! The ship is coming apart!"},
+			{"text":"Grh... They'll pay for that! We'll make it!"},
+			{"text":"I'll save you all, I swear!"},
+		],
+		"hull_30":[
+			{"text":"All crew to sealed compartments! I won't lose you!"},
+			{"text":"Ship is in critical condition! We might not make it..."},
+			{"text":"No! We need to hang in there..!"},
+			{"text":"*Clang!* Gyah! A chunk of the bridge just hit my helmet!"},
+		],
+		"overload":[
+			{"text":"Eek! Ship's overloaded!"},
+			{"text":"Overload! Engineering teams, we're relying on you!"},
+			{"text":"Woah! Almost fried myself on a conduit!"},
+		],
+		"death":[
+			{"text":"GAAAH! Evacuate the flagship!!"},
+			{"text":"No... NO!! I never wanted to lose any of you!"},
+			{"text":"Uugh... The fleet can't break, not now..."},
+		],
+		"victory":[
+			{"text":"That's it! Once the rush dies down, get ready to repair your hulls."},
+			{"text":"We've done it, we've defeated them!"},
+			{"text":"Victory! I hope they had enough spare parts to keep us going..."},
+			{"text":"Bridge crew, drinks are on me the next time we make port!"},
+		],
+	}
+}

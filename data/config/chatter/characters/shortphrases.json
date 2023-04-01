@@ -1,0 +1,70 @@
+{
+	"name":"Short Phrases", # Technically the Carnival from library of ruina, but... Shh...
+	"personalities":["timid","cautious","steady","aggressive","reckless"],
+	"gender":["m","f","n"],
+	"chance":0,
+	"talkativeness":1, #not to be confused with midnight dissonant
+	"categoryTags":["othermedia", "game", "libraryofruina"],
+	
+	"lines":{
+		"start":[
+			{"text":"Begin? Not seam weak. Caution?"},
+			{"text":"Look dangerous? Thought, was safe."},
+			{"text":"Reduce unnecessary action. Race against time?"},
+			{"text":"Not like threats? Cannot stand and take all day."},
+		],
+		"start_boss":[
+			{"text":"Seem strong? Won't be problem."},
+		],	
+		"retreat":[
+			{"text":"Escape? No danger."},
+			{"text":"Retreat. Will be safe?"},
+		],
+		"out_of_missiles":[
+			{"text":"Missile supply empty? Change tactics."},
+			{"text":"Other weapons needed? No missiles."},
+		],
+		"engaged":[
+			{"text":"Engage. Destroy soon? Not able to break yet."},
+			{"text":"Look like we will win? Seem obvious."},
+			{"text":"Will be very dangerous? Not likely. Will be cautious."},
+		],
+		"need_help":[
+			{"text":"Need help. In danger. Will receive?"},
+			{"text":"Got ahead of self? In danger."},
+		],
+		"pursuing":[
+			{"text":"Must get rid of quickly. Become nuisance?"},
+			{"text":"Target is fleeing. Will pursue. Yield salvage?"},
+		],
+		"running":[
+			{"text":"Danger. Retreat? Will return soon."},
+			{"text":"Will sustain damage. Avoid?"},
+		],
+		"hull_90":[
+			{"text":"Hurts. Is dangerous? Will destroy."},
+			{"text":"Danger? Armor damage."},
+		],
+		"hull_50":[
+			{"text":"Armor ruptured? Self vulnerable. Continue?"},
+			{"text":"Armor damage. Will lose at this rate?"},
+		],
+		"hull_30":[
+			{"text":"Danger. Hull rupturing. Request aid?"},
+			{"text":"Extreme damage. Failure is imminent?"},
+		],
+		"overload":[
+			{"text":"Overload. Problem? Resolve soon."},
+			{"text":"Systems failing? Flux. Caution."},
+		],
+		"death":[
+			{"text":"...Cannot be? Have unfinished work."},
+			{"text":"Impossible? Defeat. Was miscalculation?"},
+		],
+		"victory":[
+			{"text":"Excited? Won. Feel highly elated?"},
+			{"text":"Survived. Successful? Must proceed."},
+			{"text":"All left is returning salvage to fleet. Handle quickly?"},
+		],
+	}
+}

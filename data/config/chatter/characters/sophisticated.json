@@ -1,0 +1,76 @@
+{
+	"name":"Sophisticated", #vague Artemis Fowl vibes.
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.7,
+	"talkativeness":1.25,
+	"categoryTags":["original"],
+	
+	"lines":{
+		"start":[
+			{"text":"At the risk of sounding clichéd, we've been expecting you."}, #if the é doesn't work then replace it with an e
+			{"text":"Awaiting orders. We'll do this by the book."},
+		],
+		"start_boss":[
+			{"text":"Be advised, a high-threat battlegroup is inbound. Remain focused."},
+			{"text":"Well, well. It looks like we've got quite a challenge on our hands."},
+		],		
+		"retreat":[
+			{"text":"Retreating now. I do prefer fleeing to getting immolated."},
+			{"text":"Evacuating now, commander. I appreciate being allowed to disengage at all."}
+		],
+		"out_of_missiles":[
+			{"text":"It seems we've run out of ammunition."},
+			{"text":"We're out of missiles. It may be time to adjust our tactics."}
+		],
+		"engaged":[
+			{"text":"Engaging. Do make sure I'm covered."},
+			{"text":"Now, where is their armor softest..?"},
+			{"text":"Preparing to engage. This will be easy."}
+		],
+		"need_help":[
+			{"text":"Requesting assistance. In a timely manner, please."},
+			{"text":"It would seem we've overextended."},
+			{"text":"This is... Less than optimal."},
+		],
+		"pursuing":[
+			{"text":"Excellent. They're breaking."},
+			{"text":"It seems they've finally figured out who they're up against."},
+			{"text":"My, my. These ones didn't have as much mettle as they thought."},
+			{"text":"We have the upper hand. Perfection."},
+		],
+		"running":[
+			{"text":"I've overextended! If you'd excuse me for a short moment..."},
+			{"text":"Apologies, but we need to step back for some time."}
+		],
+		"hull_90":[
+			{"text":"That hurt nothing but my pride."},
+			{"text":"Tch. A rather poor start..."},
+		],
+		"hull_50":[
+			{"text":"We're in a sorry condition. We may want to retreat."},
+			{"text":"The situation is escalating. Are you sure we should continue, commander?"},
+			{"text":"Integrity is down to 50 percent, requesting aid!"},
+		],
+		"hull_30":[
+			{"text":"Taking casualties! I- I don't want to be next!"},
+			{"text":"We're barely avoiding going critical! Commander, we need to withdraw!"},
+			{"text":"Oh, heavens! We're taking severe damage!"}
+		],
+		"overload":[
+			{"text":"Overload. We can't lose our composure."},
+			{"text":"That was too much for our capacitors. Do keep us covered for a moment."},
+			{"text":"Ah! Keep us safe, we seem to have overloaded. "},
+		],
+		"death":[
+			{"text":"I'm sorry to report... I'm no longer fit for duty..."},
+			{"text":"Dismissed."},
+			{"text":"Not here, not now..!"},
+		],
+		"victory":[
+			{"text":"Excellent work."},
+			{"text":"Well done, crew. I believe I've earned my paycheck with that one."},
+			{"text":"At the risk of sounding clichéd, nothing can stop us now."},
+		],
+	}
+}

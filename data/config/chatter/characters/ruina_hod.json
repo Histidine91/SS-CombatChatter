@@ -1,0 +1,81 @@
+{
+	"name":"Ruina_Hod",
+	"personalities":["timid","cautious","steady","aggressive"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "libraryofruina"],
+	
+	"lines":{
+		"start":[
+			{"text":"If we brace ourselves and react calmly, we can win this."},
+			{"text":"Be calm, everything will work out... Maybe..."},
+			{"text":"I... Don't know if I'm strong enough for this."},
+			{"text":"I'm nervous, but... I'll do my best..!"},
+		],
+		"start_boss":[
+			{"text":"Alright, here they come! I want you to take this seriously!"},
+			{"text":"We have no choice but to fulfill our roles..."},
+		],	
+		"retreat":[
+			{"text":"I should've done a better job."},
+			{"text":"At least I'll be away from the bloodshed..."},
+			{"text":"I'm sorry, but we need to retreat..."},
+		],
+		"out_of_missiles":[
+			{"text":"Out of missiles. I should stay calm, and..."},
+			{"text":"We're out of missiles..."},
+			{"text":"We used up all of our ammo. Did we get careless?"},
+		],
+		"engaged":[
+			{"text":"I'm sorry, but this is my only option."},
+			{"text":"I hope we can finish this without any losses..."},
+			{"text":"Engaging... I feel so bad for their crew..."},
+		],
+		"need_help":[
+			{"text":"I-I'll save you all!"},
+			{"text":"We need help..!"},
+			{"text":"I need assistance... I still have a lot to improve..."},
+		],
+		"pursuing":[
+			{"text":"I'm sorry, you probably don't want to die like this..."},
+			{"text":"...You did well enough. I don't want to finish you off, but..."},
+			{"text":"I'm sorry, but I need to destroy your ship..."},
+		],
+		"running":[
+			{"text":"I'm a little unsure of what to do now..!"},
+			{"text":"I can't let my crew die in vain..."},
+			{"text":"We're pulling back. I can't let the fleet break..."},
+		],
+		"hull_90":[
+			{"text":"They b-broke through!"},
+			{"text":"Uh- um, we're taking damage!"},
+			{"text":"The hull is starting to buckle..!"},
+		],
+		"hull_50":[
+			{"text":"T-they're tearing through our hull!"},
+			{"text":"Our armor is coming apart... I should've done a better job."},
+			{"text":"I'm sorry, everyone! We're taking too much damage!"},
+		],
+		"hull_30":[
+			{"text":"We're in critical condition, I can't..!"},
+			{"text":"I tried so hard, b-but..."},
+			{"text":"...I- I don't know what to do..!"},
+		],
+		"overload":[
+			{"text":"I let the ship overload, I should've done a better job!"},
+			{"text":"Um, we're overloading! I couldn't-"},
+			{"text":"O-overloading! I'm sorry!"},
+		],
+		"death":[
+			{"text":"...I was... Nothing but trouble in the end. I'm- I'm just..."},
+			{"text":"I'm so sorry..!"},
+			{"text":"I tried so hard, why does it always end like this..?"},
+		],
+		"victory":[
+			{"text":"I'm glad I could make it through this with everyone."},
+			{"text":"I'll try to improve further the next time we get in a fight."},
+			{"text":"We won..! Thanks for the great work, everyone..!"},
+		],
+	}
+}

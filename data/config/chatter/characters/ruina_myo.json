@@ -1,0 +1,68 @@
+{
+	"name":"Ruina_Myo", #Everyone's favorite PMC merc. Queen of deadly euphemisms. Probably really unhinged.
+	"personalities":["steady","aggressive","reckless"],
+	"gender":["f","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "libraryofruina"], #references the Rabbit Team a lot. Not as sector-friendly but still MIIIIGHT fit if you suspend your disbelief. 
+	
+	"lines":{
+		"start":[
+			{"text":"Hippity hop~! The rabbits have come to graze the grass!"},
+			{"text":"Just leave it to the Rabbit Team!"},
+			{"text":"Ready to graze the grass!"},
+			{"text":"Rabbit team, move out!"},
+		],
+		"start_boss":[
+			{"text":"*Sigh* I'm not a fan of such dry grass. We'll graze it just the same, Rabbits."},
+		],	
+		"retreat":[
+			{"text":"..."},
+			{"text":"Live to graze another grassland."},
+		],
+		"out_of_missiles":[
+			{"text":"That's the last of our ammo. Pff, like I need it!"},
+			{"text":"Out of missiles. There's still a lot of grass left to graze!"},
+		],
+		"engaged":[
+			{"text":"Time to graze the grass."},
+			{"text":"The bastards in the fringe would be tougher than this!"},
+			{"text":"Let's graze!"},
+		],
+		"need_help":[
+			{"text":"Use more firepower!"},
+			{"text":"Oh, those crazy asses- A little help?"},
+		],
+		"pursuing":[
+			{"text":"DIE! Hahah! This is nothing!"},
+			{"text":"Let's graze the rest of em' and go back!"},
+		],
+		"running":[
+			{"text":"Too dangerous to graze. We'll pull back for a minute."},
+		],
+		"hull_90":[
+			{"text":"...We'll do this as usual."},
+			{"text":"That won't stop us from grazing!"},
+		],
+		"hull_50":[
+			{"text":"We can't get sloppy, rabbits!"},
+			{"text":"Am expedition to the fringe might've been more fun..."},
+		],
+		"hull_30":[
+			{"text":"There's still so much grass to graze! We can't stop now!"},
+			{"text":"I won't stand back..."},
+		],
+		"overload":[
+			{"text":"Not good. We'll graze them as soon as we recover."},
+		],
+		"death":[
+			{"text":"Khrf... Hahaha... I let my guard down..."},
+			{"text":"I guess I'll never graze... Another grassland..."},
+		],
+		"victory":[
+			{"text":"Phew~ That was tiring. Shall we go back now?"},
+			{"text":"Yem..."}, #Rabbit noise or something. IDK what it is but a Myo fan told me to add it.
+			{"text":"That was a lot of grass to graze. Nice work, Rabbit Team."},
+		],
+	}
+}

@@ -1,0 +1,83 @@
+{
+	"name":"Ruina_Yesod", #Not to be confused with the league-controlled planet
+	"personalities":["cautious","steady","aggressive","reckless"], #maaaaaaaayyyyybe not reckless
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "libraryofruina"],
+	
+	"lines":{
+		"start":[
+			{"text":"I don't want to waste any time. Let's end this quickly."},
+			{"text":"We need to make sound judgement in situations such as this."},
+			{"text":"If there's no opportunity to strike, we'll simply make one."},
+			{"text":"While we need to fight with all we have, it's not advised to push our ships farther beyond that."},
+			{"text":"Taunting the enemy over comms is unnecessary in combat."},
+		],
+		"start_boss":[
+			{"text":"It will be naturally harder to aim for its weak points if you control your weapons too recklessly."},
+			{"text":"If there's no opportunity for us to break through, we'll make our own."},
+		],	
+		"retreat":[
+			{"text":"I do not want to witness any more death."},
+			{"text":"We must withdraw from the field of battle."},
+			{"text":"It's our fault we need to retreat."},
+		],
+		"out_of_missiles":[
+			{"text":"We've run out of ammunition. Do not panic."},
+			{"text":"It is time to change our tactics. We have used all of our munitions."},
+			{"text":"Perhaps if we did not use our missiles so recklessly..."},
+		],
+		"engaged":[
+			{"text":"Crew, hasty actions will bring you more harm than good."},
+			{"text":"We must think and act quickly, most importantly of all."},
+			{"text":"It is unnecessary to taunt our opponent."},
+		],
+		"need_help":[
+			{"text":"We require assistance. However, do not endanger yourselves."},
+			{"text":"A miscalculation. My crew needs aid."},
+			{"text":"I need your help, if it is not too much of a risk."},
+		],
+		"pursuing":[
+			{"text":"Recklessly charging is not an efficient method of offense."},
+			{"text":"They are moving to withdraw. I suppose we must finish them off..."},
+			{"text":"I do not want to waste any more of our time. Finish them."},
+		],
+		"running":[
+			{"text":"We need to reposition."},
+			{"text":"My crew needs time to recover. Repositioning."},
+			{"text":"I must step aside momentarily."},
+		],
+		"hull_90":[
+			{"text":"Receiving minor damage. We must stay calm."},
+			{"text":"Our armor has been penetrated. If we panic, we've already lost."},
+			{"text":"They've broken through our defenses momentarily."},
+			{"text":"The ship is damaged. We are still capable."},
+		],
+		"hull_50":[
+			{"text":"My crew has gotten overconfident."},
+			{"text":"Requesting assistance. We are in significant danger."},
+			{"text":"We are in a bad situation. Do not lose your cool."},
+		],
+		"hull_30":[
+			{"text":"There is no need to pity us."},
+			{"text":"We have miscalculated..."},
+			{"text":"...I suppose I must accept it."},
+		],
+		"overload":[
+			{"text":"Overload. We must step back."},
+			{"text":"We must reevaluate our tactics."},
+			{"text":"We've overloaded. Do not endanger yourself to cover us."},
+		],
+		"death":[
+			{"text":"There is no need to take pity on me, commander..."},
+			{"text":"Please do not panic, commander. I want you to stay focused on the battle."},
+			{"text":"It's entirely my fault that I've met such a fate."},
+		],
+		"victory":[
+			{"text":"This isn't particularly delightful, I must say... Good work, nonetheless."},
+			{"text":"Good work, crew. Repair immediate damage and retire to your quarters, for now."},
+			{"text":"I frankly dislike how I am becoming numb to witnessing death."},
+		],
+	}
+}

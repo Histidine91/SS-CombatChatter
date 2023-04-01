@@ -1,0 +1,63 @@
+{
+	"name":"Ruina_Hokma", #hokma balls, GOT EM'
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m"],
+	"chance":0.5,
+	"talkativeness":1.5,
+	"categoryTags":["othermedia", "game", "libraryofruina"], #not sure about the tags, these are intended to be closer to the defaults. Give em whatever tags you want
+	
+	"lines":{
+		"start":[
+			{"text":"What matters more than strength... Is the faith in our victory."},
+			{"text":"You may deceive your foes, but remember that you must be true to yourself at all times."},
+			{"text":"All deeds require the same resolve to pull oneself through."},
+			{"text":"Stay true to your belief, and act for it."},
+		],
+		"start_boss":[
+			{"text":"Let us begin, then. You have come to the point of no return."},
+			{"text":"I urge you to gain composure. Opening your eyes comes next."},
+		],	
+		"retreat":[
+			{"text":"Overconfidence is the greatest enemy. We humbly withdraw."},
+		],
+		"out_of_missiles":[
+			{"text":"There is no halting now. We have already spent all of our ammunition."},
+			{"text":"We have run out of missiles. Perhaps we should reconsider our tactics."},
+		],
+		"engaged":[
+			{"text":"Relying on brute strength alone to push through is possibly the most impudent thing you could do."},
+			{"text":"We all simply perform our duties."},
+			{"text":"In the end, this is all a pointless errand."}, #the easiest way to refute a moral nihilist is to kill them
+		],
+		"need_help":[
+			{"text":"One does not easily... Take all possibilities into consideration."},
+		],
+		"pursuing":[
+			{"text":"Boundless pride and ambition will bring about a bitter end."},
+			{"text":"There cannot be a good reason for me to take their lives, no. I am merely in a hurry to end this work."},
+		],
+		"running":[
+			{"text":"It seems that we must withdraw."},
+		],
+		"hull_90":[
+			{"text":"There is no halting now. We have already made the first step."},
+		],
+		"hull_50":[
+			{"text":"Overconfidence is the greatest enemy. We must humbly keep our post."},
+		],
+		"hull_30":[
+			{"text":"In the end, this is all a pointless errand."},
+			{"text":"One could make endless questions as to why this must be taken so far."},
+		],
+		"overload":[
+			{"text":"We will recover from this setback, in time."},
+		],
+		"death":[
+			{"text":"..."},
+		],
+		"victory":[
+			{"text":"Did you truly believe that there was clear benefit to be react from this battle?"},
+			{"text":"...It seems the work has been done."},
+		],
+	}
+}

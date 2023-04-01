@@ -1,0 +1,82 @@
+{
+	"name":"Ruina_Gebura", #Sadly she won't manifest E.G.O.
+	"personalities":["steady","aggressive","reckless"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "libraryofruina"],
+	
+	"lines":{
+		"start":[
+			{"text":"Only weak-willed punks burn away before things even begin."},
+			{"text":"You know this isn't a silly game, yeah?"},
+			{"text":"Mind where you point those guns at."},
+			{"text":"Let's give it our best shot. Work together."},
+			{"text":"This ship's a bit weaker than my previous ones, but I got no problem handling it."},
+		],
+		"start_boss":[
+			{"text":"Pluck up. We're molded by the hardships and discipline of the past."},
+			{"text":"Shouldn't let your strength get to your head. You'll leave your crew wide open."},
+		],	
+		"retreat":[
+			{"text":"Retreating. Better to live to fight another day."},
+			{"text":"It's not gonna end like this. Retreating."},
+			{"text":"Getting out of here."},
+		],
+		"out_of_missiles":[
+			{"text":"Outta missiles. Keep cool."},
+			{"text":"That's the last of our missiles."},
+			{"text":"That's all our ammo. Better hope we used it well."},
+		],
+		"engaged":[
+			{"text":"Everyone ready? Let's beat them into submission."},
+			{"text":"The most important thing is to figure out what they'll try next and keep up with it."},
+			{"text":"Let's do this."},
+		],
+		"need_help":[
+			{"text":"Need backup. Stay cool."},
+			{"text":"Not looking very good. Stay frosty."},
+			{"text":"We need a hand with these ones."},
+		],
+		"pursuing":[
+			{"text":"Careless and unfocused orders are a leading cause of death."},
+			{"text":"Thought you could get us? Not a chance."},
+			{"text":"Shoulda acted smart if you knew your crew was lacking."},
+		],
+		"running":[
+			{"text":"Gr... Pullin' back."},
+			{"text":"We're in over our heads. Need to regroup."},
+			{"text":"Upsetting... But I have to pull back."},
+		],
+		"hull_90":[
+			{"text":"Stay frosty. We've got a bit of damage."},
+			{"text":"They've got some hits in on us."},
+			{"text":"Hull's exposed in some spots. Careful."},
+			{"text":"Stay calm. Can't falter just because we lost a little armor."},
+		],
+		"hull_50":[
+			{"text":"Heavy fire incoming. Keep your cool."},
+			{"text":"Damn it, a lot of the hull's exposed."},
+			{"text":"Things aren't looking good, but we can't stop here."},
+		],
+		"hull_30":[
+			{"text":"Rch, damn. Takin' heavy hits."},
+			{"text":"Let's take em' down, but not before we've tempered our anger."},
+			{"text":"Can't falter now..."},
+		],
+		"overload":[
+			{"text":"We can't let ourselves falter. Get the systems back up, quickly."},
+			{"text":"Overloading. Stay calm."},
+		],
+		"death":[
+			{"text":"I was a fool... I wasn't such a coward before."},
+			{"text":"It's upsetting... But I'll have to accept it."},
+			{"text":"Damn it, I wasn't hoping to retire this way..."},
+		],
+		"victory":[
+			{"text":"We got this over with smoothly. Good work, everyone."},
+			{"text":"Performance, experience, and results. Our side completely overwhelmed theirs."},
+			{"text":"Even though we've won, keep in mind we shouldn't take each other's sacrifices for granted."},
+		],
+	}
+}
