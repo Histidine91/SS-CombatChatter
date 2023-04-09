@@ -47,7 +47,7 @@ rori,"free,criminal"
 pack,free
 patnavy,military
 pbc,military
-scalartech,military
+scalartech,"military,corporate"
 SCY,"military,criminal"
 shadow_industry,military
 spire,military
@@ -56,7 +56,7 @@ sun_ice,"military,free"
 sun_ici,military
 sylphon,corporate
 syndicate_asp,"military,corporate"
-tahlan_legioinfernalis,criminal
+tahlan_legioinfernalis,"military,criminal"
 templars,"military,christian"
 tiandong,"military,corporate"
 valkyrian,military
