@@ -41,10 +41,15 @@ public class SetChatterChar implements BaseCommand {
 		String nameSearch = builder.toString();
 		PersonAPI selectedOfficer = null;
 		
+		
 		if (!ChatterDataManager.CHARACTERS_MAP.containsKey(charID))
 		{
-			Console.showMessage("Character not found for ID: " + charID);
-			return CommandResult.ERROR;
+			String bestChar = CommandUtils.findBestStringMatch(charID, ChatterDataManager.CHARACTERS_MAP.keySet());
+			if (bestChar == null) {
+				Console.showMessage("Character not found for ID: " + charID);
+				return CommandResult.ERROR;
+			}
+			charID = bestChar;
 		}
 		
 		if (nameSearch.toLowerCase().equalsIgnoreCase("self") || nameSearch.toLowerCase().equalsIgnoreCase("player"))
