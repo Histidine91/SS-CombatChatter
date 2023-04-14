@@ -7,6 +7,7 @@ import java.util.Map;
 import org.histidine.chatter.ChatterConfig;
 import org.histidine.chatter.ChatterDataManager;
 import org.histidine.chatter.campaign.ChatterCampaignListener;
+import org.histidine.chatter.utils.LunaConfigHelper;
 
 public class ChatterModPlugin extends BaseModPlugin
 {
@@ -15,6 +16,9 @@ public class ChatterModPlugin extends BaseModPlugin
 	@Override
 	public void onGameLoad(boolean newGame) {
 		Global.getSector().addTransientListener(new ChatterCampaignListener());
+		if (Global.getSettings().getModManager().isModEnabled("lunalib")) {
+			LunaConfigHelper.createListener();
+		}
 		ChatterDataManager.loadCharacters();
 	}
 	
