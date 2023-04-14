@@ -1,3 +1,8 @@
+Version 1.13.1
+
+* Fix ingame changes in Luna config not applying
+* Fix player name substitution
+
 Version 1.13
 
 === New characters ===
