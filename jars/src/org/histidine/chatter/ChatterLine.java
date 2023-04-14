@@ -45,8 +45,8 @@ public class ChatterLine {
 			
 			PersonAPI player = Global.getSector().getPlayerPerson();
 			{
-				String last = person.getName().getLast();
-				if (last == null || last.isEmpty()) last = person.getName().getFirst();
+				String last = player.getName().getLast();
+				if (last == null || last.isEmpty()) last = player.getName().getFirst();
 				str = StringHelper.substituteToken(str, "$playerName", player.getNameString());
 				str = StringHelper.substituteToken(str, "$playerLastName", last);
 				str = StringHelper.substituteToken(str, "$playerSurname", last);
