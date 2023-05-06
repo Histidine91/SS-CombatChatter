@@ -75,7 +75,7 @@ public class ChatterLine {
 		String[] array = shipName.split(" ");
 		if (array.length < 2) return shipName;
 		String maybePrefix = array[0];
-		Global.getLogger(this.getClass()).info(String.format("Extracted maybePrefix %s from ship name %s", maybePrefix, member.getShipName()));
+		//Global.getLogger(this.getClass()).info(String.format("Extracted maybePrefix %s from ship name %s", maybePrefix, member.getShipName()));
 		
 		if (maybePrefix.length() > 5) return shipName;
 		
