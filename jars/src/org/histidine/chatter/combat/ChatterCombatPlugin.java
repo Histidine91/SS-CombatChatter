@@ -361,6 +361,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			ShipAPI ship = getShipForMember(member);
 			if (ship != null) shipName = ship.getName();
 			else shipName = member.getShipName();
+			// cleaner than the way I was doing it before but mehhh
+			//if (includeClass) shipName += "(" + member.getHullSpec().getHullNameWithDashClass() + ")";
 			if (includeClass) shipName += " (" + StringHelper.getStringAndSubstituteToken(
 					"chatter_general", "class", "$class", member.getHullSpec().getHullName())
 					+ ")";
@@ -555,8 +557,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		} else {
 			message = genericFallback;
 		}
-
-		String name = getShipName(member, true);
+		
 		Color textColor;
 		switch (category) {
 			case HULL_50:
@@ -599,12 +600,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return false;
 		}
 		
-		if (fallback) {
-			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, textColor, message);
-		}
-		else {
-			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Misc.getTextColor(), ": ", textColor, message);
-		}
+		printMessage(member, message, textColor, !fallback);
 		
 		if (!fallback) {
 			lastMessageTime = timeElapsed;
@@ -614,6 +610,15 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		return !fallback;
+	}
+	
+	public void printMessage(FleetMemberAPI member, String message, Color textColor, boolean withColon) {
+		String name = getShipName(member, true);
+		if (withColon) {
+			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Misc.getTextColor(), ": ", textColor, message);
+		} else {
+			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, textColor, message);
+		}		
 	}
 	
 	protected boolean meetsPriorityThreshold(FleetMemberAPI member, MessageType category)
