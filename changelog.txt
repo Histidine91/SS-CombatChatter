@@ -1,3 +1,8 @@
+Version 1.13.2
+
+* Compatibility with Starsector 0.96, MagicLib 1.0.0 and LunaLib 1.7.0
+* Remove minor log spam
+
 Version 1.13.1
 
 * Fix ingame changes in Luna config not applying
@@ -38,17 +43,3 @@ Thanks to Zumberge and Bulletkin for most of these.
 * Can substitute officer name, player name, and ship name/class into chatter lines
 * Don't load blank CSV entries
 * Some line additions
-
-
-Version 1.12
-
-* Add new characters
-    * Compiled by imba512: duke_nukem, sc_battlecruiser, tf2_soldier
-    * Compiled by Bullet: dd_reynauld, drg_miner, drg_missioncontrol, me_quarian
-* Various text tweaks to existing characters
-* `PrintChatterChars` command includes the ship the officer is on, if any
-* `noEnemyChatterFactions` also applies to NPC allies (so Remnant allies won't talk by default)
-* Fix ships having wrong character when using Neural Link
-* Chatter box properly handles non-standard portrait sizes
-* Update character faction config
-* Get ship name prefixes from FactionAPI instead of reading a manually created CSV
