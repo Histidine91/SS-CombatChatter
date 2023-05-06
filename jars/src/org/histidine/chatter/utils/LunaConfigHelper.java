@@ -44,6 +44,7 @@ public class LunaConfigHelper implements LunaSettingsListener {
         } catch (NullPointerException npe) {
             // config not created yet I guess, do nothing
         }
+        createListener();
     }
 
     public static void loadConfigFromLuna() {
@@ -137,7 +138,9 @@ public class LunaConfigHelper implements LunaSettingsListener {
 
     public static LunaConfigHelper createListener() {
         LunaConfigHelper helper = new LunaConfigHelper();
-        Global.getSector().getListenerManager().addListener(helper, true);
+        //Global.getSector().getListenerManager().addListener(helper, true);
+		LunaSettings.INSTANCE.addListener(helper);
+		
         return helper;
     }
 
