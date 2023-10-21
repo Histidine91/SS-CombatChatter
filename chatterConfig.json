@@ -16,7 +16,7 @@
 	# at least this proportion of the ship's weapon OPs should be in missiles, else it won't print "out of missiles" messages
 	"minMissileOPFractionForChatter": 0.2,
 	
-	"noEnemyChatterFactions":["derelict", "remnant", "mess", "mess_remnant", "domres", "blade_breakers", "omega"],	# also applies when these factions join you as allies
+	"noEnemyChatterFactions":["derelict", "remnant", "mess", "mess_remnant", "domres", "blade_breakers", "omega", "sotf_taken", "rat_abyssals", "rat_abyssals_deep", "enigma"],	# also applies when these factions join you as allies
 	
 	# any characters with any of the category tags in this list will not be picked ingame
 	# tags of interest may include: "othermedia" (all configs taken from another game, film, etc.); "meme"
@@ -25,5 +25,5 @@
 	"introSplashFleetTypes":[
 		"personBounty", "exerelinInvasionFleet", "vengeanceFleet", "nex_specialForces", "famousBounty",
 	],
-	"introSplashFactions":["remnant", "mess", "mess_remnant", "blade_breakers"]	# TODO
+	"introSplashFactions":["remnant", "mess", "mess_remnant", "blade_breakers", "rat_abyssals_deep"]	# TODO
 }
