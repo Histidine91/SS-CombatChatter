@@ -314,12 +314,22 @@ public class ChatterDataManager {
 	
 	public static String getFactionFromShip(FleetMemberAPI ship) {
 		if (ship.getCaptain() != null && !ship.getCaptain().getFaction().isNeutralFaction()) {
+			//log.info(ship.getShipName() + " getting faction from captain: " + ship.getCaptain().getFaction().getId());
 			return ship.getCaptain().getFaction().getId();
+		}
+		if (ship.getFleetData() != null && ship.getFleetData().getFleet() != null) {
+			//log.info(ship.getShipName() + " getting faction from fleet: " + ship.getFleetData().getFleet().getFaction().getId());
+			return ship.getFleetData().getFleet().getFaction().getId();
 		}
 		
 		String factionId = getFactionIDFromShipNamePrefix(ship.getShipName());
-		if (factionId.isEmpty())
+		if (factionId.isEmpty()) {
 			factionId = getFactionIDFromHullID(ship.getHullId());
+			//log.info("Getting faction from hull ID: " + factionId);
+		}			
+		else {
+			//log.info("Getting faction from ship name prefix: " + factionId);
+		}
 		
 		return factionId;
 	}

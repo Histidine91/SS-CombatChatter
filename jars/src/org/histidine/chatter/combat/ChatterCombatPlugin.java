@@ -115,7 +115,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected CombatEngineAPI engine;
 	protected IntervalUtil interval = new IntervalUtil(0.4f, 0.5f);
 	protected Map<FleetMemberAPI, ShipStateData> states = new HashMap<>();
-	protected Set<FleetMemberAPI> ignore = new HashSet<>();
+	protected Map<FleetMemberAPI, Boolean> ignore = new HashMap<>();
 	protected List<BoxMessage> boxMessages = new LinkedList<>();
 	
 	protected FleetMemberAPI lastTalker = null;
@@ -251,29 +251,29 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	
 	protected boolean isIgnored(FleetMemberAPI member)
 	{
-		if (ignore.contains(member)) return true;
+		if (ignore.containsKey(member)) return ignore.get(member);
 		
 		if (!ChatterConfig.allyChatter && member.isAlly()) {
-			ignore.add(member);
+			ignore.put(member, true);
 			return true;
 		}
 		if (member.getHullSpec().hasTag("no_combat_chatter")) {
-			ignore.add(member);
+			ignore.put(member, true);
 			return true;
 		}
 		if (ChatterDataManager.EXCLUDED_HULLS.contains(member.getHullId()))
 		{
-			ignore.add(member);
+			ignore.put(member, true);
 			return true;
 		}
 		if (member.isFighterWing() && member.getHullSpec().getMaxCrew() <= 0)
 		{
-			ignore.add(member);
+			ignore.put(member, true);
 			return true;
 		}
 		// non-fighter fleet member that's fighter-sized
 		if (!member.isFighterWing() && member.getHullSpec().getHullSize() == HullSize.FIGHTER) {
-			ignore.add(member);
+			ignore.put(member, true);
 			return true;
 		}
 		
@@ -283,7 +283,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			// ignore modules
 			if (ship.getParentStation() != null)
 			{
-				ignore.add(member);
+				ignore.put(member, true);
 				return true;
 			}
 			
@@ -294,12 +294,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				if (ChatterConfig.noEnemyChatterFactions.contains(faction)
 						|| !ChatterConfig.enemyChatter) {
 					//log.info("Enemy ship " + member.getShipName() + " being ignored: " + faction);
-					ignore.add(member);
+					ignore.put(member, true);
 					return true;
 				}
 			}
 		}
 		
+		ignore.put(member, false);
 		return false;
 	}
 	
