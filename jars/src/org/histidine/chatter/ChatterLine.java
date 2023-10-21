@@ -68,6 +68,7 @@ public class ChatterLine {
 	 */
 	public String stripShipNamePrefix(FleetMemberAPI member) {
 		String shipName = member.getShipName();
+		if (shipName == null) return "";
 		FactionAPI faction = null;
 		if (member.getFleetData() != null && member.getFleetData().getFleet() != null) {
 			faction = member.getFleetData().getFleet().getFaction();
