@@ -4,8 +4,11 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import org.histidine.chatter.ChatterLine;
+import org.histidine.chatter.combat.ChatterCombatPlugin;
 import org.json.JSONArray;
 
 public class GeneralUtils {
@@ -54,6 +57,20 @@ public class GeneralUtils {
 				return 8;
 			default:
 				return 1;
+		}
+	}
+	
+	public static boolean preShowChatMessage(ChatterCombatPlugin plugin, FleetMemberAPI member, ChatterLine line, String text, boolean floaty, boolean inMessageBox, Color textColor) {
+		for (ChatterListener listener : plugin.getListeners()) {
+			if (!listener.preShowChatMessage(member, line, text, floaty, floaty, textColor))
+				return false;
+		}
+		return true;
+	}
+	
+	public static void shownChatMessage(ChatterCombatPlugin plugin, FleetMemberAPI member, ChatterLine line, String text, boolean floaty, boolean inMessageBox, Color textColor) {
+		for (ChatterListener listener : plugin.getListeners()) {
+			listener.shownChatMessage(member, line, text, floaty, floaty, textColor);
 		}
 	}
 }

@@ -49,6 +49,7 @@ import org.histidine.chatter.ChatterConfig;
 import org.histidine.chatter.ChatterLine;
 import org.histidine.chatter.ChatterLine.MessageType;
 import org.histidine.chatter.ChatterDataManager;
+import org.histidine.chatter.utils.ChatterListener;
 import org.histidine.chatter.utils.StringHelper;
 import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.ui.FontException;
@@ -59,7 +60,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
 
-public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
+public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListener {
 
 	public static Logger log = Global.getLogger(ChatterCombatPlugin.class);
 	
@@ -117,6 +118,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected Map<FleetMemberAPI, ShipStateData> states = new HashMap<>();
 	protected Map<FleetMemberAPI, Boolean> ignore = new HashMap<>();
 	protected List<BoxMessage> boxMessages = new LinkedList<>();
+	protected List<ChatterListener> chatterListeners = new ArrayList<>();
 	
 	protected FleetMemberAPI lastTalker = null;
 	protected float timeElapsed = 0;
@@ -183,9 +185,17 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (Global.getCombatEngine() == null) return null;
 		return (ChatterCombatPlugin)Global.getCombatEngine().getCustomData().get(DATA_KEY);
 	}
+
+	public static void addListener(ChatterListener listener) {
+		if (getInstance() != null) getInstance().chatterListeners.add(listener);
+	}
 	
 	public Map<FleetMemberAPI, ShipStateData> getShipStates() {
 		return states;
+	}
+	
+	public List<ChatterListener> getListeners() {
+		return chatterListeners;
 	}
 	
 	protected float getRandomForStringSeed(String seed)
@@ -463,8 +473,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return floater;
 	}
 	
+	@Deprecated
 	protected void addMessageBoxMessage(ShipStateData stateData, FleetMemberAPI member, 
-			String message, MessageType category) 
+			String message, MessageType category) {
+		addMessageBoxMessage(stateData, member, message, Misc.getTextColor(), category);
+	}
+	
+	protected void addMessageBoxMessage(ShipStateData stateData, FleetMemberAPI member, 
+			String message, Color textColor, MessageType category) 
 	{
 		if (!ChatterConfig.chatterBox) return;
 		if (messageBoxLimiter >= 7)
@@ -483,7 +499,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (messageBoxLimiter + charge > 10)
 			return;
 		
-		boxMessages.add(new BoxMessage(member, message));
+		boxMessages.add(new BoxMessage(member, message, textColor));
 		messageBoxLimiter += charge;
 	}
 	
@@ -553,7 +569,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		ChatterLine line = null;
 		if (!fallback) {
 			List<ChatterLine> lines = ChatterDataManager.getCharacterData(character).lines.get(category);		
-			line = (ChatterLine)GeneralUtils.getRandomListElement(lines);
+			line = GeneralUtils.getRandomListElement(lines);
 			message = "\"" + line.getSubstitutedLine(member.getCaptain(), member) + "\"";
 		} else {
 			message = genericFallback;
@@ -574,7 +590,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				textColor = Color.pink;
 				break;
 			default:
-				textColor = Global.getSettings().getColor("standardTextColor");
+				textColor = Misc.getTextColor();
 				break;
 		}
 		
@@ -589,18 +605,27 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			}
 			Vector2f pos = ship.getLocation();
 			Vector2f textPos = new Vector2f(pos.x, pos.y + ship.getCollisionRadius());
-			engine.addFloatingText(textPos, message, Global.getSettings().getInt("chatter_floaterFontSize"), textColor, ship, 0, 0);
+			boolean addToMsgBox = !rollFilterEnemyAndDefault(member);
 			
-			if (!rollFilterEnemyAndDefault(member)) {
-				addMessageBoxMessage(stateData, member, message, category);
+			if (!GeneralUtils.preShowChatMessage(this, member, line, message, true, addToMsgBox, textColor)) {
+				return false;
 			}
-				
+			
+			engine.addFloatingText(textPos, message, Global.getSettings().getInt("chatter_floaterFontSize"), textColor, ship, 0, 0);			
+			if (addToMsgBox) {
+				addMessageBoxMessage(stateData, member, message, textColor, category);
+			}
+			GeneralUtils.shownChatMessage(this, member, line, message, true, addToMsgBox, textColor);
+
 			stateData.lastFloatMessageTime = timeElapsed;
 			stateData.lastFloatMessageType = category;
 			
 			return false;
 		}
 		
+		if (!GeneralUtils.preShowChatMessage(this, member, line, message, false, false, textColor)) {
+			return false;
+		}
 		printMessage(member, message, textColor, !fallback);
 		
 		if (!fallback) {
@@ -609,6 +634,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			priorityThreshold += PRIORITY_PER_MESSAGE;
 			lastTalker = member;
 		}
+		
+		GeneralUtils.shownChatMessage(this, member, line, message, false, false, textColor);
 		
 		return !fallback;
 	}
@@ -1253,7 +1280,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		DrawableString str = font.createText(name, color, fontSize, boxWidth);
 		
 		// prepare message text
-		color = Misc.getTextColor();
+		color = message.color;
 		color = new Color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, alpha);
 		DrawableString str2 = font.createText(message.text, 
 				color, fontSize, boxWidth2);
@@ -1601,20 +1628,38 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		//log.info("Chatter plugin initialized");
 		this.engine = engine;
 		engine.getCustomData().put(DATA_KEY, this);
+		chatterListeners.add(this);
 	}
 
 	@Override
 	public void processInputPreCoreControls(float arg0, List<InputEventAPI> arg1) {
 	}
-	
+
+	@Override
+	public boolean preShowChatMessage(FleetMemberAPI member, ChatterLine line, String text, boolean floaty, boolean inMessageBox, Color textColor) {
+		return true;
+	}
+
+	@Override
+	public void shownChatMessage(FleetMemberAPI member, ChatterLine line, String text, boolean floaty, boolean inMessageBox, Color textColor) {
+		// TODO handle replies here
+	}
+
 	protected static class BoxMessage {
 		public FleetMemberAPI ship;
 		public String text;
 		public float ttl = DEBUG_MODE? 99999 : 7;
+		public Color color = Misc.getTextColor();
 		
 		public BoxMessage(FleetMemberAPI ship, String text) {
 			this.ship = ship;
 			this.text = text;
+		}
+		
+		public BoxMessage(FleetMemberAPI ship, String text, Color color) {
+			this.ship = ship;
+			this.text = text;
+			this.color = color;
 		}
 	}
 	

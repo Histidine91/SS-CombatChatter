@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.sun.istack.internal.Nullable;
 import org.apache.log4j.Logger;
 import org.histidine.chatter.utils.StringHelper;
 
@@ -11,8 +12,9 @@ public class ChatterLine {
 	
 	public static Logger log = Global.getLogger(ChatterLine.class);
 	
+	@Nullable public String id;
 	public String text;
-	public String sound;
+	@Nullable public String sound;
 
 	public ChatterLine(String text)
 	{
@@ -20,6 +22,12 @@ public class ChatterLine {
 	}
 	public ChatterLine(String text, String sound)
 	{
+		this.text = text;
+		this.sound = sound;
+	}
+	public ChatterLine(String id, String text, String sound)
+	{
+		this.id = id;
 		this.text = text;
 		this.sound = sound;
 	}
@@ -99,9 +107,9 @@ public class ChatterLine {
 		return shipName;
 	}
 	
-	public static enum MessageType {
+	public enum MessageType {
 		START, START_BOSS, RETREAT, VICTORY,
 		PURSUING, RUNNING, NEED_HELP, OUT_OF_MISSILES, ENGAGED,
-		HULL_90, HULL_50, HULL_30, OVERLOAD, DEATH
+		HULL_90, HULL_50, HULL_30, OVERLOAD, DEATH, REPLY
 	}
 }
