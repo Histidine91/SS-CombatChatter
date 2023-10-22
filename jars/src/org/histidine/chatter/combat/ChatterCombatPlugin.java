@@ -198,21 +198,21 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected String getCharacterForFleetMember(FleetMemberAPI member)
 	{
 		ShipAPI ship = getShipForMember(member);
-		
 		PersonAPI captain = member.getCaptain();
-		if ((captain != null && !captain.isDefault()) || engine.isMission() || member.isFighterWing())
+		if (captain == null) captain = Global.getFactory().createPerson();	// AFAIK captain is never null, but I don't want to rerelease the mod if it turns out to be null
+		
+		boolean aiCore = captain.isAICore() || (ship != null && Misc.isAutomated(ship));
+		if (aiCore && captain.isDefault()) {
+			return "none";
+		}
+		
+		if (!captain.isDefault() || engine.isMission() || member.isFighterWing())
 		{
 			return ChatterDataManager.getCharacterForOfficer(captain, member, engine, true);
 		}
 		
 		String name = "default";
-		String personality = "";
-		if (captain != null)
-			personality = captain.getPersonalityAPI().getId();
-		
-		if (captain != null && captain.isDefault()) {
-			//log.info("Default captain has personality " + personality);
-		}
+		String personality = captain.getPersonalityAPI().getId();
 		
 		boolean timid = member.getHullSpec().getHints().contains(ShipTypeHints.CIVILIAN) || personality.equals(Personalities.TIMID);
 		boolean aggressive = personality.equals(Personalities.AGGRESSIVE) || personality.equals(Personalities.RECKLESS);
