@@ -87,7 +87,9 @@ public class ChatterCoreListener implements ChatterListener {
             ChatterMessage msg = picker.pick();
             if (msg == null) return;
 
-            float delay = text.length() * DELAY_PER_CHARACTER + BASE_DELAY_BETWEEN_REPLIES;
+            float delay = line.time != null ? line.time + BASE_DELAY_BETWEEN_REPLIES :
+                    text.length() * DELAY_PER_CHARACTER + BASE_DELAY_BETWEEN_REPLIES;
+
             ChatterCombatPlugin.getInstance().queueMessage(msg, delay);
         } catch (Throwable t) {
             log.error("Error processing reply", t);

@@ -157,15 +157,12 @@ public class ChatterDataManager {
 						{
 							JSONObject lineEntry = linesForKey.getJSONObject(i);
 							String text = lineEntry.optString("text");
-							String sound = null;
-							if (lineEntry.has("sound"))
-								sound = lineEntry.getString("sound");
-							ChatterLine line = new ChatterLine(text, sound);
+							ChatterLine line = new ChatterLine(text, lineEntry.optString("sound", null));
 							line.id = lineEntry.optString("id", null);
 							line.replyToId = lineEntry.optString("replyToId", null);
+							if (lineEntry.has("time")) line.time = (float)lineEntry.getDouble("time");
 
 							linesForKeyList.add(line);
-
 						}
 						character.lines.put(type, linesForKeyList);
 					}

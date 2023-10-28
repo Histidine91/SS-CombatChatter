@@ -16,6 +16,7 @@ public class ChatterLine {
 	public String text;
 	@Nullable public String sound;
 	@Nullable public String replyToId;
+	@Nullable public Float time;
 
 	public ChatterLine(String text)
 	{
