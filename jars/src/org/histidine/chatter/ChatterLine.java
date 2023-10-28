@@ -4,9 +4,9 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
-import com.sun.istack.internal.Nullable;
 import org.apache.log4j.Logger;
 import org.histidine.chatter.utils.StringHelper;
+import org.jetbrains.annotations.Nullable;
 
 public class ChatterLine {
 	
@@ -15,23 +15,31 @@ public class ChatterLine {
 	@Nullable public String id;
 	public String text;
 	@Nullable public String sound;
+	@Nullable public String replyToId;
 
 	public ChatterLine(String text)
 	{
 		this.text = text;
 	}
-	public ChatterLine(String text, String sound)
+	public ChatterLine(String text, @Nullable String sound)
 	{
 		this.text = text;
 		this.sound = sound;
 	}
-	public ChatterLine(String id, String text, String sound)
+	public ChatterLine(@Nullable String id, String text, @Nullable String sound)
 	{
 		this.id = id;
 		this.text = text;
 		this.sound = sound;
 	}
-	
+
+	public ChatterLine(@Nullable String id, String text, @Nullable String sound, @Nullable String replyToId) {
+		this.id = id;
+		this.text = text;
+		this.sound = sound;
+		this.replyToId = replyToId;
+	}
+
 	public String getSubstitutedLine(PersonAPI person, FleetMemberAPI member) {
 		String str = text;
 		try {

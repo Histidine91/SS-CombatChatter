@@ -160,7 +160,12 @@ public class ChatterDataManager {
 							String sound = null;
 							if (lineEntry.has("sound"))
 								sound = lineEntry.getString("sound");
-							linesForKeyList.add(new ChatterLine(text, sound));
+							ChatterLine line = new ChatterLine(text, sound);
+							line.id = lineEntry.optString("id", null);
+							line.replyToId = lineEntry.optString("replyToId", null);
+
+							linesForKeyList.add(line);
+
 						}
 						character.lines.put(type, linesForKeyList);
 					}

@@ -22,7 +22,6 @@ import com.fs.starfarer.api.combat.WeaponAPI.WeaponType;
 import com.fs.starfarer.api.fleet.FleetGoal;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
-import com.fs.starfarer.api.graphics.SpriteAPI;
 import com.fs.starfarer.api.impl.campaign.ids.MemFlags;
 import com.fs.starfarer.api.impl.campaign.ids.Personalities;
 import com.fs.starfarer.api.input.InputEventAPI;
@@ -31,36 +30,27 @@ import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.Pair;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
+import org.histidine.chatter.ChatterMessage;
 import org.magiclib.util.MagicSettings;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
+
 import org.apache.log4j.Logger;
 import org.histidine.chatter.utils.GeneralUtils;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Random;
-import java.util.Set;
+
 import org.histidine.chatter.ChatterConfig;
 import org.histidine.chatter.ChatterLine;
 import org.histidine.chatter.ChatterLine.MessageType;
 import org.histidine.chatter.ChatterDataManager;
 import org.histidine.chatter.utils.ChatterListener;
 import org.histidine.chatter.utils.StringHelper;
-import org.lazywizard.lazylib.MathUtils;
-import org.lazywizard.lazylib.ui.FontException;
-import org.lazywizard.lazylib.ui.LazyFont;
-import org.lazywizard.lazylib.ui.LazyFont.DrawableString;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
+import static org.histidine.chatter.ChatterMessage.*;
 
-public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListener {
+
+public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
 	public static Logger log = Global.getLogger(ChatterCombatPlugin.class);
 	
@@ -79,58 +69,26 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 	public static final float MESSAGE_INTERVAL_FLOAT = 6;	// per ship
 	public static final float ANTI_REPETITION_DIVISOR = 3;
 	public static final float ANTI_REPETITION_DIVISOR_FLOATER = 5;
-	
-	// Message box parameters	
-	public static final boolean DRAW_BOX = false;
-	public static final int PORTRAIT_WIDTH = 32;
-	public static final int BOX_WIDTH = 400 + PORTRAIT_WIDTH;
-	public static final int BOX_NAME_WIDTH = 144;
-	public static final int BOX_OFFSET_X = 16;
-	public static final int BOX_OFFSET_Y = 160;
-	public static final int BOX_HEIGHT = 240;
-	public static final Color BOX_COLOR = Color.CYAN;
-	
-	// Fleet intro parameters
-	public static final float SPLASH_IMAGE_WIDTH = 0.5f;
-	public static final float SPLASH_IMAGE_HEIGHT = 0.6f;
-	public static final float SPLASH_TEXT_WIDTH = 0.5f;
-	public static final float SPLASH_TEXT_HEIGHT = 0.1f;
-	public static final float SPLASH_TEXT_YPOS = 0.35f;
-	public static final float SPLASH_ALPHA = 0.75f;
-	public static final float SPLASH_ALPHA_IMAGE = 0.35f;
-	public static final float SPLASH_IMAGE_TIME_IN = 0.5f;
-	public static final float SPLASH_IMAGE_TIME_OUT = 0.5f;
-	public static final float SPLASH_TEXT_TIME_DELAY = 0.5f;
-	public static final float SPLASH_TEXT_TIME_IN = 0.5f;
-	public static final float SPLASH_TEXT_TIME_PEAK = 2.5f;
-	public static final float SPLASH_TEXT_TIME_OUT = 0.5f;
-	
-	public static final Vector2f NAME_POS = new Vector2f(8, -8);
-	public static final Vector2f TEXT_POS = new Vector2f(BOX_NAME_WIDTH + 16, -8);
-	
-	public static LazyFont font;
-	public static LazyFont fontIntro;
-	protected static boolean fontLoaded = false;
 	public static int lastBattleHash;
 	
 	protected CombatEngineAPI engine;
+	protected ChatterCombatDrawer drawer;
 	protected IntervalUtil interval = new IntervalUtil(0.4f, 0.5f);
 	protected Map<FleetMemberAPI, ShipStateData> states = new HashMap<>();
 	protected Map<FleetMemberAPI, Boolean> ignore = new HashMap<>();
 	protected List<BoxMessage> boxMessages = new LinkedList<>();
+	protected List<QueuedChatterMessage> queuedMessages = new LinkedList<>();
 	protected List<ChatterListener> chatterListeners = new ArrayList<>();
 	
 	protected FleetMemberAPI lastTalker = null;
 	protected float timeElapsed = 0;
 	protected float lastMessageTime = -9999;
-	protected float messageBoxLimiter = 0;
 	protected float priorityThreshold = 0;	// if this is high, low priority messages won't be displayed
 	protected boolean introDone = false;
 	protected boolean introSplashDone = false;
 	protected boolean victory = false;
 	protected int victoryIncrement = 0;
-	
-	protected FleetIntro intro;
+	protected float messageBoxLimiter = 0;
 	
 	protected boolean wantDebugChat = false;
 	
@@ -168,19 +126,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 		FLOAT_CHATTER_TYPES.add(MessageType.RUNNING);
 	}
 	
-	protected static void loadFont() {
-		fontLoaded = true;
-		try
-		{
-			font = LazyFont.loadFont(Global.getSettings().getString("chatter_boxFont"));
-			fontIntro = LazyFont.loadFont(Global.getSettings().getString("chatter_introFont"));
-		}
-		catch (FontException ex)
-		{
-			throw new RuntimeException("Failed to load font", ex);
-		}
-	}
-	
 	public static ChatterCombatPlugin getInstance() {
 		if (Global.getCombatEngine() == null) return null;
 		return (ChatterCombatPlugin)Global.getCombatEngine().getCustomData().get(DATA_KEY);
@@ -204,8 +149,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 		Random generator = new Random(seed.hashCode());
 		return generator.nextFloat();
 	}
+
+	public String getCharacterForFleetMember(FleetMemberAPI member) {
+		return getShipStateData(member).characterId;
+	}
 	
-	protected String getCharacterForFleetMember(FleetMemberAPI member)
+	protected String pickCharacterForFleetMember(FleetMemberAPI member)
 	{
 		ShipAPI ship = getShipForMember(member);
 		PersonAPI captain = member.getCaptain();
@@ -345,7 +294,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 			data.officer = ship.getCaptain();
 			log.info(String.format("Adding ship %s, isEnemy %s", member.getShipName(), ship.getOwner()));
 		}
-		data.characterId = getCharacterForFleetMember(member);
+		data.characterId = pickCharacterForFleetMember(member);
 		
 		
 		states.put(member, data);
@@ -436,7 +385,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 		return false;
 	}
 	
-	protected ShipStateData getShipStateData(FleetMemberAPI member)
+	public ShipStateData getShipStateData(FleetMemberAPI member)
 	{
 		if (!states.containsKey(member))
 			makeShipStateEntry(member);
@@ -472,34 +421,38 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 			floater = floater || LOW_IMPORTANCE_CHATTER_TYPES.contains(category);
 		return floater;
 	}
-	
-	@Deprecated
-	protected void addMessageBoxMessage(ShipStateData stateData, FleetMemberAPI member, 
-			String message, MessageType category) {
-		addMessageBoxMessage(stateData, member, message, Misc.getTextColor(), category);
+
+	protected void addMessageBoxMessage(ShipStateData stateData, FleetMemberAPI member,
+										ChatterLine line, Color textColor, MessageType type) {
+		ChatterMessage message = new ChatterMessage(member, line, type);
+		addMessageBoxMessage(stateData, message);
 	}
-	
-	protected void addMessageBoxMessage(ShipStateData stateData, FleetMemberAPI member, 
-			String message, Color textColor, MessageType category) 
+
+	protected void addMessageBoxMessage(ShipStateData stateData, ChatterMessage message)
 	{
 		if (!ChatterConfig.chatterBox) return;
 		if (messageBoxLimiter >= 7)
 			return;
+
+		FleetMemberAPI member = message.member;
+		MessageType category = message.type;
+		boolean force = message.force;
+
 		if (ChatterConfig.chatterBoxOfficerMode && (member.getCaptain() == null || member.getCaptain().isDefault()))
 			return;
 				
 		float requiredInterval = MESSAGE_INTERVAL_FLOAT * 2;
 		if (stateData.lastFloatMessageType != category) requiredInterval *= 0.5f;
 		if (category == MessageType.ENGAGED) requiredInterval *= 2.5f;
-		if (timeElapsed < stateData.lastFloatMessageTime + requiredInterval)
+		if (!force && timeElapsed < stateData.lastFloatMessageTime + requiredInterval)
 			return;
 		
 		float charge = 3;
 		if (member.isAlly() || stateData.isEnemy) charge = 4.5f;
-		if (messageBoxLimiter + charge > 10)
+		if (!force && messageBoxLimiter + charge > 10)
 			return;
 		
-		boxMessages.add(new BoxMessage(member, message, textColor));
+		boxMessages.add(new BoxMessage(member, message.string, message.color));
 		messageBoxLimiter += charge;
 	}
 	
@@ -565,14 +518,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 			fallback = true;
 		}
 		
-		String message;
+		String string = null;
 		ChatterLine line = null;
 		if (!fallback) {
 			List<ChatterLine> lines = ChatterDataManager.getCharacterData(character).lines.get(category);		
 			line = GeneralUtils.getRandomListElement(lines);
-			message = "\"" + line.getSubstitutedLine(member.getCaptain(), member) + "\"";
 		} else {
-			message = genericFallback;
+			string = genericFallback;
 		}
 		
 		Color textColor;
@@ -593,41 +545,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 				textColor = Misc.getTextColor();
 				break;
 		}
-		
-		if (line != null && line.sound != null)
-			Global.getSoundPlayer().playUISound(line.sound, 1, 1);
-		
-		if (floater)
-		{
-			ShipAPI ship = getShipStateData(member).ship;
-			if (ship == null) {
-				return false;
-			}
-			Vector2f pos = ship.getLocation();
-			Vector2f textPos = new Vector2f(pos.x, pos.y + ship.getCollisionRadius());
-			boolean addToMsgBox = !rollFilterEnemyAndDefault(member);
-			
-			if (!GeneralUtils.preShowChatMessage(this, member, line, message, true, addToMsgBox, textColor)) {
-				return false;
-			}
-			
-			engine.addFloatingText(textPos, message, Global.getSettings().getInt("chatter_floaterFontSize"), textColor, ship, 0, 0);			
-			if (addToMsgBox) {
-				addMessageBoxMessage(stateData, member, message, textColor, category);
-			}
-			GeneralUtils.shownChatMessage(this, member, line, message, true, addToMsgBox, textColor);
 
-			stateData.lastFloatMessageTime = timeElapsed;
-			stateData.lastFloatMessageType = category;
-			
-			return false;
-		}
-		
-		if (!GeneralUtils.preShowChatMessage(this, member, line, message, false, false, textColor)) {
-			return false;
-		}
-		printMessage(member, message, textColor, !fallback);
-		
+		ChatterMessage message = new ChatterMessage(member, line, category);
+		if (line == null) message.string = string;
+		message.color = textColor;
+		message.floater = floater;
+		printMessage(message, fallback);
+
 		if (!fallback) {
 			lastMessageTime = timeElapsed;
 			//log.info("Time elapsed: " + lastMessageTime);
@@ -635,12 +559,71 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 			lastTalker = member;
 		}
 		
-		GeneralUtils.shownChatMessage(this, member, line, message, false, false, textColor);
-		
 		return !fallback;
 	}
+
+	/**
+	 * @param message
+	 * @param isGenericMessage True if e.g. ["]MyShip is at 50% hull]; false if e.g. [MyShip: "I'm at 50% hull!"]
+	 * @return
+	 */
+	public boolean printMessage(ChatterMessage message, boolean isGenericMessage) {
+		ChatterLine line = message.line;
+		FleetMemberAPI member = message.member;
+		boolean floater = (Boolean.TRUE == message.floater);
+		Color textColor = message.color;
+		MessageType type = message.type;
+		String string = message.string;
+
+		if (line != null && line.sound != null)
+			Global.getSoundPlayer().playUISound(line.sound, 1, 1);
+
+		if (floater)
+		{
+			ShipStateData stateData = getShipStateData(member);
+			ShipAPI ship = stateData.ship;
+			if (ship == null) {
+				return false;
+			}
+
+			Vector2f pos = ship.getLocation();
+			Vector2f textPos = new Vector2f(pos.x, pos.y + ship.getCollisionRadius());
+			boolean addToMsgBox = !rollFilterEnemyAndDefault(member);
+
+			if (!GeneralUtils.preShowChatMessage(this, member, line, string, true, addToMsgBox, textColor)) {
+				return false;
+			}
+
+			engine.addFloatingText(textPos, message.string, Global.getSettings().getInt("chatter_floaterFontSize"), textColor, ship, 0, 0);
+			if (addToMsgBox) {
+				addMessageBoxMessage(stateData, member, line, textColor, type);
+			}
+			GeneralUtils.shownChatMessage(this, member, line, string, true, addToMsgBox, textColor);
+
+			stateData.lastFloatMessageTime = timeElapsed;
+			stateData.lastFloatMessageType = type;
+
+			return false;
+		}
+
+		if (!GeneralUtils.preShowChatMessage(this, member, line, string, false, false, textColor)) {
+			return false;
+		}
+
+		printToMessageField(member, string, textColor, !isGenericMessage);
+
+		GeneralUtils.shownChatMessage(this, member, line, string, false, false, textColor);
+		return true;
+	}
+
+	public void queueMessage(ChatterMessage message, float delay) {
+		//log.info("Received queued message with delay " + delay + ": " + message.string);
+		QueuedChatterMessage qcm = new QueuedChatterMessage(message, delay);
+		queuedMessages.add(qcm);
+	}
 	
-	public void printMessage(FleetMemberAPI member, String message, Color textColor, boolean withColon) {
+	public void printToMessageField(FleetMemberAPI member, String message, Color textColor, boolean withColon) {
+		if (textColor == null) textColor = Misc.getTextColor();
 		String name = getShipName(member, true);
 		if (withColon) {
 			engine.getCombatUI().addMessage(1, member, getShipNameColor(member), name, Misc.getTextColor(), ": ", textColor, message);
@@ -820,8 +803,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 			String name = "unknown";
 			String image = "graphics/factions/roundel_omega.png";
 
-			intro = new FleetIntro(name, image, null);
-			intro.hasStatic = true;
+			drawer.intro = new ChatterCombatDrawer.FleetIntro(name, image, null);
+			drawer.intro.hasStatic = true;
 			introSplashDone = true;
 			return;
 		}
@@ -862,13 +845,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 			if (sound == null && enemy.getFlagship() != null) 
 				sound = MagicSettings.getStringMap("chatter", "flagshipToSoundMap").get(flag);
 			if (sound == null) sound = MagicSettings.getStringMap("chatter", "factionSounds").get(enemy.getFaction().getId());
-			
-			intro = new FleetIntro(name, image, sound);
+
+			drawer.intro = new ChatterCombatDrawer.FleetIntro(name, image, sound);
 			
 			if (enemy.getMemoryWithoutUpdate().contains("$chatter_introSplash_maxPlayerStrength"))
-				intro.hasStatic = enemy.getMemoryWithoutUpdate().getBoolean("$chatter_introSplash_static");
+				drawer.intro.hasStatic = enemy.getMemoryWithoutUpdate().getBoolean("$chatter_introSplash_static");
 			else if (MagicSettings.getList("chatter", "flagshipsWithStatic").contains(flag)) {
-				intro.hasStatic = true;
+				drawer.intro.hasStatic = true;
 			}
 		}
 	}
@@ -882,6 +865,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 			return;
 		}
 		else {
+			//log.info("Checking intro message");
+
 			MessageType type = MessageType.START;
 			if (engine.getContext().getPlayerGoal() == FleetGoal.ESCAPE)
 				type = MessageType.RETREAT;
@@ -929,7 +914,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 				if (ChatterConfig.allyChatter) weight *= 0.5f;
 				else continue;
 			}
-			if (getShipStateData(member).isEnemy) {
+
+			ShipStateData stateData = getShipStateData(member);
+			if (stateData.isEnemy) {
 				weight *= 0.5f;
 			}
 			
@@ -939,17 +926,37 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 				if (!Global.getCombatEngine().getViewport().isNearViewport(ship.getLocation(), ship.getCollisionRadius()))
 					continue;
 			}
-			
-			ShipStateData stateData = getShipStateData(member);
 			String character = stateData.characterId;
 			if (ChatterDataManager.getCharacterData(character) == null)
 				character = "default";
-			
+
+			log.info("Checking character " + character + " for fleet member " + member.getShipName());
+
 			weight *= ChatterDataManager.getCharacterData(character).talkativeness;
 			picker.add(member, weight);
 		}
 		if (picker.isEmpty()) return null;
 		return picker.pick();
+	}
+
+	protected void advanceMessageQueue(float amount) {
+		Iterator<QueuedChatterMessage> iter = queuedMessages.iterator();
+		List<QueuedChatterMessage> toRemove = new ArrayList<>();
+
+		for (QueuedChatterMessage qcm : new ArrayList<>(queuedMessages)) {
+			qcm.timer -= amount;
+			if (qcm.timer <= 0) {
+				//log.info("Preparing to print queued message: " + qcm.message.string);
+				FleetMemberAPI member = qcm.message.member;
+				if (!getShipStateData(member).dead || qcm.message.printEvenIfDead) {
+					printMessage(qcm.message, false);
+				}
+				toRemove.add(qcm);
+			}
+		}
+
+		// new messages can be queued in response to existing ones being printed, so only remove once we're done with everything
+		queuedMessages.removeAll(toRemove);
 	}
 	
 	protected void timeoutBoxMessages(float time) {
@@ -990,57 +997,172 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 		}
 		return list;
 	}
-	
-	@Override
-	public void advance(float amount, List<InputEventAPI> events) {
-		if (engine == null) return;
-		if (Global.getCurrentState() == GameState.TITLE) return;
-		
-		if (wantDebugChat) {
-			addDebugChat();
-			wantDebugChat = false;
+
+	protected boolean updateStateData(FleetMemberAPI member) {
+		if (isIgnored(member)) return false;
+		if (member.isFighterWing()) return false;
+
+		ShipStateData stateData = getShipStateData(member);
+		if (stateData.dead) return false;
+
+		ShipAPI ship = getShipForMember(member);
+		if (ship == null || !ship.isAlive()) return false;
+		else stateData.ship = ship;
+
+		float hull = ship.getHullLevel();
+		float oldHull = stateData.hull;
+
+		stateData.hull = hull;
+		stateData.isEnemy = ship.getOwner() == 1;
+
+		if (stateData.isPlayer && !ChatterConfig.selfChatter) // being player-piloted
+		{
+			return false;
 		}
-		if (!DEBUG_MODE && engine.isSimulation()) return;
-		
-		// Is this an ongoing battle we joined, leading to fast-forward?
-		// if so, block fleet intro message
-		if (amount > 1) {
-			introSplashDone = true;
+
+		boolean printed = false;
+		if (hull <= 0.3 && oldHull > 0.3)
+			printed = printHullMessage(member, MessageType.HULL_30, 30);
+		else if (hull <= 0.5 && oldHull > 0.5)
+			printed = printHullMessage(member, MessageType.HULL_50, 50);
+		else if (hull <= 0.9 && oldHull > 0.9)
+			printed = printHullMessage(member, MessageType.HULL_90, 90);
+
+		return printed;
+	}
+
+	protected boolean memberChatOnUpdate(FleetMemberAPI member, boolean printedAnyThisRound) {
+		CombatTaskManagerAPI playerManager = engine.getFleetManager(FleetSide.PLAYER).getTaskManager(false);
+		boolean printedForMember = false;
+
+		boolean isFighter = member.isFighterWing();
+		//if (member.isFighterWing()) continue;
+		if (isIgnored(member)) return false;
+
+		ShipStateData stateData = getShipStateData(member);
+		if (stateData.dead) return false;
+		if (stateData.isPlayer && !ChatterConfig.selfChatter) return false;
+
+		ShipAPI ship = getShipForMember(member);
+		if (ship == null) return false;
+
+		boolean player = ship == engine.getPlayerShip();
+		PersonAPI officer = ship.getCaptain();
+		if (player != stateData.isPlayer || officer != stateData.officer) {
+			stateData.isPlayer = player;
+			stateData.characterId = pickCharacterForFleetMember(member);
+			stateData.officer = officer;
 		}
-		
-		drawMessages();
-		drawIntro(amount);
-		
-		if (engine.isPaused()) return;
-		
-		//log.info("Advancing: " + amount);
-		timeoutBoxMessages(amount);
-		
-		timeElapsed += amount;
-		priorityThreshold -= amount * PRIORITY_DECAY;
-		if (priorityThreshold < 0) priorityThreshold = 0;
-		interval.advance(amount);
-		if (!interval.intervalElapsed()) return;
-		
+
+		// Second check for death state? Not sure if needed
+		if (!ship.isAlive() && !stateData.dead) {
+			if (!printedAnyThisRound && !isFighter)
+				printedForMember = printRandomMessage(member, MessageType.DEATH);
+			stateData.dead = true;
+			return printedForMember;
+		}
+
+		boolean overloaded = false;
+		if (ship.getFluxTracker() != null)
+		{
+			overloaded = ship.getFluxTracker().getOverloadTimeRemaining() > 2.5f;
+		}
+
+		if (!isFighter && overloaded && !stateData.overloaded) {
+			printedAnyThisRound = printOverloadMessage(member);
+		}
+
+		stateData.overloaded = overloaded;
+
+		// check missiles
+		if (!isFighter && stateData.canWriteOutOfMissiles)
+		{
+			boolean haveMissileAmmo = false;
+			// check for missile autoforge
+			ShipSystemAPI system = ship.getSystem();
+			if (system != null && system.getId().equals("forgevats") && !system.isOutOfAmmo())
+			{
+				haveMissileAmmo = true;
+			}
+			else
+			{
+				// check all missile weapons
+				for (WeaponAPI wep : ship.getAllWeapons())
+				{
+					if (wep.usesAmmo() && wep.getType() == WeaponType.MISSILE)
+					{
+						if (wep.getSpec().getAmmoPerSecond() > 0 || wep.getAmmo() > 0)
+						{
+							haveMissileAmmo = true;
+							break;
+						}
+					}
+				}
+			}
+			if (!haveMissileAmmo) {
+				stateData.canWriteOutOfMissiles = false;
+				if (!stateData.isEnemy || Math.random() < 0.5f)
+					printOutOfMissilesMessage(member);
+			}
+		}
+
+		if (ship.getShipAI() != null)
+		{
+			ShipwideAIFlags flags = ship.getAIFlags();
+			if (flags != null)
+			{
+				boolean engaged = flags.hasFlag(AIFlags.HAS_INCOMING_DAMAGE) && !flags.hasFlag(AIFlags.BACK_OFF)
+						&& !flags.hasFlag(AIFlags.PURSUING);
+				boolean pursuing = flags.hasFlag(AIFlags.PURSUING) && !engaged;
+				boolean running = false;//!engaged && !pursuing &&
+				//(flags.hasFlag(AIFlags.BACKING_OFF) || flags.hasFlag(AIFlags.BACKING_OFF));
+				AssignmentInfo assign = playerManager.getAssignmentFor(ship);
+				if (assign != null && assign.getType() == CombatAssignmentType.RETREAT)
+					running = true;
+
+				if (!printedAnyThisRound && (!stateData.isEnemy || Math.random() < 0.5f))
+				{
+					if (!isFighter && running && !stateData.running)
+						printedForMember = printRandomMessage(member, MessageType.RUNNING);
+					else if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
+						printedForMember = printRandomMessage(member, MessageType.NEED_HELP);
+					else if (!isFighter && engaged && !stateData.engaged)
+						printedForMember = printRandomMessage(member, MessageType.ENGAGED);
+					else if (pursuing && !stateData.pursuing)	// fighters can say this
+						printedForMember = printRandomMessage(member, MessageType.PURSUING);
+				}
+				stateData.pursuing = pursuing;
+				stateData.running = running;
+				stateData.needHelp = flags.hasFlag(AIFlags.NEEDS_HELP);
+				stateData.engaged = engaged;
+			}
+			//log.info(member.getShipName() + " pursuing target? " + flags.hasFlag(AIFlags.PURSUING));
+			//log.info(member.getShipName() + " running? " + flags.hasFlag(AIFlags.RUN_QUICKLY));
+			//log.info(member.getShipName() + " needs help? " + flags.hasFlag(AIFlags.NEEDS_HELP));
+		}
+
+		return printedForMember;
+	}
+
+	protected void doPeriodicChatter() {
 		List<FleetMemberAPI> deployed = getDeployed(ChatterConfig.enemyChatter);
 		List<FleetMemberAPI> deployedFriendly = getDeployed(false);
 		List<FleetMemberAPI> dead = getDead();
-		//if (deployed.isEmpty()) return;
-		
+
 		if (!introDone)
 		{
 			//log.info("Trying to play intro message");
 			playIntroMessage(engine.getFleetManager(FleetSide.PLAYER).getDeployedCopy());
 		}
-		
-		boolean printed = false;
+
+		boolean printedAny = false;
 		CombatTaskManagerAPI playerManager = engine.getFleetManager(FleetSide.PLAYER).getTaskManager(false);
-		
+
 		// victory message
 		if (!victory)
 		{
 			CombatTaskManagerAPI enemyManager = engine.getFleetManager(FleetSide.ENEMY).getTaskManager(false);
-			if (enemyManager.isInFullRetreat() && !enemyManager.isPreventFullRetreat() 
+			if (enemyManager.isInFullRetreat() && !enemyManager.isPreventFullRetreat()
 					&& engine.getFleetManager(FleetSide.ENEMY).getGoal() != FleetGoal.ESCAPE)
 			{
 				// try to fix premature victory message (still happens)
@@ -1073,43 +1195,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 		}
 		for (FleetMemberAPI member : deployed)
 		{
-			if (isIgnored(member)) continue;
-			if (member.isFighterWing()) continue;
-			
-			ShipStateData stateData = getShipStateData(member);
-			if (stateData.dead) continue;
-			
-			ShipAPI ship = getShipForMember(member);
-			if (ship == null || !ship.isAlive()) continue;
-			else stateData.ship = ship;
-			
-			float hull = ship.getHullLevel();
-			float oldHull = stateData.hull;
-			
-			stateData.hull = hull;
-			stateData.isEnemy = ship.getOwner() == 1;
-			
-			if (stateData.isPlayer && !ChatterConfig.selfChatter) // being player-piloted
-			{
-				continue;
-			}
-			
-			if (hull <= 0.3 && oldHull > 0.3)
-				printed = printHullMessage(member, MessageType.HULL_30, 30);
-			else if (hull <= 0.5 && oldHull > 0.5)
-				printed = printHullMessage(member, MessageType.HULL_50, 50);
-			else if (hull <= 0.9 && oldHull > 0.9)
-				printed = printHullMessage(member, MessageType.HULL_90, 90);
+			printedAny |= updateStateData(member);
 		}
-		
-		boolean canPrint = printed;
-		//if (printed) return;
-		
+
 		for (FleetMemberAPI member : dead)
 		{
 			if (isIgnored(member)) continue;
 			ShipStateData stateData = getShipStateData(member);
-			
+
 			if (!stateData.dead) {
 				//log.info(member.getShipName() + " is dead!");
 				if (stateData.isPlayer && !ChatterConfig.selfChatter) // being player-piloted
@@ -1120,489 +1213,47 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 				printRandomMessage(member, MessageType.DEATH);
 			}
 		}
-		
+
 		for (FleetMemberAPI member : deployed)
 		{
-			boolean isFighter = member.isFighterWing();
-			//if (member.isFighterWing()) continue;
-			if (isIgnored(member)) continue;
-			
-			ShipStateData stateData = getShipStateData(member);
-			if (stateData.dead) continue;
-			if (stateData.isPlayer && !ChatterConfig.selfChatter) continue;
-			
-			ShipAPI ship = getShipForMember(member);
-			if (ship == null) continue;
-			
-			boolean player = ship == engine.getPlayerShip();
-			PersonAPI officer = ship.getCaptain();
-			if (player != stateData.isPlayer || officer != stateData.officer) {
-				stateData.isPlayer = player;
-				stateData.characterId = getCharacterForFleetMember(member);
-				stateData.officer = officer;
-			}
-			
-			// Second check for death state? Not sure if needed
-			if (!ship.isAlive() && !stateData.dead) {
-				if (!printed && !isFighter)
-					printed = printRandomMessage(member, MessageType.DEATH);
-				stateData.dead = true;
-				continue;
-			}
-			
-			boolean overloaded = false;
-			if (ship.getFluxTracker() != null) 
-			{
-				overloaded = ship.getFluxTracker().getOverloadTimeRemaining() > 2.5f;
-			}
-			
-			if (!isFighter && overloaded && !stateData.overloaded) {
-				printed = printOverloadMessage(member);
-			}
-				
-			
-			stateData.overloaded = overloaded;
-			
-			// check missiles
-			if (!isFighter && stateData.canWriteOutOfMissiles)
-			{
-				boolean haveMissileAmmo = false;
-				// check for missile autoforge
-				ShipSystemAPI system = ship.getSystem();
-				if (system != null && system.getId().equals("forgevats") && !system.isOutOfAmmo())
-				{
-					haveMissileAmmo = true;
-				}
-				else
-				{
-					// check all missile weapons
-					for (WeaponAPI wep : ship.getAllWeapons())
-					{
-						if (wep.usesAmmo() && wep.getType() == WeaponType.MISSILE)
-						{
-							if (wep.getSpec().getAmmoPerSecond() > 0 || wep.getAmmo() > 0)
-							{
-								haveMissileAmmo = true;
-								break;
-							}
-						}
-					}
-				}
-				if (!haveMissileAmmo) {
-					stateData.canWriteOutOfMissiles = false;
-					if (!stateData.isEnemy || Math.random() < 0.5f)
-						printOutOfMissilesMessage(member);
-				}
-			}
-			
-			if (ship.getShipAI() != null)
-			{
-				ShipwideAIFlags flags = ship.getAIFlags();
-				if (flags != null)
-				{
-					boolean engaged = flags.hasFlag(AIFlags.HAS_INCOMING_DAMAGE) && !flags.hasFlag(AIFlags.BACK_OFF)
-							&& !flags.hasFlag(AIFlags.PURSUING);
-					boolean pursuing = flags.hasFlag(AIFlags.PURSUING) && !engaged;
-					boolean running = false;//!engaged && !pursuing && 
-							//(flags.hasFlag(AIFlags.BACKING_OFF) || flags.hasFlag(AIFlags.BACKING_OFF));
-					AssignmentInfo assign = playerManager.getAssignmentFor(ship);
-					if (assign != null && assign.getType() == CombatAssignmentType.RETREAT)
-						running = true;
-					
-					if ((canPrint || !printed) && (!stateData.isEnemy || Math.random() < 0.5f))
-					{
-						if (!isFighter && running && !stateData.running)
-							printed = printRandomMessage(member, MessageType.RUNNING);
-						else if (!isFighter && flags.hasFlag(AIFlags.NEEDS_HELP) && !stateData.needHelp)
-							printed = printRandomMessage(member, MessageType.NEED_HELP);
-						else if (!isFighter && engaged && !stateData.engaged)
-							printed = printRandomMessage(member, MessageType.ENGAGED);
-						else if (pursuing && !stateData.pursuing)	// fighters can say this
-							printed = printRandomMessage(member, MessageType.PURSUING);
-					}
-					stateData.pursuing = pursuing;
-					stateData.running = running;
-					stateData.needHelp = flags.hasFlag(AIFlags.NEEDS_HELP);
-					stateData.engaged = engaged;
-				}
-				//log.info(member.getShipName() + " pursuing target? " + flags.hasFlag(AIFlags.PURSUING));
-				//log.info(member.getShipName() + " running? " + flags.hasFlag(AIFlags.RUN_QUICKLY));
-				//log.info(member.getShipName() + " needs help? " + flags.hasFlag(AIFlags.NEEDS_HELP));
-			}
+			printedAny |= memberChatOnUpdate(member, printedAny);
 		}
 	}
 	
-	/**
-	 * GL11 to start, when you want render text of Lazyfont.
-	 */
-	public static void openGL11ForText()
-	{
-		GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-		GL11.glMatrixMode(GL11.GL_PROJECTION);
-		GL11.glPushMatrix();
-		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
-		GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-	}
+	@Override
+	public void advance(float amount, List<InputEventAPI> events) {
+		if (engine == null) return;
+		if (Global.getCurrentState() == GameState.TITLE) return;
+		
+		if (wantDebugChat) {
+			addDebugChat();
+			wantDebugChat = false;
+		}
+		if (!DEBUG_MODE && engine.isSimulation()) return;
+		
+		// Is this an ongoing battle we joined, leading to fast-forward?
+		// if so, block fleet intro message
+		if (amount > 1) {
+			introSplashDone = true;
+		}
+		
+		drawer.drawMessages();
+		drawer.drawIntro(amount);
+		
+		if (engine.isPaused()) return;
+		
+		//log.info("Advancing: " + amount);
+		timeoutBoxMessages(amount);
+		advanceMessageQueue(amount);
 
-	/**
-	 * GL11 to close, when you want render text of Lazyfont.
-	 */
-	public static void closeGL11ForText()
-	{
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glPopMatrix();
-		GL11.glPopAttrib();
-	}
-	
-	/**
-	 * Draws a message line in the text box.
-	 * @param message
-	 * @param remainingHeight Available height remaining in the box. If the new message's
-	 * height exceeds this amount, do not draw.
-	 * @return Height of the message.
-	 */
-	public float drawMessage(BoxMessage message, float remainingHeight)
-	{
-		float scale = Global.getSettings().getScreenScaleMult();
-		float fontSize = Global.getSettings().getInt("chatter_boxFontSize") * scale;
-		float boxWidth = BOX_NAME_WIDTH * scale;
-		float boxWidth2 = (BOX_WIDTH - BOX_NAME_WIDTH - PORTRAIT_WIDTH - 8) * scale;
 		
-		// prepare ship name text
-		float alpha = engine.isUIShowingDialog() ? 0.5f : 1;
-		Color color = getShipNameColor(message.ship, alpha);
-		String name = getShipName(message.ship, false, ChatterConfig.chatterBoxOfficerMode);
-		if (name == null || name.isEmpty()) name = "<unknown>";	// safety
-		DrawableString str = font.createText(name, color, fontSize, boxWidth);
+		timeElapsed += amount;
+		priorityThreshold -= amount * PRIORITY_DECAY;
+		if (priorityThreshold < 0) priorityThreshold = 0;
+		interval.advance(amount);
+		if (!interval.intervalElapsed()) return;
 		
-		// prepare message text
-		color = message.color;
-		color = new Color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, alpha);
-		DrawableString str2 = font.createText(message.text, 
-				color, fontSize, boxWidth2);
-		
-		float height = Math.max(str.getHeight(), str2.getHeight());
-		if (height < 40 * scale) height = 40 * scale;
-		if (height > remainingHeight) {
-			return 99999;
-		}
-		
-		// draw portrait;
-		String spritePath = null;
-		if (!message.ship.getCaptain().isDefault()) {
-			spritePath = message.ship.getCaptain().getPortraitSprite();
-		}
-		else if (DEBUG_MODE) {
-			spritePath = "graphics/portraits/portrait_ai2.png";
-		}
-		if (spritePath != null) {
-			// pushing/popping attrib is needed to keep sprite from messing with text opacity
-			GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-			GL11.glPushMatrix();
-			SpriteAPI sprite = Global.getSettings().getSprite(spritePath);
-			float sizeMult = PORTRAIT_WIDTH/sprite.getWidth() * scale;
-			float sizeMult2 = sprite.getWidth()/128 * scale;
-			GL11.glScalef(sizeMult, sizeMult, 1);
-			//sprite.setWidth(128);
-			//sprite.setHeight(128);
-			sprite.setAlphaMult(alpha);
-			// FIXME: vertical padding on portraits is not consistent between GUI scalings
-			// whether we render with offset or translate down and then up
-			sprite.render(-128 * sizeMult2, -160 * sizeMult2);
-			GL11.glPopMatrix();
-			GL11.glPopAttrib();
-		}
-		Vector2f namePos = new Vector2f(NAME_POS);
-		namePos.scale(scale);
-		Vector2f textPos = new Vector2f(TEXT_POS);
-		textPos.scale(scale);
-		
-		str.draw(namePos);
-		str2.draw(textPos);
-		str.dispose();
-		str2.dispose();
-		return height;
-	}
-	
-	/**
-	 * Draws messages on the side of the screen (in the "text box").
-	 */
-	public void drawMessages() 
-	{
-		if (!ChatterConfig.chatterBox) return;
-		if (engine == null || !engine.isUIShowingHUD() || engine.getCombatUI().isShowingCommandUI())
-		{
-			return;
-		}
-		
-		if (!fontLoaded) loadFont();
-		
-		openGL11ForText();
-		
-		float scale = Global.getSettings().getScreenScaleMult();
-		float bw = BOX_WIDTH * scale;
-		
-		GL11.glTranslatef(Display.getWidth() - bw - BOX_OFFSET_X * scale + PORTRAIT_WIDTH * scale, 
-				Display.getHeight() - BOX_OFFSET_Y * scale, 0);
-		
-		float remainingHeight = (BOX_HEIGHT - 8 * 2) * scale;
-		for (int i=boxMessages.size() - 1; i>=0; i--) 
-		{
-			BoxMessage msg = boxMessages.get(i);
-			float height = drawMessage(msg, remainingHeight);
-			GL11.glTranslatef(0, -height - 4*scale, 0);
-			remainingHeight -= height + 4*scale;
-			if (remainingHeight < 14 * scale)
-				break;
-		}
-		closeGL11ForText();
-	}
-	
-	/**
-	 * Draws the box around the chatter side messages.
-	 */
-	public void drawBox() {
-		if (!DRAW_BOX || !ChatterConfig.chatterBox) return;
-		
-		float alpha = engine.getCombatUI().getCommandUIOpacity();
-		float scale = Global.getSettings().getScreenScaleMult();
-		
-		float bw = BOX_WIDTH * scale;
-		float bh = BOX_HEIGHT * scale;
-		
-		GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
-		GL11.glMatrixMode(GL11.GL_PROJECTION);
-		GL11.glPushMatrix();
-		GL11.glLoadIdentity();
-		
-		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
-		GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
-		GL11.glLineWidth(1);
-		GL11.glTranslatef(Display.getWidth() - bw - BOX_OFFSET_X * scale, 
-				Display.getHeight() - BOX_OFFSET_Y * scale, 0);
-		GL11.glColor4f(BOX_COLOR.getRed(), BOX_COLOR.getGreen(), BOX_COLOR.getBlue(), alpha);
-		
-		GL11.glBegin(GL11.GL_LINE_LOOP);		
-		GL11.glVertex2f(0, 0);
-		GL11.glVertex2f(bw, 0);
-		GL11.glVertex2f(bw, -bh);
-		GL11.glVertex2f(0, -bh);
-		GL11.glEnd();
-		
-		GL11.glColor4f(1, 1, 1, 1);
-		GL11.glPopMatrix();
-		GL11.glPopAttrib();
-	}
-	
-	/**
-	 * Draws the box for the fleet intro splash.
-	 */
-	public void drawIntroBox() {
-		if (intro == null) return;
-		float sizeMult = intro.getSizeMult();
-		if (sizeMult <= 0) {
-			return;
-		}
-		
-		if (!fontLoaded || DEBUG_MODE) loadFont();
-		
-		float alphaMult = engine.isUIShowingDialog() ? 0.5f : 1;
-		float alpha = SPLASH_ALPHA * alphaMult;
-		float offsetX = 0, offsetY = 0;
-		
-		if (intro.hasStatic) {
-			double rand = Math.random();
-			if (rand < 0.2f) alpha -= 0.3f;
-			else if (rand > 0.8f) alpha -= 0.1f;
-			if (alpha > 1) alpha = 1;
-			if (alpha < 0) alpha = 0;
-			
-			offsetX = (float)(Math.random() * 1);
-			offsetY = (float)(Math.random() * 1);
-		}
-		
-		// draw text box
-		GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
-		GL11.glMatrixMode(GL11.GL_PROJECTION);
-		GL11.glPushMatrix();
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glLoadIdentity();
-		GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
-		GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
-		GL11.glLineWidth(1);
-		GL11.glTranslatef(Display.getWidth()/2 + offsetX, 
-				Display.getHeight() * SPLASH_TEXT_YPOS + offsetY, 0);	
-		GL11.glScalef(sizeMult, 1, 1);
-		int halfX = Math.round(Display.getWidth() * SPLASH_TEXT_WIDTH/2 * sizeMult);
-		int halfY = Math.round(Display.getHeight() * SPLASH_TEXT_HEIGHT/2);
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		GL11.glColor4f(1, 1, 1, alpha);
-		GL11.glVertex2i(-halfX, halfY);
-		GL11.glVertex2i(halfX, halfY);
-		GL11.glVertex2i(halfX, -halfY);
-		GL11.glVertex2i(-halfX, -halfY);
-		GL11.glColor4f(1, 1, 1, 1);
-		GL11.glEnd();
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glPopMatrix();
-		GL11.glPopAttrib();
-	}
-	
-	public static final int SPOT_MIN_SIZE = 3;
-	public static final int SPOT_MAX_SIZE = 12;
-	public static final WeightedRandomPicker<Float[]> SPOT_COLOR = new WeightedRandomPicker<>();
-	
-	static {
-		SPOT_COLOR.add(new Float[] {1f, 0f, 0f});
-		SPOT_COLOR.add(new Float[] {0f, 1f, 0f});
-		SPOT_COLOR.add(new Float[] {0f, 0f, 1f});
-		SPOT_COLOR.add(new Float[] {1f, 1f, 1f});
-	}
-	
-	public void drawIntroStatic() {
-		if (intro == null) return;
-		float sizeMult = intro.getSizeMult();
-		if (sizeMult <= 0) {
-			return;
-		}
-		if (!intro.hasStatic) return;
-		
-		float scale = Global.getSettings().getScreenScaleMult();
-		
-		GL11.glPushMatrix();
-		// using the SettingsAPI methods instead of the Display ones; unsure why but it's needed to get the static position right with UI scaling
-		GL11.glTranslatef(Global.getSettings().getScreenWidth()/2, Global.getSettings().getScreenHeight()/2, 0);
-		GL11.glEnable(GL11.GL_BLEND);
-		float maxDist = Math.round(Display.getHeight() * SPLASH_IMAGE_HEIGHT / 2)/scale;
-		
-		int numSpots = MathUtils.getRandomNumberInRange(64, 256);
-		float alpha = intro.getAlphaMult() * 0.5f;
-		for (int i=0; i<numSpots; i++) {
-			float x = MathUtils.getRandomNumberInRange(-maxDist, maxDist);
-			float y = MathUtils.getRandomNumberInRange(-maxDist, maxDist);
-			float w = MathUtils.getRandomNumberInRange(SPOT_MIN_SIZE, SPOT_MAX_SIZE)/2/scale;
-			float h = MathUtils.getRandomNumberInRange(SPOT_MIN_SIZE, SPOT_MAX_SIZE)/2/scale;
-			
-			Float [] color = SPOT_COLOR.pick();
-			GL11.glColor4f(color[0], color[1], color[2], alpha);
-			GL11.glBegin(GL11.GL_POLYGON);
-			GL11.glVertex2f(x-w, y-h);
-			GL11.glVertex2f(x+w, y-h);
-			GL11.glVertex2f(x+w, y+h);
-			GL11.glVertex2f(x-w, y+h);
-			GL11.glEnd();
-		}
-		GL11.glColor4f(1, 1, 1, 1);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glPopMatrix();
-	}
-	
-	/**
-	 * Draws the text and image for the fleet intro splash.
-	 * @param elapsed Elapsed time passed to the <code>advance()</code> method calling this method.
-	 */
-	public void drawIntro(float elapsed) {
-		if (intro == null) {
-			return;
-		}
-		
-		if (!engine.isUIShowingHUD() || engine.getCombatUI().isShowingCommandUI())
-		{
-			return;
-		}
-		
-		if (engine.isPaused())
-			elapsed = 0;
-		
-		float sizeMult = intro.getSizeMult();
-		float alphaMult = intro.getAlphaMult() * (engine.isUIShowingDialog() ? 0.5f : 1);
-		if (alphaMult < 0) {
-			intro = null;
-			return;
-		}
-		
-		if (!fontLoaded || DEBUG_MODE) loadFont();
-		float alpha = SPLASH_ALPHA_IMAGE * alphaMult;
-		float offsetX = 0, offsetY = 0;
-		
-		if (intro.hasStatic) {
-			double rand = Math.random();
-			if (rand < 0.2f) alpha -= 0.3f;
-			else if (rand > 0.8f) alpha -= 0.1f;
-			if (alpha > 1) alpha = 1;
-			if (alpha < 0) alpha = 0;		
-			
-			offsetX = (float)(Math.random() * 1);
-			offsetY = (float)(Math.random() * 1);
-		}
-		
-		openGL11ForText();
-		
-		// draw logo
-		GL11.glPushMatrix();
-		GL11.glTranslatef(Display.getWidth()/2 + offsetX, Display.getHeight()/2 + offsetY, 0);
-		SpriteAPI sprite = Global.getSettings().getSprite(intro.sprite);
-		float spriteSizeMult = Display.getHeight()/sprite.getHeight() * SPLASH_IMAGE_HEIGHT;
-		GL11.glScalef(spriteSizeMult, spriteSizeMult, 1);
-		sprite.setAlphaMult(alpha);
-		sprite.renderAtCenter(0, 0);
-		GL11.glPopMatrix();
-		
-		// draw text
-		alpha = SPLASH_ALPHA * alphaMult;
-		if (intro.hasStatic) {
-			double rand = Math.random();
-			if (rand < 0.2f) alpha -= 0.3f;
-			else if (rand > 0.8f) alpha -= 0.1f;
-			if (alpha > 1) alpha = 1;
-			if (alpha < 0) alpha = 0;
-		}
-		
-		int baseHeight = Math.round(SPLASH_TEXT_HEIGHT * Display.getHeight()/2);
-		if (intro.textHeight == null)
-			intro.textHeight = baseHeight;
-		
-		int textMaxWidth = Math.round(SPLASH_TEXT_WIDTH * Display.getWidth());
-		
-		GL11.glTranslatef(Display.getWidth()/2 + offsetX, Display.getHeight() * SPLASH_TEXT_YPOS + offsetY, 0);
-		
-		DrawableString str = fontIntro.createText(StringHelper.getString("chatter_general", "fleetIntroMessage"), 
-				getColorWithAlpha(Color.YELLOW, alpha), baseHeight, textMaxWidth);
-		GL11.glPushMatrix();
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glScalef(sizeMult, 1, 1);
-		GL11.glTranslatef(-str.getWidth()/2, str.getHeight(), 0);
-		str.draw(0, 0);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glPopMatrix();
-		
-		// shrink text to fit in the box
-		while (true) {
-			str = fontIntro.createText(StringHelper.getString("chatter_general", "fleetIntroBracketStart")  
-					+ intro.name + StringHelper.getString("chatter_general", "fleetIntroBracketEnd"), 
-					getColorWithAlpha(Color.WHITE, alpha), intro.textHeight);
-			if (str.getWidth() <= textMaxWidth - 4) break;
-			
-			intro.textHeight = Math.round(intro.textHeight * 0.75f);
-		}
-		
-		GL11.glPushMatrix();
-		GL11.glScalef(sizeMult, 1, 1);
-		GL11.glTranslatef(-str.getWidth()/2, 0, 0);
-		str.draw(0, 0);
-		GL11.glPopMatrix();
-		closeGL11ForText();
-		
-		float elapsedPrev = intro.elapsed;
-		intro.elapsed += elapsed;
-		if (elapsedPrev < SPLASH_TEXT_TIME_DELAY && intro.elapsed > SPLASH_TEXT_TIME_DELAY) {
-			log.info("Playing intro sound");
-			Global.getSoundPlayer().playUISound(intro.sound, 1, 1);
-		}
+		doPeriodicChatter();
 	}
 
 	@Override
@@ -1618,31 +1269,22 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 			return;
 		}
 		
-		drawBox();
-		drawIntroBox();
-		drawIntroStatic();
+		drawer.drawBox();
+		drawer.drawIntroBox();
+		drawer.drawIntroStatic();
 	}
 
 	@Override
 	public void init(CombatEngineAPI engine) {
 		//log.info("Chatter plugin initialized");
 		this.engine = engine;
+		drawer = new ChatterCombatDrawer(this);
 		engine.getCustomData().put(DATA_KEY, this);
-		chatterListeners.add(this);
+		chatterListeners.add(new ChatterCoreListener());
 	}
 
 	@Override
 	public void processInputPreCoreControls(float arg0, List<InputEventAPI> arg1) {
-	}
-
-	@Override
-	public boolean preShowChatMessage(FleetMemberAPI member, ChatterLine line, String text, boolean floaty, boolean inMessageBox, Color textColor) {
-		return true;
-	}
-
-	@Override
-	public void shownChatMessage(FleetMemberAPI member, ChatterLine line, String text, boolean floaty, boolean inMessageBox, Color textColor) {
-		// TODO handle replies here
 	}
 
 	protected static class BoxMessage {
@@ -1683,60 +1325,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin, ChatterListe
 		public boolean overloaded = false;
 		public float lastFloatMessageTime = -999;
 		public MessageType lastFloatMessageType = MessageType.START;
-	}
-	
-	public static class FleetIntro
-	{
-		public static final float TOTAL_TTL = SPLASH_TEXT_TIME_DELAY + SPLASH_TEXT_TIME_IN + SPLASH_TEXT_TIME_PEAK + SPLASH_TEXT_TIME_OUT;
-		
-		public String name;
-		public String sprite;
-		public String sound;
-		public float elapsed;
-		public Integer textHeight;
-		public boolean hasStatic;
-		
-		public FleetIntro(String name, String sprite, String sound) {
-			this.name = name.toUpperCase();
-			this.sprite = sprite;
-			this.sound = sound != null ? sound : "chatter_fleet_intro";
-		}
-		
-		// I should probably have gotten a proper interpolation method but meh
-		public float getSizeMult() {
-			if (elapsed < SPLASH_TEXT_TIME_DELAY) {
-				return 0;
-			}
-			else if (elapsed < SPLASH_TEXT_TIME_DELAY + SPLASH_TEXT_TIME_IN) {
-				float timer = elapsed - SPLASH_TEXT_TIME_DELAY;
-				return timer/SPLASH_TEXT_TIME_IN;
-			}
-			else if (elapsed < SPLASH_TEXT_TIME_DELAY + SPLASH_TEXT_TIME_IN + SPLASH_TEXT_TIME_PEAK) {
-				return 1;
-			}
-			
-			else if (elapsed < TOTAL_TTL) {
-				float timer = elapsed - (TOTAL_TTL - SPLASH_TEXT_TIME_OUT);
-				return 1 - (timer/SPLASH_TEXT_TIME_OUT);
-			}
-			else
-				return -1;
-		}
-		
-		public float getAlphaMult() {
-			if (elapsed < SPLASH_IMAGE_TIME_IN) {
-				return elapsed/SPLASH_IMAGE_TIME_IN;
-			}
-			else if (elapsed > TOTAL_TTL) {
-				return -1;
-			}
-			else if (elapsed > TOTAL_TTL - SPLASH_IMAGE_TIME_OUT) {
-				float timer = elapsed - (TOTAL_TTL - SPLASH_IMAGE_TIME_OUT);
-				return 1 - (timer/SPLASH_IMAGE_TIME_OUT);
-			}
-			else
-				return 1;
-		}
 	}
 	
 	public static final Comparator<Pair<CampaignFleetAPI, Float>> FLEET_COMPARE = new Comparator<Pair<CampaignFleetAPI, Float>>() {
