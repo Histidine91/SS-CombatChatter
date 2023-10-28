@@ -3,6 +3,7 @@ package org.histidine.chatter.combat;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.CombatEngineAPI;
 import com.fs.starfarer.api.graphics.SpriteAPI;
+import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import org.histidine.chatter.ChatterConfig;
 import org.histidine.chatter.utils.StringHelper;
@@ -24,6 +25,7 @@ public class ChatterCombatDrawer {
     public static final int BOX_NAME_WIDTH = 144;
     public static final int BOX_OFFSET_X = 16;
     public static final int BOX_OFFSET_Y = 160;
+    public static final int BOX_OFFSET_Y_COMMAND_EXTRA = 80;
     public static final int BOX_HEIGHT = 240;
     public static final Color BOX_COLOR = Color.CYAN;
 
@@ -119,6 +121,7 @@ public class ChatterCombatDrawer {
 
         // prepare message text
         color = message.color;
+        if (color == null) color = Misc.getTextColor();
         color = new Color(color.getRed()/255f, color.getGreen()/255f, color.getBlue()/255f, alpha);
         LazyFont.DrawableString str2 = font.createText(message.text,
                 color, fontSize, boxWidth2);
@@ -173,7 +176,8 @@ public class ChatterCombatDrawer {
     {
         CombatEngineAPI engine = combatPlugin.engine;
         if (!ChatterConfig.chatterBox) return;
-        if (engine == null || !engine.isUIShowingHUD() || engine.getCombatUI().isShowingCommandUI())
+        boolean commandUI = engine.getCombatUI().isShowingCommandUI();
+        if (engine == null || !engine.isUIShowingHUD())// || engine.getCombatUI().isShowingCommandUI())
         {
             return;
         }
@@ -185,8 +189,11 @@ public class ChatterCombatDrawer {
         float scale = Global.getSettings().getScreenScaleMult();
         float bw = BOX_WIDTH * scale;
 
+        float offsetY = BOX_OFFSET_Y;
+        if (commandUI) offsetY += BOX_OFFSET_Y_COMMAND_EXTRA;
+
         GL11.glTranslatef(Display.getWidth() - bw - BOX_OFFSET_X * scale + PORTRAIT_WIDTH * scale,
-                Display.getHeight() - BOX_OFFSET_Y * scale, 0);
+                Display.getHeight() - offsetY * scale, 0);
 
         float remainingHeight = (BOX_HEIGHT - 8 * 2) * scale;
         for (int i=combatPlugin.boxMessages.size() - 1; i>=0; i--)

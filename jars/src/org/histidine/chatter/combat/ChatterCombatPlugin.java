@@ -69,6 +69,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final float MESSAGE_INTERVAL_FLOAT = 6;	// per ship
 	public static final float ANTI_REPETITION_DIVISOR = 3;
 	public static final float ANTI_REPETITION_DIVISOR_FLOATER = 5;
+	public static final float STOP_ADDING_TO_BOX_AT_LIMITER = 6;
+	public static final float BOX_LIMITER_DO_NOT_EXCEED = 8;
+
 	public static int lastBattleHash;
 	
 	protected CombatEngineAPI engine;
@@ -431,12 +434,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected void addMessageBoxMessage(ShipStateData stateData, ChatterMessage message)
 	{
 		if (!ChatterConfig.chatterBox) return;
-		if (messageBoxLimiter >= 7)
+
+		boolean force = message.force;
+		if (!force && messageBoxLimiter >= STOP_ADDING_TO_BOX_AT_LIMITER)
 			return;
 
 		FleetMemberAPI member = message.member;
 		MessageType category = message.type;
-		boolean force = message.force;
 
 		if (ChatterConfig.chatterBoxOfficerMode && (member.getCaptain() == null || member.getCaptain().isDefault()))
 			return;
@@ -449,7 +453,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		float charge = 3;
 		if (member.isAlly() || stateData.isEnemy) charge = 4.5f;
-		if (!force && messageBoxLimiter + charge > 10)
+		if (!force && messageBoxLimiter + charge > BOX_LIMITER_DO_NOT_EXCEED)
 			return;
 		
 		boxMessages.add(new BoxMessage(member, message.string, message.color));
@@ -865,8 +869,6 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return;
 		}
 		else {
-			//log.info("Checking intro message");
-
 			MessageType type = MessageType.START;
 			if (engine.getContext().getPlayerGoal() == FleetGoal.ESCAPE)
 				type = MessageType.RETREAT;
