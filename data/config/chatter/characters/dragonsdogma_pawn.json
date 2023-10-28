@@ -1,0 +1,78 @@
+{
+	"name":"Pawn (Dragon's Dogma)",
+	"personalities":["steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["othermedia","game","dragonsdogma"],
+	
+	"lines":{
+		"start":[
+			{"text":"We must stay calm! One at a a time..."},
+			{"text":"Strength in numbers, Arisen."},
+			{"text":"The first strike shall be mine!"},
+		],
+		"start_boss":[
+			{"text":"Don't let fear keep you back!"}, 
+			{"text":"Ready yourself! 'Tis a powerful foe!"}, 
+			{"text":"What monstrosity is this!?"}, 
+		],		
+		"retreat":[
+			{"text":"Very well...if I must."},
+			{"text":"Not this pawn, not this day..."},
+		],
+		"out_of_missiles":[
+			{"text":"Tis still too early to admit defeat."},
+			{"text":"We've only just begun, Master!"},
+		],
+		"engaged":[
+			{"text":"Fight me! Fight me if you dare!"},
+			{"text":"Hold fast, and drive this evil back!"},
+			{"text":"Don't allow them to surround you!"},
+		],
+		"need_help":[
+			{"text":"They hold the advantage!"},
+			{"text":"They're armed, Master!"},
+			{"text":"You'll not take me!"},
+		],
+		"pursuing":[
+			{"text":"There! The heart lies exposed!"},
+			{"text":"Hold it - I'll do the rest!"},
+			{"text":"I'll take care of the weak."},
+		],
+		"running":[
+			{"text":"I can't stand much more of this..."},
+			{"text":"I was unprepared."},
+		],
+		"hull_90":[
+			{"text":"I suppose I went too easy on it."},
+			{"text":"Tis but a flesh wound!"},
+			{"text":"Hmph! 'Twas nothing!"},
+		],
+		"hull_50":[
+			{"text":"I can still fight..."},
+			{"text":"It'll take more than that!"},
+		],
+		"hull_30":[
+			{"text":"I was careless..."},
+			{"text":"How pathetic..."},
+		],
+		"overload":[
+			{"text":"No! They hold the advantage!"},
+			{"text":"Tis a troubling foe!"},
+			{"text":"After this...comes the fun part."},
+		],
+		"death":[
+			{"text":"I was clumsy..."},
+			{"text":"What a gaffe..."},
+			{"text":"My..."},
+		],
+		"victory":[
+			{"text":"There's no way we could have lost to that."},
+			{"text":"Twas a fine scrap, if I may say so myself."},
+			{"text":"Our strength brought us victory."},
+			{"text":"It'll take more than that!"},
+			{"text":"That was hardly a warmup!"},
+		],
+	}
+}

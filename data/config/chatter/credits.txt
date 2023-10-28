@@ -216,3 +216,6 @@ Project Moon (compiled by Bulletkin, faction tagging by Caymon Joestar)
 
 Digital Extremes (compiled by Bulletkin)
 * warframe_cephaloncy
+
+Capcom (compiled by atreg)
+* dragonsdogma_pawn
