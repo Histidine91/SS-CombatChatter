@@ -1,0 +1,28 @@
+{
+	"name":"Replytest",
+	"personalities":[],
+	"gender":[],
+	"chance":0,
+	"talkativeness":1,
+	
+	"lines":{
+		"start":[
+			# as you can see here, IDs don't have to be unique
+			{"id":"replytest_intro1", "text":"Introductory text"},
+			{"id":"replytest_intro1", "text":"Introductory text 2"},
+			{"id":"replytest_intro1", "text":"Introductory text 3"}
+		],
+		"reply":[
+			{"id":"replytest_reply1", "text":"Reply to intro", "replyToId":"replytest_intro1"},
+			{"id":"replytest_reply2", "text":"Reply to reply", "replyToId":"replytest_reply1"},
+			{"id":"replytest_reply3", "text":"Reply to reply to reply", "replyToId":"replytest_reply2"},
+			
+			{"id":"replytest_reply4", "text":"Annoyed comment", "replyToId":"replytest_reply3"},
+			{"id":"replytest_reply5", "text":"Peevish retort", "replyToId":"replytest_reply4"},
+			{"id":"replytest_reply6", "text":"Insult at other party's parentage", "replyToId":"replytest_reply5"},
+			
+			{"id":"replytest_reply4Alt", "text":"Alternative route with friendly reply", "replyToId":"replytest_reply3"},
+			{"id":"replytest_reply5Alt", "text":"Gesture of affection <3", "replyToId":"replytest_reply4Alt"},
+		]
+	}
+}

@@ -1,6 +1,7 @@
 package org.histidine.chatter;
 
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.util.Misc;
 import org.histidine.chatter.combat.ChatterCombatPlugin;
 import org.jetbrains.annotations.Nullable;
 
@@ -11,7 +12,7 @@ public class ChatterMessage {
     @Nullable public String characterId;
     @Nullable public ChatterLine line;
     public String string;
-    public Color color;
+    public Color color; // = Misc.getTextColor();
     @Nullable public Boolean floater;
     @Nullable public Boolean inMessageBox;
     public ChatterLine.MessageType type;
