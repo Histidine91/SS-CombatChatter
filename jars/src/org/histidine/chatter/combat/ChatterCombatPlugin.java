@@ -63,9 +63,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public static final Map<MessageType, Float> MESSAGE_TYPE_MAX_PRIORITY = new HashMap<>();
 	public static final Set<MessageType> LOW_IMPORTANCE_CHATTER_TYPES = new HashSet<>();
 	public static final Set<MessageType> FLOAT_CHATTER_TYPES = new HashSet<>();
+	// will disregard MESSAGE_INTERVAL, with a brief delay if the ship was the last talker
+	public static final Set<MessageType> MINIMAL_INTERVAL_CHATTER_TYPES = new HashSet<>();
 	public static final float MAX_TIME_FOR_INTRO = 8;
 	public static final float MESSAGE_INTERVAL = 3;			// global, for non-floater text
-	public static final float MESSAGE_INTERVAL_IDLE = 5;	// global, for non-floater text
+	public static final float MESSAGE_INTERVAL_IDLE = 5;	// ditto
+	public static final float MESSAGE_INTERVAL_FAST = 0.8f;	// ditto
 	public static final float MESSAGE_INTERVAL_FLOAT = 6;	// per ship
 	public static final float ANTI_REPETITION_DIVISOR = 3;
 	public static final float ANTI_REPETITION_DIVISOR_FLOATER = 5;
@@ -127,6 +130,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		FLOAT_CHATTER_TYPES.add(MessageType.PURSUING);
 		FLOAT_CHATTER_TYPES.add(MessageType.NEED_HELP);
 		FLOAT_CHATTER_TYPES.add(MessageType.RUNNING);
+
+		MINIMAL_INTERVAL_CHATTER_TYPES.add(MessageType.HULL_90);
+		MINIMAL_INTERVAL_CHATTER_TYPES.add(MessageType.HULL_50);
+		MINIMAL_INTERVAL_CHATTER_TYPES.add(MessageType.HULL_30);
+		MINIMAL_INTERVAL_CHATTER_TYPES.add(MessageType.OUT_OF_MISSILES);
 	}
 	
 	public static ChatterCombatPlugin getInstance() {
@@ -488,7 +496,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		float msgInterval = MESSAGE_INTERVAL;
 		if (LOW_IMPORTANCE_CHATTER_TYPES.contains(category)) msgInterval = MESSAGE_INTERVAL_IDLE;
-		if (lastTalker == member) msgInterval *= 1.5f;
+		boolean lowInterval = MINIMAL_INTERVAL_CHATTER_TYPES.contains(category);
+		if (lowInterval) msgInterval = 0;
+
+		if (lastTalker == member) {
+			if (lowInterval) msgInterval = MESSAGE_INTERVAL_FAST;
+			else msgInterval *= 1.5f;
+		}
+
 		if (!floater && timeElapsed < lastMessageTime + msgInterval)
 		{
 			//log.info("Too soon for next message: " + timeElapsed + " / " + lastMessageTime);
@@ -696,7 +711,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		}
 		
 		// short form message as fallback
-		String message1 = " " + StringHelper.getString("chatter_general", "isAt") + " ";
+		String message1 = " " + StringHelper.getString("chatter_general", "isAt");
 		String message2 = amount + "% " + StringHelper.getString("chatter_general", "hull") + "!";
 		
 		return printRandomMessage(member, category, message1 + " " + message2);
@@ -932,7 +947,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (ChatterDataManager.getCharacterData(character) == null)
 				character = "default";
 
-			log.info("Checking character " + character + " for fleet member " + member.getShipName());
+			//log.info("Checking character " + character + " for fleet member " + member.getShipName());
 
 			weight *= ChatterDataManager.getCharacterData(character).talkativeness;
 			picker.add(member, weight);
