@@ -565,7 +565,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				break;
 		}
 
-		ChatterMessage message = new ChatterMessage(member, line, category);
+		ChatterMessage message = line != null ? new ChatterMessage(member, line, category) : new ChatterMessage(member, string, category);
 		if (line == null) message.string = string;
 		message.color = textColor;
 		message.floater = floater;
