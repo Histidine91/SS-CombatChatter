@@ -617,7 +617,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
 			engine.addFloatingText(textPos, message.string, Global.getSettings().getInt("chatter_floaterFontSize"), textColor, ship, 0, 0);
 			if (addToMsgBox) {
-				addMessageBoxMessage(stateData, member, line, textColor, type);
+				addMessageBoxMessage(stateData, message);
 			}
 			GeneralUtils.shownChatMessage(this, member, line, string, true, addToMsgBox, textColor);
 
@@ -1320,7 +1320,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		public BoxMessage(FleetMemberAPI ship, String text, Color color) {
 			this.ship = ship;
 			this.text = text;
-			this.color = color;
+			if (color != null) this.color = color;
 		}
 	}
 	

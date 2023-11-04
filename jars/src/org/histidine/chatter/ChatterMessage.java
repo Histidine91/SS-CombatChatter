@@ -13,7 +13,7 @@ public class ChatterMessage {
     @Nullable public String characterId;
     @Nullable public ChatterLine line;
     public String string;
-    public Color color; // = Misc.getTextColor();
+    public Color color = Misc.getTextColor();
     @Nullable public Boolean floater;
     @Nullable public Boolean inMessageBox;
     public ChatterLine.MessageType type;
