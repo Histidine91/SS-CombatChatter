@@ -345,7 +345,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected float getMessageMaxPriority(MessageType category)
 	{
 		if (!MESSAGE_TYPE_MAX_PRIORITY.containsKey(category))
-			return 999;
+			return 99999;
 		return MESSAGE_TYPE_MAX_PRIORITY.get(category);
 	}
 	
@@ -481,6 +481,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	 */
 	protected boolean printRandomMessage(FleetMemberAPI member, MessageType category, String genericFallback)
 	{
+		boolean shouldLog = false;	//category.isHullMessage();
+
 		if (isIgnored(member)) return false;
 		
 		ShipStateData stateData = getShipStateData(member);
@@ -490,7 +492,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		if (!floater && !meetsPriorityThreshold(member, category))
 		{
-			//log.info("Threshold too high for message " + category.name());
+			if (shouldLog) log.info("Threshold too high for message " + category.name());
 			return false;
 		}
 		
@@ -506,7 +508,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 
 		if (!floater && timeElapsed < lastMessageTime + msgInterval)
 		{
-			//log.info("Too soon for next message: " + timeElapsed + " / " + lastMessageTime);
+			if (shouldLog) log.info("Too soon for next message: " + timeElapsed + " / " + lastMessageTime);
 			return false;
 		}
 		
@@ -659,8 +661,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		return (getMessageMaxPriority(category) >= threshold);
 	}
-	
-	protected boolean rollFilterEnemyAndDefault(FleetMemberAPI member) 
+
+	protected boolean rollFilterEnemyAndDefault(FleetMemberAPI member)
 	{
 		PersonAPI captain = member.getCaptain();
 		boolean enemy = getShipStateData(member).isEnemy;

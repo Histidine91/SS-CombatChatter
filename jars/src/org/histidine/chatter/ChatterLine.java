@@ -119,6 +119,10 @@ public class ChatterLine {
 	public enum MessageType {
 		START, START_BOSS, RETREAT, VICTORY,
 		PURSUING, RUNNING, NEED_HELP, OUT_OF_MISSILES, ENGAGED,
-		HULL_90, HULL_50, HULL_30, OVERLOAD, DEATH, REPLY
+		HULL_90, HULL_50, HULL_30, OVERLOAD, DEATH, REPLY;
+
+		public boolean isHullMessage() {
+			return this == HULL_30 || this == HULL_50 || this == HULL_90;
+		}
 	}
 }
