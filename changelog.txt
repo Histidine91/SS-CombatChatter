@@ -1,3 +1,14 @@
+Version 1.14.0
+
+* Add dragonsdogma_pawn character compiled by atreg
+* Implement a system where characters can reply to each other
+* Make hull damage and out-of-missile messages be almost always played
+    * Previously they could be blocked if too much talking was going on
+* Automated ships with no AI core installed will not talk (warning messages and such will still appear)
+* Add SotF Taken, LOST_SECTOR Enigma, and RAT abyssal factions to `noEnemyChatterFactions` 
+    * Deep abyssal faction also gets intro splash
+* Fix a couple of under-the-hood bugs
+
 Version 1.13.2
 
 * Compatibility with Starsector 0.96, MagicLib 1.0.0 and LunaLib 1.7.0
