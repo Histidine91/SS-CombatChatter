@@ -1,0 +1,73 @@
+{
+	"name":"Jacques \"Flay\" Bohen",
+	"personalities":["cautious", "steady", "aggressive"],
+	"gender":["m","n"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["ja3", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			#{"text":"Pas de problème."},
+			{"text":"It is now open season on buckheads."},
+			{"text":"Let us get this safari moving."},
+			{"text":"Check your weapons. The game, she is afoot."},
+		
+		],
+		"start_boss":[
+			{"text":"Let us make this hunt more of a challenge."},
+		],		
+		"retreat":[
+			{"text":"I am not liking this failure. It is not something I ever wish to speak of."},
+		],
+		"out_of_missiles":[
+			{"text":"My gun, she is empty."},
+		],
+		"engaged":[
+			{"text":"Do you know how long a man can survive without his skin?"},
+			{"text":"Got a view to a kill here."},
+			{"text":"This will be so easy I am already bored with it."},
+			{"text":"C'est parti!"},
+			{"text":"There are a lot of trophies to be had from all these buckheads."},
+		],
+		"need_help":[
+			{"text":"Too many buckheads around here!"},
+			{"text":"This position. It is not good."},	
+		],
+		"pursuing":[
+			{"text":"I see game to hunt."},
+			{"text":"I am on the prowl."},
+			{"text":"On the hunt."},
+			{"text":"This is how I approach the kill."},
+			{"text":"No living thing shall escape my notice."},
+		],
+		"running":[			
+			{"text":"Be sure you do not become prey."},
+		],
+		"hull_90":[
+			{"text":"Damn buckhead bit me!"},
+			{"text":"Merde!"},
+			{"text":"Les jeux sont faits."},
+		],
+		"hull_50":[
+			{"text":"Death stalks me."},
+			{"text":"Ah, this scar will be magnifique!"},
+		],
+		"hull_30":[
+			{"text":"Merde! I fear my head, she will be mounted on someone's wall soon!"},
+		],
+		"overload":[
+			{"text":"I should be killing buckhead instead of being stuck with this."},
+			{"text":"You insult me. How can I hunt using trash such as this?"},
+		],
+		"death":[
+			{"text":"This is the end of the hunt... I wonder what my head will look like mounted on a wall."},
+		],
+		"victory":[
+			{"text":"The buckheads are all dead. Time to take trophies."},
+			{"text":"If there is a fedora, it is mine."},
+			{"text":"Now this is what I call hunting!"},
+			{"text":"Another trophy to add to my collection."},			
+		],
+	}
+}

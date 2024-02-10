@@ -4,24 +4,39 @@
 	"gender":["m"],
 	"chance":1,
 	"talkativeness":1,
-	"categoryTags":["ja2", "game", "othermedia"],
+	"categoryTags":["ja2", "ja3", "game", "othermedia"],
 	
 	"lines":{
 		"start":[
 			{"text":"I spy the evil people!"},
 			{"text":"Peoples of evil be here!"},
+			{"text":"They have zero chance. Our manliness is overwhelming."},	# ja3
+			
 		],
 		"start_boss":[
 			{"text":"I would not have thought such monsters existed!"},
+			{"text":"There are many enemies, but it is okay because there is one me."},
 		],
 		"retreat":[
 			{"text":"As you say. Back to drawing board."},
+			{"text":"Real men don't cry! Real men don't cry!"},	# ja3			
 		],
 		"out_of_missiles":[
 			{"text":"Gun is empty, damn it to hell!"},
 		],
-		"need_help":[],
-		"pursuing":[
+		"engaged":[		# ja3
+			{"text":"This one will fall before me."},
+			{"text":"Just hold still, damn you!"},
+			{"text":"Enemy peoples have placed their eyeballs on me!"},
+		],
+		"need_help":[
+			{"text":"Jesus and Mary!"},		
+			{"text":"Come on! Shoot me! I'm right here!"},	# ja3
+		],
+		"pursuing":[	# ja3
+			{"text":"Does my manliness make you afraid?"},
+			{"text":"This will be pie."},
+			{"text":"We must be well groomed for battle. Oil up those muscles!"},			
 		],
 		"running":[
 			{"text":"The hairs on the back of my neck are... upstanding..."},
@@ -30,10 +45,13 @@
 		"hull_90":[
 			{"text":"I assume I get big bonus for this?"},
 			{"text":"Stupid fools push me too far!"},
+			{"text":"It is dangerous to be here. I think it might also be unsafe."},	# ja3
+			{"text":"Do that again and I will crush you!"},	# ja3
 		],
 		"hull_50":[
 			{"text":"Damn it, damn it, damn it! This is not possible!"},
-			{"text":"Jesus and Mary!"},
+			{"text":"If I take any more hits, I will die and be dead."},	# ja3
+			{"text":"Aaaaahhh! I have hurting! I have bleeding!"},	# ja3
 		],
 		"hull_30":[
 			{"text":"God damn it to hell!"},
@@ -49,6 +67,7 @@
 		"victory":[
 			{"text":"At this rate, I soon be perfect!"},
 			{"text":"Ha ha ha! All evil has been lifted and separated."},
+			{"text":"That is how a real man does it!"},	# ja3
 		],
 		"victory_boss":[
 

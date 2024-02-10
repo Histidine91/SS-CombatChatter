@@ -57,12 +57,15 @@ Valve
 * tf2_soldier (compiled by imba512)
 * tf2_engineer (compiled by Zumberge)
 
-Strategy First
+Strategy First/Haemimont Games
 * ja2_biff
 * ja2_fox
 * ja2_miguel
 * ja2_magic
 * ja2_steroid
+* ja3_flay
+* ja3_kalyna
+* ja3_livewire
 
 Volition (compiled by MesoTroniK)
 * freespace_human1

@@ -1,0 +1,72 @@
+{
+	"name":"Kalyna Sokolova",
+	"personalities":["steady", "aggressive"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["ja3", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"This task will be easy for the brave."},
+			{"text":"Are there any sweets for good little girls?"},
+			{"text":"Hello, evil-doers! We are here to vanquish you."},
+		],
+		"start_boss":[
+			{"text":"May Baba Yaga not take me this fight."},
+		],		
+		"retreat":[
+			{"text":"This is impossible! I refuse to accept it!"},
+			{"text":"How can this be? We are great heroes, why did we fail in our quest?"},
+		],
+		"out_of_missiles":[
+			{"text":"I have fired my last bullet."},
+		],
+		"engaged":[
+			{"text":"Evil-doer!"},
+			{"text":"That's right! Give the evil-doers a beating. Make them run back to their foul lairs."},
+			{"text":"There is a villain here!"},
+			{"text":"Time for courageous action to punish all those evil-doers."},
+		],
+		"need_help":[
+			{"text":"These villains are not playing around!"},			
+		],
+		"pursuing":[
+			{"text":"My babusya taught me to hunt this way."},
+			{"text":"Time to dispatch some evil-doers!"},
+			{"text":"I have the villain in my sights."},
+		],
+		"running":[
+			{"text":"I wonder how heroes in books have coped with this?"},
+			{"text":"This is a bad place. I should leave."},		
+		],
+		"hull_90":[
+			{"text":"Not as bad as a smack from my babusya."},
+			{"text":"I will survive. No great hero dies from wounds."},
+			{"text":"Ow! Hey, that hurt!"},			
+		],
+		"hull_50":[
+			{"text":"Please take care of my babusya if I die."},
+			{"text":"This is a very dangerous place to be right now!"},
+		],
+		"hull_30":[
+			{"text":"Nooooo! Bogatyrs are not supposed to die. This is all wrong."},
+			{"text":"This is impossible! I refuse to accept it!"},
+			{"text":"It is possible my heroic journey ends here!"},
+		],
+		"overload":[
+			{"text":"Some mischievous spirit got in my gun."},
+			{"text":"I am cursed! If I move, I will surely die."},		
+			{"text":"Uh-oh, talking computer is no longer talking. Must be broken."},	
+		],
+		"death":[
+			{"text":"My babusya was right... Do not let Baba Yaga take my body."},
+		],
+		"victory":[
+			{"text":"All done! If you need me, I will be reading my book."},
+			{"text":"The villains are dead! Now is the time for singing and dancing!"},
+			{"text":"No quest is a match for great heroes like us."},
+			{"text":"Evil-doers beware! I am stronger and better than ever!"},
+		],
+	}
+}

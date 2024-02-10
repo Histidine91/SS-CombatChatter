@@ -4,12 +4,15 @@
 	"gender":["f"],
 	"chance":1,
 	"talkativeness":1,
-	"categoryTags":["ja2", "game", "othermedia"],
+	"categoryTags":["ja2", "ja3", "game", "othermedia"],
 	
 	"lines":{
 		"start":[
 			{"text":"The fox is listening..."},
 			{"text":"Get ready! They're here!"},
+			{"text": "I will give this task all the love it deserves."},	# ja3
+			{"text": "Time to get this party started!"},	# ja3
+			{"text": "Ready and available... as always."},	# ja3
 		],
 		"start_boss":[
 			{"text":"Look at the size of it! Oh my..."},
@@ -20,37 +23,51 @@
 		"out_of_missiles":[
 			{"text":"I'm in need of ammo."},
 		],
-		"engaged":[
+		"engaged":[	# ja3
+			{"text":"This won't hurt a bit. Well, it won't hurt me anyway."},
+			{"text":"Oh, I know how to handle creeps who want to get too close."},
+			
 		],
 		"need_help":[
 			{"text":"They've got me pinned!"},
 			{"text":"Run for cover!"},
+			{"text":"This is not a fun position to be in right now!"},	# ja3		
 		],
 		"pursuing":[
 			{"text":"There's something!"},
+			{"text":"I could do this blindfolded and tied up!"},
+			{"text":"You just like watching me walk."},
 		],
-		"running":[
-			
+		"running":[	# ja3
+			{"text":"This is too hard for me, and that's not something I say very often."},
+			{"text":"We are getting a lot of attention. And not of the fun and flirty kind."},			
 		],
 		"hull_90":[
 			{"text":"I've had back rubs worse than that..."},
+			{"text":"Kinky! But I don't like it."},	# ja3			
 		],
 		"hull_50":[
 			{"text":"This is not looking very good..."},
 			{"text":"Nothing in my life ever works out!"},
+			{"text":"That better not leave a scar!"},	# ja3
 		],
 		"hull_30":[
 			{"text":"I don't think I'm gonna make it..."},
+			{"text":"I have a whole career ahead of me. I can't die now."},	# ja3
 		],
 		"overload":[
 			{"text":"What's a girl have to do to get something that works around here?"},
+			{"text":"Uh-oh. I think this thing is falling apart. Do we have a handyman who can check out my equipment?"},	# ja3
 		],
 		"death":[
+			{"text":"Tell my agent... release the nudes..."},	# ja3
 		],
 		"victory":[
 			{"text":"Sweet dreams!"},
 			{"text":"Ready to move on!"},
 			{"text":"Yeah, we did 'em all! I love that!"},
+			{"text":"Hey, we did 'em all! Makes me feel satisfied and kind of tingly."},	# ja3
+			{"text":"Now, that's how a lady gets things done!"},	# ja3
 		],
 		"victory_boss":[
 

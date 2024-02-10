@@ -1,0 +1,71 @@
+{
+	"name":"Leili \"Livewire\" Idrisi",
+	"personalities":["timid", "cautious", "steady"],
+	"gender":["f"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["ja3", "game", "othermedia"],
+	
+	"lines":{
+		"start":[
+			{"text":"This task will not be a problem for me and I will be honored to do it."},
+			{"text":"This is so exciting!"},			
+			{"text":"If I say I will be somewhere, then that is where I will be. That's just common courtesy."},
+		],
+		"start_boss":[
+			{"text":"So bossy!"},
+		],		
+		"retreat":[
+			{"text":"I'm not going to point any fingers, but if I was, I would honestly have to say the blame lies primarily with them."},
+			{"text":"I truly think I cannot be fully blamed for that."},
+		],
+		"out_of_missiles":[
+			{"text":"Next time you are shopping, you should purchase some ammo... and maybe some sugar-coated almonds."},
+			{"text": "I am out of ammunition! Maybe I should just go hide, yeah?"},
+		],
+		"engaged":[
+			{"text": "Please don't shoot me! Please don't shoot me!"},	
+			{"text": "Tiiiiime to say goodbyyyyyyye!"},
+			{"text": "I think I can do this."},			
+		],
+		"need_help":[
+			{"text":"I feel overwhelmed by the enemy presence around."},
+			{"text":"True, I am surrounded, but I think it is plain that the fault is almost entirely not my own."},
+			{"text":"It would be very beneficial for me if someone can help me."},
+			{"text":"This is not a good place for me to be right now!"},
+			{"text":"The enemy is showing no regard for my safety!"},
+		],
+		"pursuing":[
+			{"text":"Come with me, everyone."},
+			{"text":"When is my fifteen minute break?"},			
+		],
+		"running":[
+			{"text":"I really believe there are far too many opponents for us to reasonably fight."},
+			{"text":"It is not at all shameful and perhaps even wise if we hide ourselves... or maybe even run away."},
+			{"text":"I really believe 'every girl for herself' is a sound strategy at this point."}
+		],
+		"hull_90":[
+			{"text":"Someone is out to get me!"},	
+			{"text":"That was so uncalled for and not at all fair!"},			
+		],
+		"hull_50":[
+			{"text":"That was rude and painful!"},		
+			{"text":"I knew the cops were out to get me."},
+			{"text":"I am doing quite a lot of bleeding and would like it to stop now."},
+		],
+		"hull_30":[
+			{"text":"I am not ready to die yet. I still haven't won the approval of my parents."},
+		],
+		"overload":[
+			{"text":"OMG... No."},
+			{"text":"I really feel like this is something that belongs in a flea market and, not to sound too judgemental, but I am allergic to flea markets."},			
+		],
+		"death":[
+			{"text":"This is exactly what father said would happen! So... don't tell him... what happened."},
+		],
+		"victory":[
+			{"text":"I truly believe this is why girls make the best soldiers."},
+			{"text":"I really think I am getting the hang of this!"},
+		],
+	}
+}

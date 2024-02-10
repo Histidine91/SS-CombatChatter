@@ -4,7 +4,7 @@
 	"gender":["m"],
 	"chance":1,
 	"talkativeness":1,
-	"categoryTags":["ja2", "game", "othermedia"],
+	"categoryTags":["ja2", "ja3", "game", "othermedia"],
 	
 	"lines":{
 		"start":[
@@ -13,29 +13,40 @@
 			{"text":"Like lightning, man, I'm here and ready to strike."},
 		],
 		"retreat":[
+			{"text":"Damn. See you on the flip side."},	# ja3		
 		],
 		"out_of_missiles":[
 			{"text":"Chamber's empty, man."},
 		],
-		"engaged":[
+		"engaged":[	# ja3
+			{"text":"Easy for rea-zy."},
+			{"text":"Watch this magic trick."},
+			{"text":"This is what a can of whoop-ass sounds like!"},
+			{"text":"This snapperhead's going down."},
 		],
 		"need_help":[
 			{"text":"I'm spinning my wheels, man..."},
+			{"text":"Don't nobody know my trouble but God."},			# ja3	
 		],
 		"pursuing":[
 			{"text":"Snapperheads!"},
-			{"text":"Over there!"},
+			{"text":"I'm hustlin'."},	# ja3
 			{"text":"Need a broom!"},
+			{"text":"You about to test the strength of my pimp hand!"},	# ja3			
 		],
 		"running":[
 			{"text":"This isn't working, man..."},
+			
 		],
 		"hull_90":[
-			{"text":"Bring it on. I wanna kick some ass."},
+			{"text":"Bring it on. I wanna kick some ass."},			
+			{"text":"Your ass is on my platter, snapperhead."},
 		],
 		"hull_50":[
 			{"text":"This is when I'm at my best!"},
-			{"text":"Your ass is on my platter, snapperhead."},
+			{"text":"I'm in bad shape, man."},	# ja3
+			{"text":"Stings like a mutha."},	# ja3			
+			{"text":"I'm real messed up and that ain't no jive."},	# ja3
 		],
 		"hull_30":[
 			{"text":"MOTHERF-"},
@@ -45,14 +56,17 @@
 		"overload":[
 			{"text":"Piece is screwed!"},
 			{"text":"Burning, man! I'm not seeing nothing!"},
+			{"text":"My piece is busted, man!"},	# ja3			
 		],
-		"death":[
+		"death":[	# ja3
+			{"text":"Dyin' and I ain't lyin'."},
 		],
 		"victory":[
 			{"text":"Time to chill out and relax."},
 			{"text":"So long, snapperheads!"},
 			{"text":"Ya gotta like that!"},
 			{"text":"I'm in tune."},
+			{"text":"Every last one done checked out permanent."},	# ja3			
 		],
 		"victory_boss":[
 
