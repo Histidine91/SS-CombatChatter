@@ -221,4 +221,11 @@ Capcom (compiled by atreg)
 * dragonsdogma_pawn
 
 Erika "Bjarl" Schaffner (Building off Stardock Entertainment)
-* 
+* soase_tec_bb
+* soase_tec_carrier
+* soase_tec_colony
+* soase_tec_javelin
+* soase_tec_kodiak
+* soase_tec_titan
+* soase_tec_support
+* soase_tec_transport
