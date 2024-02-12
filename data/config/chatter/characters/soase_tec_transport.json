@@ -52,7 +52,7 @@
 		],
 		"hull_50":[
 			{"text":"My damage control can't handle this!"},
-			{"text":"Comm$playerSirOrMadamander- what are you doing?!"},
+			{"text":"$playerSirOrMadam- what are you doing?!"},
 			{"text":"My engineers are starting to panic!"},
 			{"text":"Reporting half hull integrity!"},
 			{"text":"Artifical Gravity just went out on the bridge!"},
