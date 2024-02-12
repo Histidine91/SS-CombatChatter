@@ -11,7 +11,7 @@
 			{"text":"Times of war are upon us.."},
 			{"text":"Commlink active."},
 			{"text":"Good day, Commander."},
-            {"text":"Reactor is hot. We're ready for battle."},
+			{"text":"Reactor is hot. We're ready for battle."},
 		],
 		"start_boss":[
 			{"text":"This shall be our finest hour."},
@@ -59,7 +59,7 @@
 		"hull_50":[
 			{"text":"Reporting heavy hull damage."},
 			{"text":"My Chief engineer is urging a retreat."},
-			{"text":"Damage control teams Alpha through Charlie, report to engineering. Delta to Foxtrot, stay on the hull."},,
+			{"text":"Damage control teams Alpha through Charlie, report to engineering. Delta to Foxtrot, stay on the hull."},
 			{"text":"*Cough!* Get that fire out! We're not done yet!"},
 		],
 		"hull_30":[

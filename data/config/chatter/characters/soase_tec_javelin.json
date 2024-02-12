@@ -19,23 +19,23 @@
 		"retreat":[
 			{"text":"Keep em where we can see em!"},
 			{"text":"Make way! We're pulling back!"},
-            {"text":"Preparing for another run!"},
+			{"text":"Preparing for another run!"},
 		],
 		"out_of_missiles":[
 			{"text":"My missile launchers are done!"},
 			{"text":"Our missile reserves are dry!"},
-            {"text":"All ordinance launched!"},
+			{"text":"All ordinance launched!"},
 		],
 		"engaged":[
 			{"text":"Call the shot!"},
 			{"text":"Range locked in."},
 			{"text":"This ought to shake things up!"},
-            {"text":"Target is locked in."},
+			{"text":"Target is locked in."},
 		],
 		"need_help":[
 			{"text":"Danger close! Danger close!"},
 			{"text":"I'm being overwhelmed!"},
-            {"text":"Enemy is inside our range bracket!"},
+			{"text":"Enemy is inside our range bracket!"},
 		],
 		"pursuing":[
 			{"text":"Launch missiles and puncture them!"},
@@ -43,17 +43,17 @@
 		],
 		"running":[
 			{"text":"Full power to the main drive!"},
-            {"text":"Finally, enough time to reload."},
+			{"text":"Finally, enough time to reload."},
 		],
 		"hull_90":[
 			{"text":"That shot won't stop me."},
 			{"text":"Light damage, Commander."},
-            {"text":"Looks like they finally hit me!"},
+			{"text":"Looks like they finally hit me!"},
 		],
 		"hull_50":[
 			{"text":"Hell! This is getting to be too much!"},
 			{"text":"My hull is starting to sound nasty!"},
-            {"text":"That last shot set off a bunch of alarms!"},
+			{"text":"That last shot set off a bunch of alarms!"},
 		],
 		"hull_30":[
 			{"text":"My ammo is cooking off!"},
@@ -63,12 +63,12 @@
 		"overload":[
 			{"text":"Overload! Rebooting!"},
 			{"text":"I'm melting in here!"},
-            {"text":"Evade incoming fire!"},
+			{"text":"Evade incoming fire!"},
 		],
 		"death":[
 			{"text":"Going down!"},
 			{"text":"Reactor breach in progrss! I'm out!"},
-            {"text":"Escape pods launched!"},
+			{"text":"Escape pods launched!"},
 		],
 		"victory":[
 			{"text":"You gonna give me more missiles?"},
