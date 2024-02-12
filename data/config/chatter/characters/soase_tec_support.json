@@ -47,7 +47,7 @@
 		"running":[
 			{"text":"Calculating regroup location."},
 			{"text":"Power to the main drives."},
-			{"text":"See you on the flipside Commander."},
+			{"text":"See you on the flipside $playerSirOrMadam."},
 		],
 		"hull_90":[
 			{"text":"Crew is reporting light damage."},
@@ -56,14 +56,14 @@
 			{"text":"Stay calm, we're in good hands."},
 		],
 		"hull_50":[
-			{"text":"Widespread hull damage, commander."},
-			{"text":"Commander, my armor is stripped."},
+			{"text":"Widespread hull damage, $playerSirOrMadam."},
+			{"text":"$playerSirOrMadam, my armor is stripped."},
 			{"text":"My ship is in danger!"},
 		{"text":"Enemy shells are causing spalling!"},
 		],
 		"hull_30":[
 			{"text":"Our targetting system just took shrapnel!"},
-			{"text":"Commander, I need to pull back!"},
+			{"text":"$playerSirOrMadam, I need to pull back!"},
 			{"text":"My ship's spine is showing cracks!"},
 			{"text":"Sir, Damage Control can't keep up!"},
 			{"text":"Get the non-essential crew to escape pods!"},
@@ -82,7 +82,7 @@
 		"victory":[
 			{"text":"Another one for the books!"},
 			{"text":"Get on recalibrating our systems."},
-			{"text":"Thanks for having my back, Commander."},
+			{"text":"Thanks for having my back, $playerSirOrMadamr."},
 			{"text":"Plug this battle data into our systems, I want analysis complete within the hour."},
 		],
 	}

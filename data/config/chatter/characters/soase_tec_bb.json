@@ -20,7 +20,7 @@
 		],		
 		"retreat":[
 			{"text":"Plotting retreat route."}, 
-			{"text":"We're pulling back, commander."},
+			{"text":"We're pulling back, $playerSirOrMadam."},
 			{"text":"Flag staff has advised a retreat."},
 		],
 		"out_of_missiles":[
@@ -35,20 +35,20 @@
 			{"text":"Tactical officer! Direct our fire."},
 		],
 		"need_help":[
-			{"text":"Requesting back-up, Commander."},
+			{"text":"Requesting back-up, $playerSirOrMadam."},
  			{"text":"I need an escort!"},
 			{"text":"My ship is being overwhelmed."},
 			{"text":"We need support as soon as possible."},
 		],
 		"pursuing":[
-			{"text":"Pursuing, Commander."},
+			{"text":"Pursuing, $playerSirOrMadam."},
 			{"text":"Engine room, pursuit burn!"},
 			{"text":"Intercept is plotted. Burning now."},
 		],
 		"running":[
 			{"text":"Vectoring to regroup coordinates."},
             {"text":"Retreat is in progress."},
-			{"text":"On our way out Commander."},
+			{"text":"On our way out $playerSirOrMadam."},
 		],
 		"hull_90":[
 			{"text":"My Chief Engineer is reporting battle damage."},
@@ -67,7 +67,7 @@
 			{"text":"My ship's spine is starting to buckle!"},
 			{"text":"My bridge has taken a direct hit!"},
 			{"text":"Crew causalities are mounting! This combat is unsustainable!"},
-			{"text":"We're preparing to abandon ship, Commander!"},
+			{"text":"We're preparing to abandon ship, $playerSirOrMadam!"},
 		],
 		"overload":[
 			{"text":"Our shields are down!"},

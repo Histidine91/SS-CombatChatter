@@ -49,7 +49,7 @@
 			{"text":"Just a little bit of damage!"},
 		],
 		"hull_50":[
-			{"text":"I'm starting to ache command!"},
+			{"text":"I'm starting to ache $playerSirOrMadam!"},
 			{"text":"I think that took out the beds!"},
 			{"text":"That stings! Stop it!"},
 		],
