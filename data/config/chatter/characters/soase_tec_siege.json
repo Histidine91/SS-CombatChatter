@@ -1,0 +1,79 @@
+{
+	"name":"Marza Dreadnought", #Inspired by the Marza Dreadnought from Sins Of A Solar Empire
+	"personalities":["steady","aggressive","reckless"],
+	"gender":["m","f","n"],
+	"chance":0.1,
+	"talkativeness":1,
+	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
+	
+	"lines":{
+		"start":[
+			{"text":"Time to kick some ass!"},
+			{"text":"Need something destroyed?"},
+			{"text":"It's about time."},
+		],
+		"start_boss":[
+			{"text":"Bringing out the big guns!"},
+            {"text":"Our guns will shatter them!"},
+            {"text":"They're no match for me!"},
+		],		
+		"retreat":[
+            {"text":"Regrouping!"},
+            {"text":"Disengaging for another run!"},
+            {"text":"I'm not done yet!"},
+		],
+		"out_of_missiles":[
+			{"text":"No more presents!"},
+			{"text":"My launchers are empty!"},
+            {"text":"Missile storage is gone!"},
+		],
+		"engaged":[
+			{"text":"They're as good as dead!"},
+			{"text":"This is how space junk is born!"},
+			{"text":"I've got a present for ya!"} ,
+		],
+		"need_help":[
+			{"text":"They're trying something! Back me up!"},
+			{"text":"Enemies everywhere I turn!"},
+            {"text":"Send another ship! We can crush them!"},
+		],
+		"pursuing":[
+			{"text":"What's this?!"},
+			{"text":"Crushing the opposition!"},
+            {"text":"They can't run from me!"},
+		],
+		"running":[
+			{"text":"All power to main drive!"},
+            {"text":"I can't believe it! Pulled back?!"},
+		],
+		"hull_90":[
+			{"text":"Get DamCon to fix it!"},
+			{"text":"Does it matter?! Keep fighting!"},
+            {"text":"Breaches?! Get your suit on then!"},
+		],
+		"hull_50":[
+			{"text":"As long as our cannons can fire we fight!"},
+			{"text":"Widespread breaching won't stop me!"}, 
+            {"text":"Fire! Fire! Don't let them breathe!"},
+		],
+		"hull_30":[
+			{"text":"Keep firing!"},
+			{"text":"We outgun them, the hull doesn't matter!"},
+			{"text":"Don't let up!"},
+		],
+		"overload":[
+			{"text":"Drain the flux banks now!"},
+			{"text":"I won't stand for this!"},
+            {"text":"Cycle the reactor!"},
+		],
+		"death":[
+			{"text":"I won't let u-*BZZT*"},
+			{"text":"Hah! They think they got me!"},
+			{"text":"Get me another command!"},
+		],
+		"victory":[
+			{"text":"We've eradicated our foes!"},
+            {"text":"Smashed like the insects they are!"},
+		]
+	}
+}

@@ -219,3 +219,6 @@ Digital Extremes (compiled by Bulletkin)
 
 Capcom (compiled by atreg)
 * dragonsdogma_pawn
+
+Erika "Bjarl" Schaffner (Building off Stardock Entertainment)
+* 

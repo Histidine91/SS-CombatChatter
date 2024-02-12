@@ -1,0 +1,78 @@
+{
+	"name":"Kodiak Cruiser", #Inspired by the Kodiak Heavy Cruiser from Sins Of A Solar Empire
+	"personalities":["aggressive","reckless"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
+	
+	"lines":{
+		"start":[
+			{"text":"Yes, Commander?"},
+			{"text":"Give the order!"},
+			{"text":"Talk is cheap."},
+		],
+		"start_boss":[
+			{"text":"Ready for the frontlines!"},
+		],		
+		"retreat":[
+			{"text":"Moving back!"},
+			{"text":"Lets juke em!"},
+		],
+		"out_of_missiles":[
+			{"text":"I'm dry!"},
+			{"text":"Outta missiles!"},
+            {"text":"Our launchers are done!"},
+		],
+		"engaged":[
+			{"text":"Come get some!"},
+			{"text":"Chew on this!"},
+			{"text":"Come on! Come on!"},
+            {"text":"Coming through!"},
+		],
+		"need_help":[
+			{"text":"Back me up!"},
+			{"text":"They're shaking me up!"},
+            {"text":"I don't have enough guns for this!"},
+		],
+		"pursuing":[
+			{"text":"I can take them!"},
+			{"text":"I got point!"},
+			{"text":"Come get some!"},
+		],
+		"running":[
+			{"text":"Main drive online!"},
+		],
+		"hull_90":[
+			{"text":"There we go! Now they're trying!"},
+			{"text":"Damn! That almost hurt!"},
+            {"text":"Just a little bit of damage!"},
+		],
+		"hull_50":[
+			{"text":"I'm starting to ache command!"},
+			{"text":"I think that took out the beds!"},
+            {"text":"That stings! Stop it!"},
+		],
+		"hull_30":[
+			{"text":"I've had enough! Get me out of here!"},
+			{"text":"Half the hull is cratered!"},
+			{"text":"Hell! That's no good!"},
+			{"text":"Get gravity back online!"},
+		],
+		"overload":[
+			{"text":"The shield just shorted!"},
+			{"text":"I'm overloaded!"},
+            {"text":"That thick armor of mine is gonna save me!"},
+		],
+		"death":[
+			{"text":"The hull's taken too much!"},
+			{"text":"Bail out! Bail out!"},
+            {"text":"Escape pods away! Get clear of the blast!"},
+		],
+		"victory":[
+			{"text":"I told you I had it."},
+			{"text":"Heh. Good as done."},
+
+		],
+	}
+}

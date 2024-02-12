@@ -1,0 +1,86 @@
+{
+	"name":"Corsev Transport", #inspired by the Corsev Transport from Sins Of A Solar Empire
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
+	
+	"lines":{
+		"start":[
+			{"text":"Ready to deploy."},
+			{"text":"Ready to form battle-line."},
+			{"text":"*sigh* Like I've got a choice."},
+			{"text":"On stand-by."},
+		],
+		"start_boss":[
+			{"text":"This better not be another suicide mission..."},
+		],		
+		"retreat":[
+			{"text":"Get us out of here, damnit!"},
+			{"text":"We can't hold this!"},
+            {"text":"Rejoin the fleet!"},
+		],
+		"out_of_missiles":[
+			{"text":"Missile racks empty!"},
+			{"text":"Launchers are finished, Commander!"},
+		],
+		"engaged":[
+			{"text":"We're going in!"},
+			{"text":"Here we go again!"},
+			{"text":"Hold on tight!"},
+		],
+		"need_help":[
+			{"text":"Reform ranks! We're exposed!"},
+			{"text":"Flicker the shields! Manuever back towards our lines!"},
+            {"text":"Tracking multiple targets, send backup!"},
+		],
+		"pursuing":[
+			{"text":"Into the breach!"},
+			{"text":"Moving into knife-fight range!"},
+			{"text":"Show them what we're made of!"},
+		],
+		"running":[
+			{"text":"Rerouting power to the main drive!"},
+            {"text":"We'll be at the regroup."},
+		],
+		"hull_90":[
+			{"text":"They nicked our hull!"},
+			{"text":"Light damage to my ship!"},
+            {"text":"Light armor penetration!"},
+            {"text":"Integrity is at 90%!"},
+		],
+		"hull_50":[
+			{"text":"My damage control can't handle this!"},
+			{"text":"Commander- what are you doing?!"},
+            {"text":"My engineers are starting to panic!"},
+            {"text":"Reporting half hull integrity!"},
+            {"text":"Artifical Gravity just went out on the bridge!"},
+		],
+		"hull_30":[
+			{"text":"Commander, my ship is starting to creak."},
+			{"text":"That last shot took out my Damage Control Center!"},
+			{"text":"If we keep taking hits like this we're gonna need weeks in dock!"},
+			{"text":"Escape pods are ready!"},
+            {"text":"My hull is critical, Commander!"},
+		],
+		"overload":[
+			{"text":"The Reactor is going haywire!"},
+			{"text":"I thought we fixed that!"},
+            {"text":"Purge the flux from the ship!"},
+            {"text":"We're burning up in here!"},
+		],
+		"death":[
+			{"text":"The Reactor is going to blow! Get clear!"},
+			{"text":"Abandon ship! Abandon ship!"},
+            {"text":"The Captain goes down with their ship.."},
+			{"text":"You bastards!"},
+		],
+		"victory":[
+			{"text":"...*long exhale*..."},
+			{"text":"Maybe you'll get the hang of it, Commander.."},
+			{"text":"Closer and closer to retirement.."},
+			{"text":"Hell. That felt close."},
+		],
+	}
+}

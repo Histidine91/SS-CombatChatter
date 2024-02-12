@@ -1,0 +1,78 @@
+{
+	"name":"Javelis Frigate", #Inspired by the Javelis Frigate from Sins Of A Solar Empire
+	"personalities":["steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
+	
+	"lines":{
+		"start":[
+			{"text":"All ordinance accounted for."},
+			{"text":"You pick em, I'll stick em!"},
+			{"text":"These missiles won't fire themselves!"},
+			{"text":"Where's the target?"},
+		],
+		"start_boss":[
+			{"text":"This volley goes out to you!~"},
+		],		
+		"retreat":[
+			{"text":"Keep em where we can see em!"},
+			{"text":"Make way! We're pulling back!"},
+            {"text":"Preparing for another run!"},
+		],
+		"out_of_missiles":[
+			{"text":"My missile launchers are done!"},
+			{"text":"Our missile reserves are dry!"},
+            {"text":"All ordinance launched!"},
+		],
+		"engaged":[
+			{"text":"Call the shot!"},
+			{"text":"Range locked in."},
+			{"text":"This ought to shake things up!"},
+            {"text":"Target is locked in."},
+		],
+		"need_help":[
+			{"text":"Danger close! Danger close!"},
+			{"text":"I'm being overwhelmed!"},
+            {"text":"Enemy is inside our range bracket!"},
+		],
+		"pursuing":[
+			{"text":"Launch missiles and puncture them!"},
+			{"text":"Keep up the chase! Don't let them get free!"},
+		],
+		"running":[
+			{"text":"Full power to the main drive!"},
+            {"text":"Finally, enough time to reload."},
+		],
+		"hull_90":[
+			{"text":"That shot won't stop me."},
+			{"text":"Light damage, Commander."},
+            {"text":"Looks like they finally hit me!"},
+		],
+		"hull_50":[
+			{"text":"Hell! This is getting to be too much!"},
+			{"text":"My hull is starting to sound nasty!"},
+            {"text":"That last shot set off a bunch of alarms!"},
+		],
+		"hull_30":[
+			{"text":"My ammo is cooking off!"},
+			{"text":"I'm at 30% hull integrity!"},
+			{"text":"Reporting widespread damage!"},
+		],
+		"overload":[
+			{"text":"Overload! Rebooting!"},
+			{"text":"I'm melting in here!"},
+            {"text":"Evade incoming fire!"},
+		],
+		"death":[
+			{"text":"Going down!"},
+			{"text":"Reactor breach in progrss! I'm out!"},
+            {"text":"Escape pods launched!"},
+		],
+		"victory":[
+			{"text":"You gonna give me more missiles?"},
+			{"text":"Great job. Now I can rest."},
+		],
+	}
+}

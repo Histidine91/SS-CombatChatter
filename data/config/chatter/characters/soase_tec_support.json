@@ -1,0 +1,89 @@
+{
+	"name":"Dunov Battlecruiser", #Inspired by the Dunov Battlecruiser from Sins Of A Solar Empire
+	"personalities":["timid","cautious", "steady"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
+	
+	"lines":{
+		"start":[
+			{"text":"Don't worry, I've got your back."},
+			{"text":"Comm channel open."},
+			{"text":"Ready weapons systems."},
+            {"text":"Reactor online. Computers online. Weapons online. We are a-go."},
+		],
+		"start_boss":[
+			{"text":"Systems calibrated. All systems go!"},
+            {"text":"Analysis matrix is primed!"},
+            {"text":"All gear is in tip-top shape, lets show them what we're made of!"},
+		],		
+		"retreat":[
+			{"text":"Retreat is in progess!"},
+            {"text":"They're too much for me!"},
+            {"text":"Calculations aren't promising! Pulling back!"},
+		],
+		"out_of_missiles":[
+			{"text":"Missile systems are done!"},
+			{"text":"We've got no more reloads sir!"},
+            {"text":"Maybe it's time to look at those expanded racks. Missiles are gone."},
+		],
+		"engaged":[
+			{"text":"Engaging the enemy."},
+			{"text":"Target is designated."},
+			{"text":"Fire when ready."},
+            {"text":"Combat analysis beginning."},
+		],
+		"need_help":[
+			{"text":"Requesting escort be deployed ASAP."},
+			{"text":"My ship is in extreme danger!"},
+            {"text":"We're liable to take damage if we don't get help!"},
+		],
+		"pursuing":[
+			{"text":"Follow them!"},
+			{"text":"Transmission recieved - pursuing the target."},
+			{"text":"Plotting an intercept course."},
+		],
+		"running":[
+			{"text":"Calculating regroup location."},
+            {"text":"Power to the main drives."},
+            {"text":"See you on the flipside Commander."},
+		],
+		"hull_90":[
+			{"text":"Crew is reporting light damage."},
+			{"text":"Atmospheric ruptures on non-essential decks."},
+            {"text":"Looks like I'm taking some fire!"},
+            {"text":"Stay calm, we're in good hands."},
+		],
+		"hull_50":[
+			{"text":"Widespread hull damage, commander."},
+			{"text":"Commander, my armor is stripped."},
+            {"text":"My ship is in danger!"},
+            {"text":"Enemy shells are causing spalling!"},
+		],
+		"hull_30":[
+			{"text":"Our targetting system just took shrapnel!"},
+			{"text":"Commander, I need to pull back!"},
+			{"text":"My ship's spine is showing cracks!"},
+            {"text":"Sir, Damage Control can't keep up!"},
+            {"text":"Get the non-essential crew to escape pods!"},
+		],
+		"overload":[
+			{"text":"Cycle the flux banks!"},
+			{"text":"Shields are down!"},
+            {"text":"Our defense grid is offline?!"},
+            {"text":"Flush the reactor! Get us back online!"},
+		],
+		"death":[
+			{"text":"Launch escape pods!"},
+			{"text":"Stop the reactor before it's too late!-"},
+			{"text":"Hull damage critical, abandoning ship!"},
+		],
+		"victory":[
+			{"text":"Another one for the books!"},
+			{"text":"Get on recalibrating our systems."},
+            {"text":"Thanks for having my back, Commander."},
+            {"text":"Plug this battle data into our systems, I want analysis complete within the hour."},
+		],
+	}
+}

@@ -1,0 +1,88 @@
+{
+	"name":"Ankylon Titan", #Inspired by the Ankylon Titan from Sins Of A Solar Empire
+	"personalities":["steady"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
+	
+	"lines":{
+		"start":[
+			{"text":"Our orders, Commander?"},
+			{"text":"Ready to anchor the fight!"},
+			{"text":"True to the cause!"},
+			{"text":"We'll never fail!"},
+		],
+		"start_boss":[
+			{"text":"Ready to provide cover for the fleet!"},
+            {"text":"The strong backbone, ready for action!"},
+		],		
+		"retreat":[
+			{"text":"Keep firing! Pull back!"},
+			{"text":"Get us some space gunnery! Helmsman, pull us back!"},
+            {"text":"Don't let them overrun us!"},
+		],
+		"out_of_missiles":[
+			{"text":"Tactical reports that we've used all missiles!"},
+			{"text":"Our missile reserves are dry!"},
+            {"text":"We've used all of our ordinance Commander!"},
+		],
+		"engaged":[
+			{"text":"Shields up, we're going in!"},
+			{"text":"No enemy will get by us!"},
+			{"text":"Targets are in sight!"},
+            {"text":"Put the pressure on them!"},
+            {"text":"Our guns will keep this line intact!"},
+		],
+		"need_help":[
+			{"text":"We can't do this alone!"},
+			{"text":"Send escorts! This is too much!"},
+            {"text":"Tracking multiple targets, send backup!"},
+		],
+		"pursuing":[
+			{"text":"Forwards, Forwards!"},
+			{"text":"Fire! Break their will!"},
+			{"text":"Keep the pressure on them!"},
+		],
+		"running":[
+			{"text":"Diverting power to the main engines!"},
+            {"text":"IFF and trackers ready! We'll see you soon Commander."},
+		],
+		"hull_90":[
+			{"text":"Engineering reports light damage!"},
+			{"text":"We've taken a few scratches."},
+            {"text":"We're starting to take damage!"},
+            {"text":"Do be careful with us, Commander!"},
+		],
+		"hull_50":[
+			{"text":"Engineering is reporting casaulties in our Damage Control teams!"},
+			{"text":"Our hull integrity is at 50%! We're not invincible Commander!"},
+            {"text":"We're taking some nasty hits!"},
+            {"text":"Gunnery just took a hit! We're alright - for now."},
+            {"text":"Keep working! We're not going out without a fight!"},
+		],
+		"hull_30":[
+			{"text":"Commander, my staff is recommending a retreat!"},
+			{"text":"Engineering reports 30% hull integrity Commander!"},
+			{"text":"Our damage control groups are overwhelmed!"},
+			{"text":"Non-essential staff to the lifeboats!"},
+		],
+		"overload":[
+			{"text":"Helmsman! Use the armor to absorb the shots!"},
+			{"text":"We've overloaded! Hard reboot is in progress!"},
+            {"text":"Active Flux Vent in progress! Keep the crew off the hull!"},
+            {"text":"Get the temperature control on in here! It's getting too hot!"},
+		],
+		"death":[
+			{"text":"Launch the lifeboats! Get clear!"},
+			{"text":"I'm going down Commander! It's been an honor!"},
+            {"text":"The hull is fracturing! We have to evacuate!"},
+		],
+		"victory":[
+			{"text":"*golf clapping*"},
+			{"text":"It's an honor to fight by such a skilled tactician's side."},
+			{"text":"I feel like medals are in order!"},
+			{"text":"Another successful operation!"},
+		],
+	}
+}
