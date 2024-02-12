@@ -1,5 +1,5 @@
 {
-	"name":"Ankylon Titan", #Inspired by the Ankylon Titan from Sins Of A Solar Empire
+	"name":"Fleet Anchor Commander", #Inspired by the Ankylon Titan from Sins Of A Solar Empire
 	"personalities":["steady"],
 	"gender":["m","f","n"],
 	"chance":0.2,

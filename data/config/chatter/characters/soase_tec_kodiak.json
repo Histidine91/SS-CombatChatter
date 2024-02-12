@@ -1,5 +1,5 @@
 {
-	"name":"Kodiak Cruiser", #Inspired by the Kodiak Heavy Cruiser from Sins Of A Solar Empire
+	"name":"Aggressive Cruiser Captain", #Inspired by the Kodiak Heavy Cruiser from Sins Of A Solar Empire
 	"personalities":["aggressive","reckless"],
 	"gender":["m","f","n"],
 	"chance":0.5,

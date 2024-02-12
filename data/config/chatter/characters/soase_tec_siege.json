@@ -1,5 +1,5 @@
 {
-	"name":"Marza Dreadnought", #Inspired by the Marza Dreadnought from Sins Of A Solar Empire
+	"name":"Destructive Captain", #Inspired by the Marza Dreadnought from Sins Of A Solar Empire
 	"personalities":["steady","aggressive","reckless"],
 	"gender":["m","f","n"],
 	"chance":0.5,

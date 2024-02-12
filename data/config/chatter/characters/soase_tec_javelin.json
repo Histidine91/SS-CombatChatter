@@ -1,5 +1,5 @@
 {
-	"name":"Javelis Frigate", #Inspired by the Javelis Frigate from Sins Of A Solar Empire
+	"name":"Cocky Missile Ship", #Inspired by the Javelis Frigate from Sins Of A Solar Empire
 	"personalities":["steady","aggressive"],
 	"gender":["m","f","n"],
 	"chance":0.4,

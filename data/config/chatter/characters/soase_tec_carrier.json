@@ -1,8 +1,8 @@
 {
-	"name":"Sova Carrier", #Inspired by the Sova Carrier from Sins Of A Solar Empire
+	"name":"Carrier Commander", #Inspired by the Sova Carrier from Sins Of A Solar Empire
 	"personalities":["steady", "aggressive"],
 	"gender":["m","n"],
-	"chance":0.1,
+	"chance":0.0, #has to be assigned, avoids carrier weirdness.
 	"talkativeness":1,
 	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
 	

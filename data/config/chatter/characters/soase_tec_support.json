@@ -1,5 +1,5 @@
 {
-	"name":"Dunov Battlecruiser", #Inspired by the Dunov Battlecruiser from Sins Of A Solar Empire
+	"name":"Support-Minded Captain", #Inspired by the Dunov Battlecruiser from Sins Of A Solar Empire
 	"personalities":["timid","cautious", "steady"],
 	"gender":["m","f","n"],
 	"chance":0.5,

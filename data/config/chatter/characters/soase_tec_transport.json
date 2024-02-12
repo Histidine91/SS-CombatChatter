@@ -1,5 +1,5 @@
 {
-	"name":"Corsev Transport", #inspired by the Corsev Transport from Sins Of A Solar Empire
+	"name":"Weary Captain", #inspired by the Corsev Transport from Sins Of A Solar Empire
 	"personalities":["cautious","steady","aggressive"],
 	"gender":["m","f","n"],
 	"chance":0.5,

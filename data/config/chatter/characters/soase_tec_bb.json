@@ -1,5 +1,5 @@
 {
-	"name":"Kol Battleship",  #Inspired by the Kol Battleship from Sins Of A Solar Empire 
+	"name":"Battlecruiser Commander",  #Inspired by the Kol Battleship from Sins Of A Solar Empire 
 	"personalities":["cautious","steady"],
 	"gender":["m","n"],
 	"chance":0.5,
