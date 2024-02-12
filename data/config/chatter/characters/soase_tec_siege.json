@@ -2,7 +2,7 @@
 	"name":"Marza Dreadnought", #Inspired by the Marza Dreadnought from Sins Of A Solar Empire
 	"personalities":["steady","aggressive","reckless"],
 	"gender":["m","f","n"],
-	"chance":0.1,
+	"chance":0.5,
 	"talkativeness":1,
 	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
 	

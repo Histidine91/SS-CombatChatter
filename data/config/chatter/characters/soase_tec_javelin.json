@@ -2,7 +2,7 @@
 	"name":"Javelis Frigate", #Inspired by the Javelis Frigate from Sins Of A Solar Empire
 	"personalities":["steady","aggressive"],
 	"gender":["m","f","n"],
-	"chance":0.5,
+	"chance":0.4,
 	"talkativeness":1,
 	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
 	

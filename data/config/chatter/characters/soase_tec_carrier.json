@@ -2,7 +2,7 @@
 	"name":"Sova Carrier", #Inspired by the Sova Carrier from Sins Of A Solar Empire
 	"personalities":["steady", "aggressive"],
 	"gender":["m","n"],
-	"chance":0.3,
+	"chance":0.1,
 	"talkativeness":1,
 	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
 	
