@@ -47,7 +47,7 @@
 		],
 		"hull_90":[
 			{"text":"That shot won't stop me."},
-			{"text":"Light damage, $playerSirOrMadam."},
+			{"text":"Light damage, $playerHonorific."},
 			{"text":"Looks like they finally hit me!"},
 		],
 		"hull_50":[

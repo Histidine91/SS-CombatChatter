@@ -11,7 +11,7 @@
 			{"text":"Reading you loud and clear."},
 			{"text":"Commlink online."},
 			{"text":"Standing by for your order."},
-			{"text":"Recieving you, $playerSirOrMadam."},
+			{"text":"Recieving you, $playerHonorific."},
 		],
 		"start_boss":[
 			{"text":"The bigger they are, the harder they fall!"},
@@ -27,7 +27,7 @@
 		"out_of_missiles":[
 			{"text":"Missile racks are dry!"},
 			{"text":"We're out of ordinance!"},
-			{"text":"Launchers are empty $playerSirOrMadam."},
+			{"text":"Launchers are empty $playerHonorific."},
 		],
 		"engaged":[
 			{"text":"Launch the alert strikecraft."},
@@ -37,7 +37,7 @@
 		],
 		"need_help":[
 			{"text":"Recall the fighters, we need cover!"},
-			{"text":"Get me the $playerSirOrMadam! I want that escort!"},
+			{"text":"Get me the $playerHonorific! I want that escort!"},
 			{"text":"Flight lead! Pull back and cover us!"},
 		],
 		"pursuing":[
@@ -48,7 +48,7 @@
 		],
 		"running":[
 			{"text":"Main drive, on my mark."},
-			{"text":"See you at the regroup $playerSirOrMadam."},
+			{"text":"See you at the regroup $playerHonorific."},
 		],
 		"hull_90":[
 			{"text":"We've got hull breaches."},
