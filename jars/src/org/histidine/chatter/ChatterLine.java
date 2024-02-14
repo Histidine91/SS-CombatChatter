@@ -69,6 +69,7 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$playerSurname", last);
 				str = StringHelper.substituteToken(str, "$playerFirstName", player.getName().getFirst());
 				str = StringHelper.substituteToken(str, "$playerGivenName", player.getName().getFirst());
+				str = StringHelper.substituteToken(str, "$playerHonorific", Global.getSector().getCharacterData().getHonorific());
 			}
 			
 		} catch (Exception ex) {

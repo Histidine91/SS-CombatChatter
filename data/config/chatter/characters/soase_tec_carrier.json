@@ -1,0 +1,87 @@
+{
+	"name":"Carrier Commander", #Inspired by the Sova Carrier from Sins Of A Solar Empire
+	"personalities":["steady", "aggressive"],
+	"gender":["m","n"],
+	"chance":0.0, #has to be assigned, avoids carrier weirdness.
+	"talkativeness":1,
+	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
+	
+	"lines":{
+		"start":[
+			{"text":"Reading you loud and clear."},
+			{"text":"Commlink online."},
+			{"text":"Standing by for your order."},
+			{"text":"Recieving you, $playerHonorific."},
+		],
+		"start_boss":[
+			{"text":"The bigger they are, the harder they fall!"},
+			{"text":"It's David and Goliath, all over again."},
+			{"text":"This'll be exciting. Get the bombers ready."},
+		],		
+		"retreat":[
+			{"text":"Set a reverse course."}, 
+			{"text":"Have the fleet cover our retreat!"},
+			{"text":"We've got to disengage!"},
+			{"text":"Put some distance between us and them."},
+		],
+		"out_of_missiles":[
+			{"text":"Missile racks are dry!"},
+			{"text":"We're out of ordinance!"},
+			{"text":"Launchers are empty $playerHonorific."},
+		],
+		"engaged":[
+			{"text":"Launch the alert strikecraft."},
+			{"text":"Deck crew stand-by."},
+			{"text":"Launch and cover our allies!"},
+			{"text":"All guns, stay on target!"},
+		],
+		"need_help":[
+			{"text":"Recall the fighters, we need cover!"},
+			{"text":"Get me the $playerHonorific! I want that escort!"},
+			{"text":"Flight lead! Pull back and cover us!"},
+		],
+		"pursuing":[
+			{"text":"Press the attack!"},
+			{"text":"Air wings, interdict them!"},
+			{"text":"Power to the combat drives!"},
+			{"text":"Don't let them get away!"},
+		],
+		"running":[
+			{"text":"Main drive, on my mark."},
+			{"text":"See you at the regroup $playerHonorific."},
+		],
+		"hull_90":[
+			{"text":"We've got hull breaches."},
+			{"text":"Armor has been penetrated."},
+			{"text":"Light damage across the ship."},
+			{"text":"Damage control teams are at work."},
+		],
+		"hull_50":[
+			{"text":"Hull integrity is faltering."},
+			{"text":"They're cratering my flight deck!"},
+			{"text":"Engineering is reporting 50% hull integrity."},
+			{"text":"Gravity just went out in engineering!"},
+		],
+		"hull_30":[
+			{"text":"Redirect the flight crews to damage control!"},
+			{"text":"We're leaking atmosphere! DamCon can't seal the breaches!"},
+			{"text":"I'm being shredded!"},
+		],
+		"overload":[
+			{"text":"Reactor overload! Engineering, get to it!"},
+			{"text":"Cycle the flux banks!"},
+			{"text":"It's starting to get hot in here!"},
+		],
+		"death":[
+			{"text":"Damage Contr- -*BZZZZT*-"},
+			{"text":"Re-house the fighter wings!"},
+			{"text":"Evacuate - now!"},
+		],
+		"victory":[
+			{"text":"Movin out."},
+			{"text":"Recall the fighter wings. We're done here."},
+			{"text":"That's what I call a good mission."},
+			{"text":"Think we got any new aces?"},
+		],
+	}
+}

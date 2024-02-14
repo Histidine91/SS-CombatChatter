@@ -1,0 +1,88 @@
+{
+	"name":"Battlecruiser Commander",  #Inspired by the Kol Battleship from Sins Of A Solar Empire 
+	"personalities":["cautious","steady"],
+	"gender":["m","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
+	
+	"lines":{
+		"start":[
+			{"text":"Times of war are upon us.."},
+			{"text":"Commlink active."},
+			{"text":"Good day, Commander."},
+			{"text":"Reactor is hot. We're ready for battle."},
+		],
+		"start_boss":[
+			{"text":"This shall be our finest hour."},
+			{"text":"My staff and I are ready."},
+			{"text":"Prepared to engage hostiles."},
+		],		
+		"retreat":[
+			{"text":"Plotting retreat route."}, 
+			{"text":"We're pulling back, $playerHonorific."},
+			{"text":"Flag staff has advised a retreat."},
+		],
+		"out_of_missiles":[
+			{"text":"Ordinance racks are empty."},
+			{"text":"Weapons control reports no more missiles."},
+			{"text":"Our missile reserve is dry."},
+		],
+		"engaged":[
+			{"text":"We'll make short work out of them."},
+			{"text":"Fire at will!"},
+			{"text":"Gunnery, you are free to engage!"},
+			{"text":"Tactical officer! Direct our fire."},
+		],
+		"need_help":[
+			{"text":"Requesting back-up, $playerHonorific."},
+ 			{"text":"I need an escort!"},
+			{"text":"My ship is being overwhelmed."},
+			{"text":"We need support as soon as possible."},
+		],
+		"pursuing":[
+			{"text":"Pursuing, $playerHonorific."},
+			{"text":"Engine room, pursuit burn!"},
+			{"text":"Intercept is plotted. Burning now."},
+		],
+		"running":[
+			{"text":"Vectoring to regroup coordinates."},
+            {"text":"Retreat is in progress."},
+			{"text":"On our way out $playerHonorific."},
+		],
+		"hull_90":[
+			{"text":"My Chief Engineer is reporting battle damage."},
+			{"text":"DamCon is reporting armor breaches."},
+			{"text":"Stay calm, we'll win this."},
+			{"text":"Light hull damage? Understood."},
+		],
+		"hull_50":[
+			{"text":"Reporting heavy hull damage."},
+			{"text":"My Chief engineer is urging a retreat."},
+			{"text":"Damage control teams Alpha through Charlie, report to engineering. Delta to Foxtrot, stay on the hull."},
+			{"text":"*Cough!* Get that fire out! We're not done yet!"},
+		],
+		"hull_30":[
+			{"text":"We've been severely damaged. Requesting to disengage."},
+			{"text":"My ship's spine is starting to buckle!"},
+			{"text":"My bridge has taken a direct hit!"},
+			{"text":"Crew causalities are mounting! This combat is unsustainable!"},
+			{"text":"We're preparing to abandon ship, $playerHonorific!"},
+		],
+		"overload":[
+			{"text":"Our shields are down!"},
+			{"text":"Overload in the flux grid!"},
+			{"text":"The reactor can't keep up with this!"},
+		],
+		"death":[
+			{"text":"All hands, Abandon ship!"},
+			{"text":"Allied vessels - get clear!"},
+			{"text":"Get to the lifeboats!"},
+		],
+		"victory":[
+			{"text":"That's more like it."},
+			{"text":"A captain's work is never done.."},
+			{"text":"Excellent work, crew. Stand down."},
+		],
+	}
+}

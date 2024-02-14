@@ -1,0 +1,85 @@
+{
+	"name":"Civilian Pilot", #inspired by the Akkan Battlecruiser from Sins Of A Solar Empire
+	"personalities":["timid","cautious"],
+	"gender":["m","f","n"],
+	"chance":0.3,
+	"talkativeness":1,
+	"categoryTags":["game", "othermedia", "sinsofasolarempire"],
+	
+	"lines":{
+		"start":[
+			{"text":"Ahead slow"},
+			{"text":"Brace for combat!"},
+			{"text":"We're underway."},
+			{"text":"Keep her steady."},
+		],
+		"start_boss":[
+			{"text":"Secure the passengers!"},
+			{"text":"... Keep us safe $playerHonorific."},
+		],		
+		"retreat":[
+			{"text":"Get us out of here!"},
+			{"text":"We'll keep the crew safe."},
+			{"text":"The battlefield is no place for us!"},
+		],
+		"out_of_missiles":[
+			{"text":"Missile storage empty."},
+			{"text":"Missile launchers dry."},
+			{"text":"Out of ordinance."},
+		],
+		"engaged":[
+			{"text":"Hold steady, we're going in!"},
+			{"text":"Seal civilian bulkheads!"},
+			{"text":"Batten down the hatches!"},
+		],
+		"need_help":[
+			{"text":"We're taking fire!"},
+			{"text":"The passengers are in danger!"},
+			{"text":"My ship is taking fire!"},
+			{"text":"We need support, urgently!"},
+		],
+		"pursuing":[
+			{"text":"Keep it steady. Don't get cocky."},
+			{"text":"Don't get too aggressive. Steady as she goes."},
+			{"text":"Keep that ship in gunnery range."},
+		],
+		"running":[
+			{"text":"All hands, prepare for escape burn."},
+			{"text":"On my way out!"},
+			{"text":"Live to fight another day.."},
+		],
+		"hull_90":[
+			{"text":"Armor penetration on multiple decks."},
+			{"text":"Keep those bulkheads down!"},
+			{"text":"Crew is reporting light hull damage."},
+			{"text":"Make sure the escape pods are ready."},
+		],
+		"hull_50":[
+			{"text":"We're taking too much fire!"},
+			{"text":"Our armor is stripped! The hull is taking fire!"},
+			{"text":"My crew is in extreme danger!"},
+			{"text":"Civilian causalities reported!"},
+		],
+		"hull_30":[
+			{"text":"Crew quarters just took a hit!"},
+			{"text":"Civilian quarters are leaking atmosphere!"},
+			{"text":"The ship's hull is starting to buckle!"},
+			{"text":"Get the passengers to the lifeboats!"},
+		],
+		"overload":[
+			{"text":"Our shields have overloaded!"},
+			{"text":"We're burning up over here!"},
+			{"text":"Engineering reports high reactor stress!"},
+		],
+		"death":[
+			{"text":"Are they safe $playerHonorific?-"},
+			{"text":"Shields, no-*KZZT*"},
+			{"text":"I'm sor-*BZZZZ*"},
+			{"text":"-*IFF Terminated*-"},
+		],
+		"victory":[
+			{"text":"I don't know how many more engagements I have in me.."},
+			{"text":"*sigh of relief*"},
+		],
+	}
+}
