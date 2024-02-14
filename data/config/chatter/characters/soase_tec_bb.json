@@ -84,5 +84,9 @@
 			{"text":"A captain's work is never done.."},
 			{"text":"Excellent work, crew. Stand down."},
 		],
+		"victory_boss":[
+			{"text":"An admirable performance, $playerHonorific"},
+			{"text":"Another battle like no other..."},
+		],
 	}
 }

@@ -99,11 +99,13 @@
 		],
 		"victory":[
 			{"text":"I got a feeling you and me are gonna get along just fine. Buddy."},
-			{"text":"Yo, buddy. Still alive?"},
 			{"text":"Those guys are history. Let's wrap things up here."},
-			{"text":"Yo buddy, you've got everyone fired up and believing in miracles."},
 			{"text":"You hear that warm welcome? It's the sweet sound of victory."},
 			{"text":"Looks like we live to see another day."}
-		]
+		],
+		"victory_boss":[
+			{"text":"Yo buddy, you've got everyone fired up and believing in miracles."},
+			{"text":"Yo, buddy. Still alive?"},
+		],
 	}
 }

@@ -71,5 +71,9 @@
 			{"text":"The enemy has been defeated!"},
 			{"text":"We showed them!"},
 		],
+		"victory_boss":[
+			{"text":"A great victory!"},
+			{"text":"We've broken their lines!"},
+		],
 	}
 }

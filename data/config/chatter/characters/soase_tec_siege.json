@@ -74,6 +74,10 @@
 		"victory":[
 			{"text":"We've eradicated our foes!"},
 			{"text":"Smashed like the insects they are!"},
-		]
+		],
+		"victory_boss":[
+			{"text":"The enemy has been obliterated!"},
+			{"text":"Nothing but radioactive scrap!"},
+		],
 	}
 }

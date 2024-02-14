@@ -85,13 +85,15 @@
 			{"text":"In time, you will know the tragic extent of my failings..."}
 		],
 		"victory":[
-			{"text":"These nightmarish creatures can be felled! They can be beaten!"},
 			{"text":"A victory - perhaps a turning point."},
 			{"text":"As victories mount, so too will resistance."},
 			{"text":"Success so clearly in view... or is it merely a trick of the light?"},
 			{"text":"Remind yourself that overconfidence is a slow and insidious killer."},
 			{"text":"A trifling victory, but a victory nonetheless."},
 			{"text":"It could be dismissed as a fever dream, if not for the corpses."}
+		],
+		"victory_boss":[
+			{"text":"These nightmarish creatures can be felled! They can be beaten!"},
 		],
 	}
 }

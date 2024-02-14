@@ -78,5 +78,9 @@
 			{"text":"It's over."},
 			{"text":"Enemy is retreating."}
 		],
+		"victory_boss":[
+			{"text":"High value target has been elimated."},
+			{"text":"One for the books."},
+		],
 	}
 }

@@ -162,5 +162,19 @@
 			{"text":"Haha, tell your friends, this show has only just started!"},	# aggr
 			{"text":"The battle is won, let us not forget the dead."},	# pro
 		],
+		"victory_boss":[
+			{"text":"Goddamn!"}, #aggr
+			{"text":"I told you size doesn't matter."}, #aggr
+			{"text":"High value target has been elimated."}, #pro
+			{"text":"One for the books."}, #pro
+			{"text":"Damn fine work."}, #pro
+			{"text":"Don't get too far ahead ,$playerFirstName."}, #pro
+			{"text":"..get us out of here!"}, #timid
+			{"text":"Remind me to set some boundaries."}, #timid
+			{"text":"A great victory!"}, #normal
+			{"text":"We've broken their lines!"}, #normal
+			{"text":"Get my medal case! Someone's getting a new one."}, #normal
+			{"text":"I can feel the sweat on my brow."}, #normal
+		],
 	}
 }

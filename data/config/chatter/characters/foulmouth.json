@@ -89,5 +89,9 @@
 			{"text":"I think we are done here."},
 			{"text":"Look at the bitches scatter into the wind."},
 		],
+		"victory_boss":[
+			{"text":"Bastards ate it!"},
+			{"text":"What a clusterfuck!"},
+		]
 	}
 }

@@ -83,7 +83,11 @@
 			{"text":"Another one for the books!"},
 			{"text":"Get on recalibrating our systems."},
 			{"text":"Thanks for having my back, $playerHonorificr."},
+			
+		],
+		"victory_boss":[
 			{"text":"Plug this battle data into our systems, I want analysis complete within the hour."},
+			{"text":"What a unique and thrilling foe!"},
 		],
 	}
 }

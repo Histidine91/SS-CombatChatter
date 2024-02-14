@@ -72,5 +72,8 @@
 			{"text":"Yeaaah!"},
 			{"text":"Is it all you've got there!"},
 		],
+		"victory_boss":[
+			{"text":"Goddamn!"},
+		]
 	}
 }

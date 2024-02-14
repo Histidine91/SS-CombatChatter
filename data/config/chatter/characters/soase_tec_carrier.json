@@ -83,5 +83,9 @@
 			{"text":"That's what I call a good mission."},
 			{"text":"Think we got any new aces?"},
 		],
+		"victory_boss":[
+			{"text":"Get me the lead of that flight. They're due for a promotion."},
+			{"text":"Authorize shore leave for the pilots, they've earned it."},
+		],
 	}
 }

@@ -72,7 +72,9 @@
 		"victory":[
 			{"text":"I told you I had it."},
 			{"text":"Heh. Good as done."},
-
+		],
+		"victory_boss":[
+			{"text":"Now that's an achievement!"}
 		],
 	}
 }

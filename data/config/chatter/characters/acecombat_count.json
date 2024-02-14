@@ -71,12 +71,15 @@
 			{"text":"No, no, no, no!"}
 		],
 		"victory":[
-			{"text":"Anyone got a smoke?"},
-			{"text":"Be sure to include in the report how much ass I kicked."},
+
 			{"text":"No rest for the wicked."},
 			{"text":"That looks like the last of them."},
 			{"text":"It's like watching a fireworks display."},
 			{"text":"Okay, still hungry for more."}
-		]
+		],
+		"victory_boss":[
+			{"text":"Anyone got a smoke?"},
+			{"text":"Be sure to include in the report how much ass I kicked."},
+		],
 	}
 }

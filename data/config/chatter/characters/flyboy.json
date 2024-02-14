@@ -67,5 +67,8 @@
 			{"text":"The enemy crumbles!"},
 			{"text":"Scavenging teams are green lit."},
 		],
+		"victory_boss":[
+			{"text":"Get me a drink."},
+		],
 	}
 }

@@ -80,8 +80,10 @@
 			{"text":"This wasn't much of a fight. I think we're fine by my mark."},
 			{"text":"Good to know we still know our way around a dogfight."},
 			{"text":"We're the better pilots, that's how. Screw 'em all. I wish they stayed."},
-			{"text":"One hell of a night out, I think."},
 			{"text":"This war's gotta end at some point. I'm just glad to be picking up what pay I can."},
+		],
+		"victory_boss":[
+			{"text":"One hell of a night out, I think."},
 		],
 	}
 }

@@ -74,5 +74,9 @@
 			{"text":"battlespace controlled."},
 			{"text":"initiating cleanup protocol."},
 		],
+		"victory_boss":[
+			{"text":"high danger target eliminated"},
+			{"text":"danger reduced to nominal levels"},
+		],
 	}
 }

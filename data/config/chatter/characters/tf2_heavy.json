@@ -71,6 +71,8 @@
 			{"text":"I feel alive!"},
 			{"text":"We make good team!"},
 			{"text":"More rubble, less trouble!"},
+		],
+		"victory_boss":[
 			{"text":"Who dares stand against me NOW?"},
 		],
 	}

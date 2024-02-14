@@ -73,7 +73,9 @@
 			{"text":"I AM UNSTOPPABLE!"},
 			{"text":"NOTHING WILL STAND IN MY WAY!"},
 			{"text":"DIE! MUHAHAHAHAHA!!!"},
-			{"text":"The difference between insanity and genius, is success!"}
+		],
+		"victory_boss":[
+			{"text":"The difference between insanity and genius, is success!"},
 		],
 	}
 }

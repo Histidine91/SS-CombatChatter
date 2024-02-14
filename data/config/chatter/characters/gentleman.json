@@ -85,5 +85,8 @@
 			{"text":"Positively top-hole!"},
 			{"text":"Tea and biscuits all round. I think we've earned it, eh?"}
 		],
+		"victory_boss":[
+			{"text":"What a good argument for sherry!"},
+		],
 	}
 }

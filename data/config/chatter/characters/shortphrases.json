@@ -66,5 +66,9 @@
 			{"text":"Survived. Successful? Must proceed."},
 			{"text":"All left is returning salvage to fleet. Handle quickly?"},
 		],
+		"victory_boss":[
+			{"text":"Incredible. Victory despite odds."},
+			{"text":"Relieved. Return to fleet."}
+		]
 	}
 }

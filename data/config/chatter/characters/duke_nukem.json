@@ -128,15 +128,17 @@
 		"victory":[
 			{"text":"Hail to the king, baby!"},
 			{"text":"Babes, bullets, bombs! Damn I love this job!"},
-			{"text":"Sometimes I even amaze myself."},
 			{"text":"Damn! I'm looking good!"},
 			{"text":"I love the smell of burnt crap in the morning."},
 			{"text":"There's more where that came from!"},
 			{"text":"Another day, another disembowelment."},
-			{"text":"They keep getting uglier, and I keep getting meaner."},
 			{"text":"Good, bad, I'm the guy with the gun."},
 			{"text":"I've got balls of steel."},
 			{"text":"Clean up on Aisle Four."},
+		],
+		"victory_boss":[
+			{"text":"Sometimes I even amaze myself."},
+			{"text":"They keep getting uglier, and I keep getting meaner."},
 		],
 	}
 }

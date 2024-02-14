@@ -81,5 +81,9 @@
 			{"text":"That was damn fine shooting boys."},
 			{"text":"The battle is won, let us not forget the dead."},
 		],
+		"victory_boss":[
+			{"text":"Damn fine work."},
+			{"text":"Don't get too far ahead ,$playerFirstName."}
+		]
 	}
 }

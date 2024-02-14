@@ -66,5 +66,9 @@
 			{"text":"Let us pray for the dead."},
 			{"text":"Prayer after the battle at chapel onboard, presence mandatory."}
 		],
+		"victory_boss":[
+			{"text":"Ludd has guided us through this."},
+			{"text":"May we never face such a beast again..."},
+		],
 	}
 }

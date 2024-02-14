@@ -66,9 +66,11 @@
 			{"text":"Was this... Just too much for me?"},
 		],
 		"victory":[
-			{"text":"See? We can make it through if we try. Good work, everyone~"},
 			{"text":"How about a nice cup of coffee for all~?"},
 			{"text":"I'm glad we could finish this~"},
 		],
+		"victory_boss":[
+			{"text":"See? We can make it through if we try. Good work, everyone~"},
+		]
 	}
 }

@@ -61,7 +61,9 @@
 		"victory":[
 			{"text":"Excellent."},
 			{"text":"You have done well."},
-			{"text":"The closer to death one is, the freer one becomes."},
 		],
+		"victory_boss": [
+			{"text":"The closer to death one is, the freer one becomes."},
+		]
 	}
 }

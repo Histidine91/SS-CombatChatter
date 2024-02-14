@@ -83,6 +83,8 @@
 			{"text":"We do understand your situation, but you know how this business goes."},
 			{"text":"What can we say? You get what you pay for."},
 			{"text":"Some people call this place \"the Devil's Sandbox\". So what does that mean when we're the ones playing in it, huh?"},
+		],
+		"victory_boss":[
 			{"text":"How many aces are earning their wings today, eh?"},
 			{"text":"Oh, it's a good day to be a captain! Dinner's on me!"},
 		],

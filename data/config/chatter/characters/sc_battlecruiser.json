@@ -67,9 +67,11 @@
 		"victory":[
 			{"text":"Ah, it's happy hour. Wonderful!"},
 			{"text":"Do svidanya, don't get any on 'ya."},
-			{"text":"Ah, how exciting!"},			
 			{"text":"I've lost my hat! Swing around, we'll pick it up."},
 			{"text":"This weapon is loaded, and so am I."},
+		],
+		"victory_boss":[
+			{"text":"Ah, how exciting!"},
 		],
 	}
 }

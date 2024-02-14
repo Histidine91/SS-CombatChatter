@@ -75,5 +75,9 @@
 			{"text":"Let's see what we'll find here. Blueprints, production chips, weapons..."},
 			{"text":"Excellent... Now, we strip em' for all they're worth."},
 		],
+		"victory_boss":[
+			{"text":"There's gonna be something good in there!"},
+			{"text":"Must be some high value composites..."},
+		],
 	}
 }

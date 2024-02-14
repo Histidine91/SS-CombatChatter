@@ -76,8 +76,10 @@
 		],
 		"victory":[
 			{"text":"This isn't particularly delightful, I must say... Good work, nonetheless."},
-			{"text":"Good work, crew. Repair immediate damage and retire to your quarters, for now."},
 			{"text":"I frankly dislike how I am becoming numb to witnessing death."},
 		],
+		"victory_boss":[
+			{"text":"Good work, crew. Repair immediate damage and retire to your quarters, for now."},
+		]
 	}
 }

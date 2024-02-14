@@ -81,5 +81,9 @@
 			{"text":"Just be glad that it is over with."},
 			{"text":"Seems like it wasn't my time yet."},
 		],
+		"victory_boss":[
+			{"text":"Get my medal case! Someone's getting a new one."},
+			{"text":"I can feel the sweat on my brow."},
+		],
 	}
 }

@@ -86,5 +86,8 @@
 			{"text":"Oh yeah, that's what I'm talking about!"},
 			{"text":"We kicked ass! Now hand over the damn paycheck."},
 		],
+		"victory_boss":[
+			{"text":"I want my paycheck in advance next time."},
+		],
 	}
 }
