@@ -124,6 +124,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.NEED_HELP);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.ENGAGED);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.VICTORY);
+		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.VICTORY_BOSS);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.DEATH);
 		
 		FLOAT_CHATTER_TYPES.add(MessageType.ENGAGED);
@@ -1189,9 +1190,13 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				if (victoryIncrement >= 3)
 				{
 					FleetMemberAPI random = pickRandomMemberFromList(deployedFriendly, MessageType.VICTORY);
-					if (random != null)
+					if (random != null && !haveBoss())
 					{
 						printRandomMessage(random, MessageType.VICTORY);
+					}
+					else if(random != null && haveBoss())
+					{
+						printRandomMessage(random, MessageType.VICTORY_BOSS);
 					}
 					victory = true;
 				}
