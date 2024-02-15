@@ -122,5 +122,8 @@
 			{"text":"Radar is clear of hostile targets."},
 			{"text":"Radar's clean and clear."},
 		],
+		"victory_boss":[
+
+		]
 	}
 }

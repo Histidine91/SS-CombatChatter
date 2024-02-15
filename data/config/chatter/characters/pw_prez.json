@@ -75,6 +75,9 @@
 			{"text":"Think we can afford to share a bottle of Red?"},
 			{"text":"I'm in the black for the week."},
 			{"text":"Thats right, you better get out of my radar range!"}
+		],
+		"victory_boss":[
+			
 		]
 	}
 }

@@ -51,5 +51,8 @@
 			{"text":"Weaponized diplomacy was successful!"},
 			{"text":"You have fought with honor, but that was not enough."}
 		],
+		"victory_boss":[
+			
+		]
 	}
 }

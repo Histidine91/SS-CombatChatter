@@ -65,18 +65,21 @@
 			{"text":"So were dinosaurs a pre-war thing or a pre-pre-war thing?"},
 			{"text":"Phew! That was a close one."},
 			{"text":"Huh, these fools couldn't fight their way out of a wet paper bag."},
-			{"text":"That was a tough one. I'm sweating like a fiend in church."},
+
 			{"text":"I never liked this part. Looting wreckage just don't seem right. Then again, it ain't like we're killing saints."},
 			{"text":"You certainly saw them coming. You're keener than a three-eyed cat staring at a mousehole."},
 			{"text":"Ain't much to that fight. They were more scared than a puppy pooping peach seeds if you ask me."},
 			{"text":"Phew, we sure get in a lot of messes. Well, if you're gonna be stupid, you gotta be tough."},
 			{"text":"That was an easy fight. Like hunting elephants on ice skates."},
-			{"text":"You all right? That fight was busier than a one-legged man in a butt-kicking contest."},
 			{"text":"Dip 'em in bullets and roll 'em in the dirt!"},
 			{"text":"Good fightin'. You barely got a scratch on ya."},
 			{"text":"There ain't much in this world louder than silence."},
 			{"text":"That's a one-way ticket to the frying pan for these folks."},
 			{"text":"We take 'em down and let God sort 'em out."}
+		],
+		"victory_boss":[
+			{"text":"You all right? That fight was busier than a one-legged man in a butt-kicking contest."},
+			{"text":"That was a tough one. I'm sweating like a fiend in church."},
 		]
 	}
 }

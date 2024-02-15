@@ -80,5 +80,8 @@
 			{"text":"Disappointed that a mere mercenary survived?"},
 			{"text":"Let's head home."}
 		],
+		"victory_boss":[
+
+		],
 	}
 }

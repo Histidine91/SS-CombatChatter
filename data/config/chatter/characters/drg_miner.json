@@ -69,6 +69,9 @@
 			{"text":"Last one back to the fleet pays for the first round!"},
 			{"text":"Rock and stone! Yeah!"},
 			{"text":"We are unbreakable!"}
+		],
+		"victory_boss":[
+			
 		]
 	}
 }

@@ -56,5 +56,8 @@
 		"victory":[
 			{"text":"You're too slow, time to end this!"}
 		],
+		"victory_boss":[
+			
+		]
 	}
 }

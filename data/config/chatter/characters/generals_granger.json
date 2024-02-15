@@ -81,5 +81,8 @@
 			{"text":"It's awfully quiet out there. You didn't leave, did you?"},
 			{"text":"I win, you lose. What more is there to say?"},
 		],
+		"victory_boss":[
+
+		]
 	}
 }

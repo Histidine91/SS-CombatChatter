@@ -71,8 +71,11 @@
 			{"text":"There's no way we could have lost to that."},
 			{"text":"Twas a fine scrap, if I may say so myself."},
 			{"text":"Our strength brought us victory."},
-			{"text":"It'll take more than that!"},
+
 			{"text":"That was hardly a warmup!"},
 		],
+		"victory_boss":[
+			{"text":"It'll take more than that!"},			
+		]
 	}
 }

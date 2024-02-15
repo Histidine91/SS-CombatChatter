@@ -76,7 +76,7 @@
 		],
 		"victory_boss":[
 			{"text":"high danger target eliminated"},
-			{"text":"danger reduced to nominal levels"},
+			{"text":"threat reduced to nominal levels"},
 		],
 	}
 }

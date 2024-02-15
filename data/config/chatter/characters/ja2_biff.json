@@ -57,5 +57,7 @@
 			{"text":"That'll show them!"},
 			{"text":"All clear! And I'm still alive!"},
 		],
+		"victory_boss":[
+		]
 	}
 }

@@ -57,6 +57,9 @@
 			{"text":"Primary objective complete, moving out at your command."},
 			{"text":"Primary objective complete, exfill coordinates are in."},
 		],
+		"victory_boss":[
+			
+		]
 	}
 }
 

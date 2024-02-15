@@ -79,6 +79,9 @@
 			{"text":"Excellent!"},
 			{"text":"Whew, that was a little close."},
 			{"text":"Minimal casualties, few suit ruptures..."}
+		],
+		"victory_boss":[
+
 		]
 	}
 }

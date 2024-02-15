@@ -69,5 +69,8 @@
 			{"text":"Enemy removal commencing."},
 			{"text":"Conflict protocols declined."}
 		],
+		"victory_boss":[
+			
+		]
 	}
 }

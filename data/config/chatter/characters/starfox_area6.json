@@ -59,5 +59,8 @@
 			{"text":"Hoo! That was too close!"},
 			{"text":"We're heading out! All units report."}
 		],
+		"victory_boss":[
+			
+		]
 	}
 }

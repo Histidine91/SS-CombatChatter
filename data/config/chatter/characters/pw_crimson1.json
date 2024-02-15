@@ -81,7 +81,9 @@
 		"victory":[
 			{"text":"The world will prove you wrong, even if you win this war. But it's not like you'll live to see it."},
 			{"text":"At the end of the day, you were just a criminal, looking for your next handout."},
-			{"text":"Predictable."},
 		],
+		"victory_boss":[
+			{"text":"Predictable."},
+		]
 	}
 }
