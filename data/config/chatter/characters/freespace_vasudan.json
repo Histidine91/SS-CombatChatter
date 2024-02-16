@@ -70,5 +70,8 @@
 			{"text":"Area secured."},
 			{"text":"Radar is clear of hostile targets."}
 		],
+		"victory_boss":[
+
+		]
 	}
 }

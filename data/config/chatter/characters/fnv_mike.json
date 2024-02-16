@@ -116,12 +116,14 @@
 			{"text":"All glory to you, Lord Death!"},
 			{"text":"Make sure he's super-dead."},
 			{"text":"Well, there are a lot of corpses."},
-			{"text":"The reason I hang out with you is because you make life a little more interesting."},
 			{"text":"I'm sure that was the last we'll ever hear of them."},
 			{"text":"Yeah, that's down for the count."},
 			{"text":"Should we go back in time and try that again?"},
 			{"text":"We're done here. We came, we saw, we shot a bunch of people..."},
 			{"text":"Why do we have to kill everybody?"},
 		],
+		"victory_boss":[
+			{"text":"The reason I hang out with you is because you make life a little more interesting."},
+		]
 	}
 }

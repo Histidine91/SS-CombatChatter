@@ -81,5 +81,8 @@
 			{"text":"I don't know how many more engagements I have in me.."},
 			{"text":"*sigh of relief*"},
 		],
+		"victory_boss":[
+			{"text":"...how did we make it through *that*?"},
+		],
 	}
 }

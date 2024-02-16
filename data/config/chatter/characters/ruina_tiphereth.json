@@ -73,9 +73,11 @@
 			{"text":"...Sorry, I wasn't too helpful there."},
 		],
 		"victory":[
-			{"text":"It was obvious we'd win. Thought we couldn't handle this much?"},
 			{"text":"See, actions speak louder than words."},
 			{"text":"Thanks, all. You did a pretty good job this time."},
 		],
+		"victory_boss":[
+			{"text":"It was obvious we'd win. Thought we couldn't handle this much?"},
+		]
 	}
 }

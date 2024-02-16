@@ -60,9 +60,12 @@
 			{"text":"I guess I'll never graze... Another grassland..."},
 		],
 		"victory":[
-			{"text":"Phew~ That was tiring. Shall we go back now?"},
+
 			{"text":"Yem..."}, #Rabbit noise or something. IDK what it is but a Myo fan told me to add it.
 			{"text":"That was a lot of grass to graze. Nice work, Rabbit Team."},
+		],
+		"victory_boss":[
+			{"text":"Phew~ That was tiring. Shall we go back now?"},
 		],
 	}
 }

@@ -83,9 +83,11 @@
 			{"text":"If we keep racking up kills like that, we're gonna need a bigger offshore account."},
 			{"text":"It's harder to create than it is to destroy."},
 			{"text":"All threats eliminated and scopes are clear! Good stuff!"},
-			{"text":"After this mission, don't tell me I never do anything for you."},
 			{"text":"Alright, salvage what you need to get out of here! We can celebrate when we're back in port!"},
+		],
+		"victory_boss":[
 			{"text":"Hey, pop that champagne bottle I got in the fire extinguisher box! I don't give a damn if we get the consoles wet! We're rich after this mission! Rich!"},
+			{"text":"After this mission, don't tell me I never do anything for you."},
 		],
 	}
 }

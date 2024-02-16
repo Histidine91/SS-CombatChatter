@@ -62,8 +62,10 @@
 		],
 		"victory":[
 			{"text":"Victory!"},
-			{"text":"Our legend grows!"},
 			{"text":"Another battle won. Onto the next fight."}
+		],
+		"victory_boss":[
+			{"text":"Our legend grows!"},
 		],
 	}
 }

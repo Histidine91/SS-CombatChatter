@@ -93,6 +93,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected boolean introDone = false;
 	protected boolean introSplashDone = false;
 	protected boolean victory = false;
+	protected boolean bossFight = false;
 	protected int victoryIncrement = 0;
 	protected float messageBoxLimiter = 0;
 	
@@ -124,6 +125,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.NEED_HELP);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.ENGAGED);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.VICTORY);
+		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.VICTORY_BOSS);
 		LOW_IMPORTANCE_CHATTER_TYPES.add(MessageType.DEATH);
 		
 		FLOAT_CHATTER_TYPES.add(MessageType.ENGAGED);
@@ -386,10 +388,12 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			if (member.getVariant().hasHullMod("vastbulk") && 
 					(member.getHullSpec().getHullSize() == HullSize.CAPITAL_SHIP))
 			{
+				bossFight = true;
 				return true;
 			}
 			if (ChatterDataManager.BOSS_SHIPS.contains(member.getHullId()))
 			{
+				bossFight = true;
 				return true;
 			}
 		}
@@ -880,6 +884,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected void playIntroMessage(List<FleetMemberAPI> deployed)
 	{
 		processFleetIntro();
+		haveBoss();
 		if (timeElapsed > MAX_TIME_FOR_INTRO) {
 			log.info("Too late for intro message: " + timeElapsed);
 			introDone = true;
@@ -889,7 +894,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			MessageType type = MessageType.START;
 			if (engine.getContext().getPlayerGoal() == FleetGoal.ESCAPE)
 				type = MessageType.RETREAT;
-			else if (haveBoss())
+			else if (bossFight)
 				type = MessageType.START_BOSS;
 			
 			FleetMemberAPI random = pickRandomMemberFromList(deployed, type);
@@ -1188,10 +1193,20 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				victoryIncrement++;
 				if (victoryIncrement >= 3)
 				{
-					FleetMemberAPI random = pickRandomMemberFromList(deployedFriendly, MessageType.VICTORY);
-					if (random != null)
-					{
-						printRandomMessage(random, MessageType.VICTORY);
+					FleetMemberAPI random;
+					if(bossFight){
+						random = pickRandomMemberFromList(deployedFriendly, MessageType.VICTORY_BOSS);
+						if(random != null)
+						{
+							printRandomMessage(random, MessageType.VICTORY_BOSS);
+						}
+					}
+					else if(!bossFight){
+						random = pickRandomMemberFromList(deployedFriendly, MessageType.VICTORY);
+						if (random != null)
+						{
+							printRandomMessage(random, MessageType.VICTORY);
+						}
 					}
 					victory = true;
 				}
@@ -1255,7 +1270,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (amount > 1) {
 			introSplashDone = true;
 		}
-		
+
 		drawer.drawMessages();
 		drawer.drawIntro(amount);
 		

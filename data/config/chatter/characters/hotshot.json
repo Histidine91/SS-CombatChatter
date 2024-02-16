@@ -73,6 +73,9 @@
 		"victory":[
 			{"text":"Hah, that's some sweet bridge cam footage."},
 			{"text":"Hell yeah! Was that some nice flying, or what?"},
+			{"text":"You see that shot?"},
+		],
+		"victory_boss":[
 			{"text":"This one's goin' down in history!"},
 		],
 	}

@@ -76,5 +76,8 @@
 			{"text":"Like shooting Volturnian lobster in a barrel."},
 			{"text":"Haha, tell your friends, this show has only just started!"},
 		],
+		"victory_boss":[
+			{"text":"I told you size doesn't matter."},
+		],
 	}
 }

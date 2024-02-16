@@ -70,5 +70,8 @@
 			{"text":"Yah know, I want that dead guy's hat. Mah hat is worn."},
 			{"text":"Dang nabbit! It's over already!"}
 		],
+		"victory_boss":[
+			{"text":"Phew... I'm beat!"},
+		],
 	}
 }

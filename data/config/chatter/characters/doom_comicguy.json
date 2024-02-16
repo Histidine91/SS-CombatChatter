@@ -71,9 +71,12 @@
 			{"text":"Who's the man? I'm the man!"},
 			{"text":"Groovy."},
 			{"text":"Amen to that."},
-			{"text":"Righteousness and superior firepower has triumphed!"},
+
 			{"text":"Hail to the chief!"},
 			{"text":"I've blown up everything around here!"}
+		],
+		"victory_boss":[
+			{"text":"Righteousness and superior firepower has triumphed!"},
 		],
 	}
 }

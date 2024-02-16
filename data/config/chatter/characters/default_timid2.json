@@ -75,5 +75,8 @@
 			{"text":"Sounds like silence."},
 			{"text":"I'm still shaking!"},
 		],
+		"victory_boss":[
+			{"text":"Remind me to set some boundaries."},
+		],
 	}
 }

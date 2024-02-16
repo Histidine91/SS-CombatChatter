@@ -62,5 +62,8 @@
 			{"text":"Phew... I was worried for a bit there."},
 			{"text":"Is... is it over?"}
 		],
+		"victory_boss":[
+			{"text":"..get us out of here!"},
+		],
 	}
 }

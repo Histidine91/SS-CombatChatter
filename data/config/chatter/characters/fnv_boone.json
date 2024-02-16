@@ -83,11 +83,8 @@
 			{"text":"Good working with you."},
 			{"text":"Guess we made it."},
 			{"text":"Ha! If only it was this easy all the time."},
-			{"text":"Huh. We made it through after all. Not sure what to make of that."},
-			{"text":"I guess I shouldn't be surprised."},
 			{"text":"I think our dealings are done here."},
 			{"text":"I think we're clear."},
-			{"text":"It's a hell of a thing having someone with your ability looking out for me."},
 			{"text":"Ought to give the rest of them something to think about."},
 			{"text":"That was some kind of stunt we pulled."},
 			{"text":"That's what I do best."},
@@ -99,6 +96,11 @@
 			{"text":"We got those bastards plenty good today."},
 			{"text":"We won."},
 			{"text":"Wish there were more of them. I wasn't done yet."},
-		]
+		],
+		"victory_boss":[
+			{"text":"Huh. We made it through after all. Not sure what to make of that."},
+			{"text":"I guess I shouldn't be surprised."},
+			{"text":"It's a hell of a thing having someone with your ability looking out for me."},
+		],
 	}
 }

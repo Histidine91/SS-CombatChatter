@@ -77,7 +77,9 @@
 			{"text":"The enemy has been rendered silent."},
 			{"text":"They are dust and rubble before us!"},
 			{"text":"Well, that was easy."},
-			{"text":"War has never been so much fun!"},
 		],
+		"victory_boss":[
+			{"text":"War has never been so much fun!"},
+		]
 	}
 }

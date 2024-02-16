@@ -106,7 +106,6 @@
 		"victory":[
 			{"text":"Let's hit the road."},
 			{"text":"You know, you put up a good fight. I'm impressed."},
-			{"text":"Feel more alive than I ever have."},
 			{"text":"Payback's a bitch."},
 			{"text":"Not many people in my company could have done what you did."},
 			{"text":"Could have handled that better."},
@@ -114,9 +113,7 @@
 			{"text":"You handled that well."},
 			{"text":"Glad that's over."},
 			{"text":"Pass the bottle."},
-			{"text":"That was fucked up."},
 			{"text":"Good job."},
-			{"text":"Color me impressed."},
 			{"text":"Proud of you."},
 			{"text":"Gone to their reward."},
 			{"text":"That's all she wrote."},
@@ -134,7 +131,12 @@
 			#{"text":"Route's not getting any shorter."},
 			{"text":"Glad we iced those little fuckers."},
 			{"text":"Let's see what we can find. Might be something in the wreckage."},
-			{"text":"You don't fuck with the one who brings you your mail."}
-		]
+			{"text":"You don't fuck with the one who brings you your mail."},
+		],
+		"victory_boss":[
+			{"text":"Color me impressed."},
+			{"text":"That was fucked up."},
+			{"text":"Feel more alive than I ever have."},
+		],
 	}
 }

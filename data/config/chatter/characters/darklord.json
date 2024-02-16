@@ -58,11 +58,14 @@
 			{"text":"NNNNOOOOOOOO! MY POWER IS INFINI-"},
 		],
 		"victory":[
-			{"text":"You were in contempt of my power... now a cursory glance reveals the extent of your ruin."},
+			
 			{"text":"HAAA HA HA HA HA HA! TRULY pathetic!"},
 			{"text":"Ahhh... a worthy harvest."},			
 			{"text":"Hm hm hm hm. Let this be a lesson to you all."},
 			{"text":"A predictable outcome... Hm hm hm."},
 		],
+		"victory_boss":[
+			{"text":"You were in contempt of my power... now a cursory glance reveals the extent of your ruin."},
+		]
 	}
 }

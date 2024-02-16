@@ -62,11 +62,13 @@
 			{"text":"That's what ya get!"},
 			{"text":"Whoooowee!  Makin' bacon!"},
 			{"text":"And another thing: You're ugly."},
-			{"text":"If ya done it, it ain't braggin'!"},
 			{"text":"Weren't no thing."},
 			{"text":"That there was a fine piece of work."},
 			{"text":"Nice work, fellas!"},
-			{"text":"Son, I never said this to anybody before, but I am *damn* proud of you!"},
 		],
+		"victory_boss":[
+			{"text":"If ya done it, it ain't braggin'!"},
+			{"text":"Son, I never said this to anybody before, but I am *damn* proud of you!"},
+		]
 	}
 }

@@ -72,5 +72,9 @@
 			{"text":"Well done, crew. I believe I've earned my paycheck with that one."},
 			{"text":"At the risk of sounding clichéd, nothing can stop us now."},
 		],
+		"victory_boss":[
+			{"text":"Incredible work."},
+			{"text":"I believe we've shown what we can do."},
+		]
 	}
 }

@@ -77,5 +77,8 @@
 			{"text":"The enemy is no longer a viable threat. Your tactics were sound."},
 			{"text":"Not a bad warmup. Objectives met. Moving on."},
 		],
+		"victory_boss":[
+			
+		]
 	}
 }

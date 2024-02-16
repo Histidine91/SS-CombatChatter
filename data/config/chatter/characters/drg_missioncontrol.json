@@ -62,6 +62,9 @@
 			{"text":"All quotas met. Well done, team!"},
 			{"text":"Job well done! Bring it all home, team!"},
 			{"text":"Assignment completed."}
+		],
+		"victory_boss":[
+			
 		]
 	}
 }

@@ -74,5 +74,8 @@
 			{"text":"Victory! I hope they had enough spare parts to keep us going..."},
 			{"text":"Bridge crew, drinks are on me the next time we make port!"},
 		],
+		"victory_boss":[
+			{"text":"Bust out the reserves! This calls for a celebration!"},
+		],
 	}
 }

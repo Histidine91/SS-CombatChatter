@@ -47,6 +47,9 @@
 			{"text":"Let us take what we must."},
 			{"text":"The enemy has been defeated!"},
 			{"text":"We showed them!"}
+		],
+		"victory_boss":[
+
 		]
 	}
 }

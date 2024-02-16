@@ -57,5 +57,8 @@
 			{"text":"It appears your luck is holding, captain."},
 			{"text":"The enemy is sinking!"}
 		],
+		"victory_boss":[
+			
+		]
 	}
 }

@@ -79,5 +79,9 @@
 			{"text":"Another day, another victory."},
 			{"text":"Nihil novi sub sole."},
 		],
+		"victory_boss":[
+			{"text":"Now *that* will be good nose art."},
+			{"text":"Plus ça change, plus c'est la même chose."},
+		],
 	}
 }

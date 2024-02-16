@@ -76,7 +76,9 @@
 		"victory":[
 			{"text":"We got this over with smoothly. Good work, everyone."},
 			{"text":"Performance, experience, and results. Our side completely overwhelmed theirs."},
-			{"text":"Even though we've won, keep in mind we shouldn't take each other's sacrifices for granted."},
 		],
+		"victory_boss":[
+			{"text":"Even though we've won, keep in mind we shouldn't take each other's sacrifices for granted."},
+		]
 	}
 }

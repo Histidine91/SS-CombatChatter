@@ -82,5 +82,8 @@
 			{"text":"Closer and closer to retirement.."},
 			{"text":"Hell. That felt close."},
 		],
+		"victory_boss":[
+			{"text":"I'm getting too old for this."},
+		],
 	}
 }

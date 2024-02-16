@@ -90,7 +90,6 @@
 		],
 		"victory":[
 			{"text":"Sector's clear."},
-			{"text":"We better disperse commander."},
 			{"text":"Sending status report."},
 			{"text":"Sweeping for survivors."},
 			{"text":"That's how you do it!"},
@@ -98,6 +97,9 @@
 			{"text":"Astra inclinant, sed non obligant."},
 			{"text":"Outstanding performance team."},
 			{"text":"Let's regroup and plan the next move."},
+		],
+		"victory_boss":[
+			{"text":"We better disperse commander."},
 		],
 	}
 }

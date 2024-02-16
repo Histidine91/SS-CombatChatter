@@ -102,5 +102,9 @@
 			{"text":"Outstanding performance command!"},
 			{"text":"Always someone I can look up to command!"},
 		],
+		"victory_boss":[
+			{"text":"Looking forward to my glowing performance review!"},
+			{"text":"I've earned that raise."}
+		],
 	}
 }

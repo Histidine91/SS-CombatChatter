@@ -67,5 +67,7 @@
 			{"text":"Well done! All enemies are ready for box."},
 			{"text":"Please don't ask for autograph."}
 		],
+		"victory_boss":[
+		]
 	}
 }

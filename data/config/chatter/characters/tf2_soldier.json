@@ -74,13 +74,15 @@
 		],
 		"victory":[
 			{"text":"You've done me proud, boys!"},
-			{"text":"Everyone of you deserves a medal!"},
 			{"text":"The worm has turned, gentlemen!"},
 			{"text":"Time to inform your next of kin!"},
 			{"text":"You're dead, that's good, amen."},
+			{"text":"This is my rifle, this is my gun! You maggots stink and that's why we won!"},
+		],
+		"victory_boss":[
 			{"text":"If God had wanted you to live, He would not have created me!"},
 			{"text":"Today is a good day!"},
-			{"text":"This is my rifle, this is my gun! You maggots stink and that's why we won!"},
+			{"text":"Everyone of you deserves a medal!"},
 		],
 	}
 }

@@ -74,5 +74,8 @@
 			{"text":"You gonna give me more missiles?"},
 			{"text":"Great job. Now I can rest."},
 		],
+		"victory_boss":[
+			{"text":"That's the true power of rocketry!"},
+		],
 	}
 }

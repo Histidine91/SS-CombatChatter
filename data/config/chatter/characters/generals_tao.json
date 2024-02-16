@@ -80,9 +80,11 @@
 		    {"text":"I'd be careful, captain. These nuclear reactors tend to leak."},
 		],
 		"victory":[
-			{"text":"You call that a super weapon? It breaks like a toy!"},
 			{"text":"Welcome to the party, commander. I hope you can excuse the mess."},
 			{"text":"Might makes right. Would you not agree, commander?"},
+		],
+		"victory_boss":[
+			{"text":"You call that a super weapon? It breaks like a toy!"},
 		],
 	}
 }

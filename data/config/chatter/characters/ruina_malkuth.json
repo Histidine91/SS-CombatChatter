@@ -75,9 +75,11 @@
 			{"text":"Am I really doing a good job...?"},
 		],
 		"victory":[
-			{"text":"We won, we really won! That means I helped, right?"},
 			{"text":"Good work, everyone! We all finished the job nicely!"},
 			{"text":"Let's retrieve the salvage and go back now!"},
+		],
+		"victory_boss":[
+			{"text":"We won, we really won! That means I helped, right?"},
 		],
 	}
 }

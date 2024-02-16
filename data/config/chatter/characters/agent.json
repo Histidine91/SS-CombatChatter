@@ -99,7 +99,9 @@
 			{"text":"Another battle another lesson learned."},
 			{"text":"Maybe I am meant for the front huh?"},
 			{"text":"Great work commanding us, command!"},
-			{"text":"Words spread quick, we better disperse, command."},
 		],
+		"victory_boss":[
+			{"text":"Words spread quick, we better disperse, command."},
+		]
 	}
 }
