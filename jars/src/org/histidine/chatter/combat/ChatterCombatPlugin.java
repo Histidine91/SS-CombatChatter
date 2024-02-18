@@ -1194,18 +1194,19 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				if (victoryIncrement >= 3)
 				{
 					FleetMemberAPI random;
-					if(bossFight){
+					boolean playedWinMsg = false;
+					if (bossFight) {
 						random = pickRandomMemberFromList(deployedFriendly, MessageType.VICTORY_BOSS);
-						if(random != null)
+						if (random != null)
 						{
-							printRandomMessage(random, MessageType.VICTORY_BOSS);
+							playedWinMsg = printRandomMessage(random, MessageType.VICTORY_BOSS);
 						}
 					}
-					else if(!bossFight){
+					if (!playedWinMsg) {
 						random = pickRandomMemberFromList(deployedFriendly, MessageType.VICTORY);
 						if (random != null)
 						{
-							printRandomMessage(random, MessageType.VICTORY);
+							playedWinMsg = printRandomMessage(random, MessageType.VICTORY);
 						}
 					}
 					victory = true;
