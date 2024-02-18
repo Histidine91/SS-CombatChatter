@@ -65,8 +65,10 @@
 		"victory":[
 			{"text":"All done! If you need me, I will be reading my book."},
 			{"text":"The villains are dead! Now is the time for singing and dancing!"},
-			{"text":"No quest is a match for great heroes like us."},
 			{"text":"Evil-doers beware! I am stronger and better than ever!"},
 		],
+		"victory_boss":[
+			{"text":"No quest is a match for great heroes like us."},
+		],		
 	}
 }

@@ -10,7 +10,7 @@
 		"start":[
 			{"text":"The overbearing pressure and atmosphere of the battlefield... Not a fan of it."},
 			{"text":"I just wanna nap in the aft... I know I shouldn't."},
-			{"text":"*Sigh* I'm too tired for this. Can I rest for longer if I end this quickly?"},
+			{"text":"*sigh* I'm too tired for this. Can I rest for longer if I end this quickly?"},
 			{"text":"It's still my position, so I'll be giving orders, I guess."},
 			{"text":"How did I end up doing things like this..."},
 		],
@@ -74,7 +74,7 @@
 		],
 		"victory":[
 			{"text":"They all must've fought hard to live. Probably were more desperate than I am..."},
-			{"text":"...I can call it a day now, Yeah?"},
+			{"text":"...I can call it a day now, yeah?"},
 			{"text":"*Sigh* It's not too happy to be the winners, but good work anyways."},
 		],
 		"victory_boss":[

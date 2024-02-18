@@ -66,8 +66,10 @@
 		"victory":[
 			{"text":"The buckheads are all dead. Time to take trophies."},
 			{"text":"If there is a fedora, it is mine."},
-			{"text":"Now this is what I call hunting!"},
 			{"text":"Another trophy to add to my collection."},			
 		],
+		"victory_boss":[
+			{"text":"Now this is what I call hunting!"},
+		]
 	}
 }
