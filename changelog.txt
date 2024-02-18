@@ -1,3 +1,12 @@
+Version 1.14.1
+
+* Add some Sins of a Solar Empire and Jagged Alliance 3 characters: soase_tec_bb, soase_tec_carrier, soase_tec_colony, soase_tec_javelin, soase_tec_kodiak, soase_tec_siege, soase_tec_support, soase_tec_titan, soase_tec_transport, ja3_flay, ja3_kalyna, ja3_livewire
+* Expand some JA2 characters with their JA3 lines
+* Add support for boss victory messages
+* Characters can use $playerHonorific token in their lines
+
+Thanks to Bjarl for the SoaSE characters and the new functionality.
+
 Version 1.14.0
 
 * Add dragonsdogma_pawn character compiled by atreg
