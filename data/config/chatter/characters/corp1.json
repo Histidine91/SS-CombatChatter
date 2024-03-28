@@ -1,0 +1,79 @@
+{
+	"name":"",
+	"personalities":["steady"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["default", "original"],
+
+	"lines":{
+		"start":[
+			{"id":"", "text":"Are those people *licensed*? No? Very well then."},
+			{"id":"", "text":"I love a good cease and desist order."},
+			{"id":"", "text":"This looks like a problem for my lawyers."},
+		],
+		"start_boss":[
+			{"id":"", "text":"My lawyers have advised me to *not* partake in this fight."},
+			{"id":"", "text":""},
+		],
+		"retreat":[
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+		],
+		"engaged":[
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+			{"id":"", "text":""}
+		],
+		"need_help":[
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+		],
+		"out_of_missiles":[
+			{"id":"", "text":""},
+			{"id":"", "text":""}
+		],
+		"pursuing":[
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+		],
+		"running":[
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+		],
+		"hull_90":[
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+			{"id":"", "text":""}
+		],
+		"hull_50":[
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+		],
+		"hull_30":[
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+		],
+		"overload":[
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+			{"id":"", "text":""}
+		],
+		"death":[
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+		],
+		"victory":[
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+			{"id":"", "text":""},
+		],
+		"victory_boss":[
+			{"id":"", "text":""},
+		],
+	}
+}

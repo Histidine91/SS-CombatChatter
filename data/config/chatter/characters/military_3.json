@@ -1,0 +1,80 @@
+{
+	"name":"Military (Boring)",
+	"personalities":["steady", "cautious", "aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["default", "original"],
+
+	"lines":{
+		"start":[
+			{"id":"", "text":"Entering the battlespace."},
+			{"id":"", "text":"Battlestations!"},
+			{"id":"", "text":"For $commanderFaction!"},
+			#{"id":"", "text":"♪What do we have that they don't have?~♪"}
+		],
+		"start_boss":[
+			{"id":"", "text":"Entering hostile battlespace."},
+			{"id":"", "text":"High-priority target located."},
+		],
+		"retreat":[
+			{"id":"", "text":"Attempting to disengage."},
+			{"id":"", "text":"Breaking ranks and pulling back."},
+		],
+		"engaged":[
+			{"id":"", "text":"Engaging the enemy."},
+			{"id":"", "text":"Contact with enemy formation."},
+			{"id":"", "text":"Hostiles encountered."}
+		],
+		"need_help":[
+			{"id":"", "text":"Requesting reinforcements!"},
+			{"id":"", "text":"We're being overwhelmed!"},
+		],
+		"out_of_missiles":[
+			{"id":"", "text":"All missiles fired."},
+			{"id":"", "text":"Missile racks spent, switching to guns."}
+		],
+		"pursuing":[
+			{"id":"", "text":"Pursuing the enemy."},
+			{"id":"", "text":"Breaking formation to pursue."},
+		],
+		"running":[
+			{"id":"", "text":"Main drive engaged on escape vector."},
+			{"id":"", "text":"Retreating from the battlespace."},
+			{"id":"", "text":"Cutting out of the battle. We'll be at rendezvous"},
+		],
+		"hull_90":[
+			{"id":"", "text":"Reporting light hull breaches."},
+			{"id":"", "text":"Damage control is containing light damage."},
+			{"id":"", "text":"Hull integrity is starting to take hits."}
+		],
+		"hull_50":[
+			{"id":"", "text":"Hull is at 50%"},
+			{"id":"", "text":"Engineering is reporting moderate to severe damage."},
+			{"id":"", "text":"Considering a retreat. Damage is mounting."},
+		],
+		"hull_30":[
+			{"id":"", "text":"Major damage on all sections of my ship!"},
+			{"id":"", "text":"Hull integrity at 30%."},
+			{"id":"", "text":"Urgently need cover. Hull is failing."},
+		],
+		"overload":[
+			{"id":"", "text":"Flux overload!"},
+			{"id":"", "text":"Shield failure! Flux grid is flushing!"},
+			{"id":"", "text":"My ship has overloaded."}
+		],
+		"death":[
+			{"id":"", "text":"Abandon ship!"},
+			{"id":"", "text":"Reactor is about to go critical!"},
+			{"id":"", "text":"We're going down!"},
+		],
+		"victory":[
+			{"id":"", "text":"Good fight. But we won."},
+			{"id":"", "text":"Another victory for #commanderFaction"},
+			{"id":"", "text":"Yellow alert, main threats neutralized."},
+		],
+		"victory_boss":[
+			{"id":"", "text":"*Phew*. What a fight."},
+		],
+	}
+}

@@ -52,12 +52,15 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$officerSurname", last);
 				str = StringHelper.substituteToken(str, "$officerFirstName", person.getName().getFirst());
 				str = StringHelper.substituteToken(str, "$officerGivenName", person.getName().getFirst());
+				str = StringHelper.substituteToken(str, "$officerFaction", StringHelper.getString(person.getFaction()));
+				str = StringHelper.substituteToken(str, "$officerRank", person.getRank());
 			}
 			if (member != null) {
 				str = StringHelper.substituteToken(str, "$shipNameNoPrefix", stripShipNamePrefix(member));
 				str = StringHelper.substituteToken(str, "$shipName", member.getShipName());
 				str = StringHelper.substituteToken(str, "$shipClass", member.getHullSpec().getHullName());
 				str = StringHelper.substituteToken(str, "$shipSizeClass", StringHelper.getString(member.getHullSpec().getHullSize().toString().toLowerCase()));
+				str = StringHelper.substituteToken(str, "$shipFaction", StringHelper.getString(member.getFactionFromShip()));
 			}
 			
 			PersonAPI player = Global.getSector().getPlayerPerson();
@@ -70,7 +73,17 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$playerFirstName", player.getName().getFirst());
 				str = StringHelper.substituteToken(str, "$playerGivenName", player.getName().getFirst());
 				str = StringHelper.substituteToken(str, "$playerHonorific", Global.getSector().getCharacterData().getHonorific());
+
 			}
+			PersonAPI commander = member.getFleetCommander();
+			{
+				str = StringHelper.substituteToken(str, "$commanderName", commander.getNameString());
+				str = StringHelper.substituteToken(str, "$commanderLastName", commander.getName().getLast());
+				str = StringHelper.substituteToken(str, "$commanderFirstName", commander.ggetName().getFirst());
+				str = StringHelper.substituteToken(str, "$commanderRank", commander.getRank());
+				str = StringHelper.substituteToken(str, "$commanderFaction", StringHelper.getString(commander.getFaction()));
+			}
+
 			
 		} catch (Exception ex) {
 			log.error(String.format("Error substituting text in line '%s'", text), ex);

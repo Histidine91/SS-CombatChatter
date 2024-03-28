@@ -1,0 +1,79 @@
+{
+	"name":"Church-1",
+	"personalities":["steady", "timid", "cautious"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["original"],
+
+	"lines":{
+		"start":[
+			{"id":"", "text":"May our faith protect us."},
+			{"id":"", "text":"I've said my prayers, $commanderHonorific."},
+			{"id":"", "text":"~/may you guide these poor lost souls/~"},
+		],
+		"start_boss":[
+			{"id":"", "text":"Ludd'll guide us through."},
+			{"id":"", "text":"~/For the safety of $shipNameNoPrefix, and all her crew/~"},
+		],
+		"retreat":[
+			{"id":"", "text":"And so begins our great escape."},
+			{"id":"", "text":"Let us make haste, and escape."},
+		],
+		"engaged":[
+			{"id":"", "text":"I'll give them a humbling."},
+			{"id":"", "text":"My ship's met the hostiles."},
+			{"id":"", "text":"How confident they seem.."}
+		],
+		"need_help":[
+			{"id":"", "text":"Prayer cannot protect from weapons fire!"},
+			{"id":"", "text":"My hubris!"},
+		],
+		"out_of_missiles":[
+			{"id":"", "text":"Our missile racks are empty."},
+			{"id":"", "text":"Our tools slowly dwindle."}
+		],
+		"pursuing":[
+			{"id":"", "text":"Bringing down the hammer."},
+			{"id":"", "text":"Ludd blesses the persistent."},
+		],
+		"running":[
+			{"id":"", "text":"Did Ludd not speak of the meek?"},
+			{"id":"", "text":"It is better that we die... later."},
+			{"id":"", "text":"I shall see you at the regroup, $commanderName."},
+		],
+		"hull_90":[
+			{"id":"", "text":"They've penetrated our armor!"},
+			{"id":"", "text":"#shipName has taken light damage!"},
+		],
+		"hull_50":[
+			{"id":"", "text":"My engineering team is at work!"},
+			{"id":"", "text":"Widespread hull damage. Steady as she goes.."},
+			{"id":"", "text":"I can see the atmosphere leaking out from my bridge!"},
+		],
+		"hull_30":[
+			{"id":"", "text":"The reactor is starting to take damage!"},
+			{"id":"", "text":"The hull is failing! We need to retreat!"},
+			{"id":"", "text":"Ludd's protection only goes so far!"},
+		],
+		"overload":[
+			{"id":"", "text":"Flux overloads are another one of Ludd's great challenges."},
+			{"id":"", "text":"The shields have failed us! Damn them!"},
+			{"id":"", "text":"Another reason to thank the armor..."}
+		],
+		"death":[
+			{"id":"", "text":"Get the wounded off first!"},
+			{"id":"", "text":"Don't you *dare* fire on our lifeboats."},
+			{"id":"", "text":"$shipName going down!"},
+		],
+		"victory":[
+			{"id":"", "text":"Don't chalk it up to luck."},
+			{"id":"", "text":"~/my thanks for another victory/~"},
+			{"id":"", "text":"Another battle well fought."},
+		],
+		"victory_boss":[
+			{"id":"", "text":"We must still have some favor."},
+            {"id":"", "text":"This is the power of faith!"}
+		],
+	}
+}

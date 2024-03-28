@@ -1,0 +1,82 @@
+{
+	"name":"Military (Confident)",
+	"personalities":["steady"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["default", "original"],
+
+	"lines":{
+		"start":[
+			{"id":"", "text":"All decks reporting condition green."},
+			{"id":"", "text":"$shipName, coming into the fight."},
+			{"id":"", "text":"Double check the reactor! We're heading in!"},
+			{"id":"", "text":"AIS and IFF are active. Move in!"}
+			{"id":"", "text":"All sections report ready!"}
+		],
+		"start_boss":[
+			{"id":"", "text":"This'll be a fight for the ages."},
+			{"id":"", "text":"Heh! The lower decks'll sing about this!"},
+		],
+		"retreat":[
+			{"id":"", "text":"Just keep moving! Get us out of their sight!"},
+			{"id":"", "text":"I've seen enough! Move us away!"},
+		],
+		"engaged":[
+			{"id":"", "text":"All hands, we've encountered the enemy!"},
+			{"id":"", "text":"Fire at will! Take them down!"},
+			{"id":"", "text":"Make sure they hear our roar!"}
+		],
+		"need_help":[
+			{"id":"", "text":"We need a different approach! This is too much!"},
+			{"id":"", "text":"$shipNameNoPrefix is being overran!"},
+		],
+		"out_of_missiles":[
+			{"id":"", "text":"Ordinance is depleted!"},
+			{"id":"", "text":"Missiles racks are empty!"}
+		],
+		"pursuing":[
+			{"id":"", "text":"Don't let up! Keep them on the backfoot!"},
+			{"id":"", "text":"Priority target! Lets follow it!"},
+			{"id":"", "text":"Now that's a target! Fire! Fire!"}
+		],
+		"running":[
+			{"id":"", "text":"Burning outta here!"},
+			{"id":"", "text":"Ciao, $commanderLastName!"},
+			{"id":"", "text":"We'll be back for sure!"},
+		],
+		"hull_90":[
+			{"id":"", "text":"Calling in light damage!"},
+			{"id":"", "text":"We've taken a few hits.."},
+			{"id":"", "text":"Minor armor penetration!"}
+		],
+		"hull_50":[
+			{"id":"", "text":"A few decks are open to the void!"},
+			{"id":"", "text":"My ship is taking a serious punishment!"},
+			{"id":"", "text":"Chief Engineer reports 50% hull integrity!"},
+		],
+		"hull_30":[
+			{"id":"", "text":"Fires are breaking out in my life-support!"},
+			{"id":"", "text":"Reactor shielding is leaking! Engineering can't keep up!"},
+			{"id":"", "text":"My hull is faltering!"},
+		],
+		"overload":[
+			{"id":"", "text":"A flux overload?! We're running hot!"},
+			{"id":"", "text":"Get the shields back online! We're a sitting duck!"},
+			{"id":"", "text":"Vent and evade! Vent and evade!"}
+		],
+		"death":[
+			{"id":"", "text":"Bail out! Bail out!"},
+			{"id":"", "text":"Launch the pods and get clear!"},
+			{"id":"", "text":"Abandon ship! The hull is shattering!"},
+		],
+		"victory":[
+			{"id":"", "text":"Another in the long campaign."},
+			{"id":"", "text":"How fulfilling."},
+			{"id":"", "text":"Oh, do take notes on this."},
+		],
+		"victory_boss":[
+			{"id":"", "text":"*clapping* Excellent performance!"},
+		],
+	}
+}

@@ -1,0 +1,85 @@
+{
+	"name":"Military (Academy)",
+	"personalities":["steady", "cautious"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["default", "original"],
+
+	"lines":{
+		"start":[
+			{"id":"", "text":"My hull is vented and my crew are suited."},
+			{"id":"", "text":"$officerRank $officerName standing by for orders!"},
+			{"id":"", "text":"All systems are green! $shipName ready for combat!"},
+		],
+		"start_boss":[
+			{"id":"", "text":"This wasn't in my training!"},
+			{"id":"", "text":"$commanderLastName, are you sure about this?"},
+			{"id":"", "text":"Was this in a course I missed?"}
+		],
+		"retreat":[
+			{"id":"", "text":"Training says now's the time to regroup!"},
+			{"id":"", "text":"Every battle we escape is another one we fight!"},
+		],
+		"engaged":[
+			{"id":"", "text":"Fire Control, prioritize our targets!"},
+			{"id":"", "text":"Remember! Kinetics for the barriers, HE for the armoring!"},
+			{"id":"", "text":"This is a good standoff distance."}
+		],
+		"need_help":[
+			{"id":"", "text":"Calling for help! I'm being overwhelmed!"},
+			{"id":"", "text":"$commanderRank, save us!"},
+			{"id":"", "text":"This is too much- We need help!"}
+		],
+		"out_of_missiles":[
+			{"id":"", "text":"There's no more missiles aboard!"},
+			{"id":"", "text":"All missiles have been fired!"}
+		],
+		"pursuing":[
+			{"id":"", "text":"Now's the time to break lines!"},
+			{"id":"", "text":"Keep the pressure up! That's how we win!"},
+			{"id":"", "text":"Let's stay on em!"},
+			{"id":"", "text":"Don't let them get distance."}
+		],
+		"running":[
+			{"id":"", "text":"There's no shame in retreat!"},
+			{"id":"", "text":"We're outta here!"},
+			{"id":"", "text":"Don't feel bad $commanderFirstName, there'll be another."},
+		],
+		"hull_90":[
+			{"id":"", "text":"Remember our training, stay calm!"},
+			{"id":"", "text":"Don't panic, we haven't lost control yet!"},
+			{"id":"", "text":"Glad we vented the atmosphere! We just took a hull hit!"}
+		],
+		"hull_50":[
+			{"id":"", "text":"I'm n-not shaking- W-we can win this."},
+			{"id":"", "text":"My damage control board is all yellow!"},
+			{"id":"", "text":"Prepare the auxilary bridge. $officerName won't lose command."},
+		],
+		"hull_30":[
+			{"id":"", "text":"$playerHonorific, my h-hull is at 30%."},
+			{"id":"", "text":"This is too m-much damage!"},
+			{"id":"", "text":"It's too much! It's all too much!"},
+		],
+		"overload":[
+			{"id":"", "text":"Make sure there's no conduit ruptures! Get our shields back on!"},
+			{"id":"", "text":"Heavy armor is a blessing..."},
+			{"id":"", "text":"What's the procedure for this?- Reset the reactor?"}
+		],
+		"death":[
+			{"id":"", "text":"Move! Move! Move! Get to the lifeboats!"},
+			{"id":"", "text":"The reactor is going critical!"},
+			{"id":"", "text":"Abandon ship! Abandon ship!"},
+		],
+		"victory":[
+			{"id":"", "text":"Just as planned."},
+			{"id":"", "text":"I love it when a plan goes well."},
+			{"id":"", "text":"About that promotion, $playerHonorific.."},
+			{"id":"", "text":"That must be it."},
+		],
+		"victory_boss":[
+			{"id":"", "text":"They'll *have* to teach a class about this!"},
+			{"id":"", "text":"*tense sigh of relief*"},
+		]
+	}
+}

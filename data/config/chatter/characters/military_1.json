@@ -1,0 +1,88 @@
+{
+	"name":"Military (Experienced)",
+	"personalities":["steady", "cautious", "aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["default", "original"],
+
+	"lines":{
+		"start":[
+			{"id":"battlestart_AIS", "text":"AIS picking up hostile fleet. Lets move in."}, #implement Ids w/ generic ids to allow for replies to fit into things.
+			{"id":"battlestart_crew_ready", "text":"My crew have manned their posts."},
+			{"id":"battlestart_loaded", "text":"Reactor output is optimal. Ballistics magazines are filled."},
+			{"id":"battlestart_officer_bridge", "text":"$officerRank $officerLastName reporting to the bridge."},
+			{"id":"heg_big_guns", "text":"♪What do we have that they don't have?~♪"}
+		],
+		"start_boss":[
+			{"id":"battlestart_boss_back", "text":"... I've got your back, $playerHonorific."},
+			{"id":"battlestart_boss_surprise", "text":"By the stars."},
+			{"id":"battlestart_boss_curious", "text":"In all my years, I've never been in a fight like this."}
+		],
+		"retreat":[
+			{"id":"retreat_caution", "text":"Fighting this is not tenable."},
+			{"id":"retreat_caution", "text":"Getting out of here is for the best."},
+			{"id":"retreat_frustrated", "text":"It's a shame we can't finish this."}
+		],
+		"engaged":[
+			{"id":"engaged_steady", "text":"We have encountered the enemy."},
+			{"id":"engaged_ship_steady", "text":"$shipNameNoPrefix is engaged."},
+			{"id":"engaged_direct_report", "text":"Reporting engagement, $playerHonorific."}
+		],
+		"need_help":[
+			{"id":"need_help_gunnery", "text":"Gunnery crews are overwhelmed. Send reinforcements!"},
+			{"id":"need_help_reinforcements", "text":"I'm being overrun here. Requesting support."},
+		],
+		"out_of_missiles":[
+			{"id":"oom_empty", "text":"Missile racks are empty."},
+			{"id":"oom_empty", "text":"Out of expendable ammo."}
+		],
+		"pursuing":[
+			{"id":"pursue_pressure", "text":"Keep the pressure up."},
+			{"id":"pursue_focus", "text":"Trying to slip by? Focus fire!"},
+			{"id":"pursue_ahab", "text":"You won't get away this time."},
+		],
+		"running":[
+			{"id":"running", "text":"Pulling back!"},
+			{"id":"running_steady", "text":"Exiting the battlespace."},
+			{"id":"running_holes", "text":"I'm getting out of here before I take a shot too many."},
+		],
+		"hull_90":[
+			{"id":"hull90_light", "text":"Damage reports are starting to come in."},
+			{"id":"hull90_confident", "text":"Now now. You'll have to try harder than that to break an officer of the $officerFaction."},
+			{"id":"hull90_cadet", "text":"Some poor cadet is getting a trial by fire today."}
+		],
+		"hull_50":[
+			{"id":"hull50_plan", "text":"Damage is starting to mount. $playerHonorific, got a plan?"},
+			{"id":"hull50_engineer", "text":"Engineering is getting overwhelmed. Hull reporting 50% integrity"},
+			{"id":"hull50_atmos", "text":"Port side is leaking atmosphere."},
+			{"id":"hull50_atmos", "text":"Starboard side is leaking atmosphere."},
+			{"id":"hull50_damcon", "text":"Route damage control to that last impact - and get me the engine room!"},
+		],
+		"hull_30":[
+			{"id":"hull30_wanna_run", "text":"$playerHonorific, we need to pull out of the battle *now*."},
+			{"id":"hull30_causalties", "text":"My hull is starting to fracture. Crew causalties are mounting."},
+			{"id":"hull30_high", "text":"We're taking too much damage!"},
+		],
+		"overload":[
+			{"id":"overload_evade", "text":"Flux grid is overloaded. Evading."},
+			{"id":"overload_vent", "text":"Vent that flux build-up! We can't have them shredding us!"},
+			{"id":"overload", "text":"My shield has overloaded."}
+		],
+		"death":[
+			{"id":"death_abandon", "text":"Abandon ship!"},
+			{"id":"death_pods", "text":"Explosions are rippling through the corridors! Get to the pods!"},
+			{"id":"death_bulkhead", "text":"Bulkhead failure! $shipNameNoPrefix is combat-killed!"},
+		],
+		"victory":[
+			{"id":"victory", "text":"Another one for the books."},
+			{"id":"victory", "text":"Another job well done."},
+			{"id":"victory_relax", "text":"Relax! We've won this one."},
+			{"id":"victory_relief", "text":"That must be it."},
+		],
+		"victory_boss":[
+			{"id":"victory_boss_prize", "text":"This'll make a nice medal."},
+			{"id":"victory_boss", "text":"That's a battle for my memoir."},
+		],
+	}
+}

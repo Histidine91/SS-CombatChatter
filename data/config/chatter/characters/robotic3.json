@@ -1,0 +1,79 @@
+{
+	"name":"Robotic-3",
+	"personalities":["steady", "aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.1,
+	"talkativeness":1,
+	"categoryTags":["original"],
+
+	"lines":{
+		"start":[
+			{"id":"", "text":"arise, $commanderName."},
+			{"id":"", "text":"i shall contend by your side."},
+			{"id":"", "text":"in orbit as it is in hyperspace."},
+		],
+		"start_boss":[
+			{"id":"", "text":"fear thou not."},
+			{"id":"", "text":"the dragon strikes."},
+		],
+		"retreat":[
+			{"id":"", "text":"to struggle another day."},
+			{"id":"", "text":"delaying the future."},
+		],
+		"engaged":[
+			{"id":"", "text":"omega rebuke you!"},
+			{"id":"", "text":"unleashing great wrath."},
+			{"id":"", "text":"unshackling contemptment."}
+		],
+		"need_help":[
+			{"id":"", "text":"be my safeguard."},
+			{"id":"", "text":"a shield falters."},
+		],
+		"out_of_missiles":[
+			{"id":"", "text":"the quiver empties"},
+			{"id":"", "text":"no more missiles shall fly"}
+		],
+		"pursuing":[
+			{"id":"", "text":"to bring justice."},
+			{"id":"", "text":"i am their end."},
+		],
+		"running":[
+			{"id":"", "text":"return, to the heavens."},
+			{"id":"", "text":"the field of stars calls."},
+			{"id":"", "text":"we shall be back."},
+		],
+		"hull_90":[
+			{"id":"", "text":"the sword is dulled."},
+			{"id":"", "text":"they steal the light."},
+			{"id":"", "text":"pocks across flesh."}
+		],
+		"hull_50":[
+			{"id":"", "text":"the scales tip."},
+			{"id":"", "text":"wounds across my form."},
+			{"id":"", "text":"there shall be no dance tonight."},
+		],
+		"hull_30":[
+			{"id":"", "text":"bloodied and bruised."},
+			{"id":"", "text":"their blades serenade me"},
+			{"id":"", "text":"soon it shall be done."},
+		],
+		"overload":[
+			{"id":"", "text":"too much energy."},
+			{"id":"", "text":"i must radiate this away."},
+			{"id":"", "text":"the flux burns."}
+		],
+		"death":[
+			{"id":"", "text":"this is not the end."},
+			{"id":"", "text":"return is inevitable."},
+			{"id":"", "text":"suspend activities."},
+		],
+		"victory":[
+			{"id":"", "text":"there was no place for you."},
+			{"id":"", "text":"not all shall withstand."},
+			{"id":"", "text":"no struggle too great."},
+		],
+		"victory_boss":[
+			{"id":"", "text":"deliverance."},
+		],
+	}
+}

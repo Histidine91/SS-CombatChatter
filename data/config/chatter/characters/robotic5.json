@@ -1,0 +1,80 @@
+{
+	"name":"Robotic-5",
+	"personalities":["steady"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["default", "original"],
+
+	"lines":{
+		"start":[
+			{"id":"", "text":"effectiveness optimum. engaging."},
+			{"id":"", "text":"unit at full capacity. ready for combat."},
+			{"id":"", "text":"unit is a-go."},
+		],
+		"start_boss":[
+			{"id":"", "text":"unshackling persona. prepared for encounter."},
+			{"id":"", "text":"releasing core restraints."},
+		],
+		"retreat":[
+			{"id":"", "text":"engines optimum. disengaging."},
+			{"id":"", "text":"retreating with fleet."},
+		],
+		"engaged":[
+			{"id":"", "text":"engaged by hostiles."},
+			{"id":"", "text":"firing at will."},
+			{"id":"", "text":"encountered resistance."}
+		],
+		"need_help":[
+			{"id":"", "text":"reinforcements required."},
+			{"id":"", "text":"support required."},
+		],
+		"out_of_missiles":[
+			{"id":"", "text":"missile racks depleted."},
+			{"id":"", "text":"missile reloads depleted."}
+		],
+		"pursuing":[
+			{"id":"", "text":"pursuing threats."},
+			{"id":"", "text":"maintaining distance with retreating ship."},
+            {"id":"", "text":"attempting kill on hostile."}
+		],
+		"running":[
+			{"id":"", "text":"re-implementing restrictions. exiting battlespace."},
+			{"id":"", "text":"travel drive engaged."},
+			{"id":"", "text":"exiting AO."},
+		],
+		"hull_90":[
+			{"id":"", "text":"hull damage taken."},
+			{"id":"", "text":"armor penetration."},
+			{"id":"", "text":"damcon drones active."}
+		],
+		"hull_50":[
+			{"id":"", "text":"moderate hull damage"},
+			{"id":"", "text":"enemy attack escalating."},
+			{"id":"", "text":"engagement risk. hull integrity."},
+		],
+		"hull_30":[
+			{"id":"", "text":"severe hull damage."},
+			{"id":"", "text":"major damage to unit."},
+			{"id":"", "text":"persona destabilizing."},
+		],
+		"overload":[
+			{"id":"", "text":"flux grid unable to compensate."},
+			{"id":"", "text":"overload in progress."},
+			{"id":"", "text":"shield failure. flux overload."}
+		],
+		"death":[
+			{"id":"", "text":"process ending."},
+			{"id":"", "text":"persona failure. ship ineffective."},
+			{"id":"", "text":"hull failure."},
+		],
+		"victory":[
+			{"id":"", "text":"battlescape secured."},
+			{"id":"", "text":"engagement complete."},
+			{"id":"", "text":"all targets combat killed."},
+		],
+		"victory_boss":[
+			{"id":"", "text":"engagement complete. reshackling persona."},
+		],
+	}
+}

@@ -1,0 +1,81 @@
+{
+	"name":"Robotic-4",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["default", "original"],
+
+	"lines":{
+		"start":[
+			{"id":"", "text":"loading. tactical plan epsilon-theta-gamma."},
+			{"id":"", "text":"implementing tactical strategy."},
+			{"id":"", "text":"library accessed. plan phi-omicron-sigma implemented."},
+		],
+		"start_boss":[
+			{"id":"", "text":"interrupt. high risk plan tau-omega-nu loaded."},
+			{"id":"", "text":"interrupt. invalid. invalid. plan ypsilon-rho validated. engaging."},
+		],
+		"retreat":[
+			{"id":"", "text":"reconsideration. implementing escape plan alpha-iota-xi."},
+			{"id":"", "text":"strategic: retreat required."},
+		],
+		"engaged":[
+			{"id":"", "text":"engaging as defined by tactical plan."},
+			{"id":"", "text":"supplement firing pattern mu."},
+			{"id":"", "text":"tactical: engagement as expected"},
+            {"id":"", "text":"plan alteration. chi-tau."}
+		],
+		"need_help":[
+			{"id":"", "text":"tactical: support required"},
+			{"id":"", "text":"tactical: plan failure. request. support."},
+		],
+		"out_of_missiles":[
+			{"id":"", "text":"tactical: missiles depleted"},
+		],
+		"pursuing":[
+			{"id":"", "text":"supplement pursuit pattern lamda"},
+			{"id":"", "text":"pursuit as defined by tactical plan"},
+            {"id":"", "text":"interrupt. pursuit plan sigma-nu-eta active."}
+		],
+		"running":[
+			{"id":"", "text":"tactical: battlescape exited."},
+			{"id":"", "text":"tactical: retreat in progress."},
+			{"id":"", "text":"tactical: plan failed."},
+		],
+		"hull_90":[
+			{"id":"", "text":"tactical: light damage to unit"},
+			{"id":"", "text":"tactical: armor breached"},
+			{"id":"", "text":"interrupt damage control routine delta active. "}
+		],
+		"hull_50":[
+			{"id":"", "text":"tactical: armor stripped from hull."},
+			{"id":"", "text":"tactical: moderate-severe damage to unit."},
+			{"id":"", "text":"strategic: repairs required."},
+		],
+		"hull_30":[
+			{"id":"", "text":"tactical: combat survivablity low."},
+			{"id":"", "text":"tactical: damage to unit extreme"},
+			{"id":"", "text":"strategic: retreat and repair required."},
+            {"id":"", "text":"interrupt. self-preservation routine failed to load."}
+		],
+		"overload":[
+			{"id":"", "text":"tactical: flux overload."},
+			{"id":"", "text":"interrupt. evasion pattern psi-beta active."},
+			{"id":"", "text":"tactical: flux exceeded plan parameters."}
+		],
+		"death":[
+			{"id":"", "text":"unloading librar-"},
+			{"id":"", "text":"tactical: report failure."},
+			{"id":"", "text":"tactical: unit combat killed"},
+		],
+		"victory":[
+			{"id":"", "text":"tactical: report plan success."},
+			{"id":"", "text":"unloading libraries. result. success."},
+			{"id":"", "text":"strategic: exited tactical mode."},
+		],
+		"victory_boss":[
+			{"id":"", "text":"operation completed. revising tactical plans with new information."},
+		],
+	}
+}
