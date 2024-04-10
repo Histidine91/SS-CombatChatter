@@ -1,0 +1,79 @@
+{
+	"name":"Robotic-3",
+	"personalities":["steady", "aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.1,
+	"talkativeness":1,
+	"categoryTags":["original"],
+
+	"lines":{
+		"start":[
+			{"id":"battlestart_arise", "text":"arise, $commanderName."},
+			{"id":"battlestart_contend", "text":"i shall contend by your side."},
+			{"id":"battlestart_orbit", "text":"in orbit as it is in hyperspace."},
+		],
+		"start_boss":[
+			{"id":"battlestart_boss", "text":"fear thou not."},
+			{"id":"battlestart_boss_dragon", "text":"the dragon strikes."},
+		],
+		"retreat":[
+			{"id":"retreat", "text":"to struggle another day."},
+			{"id":"retreat_future", "text":"delaying the future."},
+		],
+		"engaged":[
+			{"id":"engaged_robo_omega", "text":"omega rebuke you!"},
+			{"id":"engaged_robo_wrath", "text":"unleashing great wrath."},
+			{"id":"engaged_robo_contempt", "text":"unshackling contemptment."}
+		],
+		"need_help":[
+			{"id":"need_help_robo", "text":"be my safeguard."},
+			{"id":"need_help_robo", "text":"a shield falters."},
+		],
+		"out_of_missiles":[
+			{"id":"oom_empty", "text":"the quiver empties"},
+			{"id":"oom_empty", "text":"no more missiles shall fly"}
+		],
+		"pursuing":[
+			{"id":"pursue_justice", "text":"to bring justice."},
+			{"id":"pursue_ego", "text":"i am their end."},
+		],
+		"running":[
+			{"id":"running", "text":"return, to the heavens."},
+			{"id":"running", "text":"the field of stars calls."},
+			{"id":"running_confident", "text":"we shall be back."},
+		],
+		"hull_90":[
+			{"id":"hull90_robo", "text":"the sword is dulled."},
+			{"id":"hull90_robo", "text":"they steal the light."},
+			{"id":"hull90_robo", "text":"pocks across flesh."}
+		],
+		"hull_50":[
+			{"id":"hull50_robo", "text":"the scales tip."},
+			{"id":"hull50_robo", "text":"wounds across my form."},
+			{"id":"hull50_robo", "text":"there shall be no dance tonight."},
+		],
+		"hull_30":[
+			{"id":"hull30_robo", "text":"bloodied and bruised."},
+			{"id":"hull30_robo", "text":"their blades serenade me"},
+			{"id":"hull30_robo", "text":"soon it shall be done."},
+		],
+		"overload":[
+			{"id":"overload", "text":"too much energy."},
+			{"id":"overload", "text":"i must radiate this away."},
+			{"id":"overload_burn", "text":"the flux burns."}
+		],
+		"death":[
+			{"id":"death_robo", "text":"this is not the end."},
+			{"id":"death_robo", "text":"return is inevitable."},
+			{"id":"death_robo", "text":"suspend activities."},
+		],
+		"victory":[
+			{"id":"victory_robo", "text":"there was no place for you."},
+			{"id":"victory_robo", "text":"not all shall withstand."},
+			{"id":"victory_robo", "text":"no struggle too great."},
+		],
+		"victory_boss":[
+			{"id":"victory_boss_robo", "text":"deliverance."},
+		],
+	}
+}

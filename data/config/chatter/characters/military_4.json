@@ -8,75 +8,75 @@
 
 	"lines":{
 		"start":[
-			{"id":"", "text":"All decks reporting condition green."},
-			{"id":"", "text":"$shipName, coming into the fight."},
-			{"id":"", "text":"Double check the reactor! We're heading in!"},
-			{"id":"", "text":"AIS and IFF are active. Move in!"}
-			{"id":"", "text":"All sections report ready!"}
+			{"id":"battlestart_loaded", "text":"All decks reporting condition green."},
+			{"id":"battlestart_loaded", "text":"$shipName, coming into the fight."},
+			{"id":"battlestart_reactor", "text":"Double check the reactor! We're heading in!"},
+			{"id":"battlestart_AIS", "text":"AIS and IFF are active. Move in!"}
+			{"id":"battlestart_ready", "text":"All sections report ready!"}
 		],
 		"start_boss":[
-			{"id":"", "text":"This'll be a fight for the ages."},
-			{"id":"", "text":"Heh! The lower decks'll sing about this!"},
+			{"id":"battlestart_boss", "text":"This'll be a fight for the ages."},
+			{"id":"battlestart_boss_song", "text":"Heh! The lower decks'll sing about this!"},
 		],
 		"retreat":[
-			{"id":"", "text":"Just keep moving! Get us out of their sight!"},
-			{"id":"", "text":"I've seen enough! Move us away!"},
+			{"id":"retreat_willing", "text":"Just keep moving! Get us out of their sight!"},
+			{"id":"retreat_willing", "text":"I've seen enough! Move us away!"},
 		],
 		"engaged":[
-			{"id":"", "text":"All hands, we've encountered the enemy!"},
-			{"id":"", "text":"Fire at will! Take them down!"},
-			{"id":"", "text":"Make sure they hear our roar!"}
+			{"id":"engaged_steady", "text":"All hands, we've encountered the enemy!"},
+			{"id":"engaged", "text":"Fire at will! Take them down!"},
+			{"id":"engaged_roar", "text":"Make sure they hear our roar!"}
 		],
 		"need_help":[
-			{"id":"", "text":"We need a different approach! This is too much!"},
-			{"id":"", "text":"$shipNameNoPrefix is being overran!"},
+			{"id":"need_help", "text":"We need a different approach! This is too much!"},
+			{"id":"need_help_overran", "text":"$shipNameNoPrefix is being overran!"},
 		],
 		"out_of_missiles":[
-			{"id":"", "text":"Ordinance is depleted!"},
-			{"id":"", "text":"Missiles racks are empty!"}
+			{"id":"oom_empty", "text":"Ordinance is depleted!"},
+			{"id":"oom_empty", "text":"Missiles racks are empty!"}
 		],
 		"pursuing":[
-			{"id":"", "text":"Don't let up! Keep them on the backfoot!"},
-			{"id":"", "text":"Priority target! Lets follow it!"},
-			{"id":"", "text":"Now that's a target! Fire! Fire!"}
+			{"id":"pursue_pressure", "text":"Don't let up! Keep them on the backfoot!"},
+			{"id":"pursue_ahab", "text":"Priority target! Lets follow it!"},
+			{"id":"pursue_reckless", "text":"Now that's a target! Fire! Fire!"}
 		],
 		"running":[
-			{"id":"", "text":"Burning outta here!"},
-			{"id":"", "text":"Ciao, $commanderLastName!"},
-			{"id":"", "text":"We'll be back for sure!"},
+			{"id":"running", "text":"Burning outta here!"},
+			{"id":"running", "text":"Ciao, $commanderLastName!"},
+			{"id":"running_confident", "text":"We'll be back for sure!"},
 		],
 		"hull_90":[
-			{"id":"", "text":"Calling in light damage!"},
-			{"id":"", "text":"We've taken a few hits.."},
-			{"id":"", "text":"Minor armor penetration!"}
+			{"id":"hull90_light", "text":"Calling in light damage!"},
+			{"id":"hull90_light", "text":"We've taken a few hits.."},
+			{"id":"hull90_light", "text":"Minor armor penetration!"}
 		],
 		"hull_50":[
-			{"id":"", "text":"A few decks are open to the void!"},
-			{"id":"", "text":"My ship is taking a serious punishment!"},
-			{"id":"", "text":"Chief Engineer reports 50% hull integrity!"},
+			{"id":"hull50_spaced", "text":"A few decks are open to the void!"},
+			{"id":"hull50", "text":"My ship is taking a serious punishment!"},
+			{"id":"hull50_engineer", "text":"Chief Engineer reports 50% hull integrity!"},
 		],
 		"hull_30":[
-			{"id":"", "text":"Fires are breaking out in my life-support!"},
-			{"id":"", "text":"Reactor shielding is leaking! Engineering can't keep up!"},
-			{"id":"", "text":"My hull is faltering!"},
+			{"id":"hull30_fires", "text":"Fires are breaking out in my life-support!"},
+			{"id":"hull30_engineer", "text":"Reactor shielding is leaking! Engineering can't keep up!"},
+			{"id":"hull30_high", "text":"My hull is faltering!"},
 		],
 		"overload":[
-			{"id":"", "text":"A flux overload?! We're running hot!"},
-			{"id":"", "text":"Get the shields back online! We're a sitting duck!"},
-			{"id":"", "text":"Vent and evade! Vent and evade!"}
+			{"id":"overload", "text":"A flux overload?! We're running hot!"},
+			{"id":"overload_shields", "text":"Get the shields back online! We're a sitting duck!"},
+			{"id":"overload_evade", "text":"Vent and evade! Vent and evade!"}
 		],
 		"death":[
-			{"id":"", "text":"Bail out! Bail out!"},
-			{"id":"", "text":"Launch the pods and get clear!"},
-			{"id":"", "text":"Abandon ship! The hull is shattering!"},
+			{"id":"death", "text":"Bail out! Bail out!"},
+			{"id":"death_pods", "text":"Launch the pods and get clear!"},
+			{"id":"death_abandon", "text":"Abandon ship! The hull is shattering!"},
 		],
 		"victory":[
-			{"id":"", "text":"Another in the long campaign."},
-			{"id":"", "text":"How fulfilling."},
-			{"id":"", "text":"Oh, do take notes on this."},
+			{"id":"victory", "text":"Another in the long campaign."},
+			{"id":"victory", "text":"How fulfilling."},
+			{"id":"victory", "text":"Oh, do take notes on this."},
 		],
 		"victory_boss":[
-			{"id":"", "text":"*clapping* Excellent performance!"},
+			{"id":"victory_boss", "text":"*clapping* Excellent performance!"},
 		],
 	}
 }

@@ -1,0 +1,80 @@
+{
+	"name":"Robotic-5",
+	"personalities":["steady"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["original"],
+
+	"lines":{
+		"start":[
+			{"id":"battlestart_robo", "text":"effectiveness optimum. engaging."},
+			{"id":"battlestart_robo", "text":"unit at full capacity. ready for combat."},
+			{"id":"battlestart_robo", "text":"unit is a-go."},
+		],
+		"start_boss":[
+			{"id":"battlestart_boss_robo_persona", "text":"unshackling persona. prepared for encounter."},
+			{"id":"battlestart_boss_robo_persona", "text":"releasing core restraints."},
+		],
+		"retreat":[
+			{"id":"retreat_robo", "text":"engines optimum. disengaging."},
+			{"id":"retreat_robo", "text":"retreating with fleet."},
+		],
+		"engaged":[
+			{"id":"engaged_robo", "text":"engaged by hostiles."},
+			{"id":"engaged_robo", "text":"firing at will."},
+			{"id":"engaged_robo", "text":"encountered resistance."}
+		],
+		"need_help":[
+			{"id":"need_help_robo_reinforce", "text":"reinforcements required."},
+			{"id":"need_help_robo", "text":"support required."},
+		],
+		"out_of_missiles":[
+			{"id":"oom_empty", "text":"missile racks depleted."},
+			{"id":"oom_empty", "text":"missile reloads depleted."}
+		],
+		"pursuing":[
+			{"id":"pursue", "text":"pursuing threats."},
+			{"id":"pursue", "text":"maintaining distance with retreating ship."},
+            {"id":"pursue_ahab", "text":"attempting kill on hostile."}
+		],
+		"running":[
+			{"id":"running_persona", "text":"re-implementing restrictions. exiting battlespace."},
+			{"id":"running", "text":"travel drive engaged."},
+			{"id":"running", "text":"exiting AO."},
+		],
+		"hull_90":[
+			{"id":"hull90_robo", "text":"hull damage taken."},
+			{"id":"hull90_robo", "text":"armor penetration."},
+			{"id":"hull90_robo", "text":"damcon drones active."}
+		],
+		"hull_50":[
+			{"id":"hull50_robo", "text":"moderate hull damage"},
+			{"id":"hull50_robo", "text":"enemy attack escalating."},
+			{"id":"hull50_robo", "text":"engagement risk. hull integrity."},
+		],
+		"hull_30":[
+			{"id":"hull30_robo", "text":"severe hull damage."},
+			{"id":"hull30_robo", "text":"major damage to unit."},
+			{"id":"hull30_robo", "text":"persona destabilizing."},
+		],
+		"overload":[
+			{"id":"overload", "text":"flux grid unable to compensate."},
+			{"id":"overload", "text":"overload in progress."},
+			{"id":"overload", "text":"shield failure. flux overload."}
+		],
+		"death":[
+			{"id":"death_robo", "text":"process ending."},
+			{"id":"death_robo_persona", "text":"persona failure. ship ineffective."},
+			{"id":"death_robo", "text":"hull failure."},
+		],
+		"victory":[
+			{"id":"victory_robo", "text":"battlescape secured."},
+			{"id":"victory_robo", "text":"engagement complete."},
+			{"id":"victory_robo", "text":"all targets combat killed."},
+		],
+		"victory_boss":[
+			{"id":"victory_boss_robo_persona", "text":"engagement complete. reshackling persona."},
+		],
+	}
+}

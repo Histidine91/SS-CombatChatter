@@ -1,0 +1,82 @@
+{
+	"name":"Church 2",
+	"personalities":["steady", "timid", "cautious"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["original"],
+
+	"lines":{
+		"start":[
+			{"id":"battlestart_virtue", "text":"We have been virtuous. This shall not trouble us."},
+			{"id":"battlestart_ludd", "text":"Ludd is with us. We shall prevail."},
+			{"id":"battlestart", "text":"Through the stars and into the breach..."},
+		],
+		"start_boss":[
+			{"id":"battlestart_boss_faith", "text":"Not quite where I thought faith would lead me..."},
+			{"id":"battlestart_boss_resigned", "text":"*sigh*... If this is the task to be done."},
+            {"id":"battlestart_boss_mad", "text":"$playerSurname, are you mad?!"}
+		],
+		"retreat":[
+			{"id":"retreat_danger", "text":"We should go. This is too dangerous."},
+			{"id":"retreat_danger", "text":"Be swift. Loitering here is dangerous."},
+		],
+		"engaged":[
+			{"id":"engaged_steady", "text":"Poor fools... Ready weapons."},
+			{"id":"engaged_violence", "text":"Violence should not be the answer, yet they chose it."},
+			{"id":"engaged_justice", "text":"Bring them to justice."},
+            {"id":"engaged_justice", "text":"No quarter for heretics."},
+		],
+		"need_help":[
+			{"id":"need_help_reinforcements", "text":"There's no shame in asking for help- so please, send it!"},
+			{"id":"need_help_reinforcements", "text":"Come to my aid! I beseeche thee!"},
+		],
+		"out_of_missiles":[
+			{"id":"oom_empty", "text":"Ludd's Hammer, all spent."},
+			{"id":"oom_empty", "text":"The ammo racks have been emptied..."}
+		],
+		"pursuing":[
+			{"id":"pursue_pressure", "text":"Follow them! Show them the error of their ways!"},
+			{"id":"pursue_pressure", "text":"They try to run - but we cannot allow it."},
+            {"id":"pursue_violence", "text":"Perhaps, this time violence is justified."}
+		],
+		"running":[
+			{"id":"running_another", "text":"There's something to be said for living another day."},
+			{"id":"running", "text":"Away we go, out from this battlefield..."},
+			{"id":"running_protection", "text":"Ludd's protection shall not last forever."},
+		],
+		"hull_90":[
+			{"id":"hull90_light", "text":"The armoring is cracked, and my hull is scratched up."},
+			{"id":"hull90_damcon", "text":"The faithful have begun damage control."},
+			{"id":"hull90_light", "text":"The integrity of our ship is down to 90%."}
+		],
+		"hull_50":[
+			{"id":"hull50_panic", "text":"Now, some panic is warranted."},
+			{"id":"hull50_damage", "text":"Hull is at 50%."},
+			{"id":"hull50_ludd", "text":"Ludd believed in us! We can keep fighting!"},
+		],
+		"hull_30":[
+			{"id":"hull30", "text":"Our hull is at 30% and falling!"},
+			{"id":"hull30_faith", "text":"Faith has held us here long enough!"},
+			{"id":"hull30_breach", "text":"Hull breaches! Everywhere!"},
+		],
+		"overload":[
+			{"id":"overload_armor", "text":"Praise Ludd for the armor."},
+			{"id":"overload_vents", "text":"Damnable ship and its weak vents."},
+			{"id":"overload", "text":"The conduits are leaking flux! Cease fire!"}
+		],
+		"death":[
+			{"id":"death", "text":"It must've been willed..."},
+			{"id":"death_abandon", "text":"Abandon ship! Ludd cares not for fools!"},
+			{"id":"death", "text":"The hull has fai-"},
+		],
+		"victory":[
+			{"id":"victory_ludd", "text":"Another victory for Ludd's faithful..."},
+			{"id":"victory_violence", "text":"I do abhor violence, but we seem to have made it through again."},
+			{"id":"victory_violence", "text":"Here's hoping that we can avoid such brutality in the future."},
+		],
+		"victory_boss":[
+			{"id":"victory_boss_ludd", "text":"Ludd has challenged us today, and we have succeeded."},
+		],
+	}
+}

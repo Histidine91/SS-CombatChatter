@@ -1,0 +1,80 @@
+{
+	"name":"Corpo 2",
+	"personalities":["steady", "cautious"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["original"],
+
+	"lines":{
+		"start":[
+			{"id":"battlestart_license", "text":"Are those people *licensed*? No? Very well then."},
+			{"id":"battlestart_cd", "text":"I love a good cease and desist order."},
+			{"id":"battlestart_lawyer", "text":"This looks like a problem for my lawyers."},
+		],
+		"start_boss":[
+			{"id":"battlestart_boss_lawyer", "text":"My lawyers have advised me to *not* partake in this fight."},
+			{"id":"battlestart_boss", "text":"Risk analysis says that this might be a bit... problematic."},
+		],
+		"retreat":[
+			{"id":"retreat_profit", "text":"This venture isn't profitable anymore!"},
+			{"id":"retreat_profit", "text":"Lets disengage before the profit margin is gone!"},
+		],
+		"engaged":[
+			{"id":"engaged_profit", "text":"There they are. Tell them about our *great* deals."},
+			{"id":"engaged_profit", "text":"Alright. Give them the spiel!"},
+			{"id":"engaged", "text":"Unregistered and unrepentant. Blast them."}
+		],
+		"need_help":[
+			{"id":"need_help", "text":"Need a support team!"},
+			{"id":"need_help_IT", "text":"Call someone! This is *broken*!"},
+		],
+		"out_of_missiles":[
+			{"id":"oom_empty", "text":"Out of expendables - aside from the interns."},
+			{"id":"oom_empty", "text":"Our missile rack is *empty*."}
+		],
+		"pursuing":[
+			{"id":"pursue_pressure", "text":"And now we move to aggressive negotiations."},
+			{"id":"pursue_ahab", "text":"Did they really think they could get away?"},
+			{"id":"pursue_pressure", "text":"That's not a businesslike spirit. Keep on them."}
+		],
+		"running":[
+			{"id":"running_stock", "text":"Alright $commanderLastName, see you at the stock-taking meeting!"},
+			{"id":"running", "text":"Lets get outta here!"},
+			{"id":"running_portfolio", "text":"We'll have to re-evaluate our portfolio after this."},
+		],
+		"hull_90":[
+			{"id":"hull90_damcon", "text":"Incident Response Teams are active."},
+			{"id":"hull90_light", "text":"Look- 90% is still a lot."},
+			{"id":"hull90_light", "text":"That hit didn't look pretty."}
+		],
+		"hull_50":[
+			{"id":"hull50_interns", "text":"The intern block just got vented to space."},
+			{"id":"hull50_damage", "text":"Damage! Damage! 50% Damage!"},
+			{"id":"hull50_damcon", "text":"Get Loss Prevention in here!"},
+		],
+		"hull_30":[
+			{"id":"hull30", "text":"This is past my margin of comfort now!"},
+			{"id":"hull30_seminar", "text":"Do we need a damn seminar on keeping allies alive?!"},
+			{"id":"hull30_damage", "text":"30% is far too little hull!"},
+		],
+		"overload":[
+			{"id":"overload_vent", "text":"Too much input! Not enough output!"},
+			{"id":"overload_IT", "text":"Get me the tech support line!"},
+			{"id":"overload", "text":"Overload?! I thought that was supposed to be fixed!"}
+		],
+		"death":[
+			{"id":"death_taxes", "text":"Don't forget to mark us down as a loss on your taxes $playerHonorific."},
+			{"id":"death", "text":"This best not go on my performance review!"},
+			{"id":"death_lifeboat", "text":"Get to the lifeboats! Management and Executives first!"},
+		],
+		"victory":[
+			{"id":"victory_profit", "text":"Another business dispute solved."},
+			{"id":"victory_profit", "text":"Another day, another paycheck earned."},
+			{"id":"victory_lawyer", "text":"I guess we can call the lawyers off."},
+		],
+		"victory_boss":[
+			{"id":"victory_boss_lawyer", "text":"I knew those lawyers were chickenshit. No problems at all."},
+		],
+	}
+}

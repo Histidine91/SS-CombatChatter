@@ -8,73 +8,73 @@
 
 	"lines":{
 		"start":[
-			{"id":"", "text":"Entering the battlespace."},
-			{"id":"", "text":"Battlestations!"},
-			{"id":"", "text":"For $commanderFaction!"},
-			#{"id":"", "text":"♪What do we have that they don't have?~♪"}
+			{"id":"battlestart_battlespace", "text":"Entering the battlespace."},
+			{"id":"battlestart", "text":"Battlestations!"},
+			{"id":"battlestart", "text":"For $commanderFaction!"},
+			{"id":"heg_big_guns", "text":"♪What do we have that they don't have?~♪"}
 		],
 		"start_boss":[
-			{"id":"", "text":"Entering hostile battlespace."},
-			{"id":"", "text":"High-priority target located."},
+			{"id":"battlestart_boss", "text":"Entering hostile battlespace."},
+			{"id":"battlestart_boss", "text":"High-priority target located."},
 		],
 		"retreat":[
-			{"id":"", "text":"Attempting to disengage."},
-			{"id":"", "text":"Breaking ranks and pulling back."},
+			{"id":"retreat", "text":"Attempting to disengage."},
+			{"id":"retreat", "text":"Breaking ranks and pulling back."},
 		],
 		"engaged":[
-			{"id":"", "text":"Engaging the enemy."},
-			{"id":"", "text":"Contact with enemy formation."},
-			{"id":"", "text":"Hostiles encountered."}
+			{"id":"engaged_steady", "text":"Engaging the enemy."},
+			{"id":"engaged", "text":"Contact with enemy formation."},
+			{"id":"engaged", "text":"Hostiles encountered."}
 		],
 		"need_help":[
-			{"id":"", "text":"Requesting reinforcements!"},
-			{"id":"", "text":"We're being overwhelmed!"},
+			{"id":"need_help_reinforcements", "text":"Requesting reinforcements!"},
+			{"id":"need_help", "text":"We're being overwhelmed!"},
 		],
 		"out_of_missiles":[
-			{"id":"", "text":"All missiles fired."},
-			{"id":"", "text":"Missile racks spent, switching to guns."}
+			{"id":"oom_empty", "text":"All missiles fired."},
+			{"id":"oom_empty", "text":"Missile racks spent, switching to guns."}
 		],
 		"pursuing":[
-			{"id":"", "text":"Pursuing the enemy."},
-			{"id":"", "text":"Breaking formation to pursue."},
+			{"id":"pursue", "text":"Pursuing the enemy."},
+			{"id":"pursue", "text":"Breaking formation to pursue."},
 		],
 		"running":[
-			{"id":"", "text":"Main drive engaged on escape vector."},
-			{"id":"", "text":"Retreating from the battlespace."},
-			{"id":"", "text":"Cutting out of the battle. We'll be at rendezvous"},
+			{"id":"running_steady", "text":"Main drive engaged on escape vector."},
+			{"id":"running", "text":"Retreating from the battlespace."},
+			{"id":"running_steady", "text":"Cutting out of the battle. We'll be at rendezvous"},
 		],
 		"hull_90":[
-			{"id":"", "text":"Reporting light hull breaches."},
-			{"id":"", "text":"Damage control is containing light damage."},
-			{"id":"", "text":"Hull integrity is starting to take hits."}
+			{"id":"hull90_light", "text":"Reporting light hull breaches."},
+			{"id":"hull90_damcon", "text":"Damage control is containing light damage."},
+			{"id":"hull90", "text":"Hull integrity is starting to take hits."}
 		],
 		"hull_50":[
-			{"id":"", "text":"Hull is at 50%"},
-			{"id":"", "text":"Engineering is reporting moderate to severe damage."},
-			{"id":"", "text":"Considering a retreat. Damage is mounting."},
+			{"id":"hull50", "text":"Hull is at 50%"},
+			{"id":"hull50", "text":"Engineering is reporting moderate to severe damage."},
+			{"id":"hull50_retreat", "text":"Considering a retreat. Damage is mounting."},
 		],
 		"hull_30":[
-			{"id":"", "text":"Major damage on all sections of my ship!"},
-			{"id":"", "text":"Hull integrity at 30%."},
-			{"id":"", "text":"Urgently need cover. Hull is failing."},
+			{"id":"hull30", "text":"Major damage on all sections of my ship!"},
+			{"id":"hull30", "text":"Hull integrity at 30%."},
+			{"id":"hull30_help", "text":"Urgently need cover. Hull is failing."},
 		],
 		"overload":[
-			{"id":"", "text":"Flux overload!"},
-			{"id":"", "text":"Shield failure! Flux grid is flushing!"},
-			{"id":"", "text":"My ship has overloaded."}
+			{"id":"overload", "text":"Flux overload!"},
+			{"id":"overload_vent", "text":"Shield failure! Flux grid is flushing!"},
+			{"id":"overload", "text":"My ship has overloaded."}
 		],
 		"death":[
-			{"id":"", "text":"Abandon ship!"},
-			{"id":"", "text":"Reactor is about to go critical!"},
-			{"id":"", "text":"We're going down!"},
+			{"id":"death_abandon", "text":"Abandon ship!"},
+			{"id":"death_reactor", "text":"Reactor is about to go critical!"},
+			{"id":"death", "text":"We're going down!"},
 		],
 		"victory":[
-			{"id":"", "text":"Good fight. But we won."},
-			{"id":"", "text":"Another victory for #commanderFaction"},
-			{"id":"", "text":"Yellow alert, main threats neutralized."},
+			{"id":"victory", "text":"Good fight. But we won."},
+			{"id":"victory", "text":"Another victory for $commanderFaction"},
+			{"id":"victory", "text":"Yellow alert, main threats neutralized."},
 		],
 		"victory_boss":[
-			{"id":"", "text":"*Phew*. What a fight."},
+			{"id":"victory_boss", "text":"*Phew*. What a fight."},
 		],
 	}
 }
