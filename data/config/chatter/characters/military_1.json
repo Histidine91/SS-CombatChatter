@@ -4,11 +4,11 @@
 	"gender":["m","f","n"],
 	"chance":0.5,
 	"talkativeness":1,
-	"categoryTags":["default", "original"],
+	"categoryTags":["original"],
 
 	"lines":{
 		"start":[
-			{"id":"battlestart_AIS", "text":"AIS picking up hostile fleet. Lets move in."}, #implement Ids w/ generic ids to allow for replies to fit into things.
+			{"id":"battlestart_AIS", "text":"AIS picking up hostile fleet. Lets move in."},
 			{"id":"battlestart_crew_ready", "text":"My crew have manned their posts."},
 			{"id":"battlestart_loaded", "text":"Reactor output is optimal. Ballistics magazines are filled."},
 			{"id":"battlestart_officer_bridge", "text":"$officerRank $officerLastName reporting to the bridge."},
