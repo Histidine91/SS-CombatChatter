@@ -1,5 +1,5 @@
 {
-	"name":"Robotic-3",
+	"name":"Robotic (Archangel)",
 	"personalities":["steady", "aggressive"],
 	"gender":["m","f","n"],
 	"chance":0.1,

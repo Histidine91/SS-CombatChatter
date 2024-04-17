@@ -1,5 +1,5 @@
 {
-	"name":"Church 2",
+	"name":"Church (Faithful)",
 	"personalities":["steady", "timid", "cautious"],
 	"gender":["m","f","n"],
 	"chance":0.5,

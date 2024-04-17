@@ -1,5 +1,5 @@
 {
-	"name":"Robotic-4",
+	"name":"Robotic (Planner)",
 	"personalities":["cautious","steady","aggressive"],
 	"gender":["m","f","n"],
 	"chance":0.5,

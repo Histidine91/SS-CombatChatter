@@ -1,5 +1,5 @@
 {
-	"name":"Robotic-5",
+	"name":"Robotic (Persona Core)",
 	"personalities":["steady"],
 	"gender":["m","f","n"],
 	"chance":0.5,

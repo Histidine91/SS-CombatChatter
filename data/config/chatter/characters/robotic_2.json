@@ -1,5 +1,5 @@
 {
-	"name":"Robotic-2",
+	"name":"Robotic (Space Defense System)",
 	"personalities":["cautious","steady","aggressive"],
 	"gender":["m","f","n"],
 	"chance":0.5,

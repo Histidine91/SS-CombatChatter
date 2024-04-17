@@ -241,6 +241,7 @@ Erika "Bjarl" Schaffner
 * robotic_2
 * robotic_3
 * robotic_4
+* robotic_5
 * corpo_2
 * church_1
 * church_2
