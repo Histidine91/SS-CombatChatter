@@ -52,7 +52,7 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$officerSurname", last);
 				str = StringHelper.substituteToken(str, "$officerFirstName", person.getName().getFirst());
 				str = StringHelper.substituteToken(str, "$officerGivenName", person.getName().getFirst());
-				str = StringHelper.substituteToken(str, "$officerFaction", StringHelper.getString(person.getFaction()));
+				str = StringHelper.substituteToken(str, "$officerFaction", StringHelper.getString(person.getFaction().getId()));
 				str = StringHelper.substituteToken(str, "$officerRank", person.getRank());
 			}
 			if (member != null) {
@@ -60,10 +60,11 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$shipName", member.getShipName());
 				str = StringHelper.substituteToken(str, "$shipClass", member.getHullSpec().getHullName());
 				str = StringHelper.substituteToken(str, "$shipSizeClass", StringHelper.getString(member.getHullSpec().getHullSize().toString().toLowerCase()));
-				str = StringHelper.substituteToken(str, "$shipFaction", StringHelper.getString(member.getFactionFromShip()));
+				str = StringHelper.substituteToken(str, "$shipFaction", StringHelper.getString(ChatterDataManager.getFactionFromShip(member)));
 			}
 			
 			PersonAPI player = Global.getSector().getPlayerPerson();
+			if (player != null)
 			{
 				String last = player.getName().getLast();
 				if (last == null || last.isEmpty()) last = player.getName().getFirst();
@@ -76,12 +77,13 @@ public class ChatterLine {
 
 			}
 			PersonAPI commander = member.getFleetCommander();
+			if (commander != null)
 			{
 				str = StringHelper.substituteToken(str, "$commanderName", commander.getNameString());
 				str = StringHelper.substituteToken(str, "$commanderLastName", commander.getName().getLast());
-				str = StringHelper.substituteToken(str, "$commanderFirstName", commander.ggetName().getFirst());
+				str = StringHelper.substituteToken(str, "$commanderFirstName", commander.getName().getFirst());
 				str = StringHelper.substituteToken(str, "$commanderRank", commander.getRank());
-				str = StringHelper.substituteToken(str, "$commanderFaction", StringHelper.getString(commander.getFaction()));
+				str = StringHelper.substituteToken(str, "$commanderFaction", StringHelper.getString(commander.getFaction().getId()));
 			}
 
 			
