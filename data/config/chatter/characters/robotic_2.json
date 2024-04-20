@@ -1,0 +1,85 @@
+{
+	"name":"Robotic (Space Defense System)",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["original"],
+
+	"lines":{
+		"start":[
+			{"id":"battlestart_robo_AIS", "text":"CID-AIS-IFF query failure - incoming targets hostile."},
+			{"id":"battlestart_robo_sds", "text":"space defense system active"},
+			{"id":"battlestart_robo_threat", "text":"query. query. stance on inbound drive signatures?"},
+            {"id":"battlestart_robo", "text":"encounter. hostile fleet."},
+            {"id":"battlestart_robo", "text":"command channel active."}
+		],
+		"start_boss":[
+			{"id":"battlestart_boss_robo", "text":"encounter. high priority target."},
+			{"id":"battlestart_boss_robo_missing", "text":"target missing from databank. engaging."},
+		],
+		"retreat":[
+			{"id":"retreat_robo", "text":"retreating."},
+			{"id":"retreat_robo", "text":"disengaging."},
+		],
+		"engaged":[
+			{"id":"engaged_robo", "text":"hostile engaged."},
+			{"id":"engaged_robo", "text":"vessel in combat."},
+			{"id":"engaged_robo", "text":"vessel engaging targets."}
+		],
+		"need_help":[
+			{"id":"need_help_reinforcements", "text":"support requested."},
+			{"id":"need_help_reinforcements", "text":"require allocation of support."},
+			{"id":"need_help_sds", "text":"querying nearby SDS units for support."}
+		],
+		"out_of_missiles":[
+			{"id":"oom_empty", "text":"ordinance depleted."},
+			{"id":"oom_empty", "text":"missile racks empty."}
+		],
+		"pursuing":[
+			{"id":"pursue", "text":"harassing target."},
+			{"id":"pursue", "text":"extending engagement."},
+			{"id":"pursue_pressure", "text":"entering aggressive pursuit."}
+		],
+		"running":[
+			{"id":"running", "text":"retreat complete."},
+			{"id":"running", "text":"escape trajectory plotted."},
+			{"id":"running", "text":"battlespace departed."},
+		],
+		"hull_90":[
+			{"id":"hull90_robo", "text":"armor damage."},
+			{"id":"hull90_robo", "text":"superficial hull damage."},
+			{"id":"hull90_robo", "text":"hull breach."}
+		],
+		"hull_50":[
+			{"id":"hull50_robo", "text":"system damage."},
+			{"id":"hull50_robo", "text":"integrity severely compromised."},
+			{"id":"hull50_robo", "text":"armor ineffective."},
+			{"id":"hull50_robo", "text":"damage control ineffective."}
+		],
+		"hull_30":[
+			{"id":"hull30_robo", "text":"severe damage to vessel."},
+			{"id":"hull30_robo", "text":"hull failure impending."},
+			{"id":"hull30_robo", "text":"vessel requires repairs."},
+		],
+		"overload":[
+			{"id":"overload", "text":"flux grid exceeding operational limits."},
+			{"id":"overload", "text":"overload in flux capacitors."},
+			{"id":"overload_vent", "text":"emergency flux vent in progress."}
+		],
+		"death":[
+			{"id":"death_robo_where", "text":"query. where are you $commanderName?"},
+			{"id":"death_robo", "text":"warranty - null and void."},
+			{"id":"death_iff", "text":"-*IFF TERMINATED*-"},
+			{"id":"death_robo", "text":"failure to engage."}
+		],
+		"victory":[
+			{"id":"victory", "text":"successful engagement."},
+			{"id":"victory", "text":"hostile presence eliminated."},
+			{"id":"victory_robo", "text":"end of encounter pending."},
+		],
+		"victory_boss":[
+			{"id":"victory_boss_robo", "text":"threat of operational area reduced to acceptable levels."},
+		],
+	}
+}

@@ -232,3 +232,16 @@ Erika "Bjarl" Schaffner (Building off Stardock Entertainment)
 * soase_tec_titan
 * soase_tec_support
 * soase_tec_transport
+
+Erika "Bjarl" Schaffner
+* military_1
+* military_2
+* military_3
+* military_4
+* robotic_2
+* robotic_3
+* robotic_4
+* robotic_5
+* corpo_2
+* church_1
+* church_2

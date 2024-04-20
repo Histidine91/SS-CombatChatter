@@ -1,0 +1,81 @@
+{
+	"name":"Robotic (Planner)",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m","f","n"],
+	"chance":0.5,
+	"talkativeness":1,
+	"categoryTags":["original"],
+
+	"lines":{
+		"start":[
+			{"id":"battlestart_robo_plan", "text":"loading. tactical plan epsilon-theta-gamma."},
+			{"id":"battlestart_robo_plan", "text":"implementing tactical strategy."},
+			{"id":"battlestart_robo_plan", "text":"library accessed. plan phi-omicron-sigma implemented."},
+		],
+		"start_boss":[
+			{"id":"battlestart_boss_robo_plan", "text":"interrupt. high risk plan tau-omega-nu loaded."},
+			{"id":"battlestart_boss_robo_plan", "text":"interrupt. invalid. invalid. plan ypsilon-rho validated. engaging."},
+		],
+		"retreat":[
+			{"id":"retreat_robo", "text":"reconsideration. implementing escape plan alpha-iota-xi."},
+			{"id":"retreat_robo", "text":"strategic: retreat required."},
+		],
+		"engaged":[
+			{"id":"engaged_plan", "text":"engaging as defined by tactical plan."},
+			{"id":"engaged_plan", "text":"supplement firing pattern mu."},
+			{"id":"engaged_plan", "text":"tactical: engagement as expected"},
+            {"id":"engaged_plan", "text":"plan alteration. chi-tau."}
+		],
+		"need_help":[
+			{"id":"need_help_plan", "text":"tactical: support required"},
+			{"id":"need_help_plan", "text":"tactical: plan failure. request. support."},
+		],
+		"out_of_missiles":[
+			{"id":"oom_empty_plan", "text":"tactical: missiles depleted"},
+		],
+		"pursuing":[
+			{"id":"pursue_plan", "text":"supplement pursuit pattern lamda"},
+			{"id":"pursue_plan", "text":"pursuit as defined by tactical plan"},
+            {"id":"pursue_plan", "text":"interrupt. pursuit plan sigma-nu-eta active."}
+		],
+		"running":[
+			{"id":"running_plan", "text":"tactical: battlescape exited."},
+			{"id":"running_plan", "text":"tactical: retreat in progress."},
+			{"id":"running_plan", "text":"tactical: plan failed."},
+		],
+		"hull_90":[
+			{"id":"hull90_robo", "text":"tactical: light damage to unit"},
+			{"id":"hull90_robo", "text":"tactical: armor breached"},
+			{"id":"hull90_robo", "text":"interrupt damage control routine delta active. "}
+		],
+		"hull_50":[
+			{"id":"hull50_robo", "text":"tactical: armor stripped from hull."},
+			{"id":"hull50_robo", "text":"tactical: moderate-severe damage to unit."},
+			{"id":"hull50_robo", "text":"strategic: repairs required."},
+		],
+		"hull_30":[
+			{"id":"hull30_robo", "text":"tactical: combat survivablity low."},
+			{"id":"hull30_robo", "text":"tactical: damage to unit extreme"},
+			{"id":"hull30_robo", "text":"strategic: retreat and repair required."},
+            {"id":"hull30_robo", "text":"interrupt. self-preservation routine failed to load."}
+		],
+		"overload":[
+			{"id":"overload", "text":"tactical: flux overload."},
+			{"id":"overload_evade", "text":"interrupt. evasion pattern psi-beta active."},
+			{"id":"overload", "text":"tactical: flux exceeded plan parameters."}
+		],
+		"death":[
+			{"id":"death_plan", "text":"unloading librar-"},
+			{"id":"death_plan", "text":"tactical: report failure."},
+			{"id":"death_plan", "text":"tactical: unit combat killed"},
+		],
+		"victory":[
+			{"id":"victory_plan", "text":"tactical: report plan success."},
+			{"id":"victory_plan", "text":"unloading libraries. result. success."},
+			{"id":"victory_plan", "text":"strategic: exited tactical mode."},
+		],
+		"victory_boss":[
+			{"id":"victory_boss_plan", "text":"operation completed. revising tactical plans with new information."},
+		],
+	}
+}
