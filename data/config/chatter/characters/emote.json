@@ -19,15 +19,19 @@
 			{"text":":'("}
 		],
 		"out_of_missiles":[
+			{"text":"._."}
 		],
-		"engaged":[],
+		"engaged":[
+			{"text":":V"},
+			{"text":":3"}
+		],
 		"need_help":[
 			{"text":":O"},
 			{"text":"!"}
 		],
 		"pursuing":[
 			{"text":">:D"},
-			{"text":":3"}
+			{"text":"o/"}
 		],
 		"running":[
 			{"text":"v_v"},
@@ -35,16 +39,19 @@
 		],
 		"hull_90":[
 			{"text":":|"},
-			{"text":"?"}
+			{"text":"?"},
+			{"text":":/"},
 		],
 		"hull_50":[
 			{"text":">:O"},
 			{"text":"o_o"},
+			{"text":">:("},
 			#{"text":"ಠ_ಠ"}
 		],
 		"hull_30":[
 			{"text":">_<"},
 			{"text":"q_q"},
+			{"text":"!!!"},
 			#{"text":"ლ(ಠ益ಠლ)"}	# invalid characters
 		],
 		"overload":[
