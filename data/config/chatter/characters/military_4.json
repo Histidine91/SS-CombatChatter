@@ -11,7 +11,7 @@
 			{"id":"battlestart_loaded", "text":"All decks reporting condition green."},
 			{"id":"battlestart_loaded", "text":"$shipName, coming into the fight."},
 			{"id":"battlestart_reactor", "text":"Double check the reactor! We're heading in!"},
-			{"id":"battlestart_AIS", "text":"AIS and IFF are active. Move in!"}
+			{"id":"battlestart_AIS", "text":"AIS and IFF are active. Move in!"},
 			{"id":"battlestart_ready", "text":"All sections report ready!"}
 		],
 		"start_boss":[
