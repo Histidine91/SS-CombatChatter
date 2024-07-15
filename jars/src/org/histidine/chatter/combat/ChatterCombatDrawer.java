@@ -146,7 +146,7 @@ public class ChatterCombatDrawer {
             GL11.glPushMatrix();
             SpriteAPI sprite = Global.getSettings().getSprite(spritePath);
             float sizeMult = PORTRAIT_WIDTH/sprite.getWidth() * scale;
-            float sizeMult2 = sprite.getWidth()/128 * scale;
+            float sizeMult2 = sprite.getWidth()/128;
             GL11.glScalef(sizeMult, sizeMult, 1);
             //sprite.setWidth(128);
             //sprite.setHeight(128);
