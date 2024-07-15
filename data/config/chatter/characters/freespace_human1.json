@@ -21,7 +21,7 @@
 		],
 		"retreat":[
 			{"text":"I'm outta here."},
-			{"text":"Yes, sir! I'm outta here!"},
+			{"text":"Yes, $playerHonorific! I'm outta here!"},
 			{"text":"You don't have to tell me twice!"},
 		],
 		"out_of_missiles":[
@@ -31,8 +31,8 @@
 		],
 		"engaged":[
 			{"text":"Engaging at will!"},
-			{"text":"Engaging enemy now, sir."},
-			{"text":"Engaging now, sir."},
+			{"text":"Engaging enemy now, $playerHonorific."},
+			{"text":"Engaging now, $playerHonorific."},
 		],
 		"need_help":[
 			{"text":"Could one of you flyboys give me some cover?"},
@@ -40,7 +40,7 @@
 			{"text":"Get this bandit off me!"},
 		],
 		"pursuing":[
-			{"text":"Attacking now, sir."},
+			{"text":"Attacking now, $playerHonorific."},
 			{"text":"I've got 'em in my sights!"},
 			{"text":"Target acquired."},
 			{"text":"We'll take 'em down!"},

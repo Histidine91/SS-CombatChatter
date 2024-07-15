@@ -28,9 +28,9 @@
 		],
 		"engaged":[
 			{"text":"Engaging at will!"},
-			{"text":"Engaging enemy now, sir."},
+			{"text":"Engaging enemy now, $playerHonorific."},
 			{"text":"Engaging enemy."},
-			{"text":"Engaging now, sir."},
+			{"text":"Engaging now, $playerHonorific."},
 			{"text":"Jump 'em fast before they swarm us!"},
 		],
 		"need_help":[

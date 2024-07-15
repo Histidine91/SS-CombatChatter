@@ -33,7 +33,7 @@
 		],
 		"pursuing":[
 			{"text":"I'll bet that stings a bit."},
-			{"text":"It's okay, sir, I can take him!"},
+			{"text":"It's okay, $playerHonorific, I can take him!"},
 		],	
 		"running":[
 			{"text":"I'll be happy to survive this with all my parts."},
@@ -49,7 +49,7 @@
 		],
 		"hull_30":[
 			{"text":"It can't get any worse than this, can it?"},
-			{"text":"Sorry, sir, but I can't take much more of this."},
+			{"text":"Sorry, $playerHonorific, but I can't take much more of this."},
 		],
 		"overload":[
 			{"text":"What do you mean, overcharge?"},

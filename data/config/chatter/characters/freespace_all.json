@@ -35,11 +35,11 @@
 			{"text":"Affirmative. Departing now."},
 			{"text":"Departing field of engagement."},
 			{"text":"I'm outta here."},
-			{"text":"Roger that, sir. See you back home."},
-			{"text":"That's affirmative, sir. Departing now."},
+			{"text":"Roger that, $playerHonorific. See you back home."},
+			{"text":"That's affirmative, $playerHonorific. Departing now."},
 			{"text":"We are departing as ordered."},
-			{"text":"Yes sir. Leaving battle area."},
-			{"text":"Yes, sir! I'm outta here!"},
+			{"text":"Yes $playerHonorific. Leaving battle area."},
+			{"text":"Yes, $playerHonorific! I'm outta here!"},
 			{"text":"You don't have to tell me twice!"},
 		],
 		"out_of_missiles":[
@@ -50,9 +50,9 @@
 		],
 		"engaged":[
 			{"text":"Engaging at will!"},
-			{"text":"Engaging enemy now, sir."},
+			{"text":"Engaging enemy now, $playerHonorific."},
 			{"text":"Engaging enemy."},
-			{"text":"Engaging now, sir."},
+			{"text":"Engaging now, $playerHonorific."},
 			{"text":"Jump 'em fast before they swarm us!"},
 		],
 		"need_help":[
@@ -61,7 +61,7 @@
 			{"text":"Get this bandit off me!"},
 		],
 		"pursuing":[
-			{"text":"Attacking now, sir."},
+			{"text":"Attacking now, $playerHonorific."},
 			{"text":"Breaking to attack."},
 			{"text":"Commencing attack on my target."},
 			{"text":"I've got 'em in my sights!"},

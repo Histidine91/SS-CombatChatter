@@ -18,9 +18,9 @@
 			{"text":"Even if I must send my crew to hell with it, that monstrosity will be destroyed!"},
 		],
 		"retreat":[
-			{"text":"Roger that, sir. See you back home."},
-			{"text":"That's affirmative, sir. Departing now."},
-			{"text":"Yes sir. Leaving battle area."},
+			{"text":"Roger that, $playerHonorific. See you back home."},
+			{"text":"That's affirmative, $playerHonorific. Departing now."},
+			{"text":"Yes $playerHonorific. Leaving battle area."},
 		],
 		"out_of_missiles":[
 			{"text":"I'm out of missiles."},
@@ -37,7 +37,7 @@
 			{"text":"Get this bandit off me!"},
 		],
 		"pursuing":[
-			{"text":"Attacking now, sir."},
+			{"text":"Attacking now, $playerHonorific."},
 			{"text":"I've got 'em in my sights!"},
 			{"text":"Target acquired."},
 			{"text":"We'll take 'em down!"},
