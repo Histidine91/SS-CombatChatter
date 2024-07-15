@@ -52,7 +52,7 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$officerSurname", last);
 				str = StringHelper.substituteToken(str, "$officerFirstName", person.getName().getFirst());
 				str = StringHelper.substituteToken(str, "$officerGivenName", person.getName().getFirst());
-				str = StringHelper.substituteToken(str, "$officerFaction", StringHelper.getString(person.getFaction().getId()));
+				str = StringHelper.substituteToken(str, "$officerFaction", person.getFaction().getDisplayName());
 				str = StringHelper.substituteToken(str, "$officerRank", person.getRank());
 			}
 			if (member != null) {
@@ -83,7 +83,7 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$commanderLastName", commander.getName().getLast());
 				str = StringHelper.substituteToken(str, "$commanderFirstName", commander.getName().getFirst());
 				str = StringHelper.substituteToken(str, "$commanderRank", commander.getRank());
-				str = StringHelper.substituteToken(str, "$commanderFaction", StringHelper.getString(commander.getFaction().getId()));
+				str = StringHelper.substituteToken(str, "$commanderFaction", commander.getFaction().getDisplayName());
 			}
 
 			
