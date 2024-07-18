@@ -34,7 +34,7 @@
 			{"id":"oom_empty_plan", "text":"tactical: missiles depleted"},
 		],
 		"pursuing":[
-			{"id":"pursue_plan", "text":"supplement pursuit pattern lamda"},
+			{"id":"pursue_plan", "text":"supplement pursuit pattern lambda"},
 			{"id":"pursue_plan", "text":"pursuit as defined by tactical plan"},
             {"id":"pursue_plan", "text":"interrupt. pursuit plan sigma-nu-eta active."}
 		],
@@ -54,7 +54,7 @@
 			{"id":"hull50_robo", "text":"strategic: repairs required."},
 		],
 		"hull_30":[
-			{"id":"hull30_robo", "text":"tactical: combat survivablity low."},
+			{"id":"hull30_robo", "text":"tactical: combat survivability low."},
 			{"id":"hull30_robo", "text":"tactical: damage to unit extreme"},
 			{"id":"hull30_robo", "text":"strategic: retreat and repair required."},
             {"id":"hull30_robo", "text":"interrupt. self-preservation routine failed to load."}

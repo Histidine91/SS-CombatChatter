@@ -55,7 +55,7 @@
 			{"text":"$playerHonorific- what are you doing?!"},
 			{"text":"My engineers are starting to panic!"},
 			{"text":"Reporting half hull integrity!"},
-			{"text":"Artifical Gravity just went out on the bridge!"},
+			{"text":"Artificial Gravity just went out on the bridge!"},
 		],
 		"hull_30":[
 			{"text":"$playerHonorific, my ship is starting to creak."},

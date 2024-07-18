@@ -61,7 +61,7 @@
 		],
 		"hull_30":[
 			{"id":"hull30_wanna_run", "text":"$playerHonorific, we need to pull out of the battle *now*."},
-			{"id":"hull30_causalties", "text":"My hull is starting to fracture. Crew causalties are mounting."},
+			{"id":"hull30_casualties", "text":"My hull is starting to fracture. Crew casualties are mounting."},
 			{"id":"hull30_high", "text":"We're taking too much damage!"},
 		],
 		"overload":[

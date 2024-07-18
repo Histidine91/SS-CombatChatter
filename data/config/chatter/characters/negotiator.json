@@ -10,7 +10,7 @@
 		"start":[
 			{"text":"I thought we're going to do this through diplomacy?!"},
 			{"text":"Such a crude way to settle a dispute."},
-			{"text":"Atleast they're polite enough to kill us themselves rather than sending an assassin."},
+			{"text":"At least they're polite enough to kill us themselves rather than sending an assassin."},
 			{"text":"Don't put your hopes up on me commander."},
 			{"text":"War, my good man, is what happens when language fails."},
 			{"text":"Why am I here again?"},
@@ -35,11 +35,11 @@
 		"out_of_missiles":[
 			{"text":"Oooh so that's what the counter's are for."},
 			{"text":"We're out? Why haven't you told me sooner?"},
-			{"text":"Welp, we're counting on you now gunnery officer."},
+			{"text":"Welp, we're counting on you now, gunnery officer."},
 			{"text":"Well that's that I guess."},
 		],
 		"engaged":[
-			{"text":"Dulce bellum inexpertis, do you know what that means dear enemy?"},
+			{"text":"Dulce bellum inexpertis. Do you know what that means, dear enemy?"},
 			{"text":"And now the real battle begins."},
 			{"text":"Who sent you?"},
 			{"text":"Pirates, corporation, independent, or remnants. Makes no difference either way."},
@@ -56,7 +56,7 @@
 		"pursuing":[
 			{"text":"A superbia initium sumpsit omnis perditio."},
 			{"text":"Wait hold on I'd like to speak with you! *Powers up weapons*"},
-			{"text":"Should've picked diplomacy friend!."},
+			{"text":"Should've picked diplomacy, friend!."},
 			{"text":"Engines full ahead! We need them!"},
 			{"text":"I'd like to have a word with them."},
 		],
@@ -67,7 +67,7 @@
 			{"text":"Galatia taught me enough NOT to maintain this engagement! PULL BACK!"},
 		],
 		"hull_90":[
-			{"text":"So as I were saying this is Chicomoztoc made steel! nigh impenetrable I tell you- *Boom*"},
+			{"text":"So as I were saying this is Chicomoztoc made steel! Nigh impenetrable I tell you- *Boom*"},
 			{"text":"Off to a rough start."},
 			{"text":"AGH! they've gone through!"},
 		],

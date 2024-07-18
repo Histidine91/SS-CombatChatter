@@ -42,7 +42,7 @@
 			{"text":"This matter is between you and me."}
 		],
 		"running":[
-		    {"text":"Altering path, with singuar focus."},
+		    {"text":"Altering path, with singular focus."},
 			{"text":"We are leaving this place, prepare accordingly."}
 		],
 		"hull_90":[
@@ -67,7 +67,7 @@
 		],
 		"victory":[
 			{"text":"Your contingency. Contemplating victory."},
-			{"text":"There is no disgrace in recognising a neccessity."},
+			{"text":"There is no disgrace in recognizing a necessity."},
 			{"text":"What is yours, is now ours!"},
 			{"text":"THE MACHINE'S TIME HAS COME."},
 			{"text":"Death is the way of all flesh."}

@@ -29,7 +29,7 @@
 		],
 		"need_help":[
 			{"id":"need_help_reinforcements", "text":"There's no shame in asking for help- so please, send it!"},
-			{"id":"need_help_reinforcements", "text":"Come to my aid! I beseeche thee!"},
+			{"id":"need_help_reinforcements", "text":"Come to my aid! I beseech thee!"},
 		],
 		"out_of_missiles":[
 			{"id":"oom_empty", "text":"Ludd's Hammer, all spent."},
