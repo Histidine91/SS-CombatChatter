@@ -54,7 +54,7 @@
 		"hull_50":[
 			{"id":"hull50_scared", "text":"I'm n-not shaking- W-we can win this."},
 			{"id":"hull50_damcon", "text":"My damage control board is all yellow!"},
-			{"id":"hull50_confident", "text":"Prepare the auxilary bridge. $officerName won't lose command."},
+			{"id":"hull50_confident", "text":"Prepare the auxiliary bridge. $officerName won't lose command."},
 		],
 		"hull_30":[
 			{"id":"hull30_scared", "text":"$playerHonorific, my h-hull is at 30%."},

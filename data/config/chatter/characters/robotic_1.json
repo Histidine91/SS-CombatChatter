@@ -42,7 +42,7 @@
 		],
 		"running":[
 			{"text":"does not compute."},
-			{"text":"initating avoidance protocol."},
+			{"text":"initiating avoidance protocol."},
 		],
 		"hull_90":[
 			{"text":"hull has sustained damage."},

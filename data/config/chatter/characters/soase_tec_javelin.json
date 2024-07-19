@@ -67,7 +67,7 @@
 		],
 		"death":[
 			{"text":"Going down!"},
-			{"text":"Reactor breach in progrss! I'm out!"},
+			{"text":"Reactor breach in progress! I'm out!"},
 			{"text":"Escape pods launched!"},
 		],
 		"victory":[

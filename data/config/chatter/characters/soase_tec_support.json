@@ -19,7 +19,7 @@
 			{"text":"All gear is in tip-top shape, lets show them what we're made of!"},
 		],	
 		"retreat":[
-			{"text":"Retreat is in progess!"},
+			{"text":"Retreat is in progress!"},
 			{"text":"They're too much for me!"},
 			{"text":"Calculations aren't promising! Pulling back!"},
 		],
@@ -41,7 +41,7 @@
 		],
 		"pursuing":[
 			{"text":"Follow them!"},
-			{"text":"Transmission recieved - pursuing the target."},
+			{"text":"Transmission received - pursuing the target."},
 			{"text":"Plotting an intercept course."},
 		],
 		"running":[
@@ -62,7 +62,7 @@
 		{"text":"Enemy shells are causing spalling!"},
 		],
 		"hull_30":[
-			{"text":"Our targetting system just took shrapnel!"},
+			{"text":"Our targeting system just took shrapnel!"},
 			{"text":"$playerHonorific, I need to pull back!"},
 			{"text":"My ship's spine is showing cracks!"},
 			{"text":"Sir, Damage Control can't keep up!"},
@@ -82,7 +82,7 @@
 		"victory":[
 			{"text":"Another one for the books!"},
 			{"text":"Get on recalibrating our systems."},
-			{"text":"Thanks for having my back, $playerHonorificr."},
+			{"text":"Thanks for having my back, $playerHonorific."},
 			
 		],
 		"victory_boss":[

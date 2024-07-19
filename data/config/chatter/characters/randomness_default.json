@@ -165,7 +165,7 @@
 		"victory_boss":[
 			{"text":"Goddamn!"}, #aggr
 			{"text":"I told you size doesn't matter."}, #aggr
-			{"text":"High value target has been elimated."}, #pro
+			{"text":"High value target has been eliminated."}, #pro
 			{"text":"One for the books."}, #pro
 			{"text":"Damn fine work."}, #pro
 			{"text":"Don't get too far ahead ,$playerFirstName."}, #pro

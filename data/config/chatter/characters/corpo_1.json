@@ -25,7 +25,7 @@
 			{"text":"Status report coming shortly."},
 			{"text":"*Sigh*"},
 			{"text":"There goes my employee of the month."},
-			{"text":"This is so embarassing."},
+			{"text":"This is so embarrassing."},
 			{"text":"Yeah uhh command I think I'll take my holiday, right now, adios!"},
 		],
 		"out_of_missiles":[
@@ -94,7 +94,7 @@
 		],
 		"victory":[
 			{"text":"Status report coming up shortly."},
-			{"text":"This'll go nicely in the perfomance chart."},
+			{"text":"This'll go nicely in the performance chart."},
 			{"text":"We can do better."},
 			{"text":"Can I get a raise now? Pleaseee?"},
 			{"text":"Definitely sharing this to Trihub Central!"},

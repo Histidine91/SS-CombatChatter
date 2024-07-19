@@ -11,7 +11,7 @@
 			{"text":"Reading you loud and clear."},
 			{"text":"Commlink online."},
 			{"text":"Standing by for your order."},
-			{"text":"Recieving you, $playerHonorific."},
+			{"text":"Receiving you, $playerHonorific."},
 		],
 		"start_boss":[
 			{"text":"The bigger they are, the harder they fall!"},

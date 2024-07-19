@@ -35,7 +35,7 @@
 			{"text":"Moving in to attack."},
 		],
 		"running":[
-			{"text":"Primary objective failed, exfill."},
+			{"text":"Primary objective failed, exfil."},
 		],
 		"hull_90":[
 			{"text":"Taking hits, reactor holding."},
@@ -55,14 +55,10 @@
 		],
 		"victory":[
 			{"text":"Primary objective complete, moving out at your command."},
-			{"text":"Primary objective complete, exfill coordinates are in."},
+			{"text":"Primary objective complete, exfil coordinates are in."},
 		],
 		"victory_boss":[
 			
 		]
 	}
 }
-
-
-
-

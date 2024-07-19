@@ -18,7 +18,7 @@
 			{"text":"I've never seen so many ships in one place."},
 			{"text":"Here we go, engaging!"},
 			{"text":"Go get him! Kill him! Kill him!"},
-			{"text":"I dont know if I can do this... I'm braced."},
+			{"text":"I don't know if I can do this... I'm braced."},
 		],
 		"retreat":[
 			{"text":"I don't wanna die, damnit! Move it!"},
@@ -50,7 +50,7 @@
 		"hull_50":[
 			{"text":"We've taken a hit! Systems are still up!"},
 			{"text":"Don't know if we can take another hit like that!"},
-			{"text":"I- I dont think I can take much more of this."},
+			{"text":"I- I don't think I can take much more of this."},
 			{"text":"I swear to God I'll throw my neck out!"}
 		],
 		"hull_30":[

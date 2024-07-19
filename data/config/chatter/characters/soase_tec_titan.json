@@ -55,7 +55,7 @@
 			{"text":"Do be careful with us, $playerHonorific!"},
 		],
 		"hull_50":[
-			{"text":"Engineering is reporting casaulties in our Damage Control teams!"},
+			{"text":"Engineering is reporting casualties in our Damage Control teams!"},
 			{"text":"Our hull integrity is at 50%! We're not invincible $playerHonorific!"},
 			{"text":"We're taking some nasty hits!"},
 			{"text":"Gunnery just took a hit! We're alright - for now."},
