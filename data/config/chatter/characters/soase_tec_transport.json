@@ -23,7 +23,7 @@
 		],
 		"out_of_missiles":[
 			{"text":"Missile racks empty!"},
-			{"text":"Launchers are finished, $playerHonorific!"},
+			{"text":"Launchers are finished, $commanderHonorific!"},
 		],
 		"engaged":[
 			{"text":"We're going in!"},
@@ -52,17 +52,17 @@
 		],
 		"hull_50":[
 			{"text":"My damage control can't handle this!"},
-			{"text":"$playerHonorific- what are you doing?!"},
+			{"text":"$commanderHonorific- what are you doing?!"},
 			{"text":"My engineers are starting to panic!"},
 			{"text":"Reporting half hull integrity!"},
 			{"text":"Artificial Gravity just went out on the bridge!"},
 		],
 		"hull_30":[
-			{"text":"$playerHonorific, my ship is starting to creak."},
+			{"text":"$commanderHonorific, my ship is starting to creak."},
 			{"text":"That last shot took out my Damage Control Center!"},
 			{"text":"If we keep taking hits like this we're gonna need weeks in dock!"},
 			{"text":"Escape pods are ready!"},
-			{"text":"My hull is critical, $playerHonorific!"},
+			{"text":"My hull is critical, $commanderHonorific!"},
 		],
 		"overload":[
 			{"text":"The Reactor is going haywire!"},
@@ -78,7 +78,7 @@
 		],
 		"victory":[
 			{"text":"...*long exhale*..."},
-			{"text":"You'll get the hang of it, $playerHonorific.."},
+			{"text":"You'll get the hang of it, $commanderHonorific.."},
 			{"text":"Closer and closer to retirement.."},
 			{"text":"Hell. That felt close."},
 		],

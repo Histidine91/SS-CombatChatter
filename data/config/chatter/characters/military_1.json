@@ -15,7 +15,7 @@
 			{"id":"heg_big_guns", "text":"♪What do we have that they don't have?~♪"}
 		],
 		"start_boss":[
-			{"id":"battlestart_boss_back", "text":"... I've got your back, $playerHonorific."},
+			{"id":"battlestart_boss_back", "text":"... I've got your back, $commanderHonorific."},
 			{"id":"battlestart_boss_surprise", "text":"By the stars."},
 			{"id":"battlestart_boss_curious", "text":"In all my years, I've never been in a fight like this."}
 		],
@@ -27,7 +27,7 @@
 		"engaged":[
 			{"id":"engaged_steady", "text":"We have encountered the enemy."},
 			{"id":"engaged_ship_steady", "text":"$shipNameNoPrefix is engaged."},
-			{"id":"engaged_direct_report", "text":"Reporting engagement, $playerHonorific."}
+			{"id":"engaged_direct_report", "text":"Reporting engagement, $commanderHonorific."}
 		],
 		"need_help":[
 			{"id":"need_help_gunnery", "text":"Gunnery crews are overwhelmed. Send reinforcements!"},
@@ -53,14 +53,14 @@
 			{"id":"hull90_cadet", "text":"Some poor cadet is getting a trial by fire today."}
 		],
 		"hull_50":[
-			{"id":"hull50_plan", "text":"Damage is starting to mount. $playerHonorific, got a plan?"},
+			{"id":"hull50_plan", "text":"Damage is starting to mount. $commanderHonorific, got a plan?"},
 			{"id":"hull50_engineer", "text":"Engineering is getting overwhelmed. Hull reporting 50% integrity"},
 			{"id":"hull50_atmos", "text":"Port side is leaking atmosphere."},
 			{"id":"hull50_atmos", "text":"Starboard side is leaking atmosphere."},
 			{"id":"hull50_damcon", "text":"Route damage control to that last impact - and get me the engine room!"},
 		],
 		"hull_30":[
-			{"id":"hull30_wanna_run", "text":"$playerHonorific, we need to pull out of the battle *now*."},
+			{"id":"hull30_wanna_run", "text":"$commanderHonorific, we need to pull out of the battle *now*."},
 			{"id":"hull30_casualties", "text":"My hull is starting to fracture. Crew casualties are mounting."},
 			{"id":"hull30_high", "text":"We're taking too much damage!"},
 		],

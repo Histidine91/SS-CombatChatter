@@ -168,7 +168,7 @@
 			{"text":"High value target has been eliminated."}, #pro
 			{"text":"One for the books."}, #pro
 			{"text":"Damn fine work."}, #pro
-			{"text":"Don't get too far ahead ,$playerFirstName."}, #pro
+			{"text":"Don't get too far ahead ,$commanderFirstName."}, #pro
 			{"text":"..get us out of here!"}, #timid
 			{"text":"Remind me to set some boundaries."}, #timid
 			{"text":"A great victory!"}, #normal

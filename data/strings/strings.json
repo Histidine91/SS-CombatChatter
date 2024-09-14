@@ -7,6 +7,10 @@
 		
 		"wing":"$wing wing",
 		"class":"$class-class",
+
+		"honorificMale":"sir",
+		"honorificFemale":"ma'am",
+		"honorificGeneral":"captain",
 		
 		"fleetIntroMessage":"-- CAUTION --",
 		"fleetIntroBracketStart":"\\\\ ",

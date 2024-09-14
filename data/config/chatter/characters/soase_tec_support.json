@@ -25,7 +25,7 @@
 		],
 		"out_of_missiles":[
 			{"text":"Missile systems are done!"},
-			{"text":"We've got no more reloads $playerHonorific!"},
+			{"text":"We've got no more reloads $commanderHonorific!"},
 			{"text":"Maybe it's time to look at those expanded racks. Missiles are gone."},
 		],
 		"engaged":[
@@ -47,7 +47,7 @@
 		"running":[
 			{"text":"Calculating regroup location."},
 			{"text":"Power to the main drives."},
-			{"text":"See you on the flipside $playerHonorific."},
+			{"text":"See you on the flipside $commanderHonorific."},
 		],
 		"hull_90":[
 			{"text":"Crew is reporting light damage."},
@@ -56,16 +56,16 @@
 			{"text":"Stay calm, we're in good hands."},
 		],
 		"hull_50":[
-			{"text":"Widespread hull damage, $playerHonorific."},
-			{"text":"$playerHonorific, my armor is stripped."},
+			{"text":"Widespread hull damage, $commanderHonorific."},
+			{"text":"$commanderHonorific, my armor is stripped."},
 			{"text":"My ship is in danger!"},
 		{"text":"Enemy shells are causing spalling!"},
 		],
 		"hull_30":[
 			{"text":"Our targeting system just took shrapnel!"},
-			{"text":"$playerHonorific, I need to pull back!"},
+			{"text":"$commanderHonorific, I need to pull back!"},
 			{"text":"My ship's spine is showing cracks!"},
-			{"text":"$playerHonorific, Damage Control can't keep up!"},
+			{"text":"$commanderHonorific, Damage Control can't keep up!"},
 			{"text":"Get the non-essential crew to escape pods!"},
 		],
 		"overload":[
@@ -82,7 +82,7 @@
 		"victory":[
 			{"text":"Another one for the books!"},
 			{"text":"Get on recalibrating our systems."},
-			{"text":"Thanks for having my back, $playerHonorific."},
+			{"text":"Thanks for having my back, $commanderHonorific."},
 			
 		],
 		"victory_boss":[

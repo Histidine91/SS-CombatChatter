@@ -15,7 +15,7 @@
 		"start_boss":[
 			{"id":"battlestart_boss_faith", "text":"Not quite where I thought faith would lead me..."},
 			{"id":"battlestart_boss_resigned", "text":"*sigh*... If this is the task to be done."},
-            {"id":"battlestart_boss_mad", "text":"$playerSurname, are you mad?!"}
+            {"id":"battlestart_boss_mad", "text":"$commanderSurname, are you mad?!"}
 		],
 		"retreat":[
 			{"id":"retreat_danger", "text":"We should go. This is too dangerous."},

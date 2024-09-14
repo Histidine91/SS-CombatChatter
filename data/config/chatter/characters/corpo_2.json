@@ -64,7 +64,7 @@
 			{"id":"overload", "text":"Overload?! I thought that was supposed to be fixed!"}
 		],
 		"death":[
-			{"id":"death_taxes", "text":"Don't forget to mark us down as a loss on your taxes $playerHonorific."},
+			{"id":"death_taxes", "text":"Don't forget to mark us down as a loss on your taxes $commanderHonorific."},
 			{"id":"death", "text":"This best not go on my performance review!"},
 			{"id":"death_lifeboat", "text":"Get to the lifeboats! Management and Executives first!"},
 		],

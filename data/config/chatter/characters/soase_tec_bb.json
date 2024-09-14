@@ -20,7 +20,7 @@
 		],		
 		"retreat":[
 			{"text":"Plotting retreat route."}, 
-			{"text":"We're pulling back, $playerHonorific."},
+			{"text":"We're pulling back, $commanderHonorific."},
 			{"text":"Flag staff has advised a retreat."},
 		],
 		"out_of_missiles":[
@@ -35,20 +35,20 @@
 			{"text":"Tactical officer! Direct our fire."},
 		],
 		"need_help":[
-			{"text":"Requesting back-up, $playerHonorific."},
+			{"text":"Requesting back-up, $commanderHonorific."},
  			{"text":"I need an escort!"},
 			{"text":"My ship is being overwhelmed."},
 			{"text":"We need support as soon as possible."},
 		],
 		"pursuing":[
-			{"text":"Pursuing, $playerHonorific."},
+			{"text":"Pursuing, $commanderHonorific."},
 			{"text":"Engine room, pursuit burn!"},
 			{"text":"Intercept is plotted. Burning now."},
 		],
 		"running":[
 			{"text":"Vectoring to regroup coordinates."},
             {"text":"Retreat is in progress."},
-			{"text":"On our way out $playerHonorific."},
+			{"text":"On our way out $commanderHonorific."},
 		],
 		"hull_90":[
 			{"text":"My Chief Engineer is reporting battle damage."},
@@ -67,7 +67,7 @@
 			{"text":"My ship's spine is starting to buckle!"},
 			{"text":"My bridge has taken a direct hit!"},
 			{"text":"Crew causalities are mounting! This combat is unsustainable!"},
-			{"text":"We're preparing to abandon ship, $playerHonorific!"},
+			{"text":"We're preparing to abandon ship, $commanderHonorific!"},
 		],
 		"overload":[
 			{"text":"Our shields are down!"},
@@ -85,7 +85,7 @@
 			{"text":"Excellent work, crew. Stand down."},
 		],
 		"victory_boss":[
-			{"text":"An admirable performance, $playerHonorific"},
+			{"text":"An admirable performance, $commanderHonorific"},
 			{"text":"Another battle like no other..."},
 		],
 	}

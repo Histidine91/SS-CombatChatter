@@ -57,7 +57,7 @@
 			{"id":"hull50_confident", "text":"Prepare the auxiliary bridge. $officerName won't lose command."},
 		],
 		"hull_30":[
-			{"id":"hull30_scared", "text":"$playerHonorific, my h-hull is at 30%."},
+			{"id":"hull30_scared", "text":"$commanderHonorific, my h-hull is at 30%."},
 			{"id":"hull30_high", "text":"This is too m-much damage!"},
 			{"id":"hull30_panic", "text":"It's too much! It's all too much!"},
 		],
@@ -74,7 +74,7 @@
 		"victory":[
 			{"id":"victory", "text":"Just as planned."},
 			{"id":"victory", "text":"I love it when a plan goes well."},
-			{"id":"victory_promotion", "text":"About that promotion, $playerHonorific.."},
+			{"id":"victory_promotion", "text":"About that promotion, $commanderHonorific.."},
 			{"id":"victory_relief", "text":"That must be it."},
 		],
 		"victory_boss":[

@@ -83,7 +83,7 @@
 		],
 		"victory_boss":[
 			{"text":"Damn fine work."},
-			{"text":"Don't get too far ahead ,$playerFirstName."}
+			{"text":"Don't get too far ahead ,$commanderFirstName."}
 		]
 	}
 }

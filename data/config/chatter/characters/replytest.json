@@ -13,8 +13,8 @@
 			{"id":"replytest_intro1", "text":"Introductory text 3"}
 		],
 		"reply":[
-			{"id":"replytest_reply1", "text":"Reply to intro", "replyToId":"replytest_intro1"},
-			{"id":"replytest_reply2", "text":"Reply to reply", "replyToId":"replytest_reply1"},
+			{"id":"replytest_reply1", "text":"Reply to intro, commander faction $commanderFaction", "replyToId":"replytest_intro1"},
+			{"id":"replytest_reply2", "text":"Reply to reply, officer faction $officerFaction", "replyToId":"replytest_reply1"},
 			{"id":"replytest_reply3", "text":"Reply to reply to reply", "replyToId":"replytest_reply2"},
 			
 			{"id":"replytest_reply4", "text":"Annoyed comment", "replyToId":"replytest_reply3"},

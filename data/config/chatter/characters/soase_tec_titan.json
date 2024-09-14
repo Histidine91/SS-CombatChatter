@@ -8,7 +8,7 @@
 	
 	"lines":{
 		"start":[
-			{"text":"Our orders, $playerHonorific?"},
+			{"text":"Our orders, $commanderHonorific?"},
 			{"text":"Ready to anchor the fight!"},
 			{"text":"True to the cause!"},
 			{"text":"We'll never fail!"},
@@ -25,7 +25,7 @@
 		"out_of_missiles":[
 			{"text":"Tactical reports that we've used all missiles!"},
 			{"text":"Our missile reserves are dry!"},
-			{"text":"We've used all of our ordinance $playerHonorific!"},
+			{"text":"We've used all of our ordnance $commanderHonorific!"},
 		],
 		"engaged":[
 			{"text":"Shields up, we're going in!"},
@@ -46,24 +46,24 @@
 		],
 		"running":[
 			{"text":"Diverting power to the main engines!"},
-			{"text":"IFF and trackers ready! We'll see you soon $playerHonorific."},
+			{"text":"IFF and trackers ready! We'll see you soon $commanderHonorific."},
 		],
 		"hull_90":[
 			{"text":"Engineering reports light damage!"},
 			{"text":"We've taken a few scratches."},
 			{"text":"We're starting to take damage!"},
-			{"text":"Do be careful with us, $playerHonorific!"},
+			{"text":"Do be careful with us, $commanderHonorific!"},
 		],
 		"hull_50":[
 			{"text":"Engineering is reporting casualties in our Damage Control teams!"},
-			{"text":"Our hull integrity is at 50%! We're not invincible $playerHonorific!"},
+			{"text":"Our hull integrity is at 50%! We're not invincible $commanderHonorific!"},
 			{"text":"We're taking some nasty hits!"},
 			{"text":"Gunnery just took a hit! We're alright - for now."},
 			{"text":"Keep working! We're not going out without a fight!"},
 		],
 		"hull_30":[
-			{"text":"$playerHonorific, my staff is recommending a retreat!"},
-			{"text":"Engineering reports 30% hull integrity $playerHonorific!"},
+			{"text":"$commanderHonorific, my staff is recommending a retreat!"},
+			{"text":"Engineering reports 30% hull integrity $commanderHonorific!"},
 			{"text":"Our damage control groups are overwhelmed!"},
 			{"text":"Non-essential staff to the lifeboats!"},
 		],
@@ -75,7 +75,7 @@
 		],
 		"death":[
 			{"text":"Launch the lifeboats! Get clear!"},
-			{"text":"I'm going down $playerHonorific! It's been an honor!"},
+			{"text":"I'm going down $commanderHonorific! It's been an honor!"},
 			{"text":"The hull is fracturing! We have to evacuate!"},
 		],
 		"victory":[

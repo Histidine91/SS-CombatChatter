@@ -15,7 +15,7 @@
 		],
 		"start_boss":[
 			{"text":"Secure the passengers!"},
-			{"text":"... Keep us safe $playerHonorific."},
+			{"text":"... Keep us safe $commanderHonorific."},
 		],		
 		"retreat":[
 			{"text":"Get us out of here!"},
@@ -72,7 +72,7 @@
 			{"text":"Engineering reports high reactor stress!"},
 		],
 		"death":[
-			{"text":"Are they safe $playerHonorific?-"},
+			{"text":"Are they safe $commanderHonorific?-"},
 			{"text":"Shields, no-*KZZT*"},
 			{"text":"I'm sor-*BZZZZ*"},
 			{"text":"-*IFF Terminated*-"},

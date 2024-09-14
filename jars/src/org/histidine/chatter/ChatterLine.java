@@ -2,6 +2,7 @@ package org.histidine.chatter;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.FactionAPI;
+import com.fs.starfarer.api.characters.FullName;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import org.apache.log4j.Logger;
@@ -60,7 +61,8 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$shipName", member.getShipName());
 				str = StringHelper.substituteToken(str, "$shipClass", member.getHullSpec().getHullName());
 				str = StringHelper.substituteToken(str, "$shipSizeClass", StringHelper.getString(member.getHullSpec().getHullSize().toString().toLowerCase()));
-				str = StringHelper.substituteToken(str, "$shipFaction", StringHelper.getString(ChatterDataManager.getFactionFromShip(member)));
+				str = StringHelper.substituteToken(str, "$shipFaction", Global.getSector().getFaction(
+						ChatterDataManager.getFactionFromShip(member)).getDisplayName());
 			}
 			
 			PersonAPI player = Global.getSector().getPlayerPerson();
@@ -84,6 +86,7 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$commanderFirstName", commander.getName().getFirst());
 				str = StringHelper.substituteToken(str, "$commanderRank", commander.getRank());
 				str = StringHelper.substituteToken(str, "$commanderFaction", commander.getFaction().getDisplayName());
+				str = StringHelper.substituteToken(str, "$commanderHonorific", getHonorific(person));
 			}
 
 			
@@ -92,6 +95,13 @@ public class ChatterLine {
 		}
 		
 		return str;
+	}
+
+	protected String getHonorific(PersonAPI person) {
+		String key = "General";
+		if (person.getGender() == FullName.Gender.FEMALE) key = "Female";
+		else if (person.getGender() == FullName.Gender.MALE) key = "Male";
+		return StringHelper.getString("chatter_general", "honorific" + key);
 	}
 	
 	/**

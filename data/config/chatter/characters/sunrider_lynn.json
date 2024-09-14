@@ -8,9 +8,9 @@
 	
 	"lines":{
 		"start":[
-			{"text":"What do you want, $playerLastName?"},
+			{"text":"What do you want, $commanderLastName?"},
 			{"text":"Don't expect me to fawn over you!"},
-			{"text":"I hear you, $playerLastName."},
+			{"text":"I hear you, $commanderLastName."},
 		],
 		"retreat":[
 			{"text":"Tch! I'm falling back!"},
@@ -19,7 +19,7 @@
 		"need_help":[],
 		"engaged":[
 			{"text":"Hahahaha! Die!"},
-			{"text":"Now's the chance! Get them, $playerLastName!"},
+			{"text":"Now's the chance! Get them, $commanderLastName!"},
 			{"text":"Don't send a human to do a Prototype's work!"},
 		],
 		"pursuing":[
@@ -37,13 +37,13 @@
 			{"text":"I've been grazed! Damage isn't too bad."},
 		],
 		"hull_50":[
-			{"text":"Ack! Be more careful, $playerLastName!"},
+			{"text":"Ack! Be more careful, $commanderLastName!"},
 			{"text":"I'm not immortal, you know! Watch what you're doing!"},
 			{"text":"My hull's beginning to fracture!"},
 		],
 		"hull_30":[
-			{"text":"Damnit $playerLastName, what are you doing?!"},
-			{"text":"I've been damaged! Damn you $playerLastName!"},
+			{"text":"Damnit $commanderLastName, what are you doing?!"},
+			{"text":"I've been damaged! Damn you $commanderLastName!"},
 			{"text":"I can't take much more of this!"},
 		],
 		"overload":[
