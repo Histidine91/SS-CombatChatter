@@ -111,6 +111,7 @@ public class ChatterCombatDrawer {
         float fontSize = Global.getSettings().getInt("chatter_boxFontSize") * scale;
         float boxWidth = BOX_NAME_WIDTH * scale;
         float boxWidth2 = (BOX_WIDTH - BOX_NAME_WIDTH - PORTRAIT_WIDTH - 8) * scale;
+        float portraitSizeMultSetting = Global.getSettings().getFloat("chatter_boxPortraitSizeMult");
 
         // prepare ship name text
         float alpha = combatPlugin.engine.isUIShowingDialog() ? 0.5f : 1;
@@ -127,6 +128,7 @@ public class ChatterCombatDrawer {
                 color, fontSize, boxWidth2);
 
         float height = Math.max(str.getHeight(), str2.getHeight());
+        height = Math.max(height, PORTRAIT_WIDTH * portraitSizeMultSetting);
         if (height < 40 * scale) height = 40 * scale;
         if (height > remainingHeight) {
             return 99999;
@@ -145,7 +147,8 @@ public class ChatterCombatDrawer {
             GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
             GL11.glPushMatrix();
             SpriteAPI sprite = Global.getSettings().getSprite(spritePath);
-            float sizeMult = PORTRAIT_WIDTH/sprite.getWidth() * scale;
+            // make sure to normalize width of portraits with non-standard sizes
+            float sizeMult = PORTRAIT_WIDTH/sprite.getWidth() * scale * portraitSizeMultSetting;
             float sizeMult2 = sprite.getWidth()/128;
             GL11.glScalef(sizeMult, sizeMult, 1);
             //sprite.setWidth(128);

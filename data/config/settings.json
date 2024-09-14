@@ -1,6 +1,10 @@
 {
+	# note: for any settings also modifiable from ingame LunaLib mod settings menu,
+	# these values are overriden by the said menu and used only as defaults
+	
 	"chatter_boxFont":"graphics/fonts/insignia16a.fnt",
 	"chatter_introFont":"graphics/fonts/orbitron24aabold.fnt",
+	"chatter_boxPortraitSizeMult":1,
 	"chatter_boxFontSize":16,
 	"chatter_floaterFontSize":32,
 	

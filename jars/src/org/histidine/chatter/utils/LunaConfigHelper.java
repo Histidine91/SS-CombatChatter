@@ -29,6 +29,8 @@ public class LunaConfigHelper implements LunaSettingsListener {
 		addHeader("ui");
 		addSetting("chatterBox", "boolean", ChatterConfig.chatterBox);
 		addSetting("chatterBoxOfficerMode", "boolean", ChatterConfig.chatterBoxOfficerMode);
+		addSetting("boxPortraitSizeMult", "float", Global.getSettings().getFloat("chatter_boxPortraitSizeMult"), 0.5f, 4f);
+        addSetting("boxFontSize", "integer", Global.getSettings().getFloat("chatter_boxFontSize"), 8, 32);
 		addSetting("fleetIntro", "boolean", ChatterConfig.fleetIntro);
 		
 		addHeader("characters");		
@@ -57,6 +59,8 @@ public class LunaConfigHelper implements LunaSettingsListener {
 		ChatterConfig.chatterBox = (boolean)loadSetting("chatterBox", "boolean");
 		ChatterConfig.chatterBoxOfficerMode = (boolean)loadSetting("chatterBoxOfficerMode", "boolean");
 		ChatterConfig.fleetIntro = (boolean)loadSetting("fleetIntro", "boolean");
+		Global.getSettings().setFloat("chatter_boxPortraitSizeMult", (float)loadSetting("boxPortraitSizeMult", "float"));
+        Global.getSettings().setFloat("chatter_boxFontSize", (float)(int)loadSetting("boxFontSize", "integer"));
 		
 		ChatterConfig.factionSpecificCharacters = (boolean)loadSetting("factionSpecificCharacters", "boolean");
 		ChatterConfig.personalityChanceScaling = (boolean)loadSetting("personalityChanceScaling", "boolean");

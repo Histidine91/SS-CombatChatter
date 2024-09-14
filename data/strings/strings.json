@@ -37,6 +37,10 @@
 		"tooltip_chatterBox":"Adds (some) floating text to a message box on right side of screen (in addition to displaying it over the speaking ship).",
 		"name_chatterBoxOfficerMode":"Chatter box officer mode",
 		"tooltip_chatterBoxOfficerMode":"Only named officers appear in chatbox, and it prints their name instead of the ship's name.",
+		"name_boxPortraitSizeMult":"Chatter box portrait size mult",
+		"tooltip_boxPortraitSizeMult":"",
+		"name_boxFontSize":"Chatter box font size",
+		"tooltip_boxFontSize":"It may be desirable to also change the font specified in this mod's settings.json file.",
 		"name_fleetIntro":"Fleet intro",
 		"tooltip_fleetIntro":"Intro splash for some fleet types at the start of battles.",
 		
