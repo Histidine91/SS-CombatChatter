@@ -86,7 +86,7 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$commanderFirstName", commander.getName().getFirst());
 				str = StringHelper.substituteToken(str, "$commanderRank", commander.getRank());
 				str = StringHelper.substituteToken(str, "$commanderFaction", commander.getFaction().getDisplayName());
-				str = StringHelper.substituteToken(str, "$commanderHonorific", getHonorific(person));
+				str = StringHelper.substituteToken(str, "$commanderHonorific", getHonorific(commander));
 			}
 
 			
