@@ -1,3 +1,10 @@
+Version 1.14.2
+
+* New characters by Bjarl: soase_tec_transport, military_1, military_2, military_3, military_4, robotic_2, robotic_3, robotic_4, robotic_5, church_1, church_2, corpo_2
+* Add config options to resize chatter box portrait and font
+* Replace most cases of "sir" in dialog lines with the commander's honorific (including non-player commanders)
+* Fix chatter box portrait offset with UI scaling again
+
 Version 1.14.1
 
 * Add some Sins of a Solar Empire and Jagged Alliance 3 characters: soase_tec_bb, soase_tec_carrier, soase_tec_colony, soase_tec_javelin, soase_tec_kodiak, soase_tec_siege, soase_tec_support, soase_tec_titan, soase_tec_transport, ja3_flay, ja3_kalyna, ja3_livewire
