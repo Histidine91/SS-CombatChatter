@@ -852,22 +852,23 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			log.info("Picked fleet " + enemy.getNameWithFactionKeepCase());
 
 			lastBattleHash = enemy.hashCode();
-			String flag = enemy.getFlagship().getHullId();
+			String flag = null;
+			if (enemy.getFlagship() != null) flag = enemy.getFlagship().getHullId();
 
 			String name = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_name");
-			if (name == null && enemy.getFlagship() != null) 
+			if (name == null && flag != null)
 				name = MagicSettings.getStringMap("chatter", "flagshipToNameMap").get(flag);
 			if (name == null && enemy.getName() != null) name = enemy.getName().toUpperCase();
 			if (name == null) name = "ERROR no name found";
 			
 			String image = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_sprite");
-			if (image == null && enemy.getFlagship() != null) 
+			if (image == null && flag != null)
 				image = MagicSettings.getStringMap("chatter", "flagshipToLogoMap").get(flag);
 			if (image == null) image = MagicSettings.getStringMap("chatter", "factionRoundels").get(enemy.getFaction().getId());
 			if (image == null) image = enemy.getFaction().getCrest();
 			
 			String sound = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_sound");
-			if (sound == null && enemy.getFlagship() != null) 
+			if (sound == null && flag != null)
 				sound = MagicSettings.getStringMap("chatter", "flagshipToSoundMap").get(flag);
 			if (sound == null) sound = MagicSettings.getStringMap("chatter", "factionSounds").get(enemy.getFaction().getId());
 
