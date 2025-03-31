@@ -2,8 +2,8 @@ package org.histidine.chatter;
 
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.util.Misc;
-import com.sun.javafx.beans.annotations.NonNull;
 import org.histidine.chatter.combat.ChatterCombatPlugin;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
@@ -20,7 +20,7 @@ public class ChatterMessage {
     public boolean force;
     public boolean printEvenIfDead;
 
-    public ChatterMessage(FleetMemberAPI member, @NonNull ChatterLine line, ChatterLine.MessageType type) {
+    public ChatterMessage(FleetMemberAPI member, @NotNull ChatterLine line, ChatterLine.MessageType type) {
         this.member = member;
         characterId = ChatterCombatPlugin.getInstance() != null ? ChatterCombatPlugin.getInstance().getCharacterForFleetMember(member) : null;
         this.line = line;

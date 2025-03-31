@@ -22,8 +22,9 @@
 	# tags of interest may include: "othermedia" (all configs taken from another game, film, etc.); "meme"
 	"disallowedTags":["profanity", "nonsense"],
 	
+	# these fleets and factions can have intro splashes, but only if they're strong enough relative to player
 	"introSplashFleetTypes":[
 		"personBounty", "exerelinInvasionFleet", "vengeanceFleet", "nex_specialForces", "famousBounty",
 	],
-	"introSplashFactions":["remnant", "mess", "mess_remnant", "blade_breakers", "rat_abyssals_deep"]	# TODO
+	"introSplashFactions":["remnant", "omega", "dweller", "threat", "mess", "mess_remnant", "blade_breakers", "rat_abyssals_deep"]
 }

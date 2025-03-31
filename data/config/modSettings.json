@@ -3,6 +3,7 @@
 		# fleet logo priority: fleet memory key, then flagship-logo mapping here, then faction roundel here, then faction crest
 		# similar priorities exist for fleet name and sound that gets played
 		
+		# fleets with a defined flagship->logo or flagship->name entry will always have a splash
 		"flagshipToLogoMap":{
 			"guardian":"graphics/factions/roundel_domain_explorarium.png",
 			"ziggurat":"graphics/factions/roundel_tritachyon.png",
@@ -12,12 +13,16 @@
 			"guardian":"Guardian",
 			"ziggurat":"unknown",
 			"tesseract":"unknown",
+			#"fabricator_unit":"unknown",
+			#"shrouded_maw":"unknown",
 		},
+		
+		# flagships defined here need not have a splash, it depends on introSplashFleetTypes and introSplashFactions in the main config file
 		"flagshipToSoundMap":{
 			#"my_hull_id":"alarm_sound_id_in_sounds.json",
 		},
 		
-		"flagshipsWithStatic":["ziggurat", "tesseract"],
+		"flagshipsWithStatic":["ziggurat", "tesseract", "shrouded_maw", "fabricator_unit"],
 		
 		# don't need to be in settings.json, the mod will load them on application startup
 		"factionRoundels":{
