@@ -41,7 +41,9 @@ public class ChatterDataManager {
 	public static final String HULL_FACTION_PREFIX_FILE = CONFIG_DIR + "hull_prefixes.csv";
 	public static final String EXCLUDED_HULL_FILE = CONFIG_DIR + "excluded_hulls.csv";
 	public static final String BOSS_SHIP_FILE = CONFIG_DIR + "boss_ships.csv";
+	public static final String FACTION_SPLASH_FILE = CONFIG_DIR + "faction_first_encounter_splash.csv";
 	public static final String CHARACTER_MEMORY_KEY = "$chatterChar";
+	public static final String FACTION_MEMKEY_SHOWN_INTRO_BEFORE = "$chatter_shownIntro";
 	
 	public static final List<ChatterCharacter> CHARACTERS = new ArrayList<>();
 	public static final Map<String, ChatterCharacter> CHARACTERS_MAP = new HashMap<>();
@@ -57,6 +59,7 @@ public class ChatterDataManager {
 	public static final List<NameToCharacterMapping> NAME_TO_CHARACTER = new ArrayList<>();
 	public static final List<String[]> FACTION_HULL_PREFIXES = new ArrayList<>();
 	public static final Map<String, String> FACTION_SHIPNAME_PREFIXES = new HashMap<>();
+	public static final Map<String, FactionFirstEncounterSplashDef> FACTION_FIRST_ENCOUNTER_SPLASHES = new HashMap<>();
 	
 	public static final boolean DEBUG_MODE = false;
 	
@@ -249,12 +252,32 @@ public class ChatterDataManager {
 					BOSS_SHIPS.add(hullId);
 				} catch (JSONException ex) {}
 			}
+
+			debugPrint("Loading faction first encounter splash definitions");
+			JSONArray factions = Global.getSettings().getMergedSpreadsheetDataForMod("faction id", FACTION_SPLASH_FILE, "chatter");
+			for(int x = 0; x < bosses.length(); x++)
+			{
+				try {
+					JSONObject row = factions.getJSONObject(x);
+					String factionId = row.getString("faction id");
+					if (factionId.isEmpty()) continue;
+					FactionFirstEncounterSplashDef def = new FactionFirstEncounterSplashDef(factionId, getStringOrNullFromCSV(row, "name"),
+							getStringOrNullFromCSV(row, "image"), getStringOrNullFromCSV(row, "sound"), row.optBoolean("static"));
+					FACTION_FIRST_ENCOUNTER_SPLASHES.put(factionId, def);
+				} catch (JSONException ex) {}
+			}
 			
 		} catch (IOException | JSONException ex) {	// can't read CSV
 			log.error(ex);
 		}
 		
 		loaded = true;
+	}
+
+	protected static String getStringOrNullFromCSV(JSONObject json, String id) {
+		String str = json.optString(id, "");
+		if (str.isEmpty()) return null;
+		return str;
 	}
 	
 	/**
@@ -722,6 +745,34 @@ public class ChatterDataManager {
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.characterId = characterId;
+		}
+	}
+
+	/**
+	 *
+	 */
+	public static class FactionFirstEncounterSplashDef {
+		public String factionId;
+		public String name;
+		public String image;
+		public String sound;
+		public boolean haveStatic;
+
+		public FactionFirstEncounterSplashDef(String factionId, String name, String image, String sound, boolean haveStatic) {
+			this.factionId = factionId;
+			this.name = name;
+			this.image = image;
+			this.sound = sound;
+			this.haveStatic = haveStatic;
+		}
+
+		public static boolean hasShownFactionIntro(FactionAPI faction) {
+			if (faction == null) return false;
+			return faction.getMemoryWithoutUpdate().getBoolean(FACTION_MEMKEY_SHOWN_INTRO_BEFORE);
+		}
+
+		public static boolean hasShownFactionIntro(String factionId) {
+			return hasShownFactionIntro(Global.getSector().getFaction(factionId));
 		}
 	}
 }

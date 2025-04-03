@@ -1,0 +1,4 @@
+faction id,name,image,sound,static
+#remnant,,,,
+dweller,unknown,,,TRUE
+threat,unknown,,,TRUE

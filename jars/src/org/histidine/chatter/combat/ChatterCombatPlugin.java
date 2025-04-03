@@ -31,6 +31,7 @@ import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.Pair;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import org.histidine.chatter.ChatterMessage;
+import org.jetbrains.annotations.Nullable;
 import org.magiclib.util.MagicSettings;
 
 import java.util.*;
@@ -750,11 +751,17 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		String fallback = " " + StringHelper.getString("chatter_general", "outOfMissiles");
 		return printRandomMessage(member, MessageType.OUT_OF_MISSILES, fallback);
 	}
-	
-	protected CampaignFleetAPI getFleetFromBattle(BattleAPI battle) {
+
+	/**
+	 * Picks an enemy fleet from the specified battle for fleet intro. Returns null if no valid fleet found.
+	 * @param battle
+	 * @return
+	 */
+	@Nullable
+	protected FleetIntroSetupData getFleetIntroDataFromBattle(BattleAPI battle) {
 		
 		float playerStrength = Global.getSector().getPlayerFleet().getEffectiveStrength();
-		CampaignFleetAPI bestFallback = null;
+		FleetIntroSetupData bestFallback = null;
 		
 		List<Pair<CampaignFleetAPI, Float>> fleetsSorted = new ArrayList<>();
 		
@@ -767,7 +774,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		for (Pair<CampaignFleetAPI, Float> entry : fleetsSorted) {
 			CampaignFleetAPI fleet = entry.one;
 			float strength = entry.two;
-			
+			String flagshipId = fleet.getFlagship() != null ? fleet.getFlagship().getHullId() : null;
+			String factionId = fleet.getFaction() != null ? fleet.getFaction().getId() : null;
+			int hash = fleet.hashCode();
 			
 			String name = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_name");
 			String sprite = fleet.getMemoryWithoutUpdate().getString("$chatter_introSplash_sprite");
@@ -786,22 +795,34 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			// this fleet has custom intro settings, it's a priority
 			if (name != null || sprite != null || maxStrength != null || sound != null || hasStatic != null) 
 			{
-				return fleet;
+				return new FleetIntroSetupData(fleet, name, sprite, sound, Boolean.TRUE.equals(hasStatic), factionId, flagshipId, false, hash);
 			}
+
+			hasStatic = MagicSettings.getList("chatter", "flagshipsWithStatic").contains(flagshipId);
 			
 			// defined flagship, has priority
-			if (fleet.getFlagship() != null
-					&& MagicSettings.getStringMap("chatter", "flagshipToLogoMap").get(fleet.getFlagship().getHullId()) != null) 
-				return fleet;
+			if (flagshipId != null && (MagicSettings.getStringMap("chatter", "flagshipToLogoMap").get(flagshipId) != null
+					|| MagicSettings.getStringMap("chatter", "flagshipToNameMap").get(flagshipId) != null)) {
+				return new FleetIntroSetupData(fleet, null, null, null, hasStatic, factionId, flagshipId, false, hash);
+			}
 			
-			// this fleet is a station or a permitted fleet type
+			// this fleet is a station or a permitted fleet type. or we're encountering this faction for the first time
 			// hold on to it while we look to see if any of the fleets have custom intro settings
 			// in which case, that fleet would take priority
 			else if (bestFallback == null)
 			{
+				// first encounters take priority over other splash types
+				if (ChatterDataManager.FACTION_FIRST_ENCOUNTER_SPLASHES.containsKey(factionId) && !ChatterDataManager.FactionFirstEncounterSplashDef.hasShownFactionIntro(factionId))
+				{
+					bestFallback = new FleetIntroSetupData(fleet, factionId, flagshipId, hash);
+					bestFallback.factionFirstTime = true;
+					Global.getSector().getFaction(factionId).getMemoryWithoutUpdate().set(ChatterDataManager.FACTION_MEMKEY_SHOWN_INTRO_BEFORE, true);
+					continue;
+				}
+
 				if (fleet.isStationMode() && strength > playerStrength * 0.65f) 
 				{
-					bestFallback = fleet;
+					bestFallback = new FleetIntroSetupData(fleet, null, null, null, hasStatic, factionId, flagshipId, false, hash);
 					continue;
 				}
 				
@@ -811,7 +832,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				
 				if (validTypeOrFaction && strength > playerStrength * 0.8f) 
 				{
-					bestFallback = fleet;
+					bestFallback = new FleetIntroSetupData(fleet, factionId, flagshipId, hash);
 					continue;
 				}
 			}
@@ -841,45 +862,51 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			return;
 		
 		CampaignFleetAPI player = Global.getSector().getPlayerFleet();
-		if (player != null) {
-			BattleAPI battle = Global.getSector().getPlayerFleet().getBattle();
-			if (battle == null) return;
-			
-			CampaignFleetAPI enemy = getFleetFromBattle(battle);
-			if (enemy == null) return;
-			if (enemy.hashCode() == lastBattleHash)	return;
-			
-			log.info("Picked fleet " + enemy.getNameWithFactionKeepCase());
+		if (player == null) return;
+		BattleAPI battle = Global.getSector().getPlayerFleet().getBattle();
+		if (battle == null) return;
 
-			lastBattleHash = enemy.hashCode();
-			String flag = null;
-			if (enemy.getFlagship() != null) flag = enemy.getFlagship().getHullId();
+		FleetIntroSetupData enemyData = getFleetIntroDataFromBattle(battle);
+		if (enemyData == null) return;
+		if (enemyData.fleetHash == lastBattleHash) return;
 
-			String name = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_name");
-			if (name == null && flag != null)
-				name = MagicSettings.getStringMap("chatter", "flagshipToNameMap").get(flag);
-			if (name == null && enemy.getName() != null) name = enemy.getName().toUpperCase();
-			if (name == null) name = "ERROR no name found";
-			
-			String image = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_sprite");
-			if (image == null && flag != null)
-				image = MagicSettings.getStringMap("chatter", "flagshipToLogoMap").get(flag);
-			if (image == null) image = MagicSettings.getStringMap("chatter", "factionRoundels").get(enemy.getFaction().getId());
-			if (image == null) image = enemy.getFaction().getCrest();
-			
-			String sound = enemy.getMemoryWithoutUpdate().getString("$chatter_introSplash_sound");
-			if (sound == null && flag != null)
-				sound = MagicSettings.getStringMap("chatter", "flagshipToSoundMap").get(flag);
-			if (sound == null) sound = MagicSettings.getStringMap("chatter", "factionSounds").get(enemy.getFaction().getId());
+		lastBattleHash = enemyData.fleetHash;
 
-			drawer.intro = new ChatterCombatDrawer.FleetIntro(name, image, sound);
-			
-			if (enemy.getMemoryWithoutUpdate().contains("$chatter_introSplash_maxPlayerStrength"))
-				drawer.intro.hasStatic = enemy.getMemoryWithoutUpdate().getBoolean("$chatter_introSplash_static");
-			else if (MagicSettings.getList("chatter", "flagshipsWithStatic").contains(flag)) {
-				drawer.intro.hasStatic = true;
-			}
+		generateFleetIntro(enemyData);
+	}
+
+	public void generateFleetIntro(FleetIntroSetupData data) {
+
+		String flag = data.flagshipId;
+		String name = data.name;
+		ChatterDataManager.FactionFirstEncounterSplashDef factionFirstDef = data.factionFirstTime ? ChatterDataManager.FACTION_FIRST_ENCOUNTER_SPLASHES.get(data.factionId) : null;
+
+		if (name == null && flag != null)
+			name = MagicSettings.getStringMap("chatter", "flagshipToNameMap").get(flag);
+		if (name == null && factionFirstDef != null) name = factionFirstDef.name;
+		if (name == null) name = data.fleet.getName();
+		if (name == null) name = "ERROR no name found";
+
+		String image = data.image;
+		if (image == null && flag != null)
+			image = MagicSettings.getStringMap("chatter", "flagshipToLogoMap").get(flag);
+		if (image == null && factionFirstDef != null) image = factionFirstDef.image;
+		if (image == null) image = MagicSettings.getStringMap("chatter", "factionRoundels").get(data.factionId);
+		if (image == null) image = Global.getSector().getFaction(data.factionId).getCrest();
+
+		String sound = data.sound;
+		if (sound == null && flag != null)
+			sound = MagicSettings.getStringMap("chatter", "flagshipToSoundMap").get(flag);
+		if (sound == null && factionFirstDef != null) sound = factionFirstDef.sound;
+		if (sound == null) sound = MagicSettings.getStringMap("chatter", "factionSounds").get(data.factionId);
+
+		drawer.intro = new ChatterCombatDrawer.FleetIntro(name, image, sound);
+
+		if (data.hasStatic)	drawer.intro.hasStatic = true;
+		else if (MagicSettings.getList("chatter", "flagshipsWithStatic").contains(flag)) {
+			drawer.intro.hasStatic = true;
 		}
+		else if (name == null && data.factionFirstTime) name = factionFirstDef.name;
 	}
 	
 	protected void playIntroMessage(List<FleetMemberAPI> deployed)
@@ -1361,6 +1388,38 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		public boolean overloaded = false;
 		public float lastFloatMessageTime = -999;
 		public MessageType lastFloatMessageType = MessageType.START;
+	}
+
+	protected static class FleetIntroSetupData {
+		public CampaignFleetAPI fleet;
+		public String name;
+		public String image;
+		public String sound;
+		public boolean hasStatic;
+		public String factionId;
+		public String flagshipId;
+		public boolean factionFirstTime;
+		public int fleetHash;
+
+		public FleetIntroSetupData(CampaignFleetAPI fleet, String factionId, String flagshipId, int fleetHash) {
+			this.fleet = fleet;
+			this.factionId = factionId;
+			this.flagshipId = flagshipId;
+			this.fleetHash = fleetHash;
+		}
+
+		public FleetIntroSetupData(CampaignFleetAPI fleet, String name, String image, String sound, boolean hasStatic, String factionId, String flagshipId,
+								   boolean factionFirstTime, int fleetHash) {
+			this.fleet = fleet;
+			this.name = name;
+			this.image = image;
+			this.sound = sound;
+			this.hasStatic = hasStatic;
+			this.factionId = factionId;
+			this.flagshipId = flagshipId;
+			this.factionFirstTime = factionFirstTime;	// used for first-encounter splashes
+			this.fleetHash = fleetHash;
+		}
 	}
 	
 	public static final Comparator<Pair<CampaignFleetAPI, Float>> FLEET_COMPARE = new Comparator<Pair<CampaignFleetAPI, Float>>() {
