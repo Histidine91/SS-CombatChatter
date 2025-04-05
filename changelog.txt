@@ -1,3 +1,8 @@
+Version 1.15.0
+* Update for Starsector 0.98
+* Add a system for intro splashes when fighting a faction for the first time
+* Fix overload and out-of-missile messages being filtered out
+
 Version 1.14.2
 
 * New characters by Bjarl: soase_tec_transport, military_1, military_2, military_3, military_4, robotic_2, robotic_3, robotic_4, robotic_5, church_1, church_2, corpo_2
