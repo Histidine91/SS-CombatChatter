@@ -578,7 +578,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		message.floater = floater;
 		printMessage(message, fallback);
 
-		if (!fallback) {
+		if (!floater) {
 			lastMessageTime = timeElapsed;
 			//log.info("Time elapsed: " + lastMessageTime);
 			priorityThreshold += PRIORITY_PER_MESSAGE;
