@@ -306,7 +306,7 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 			data.isEnemy = ship.getOwner() == 1;
 			data.isPlayer = ship == engine.getPlayerShip();
 			data.officer = ship.getCaptain();
-			log.info(String.format("Adding ship %s, isEnemy %s", member.getShipName(), ship.getOwner()));
+			//log.info(String.format("Adding ship %s, isEnemy %s", member.getShipName(), ship.getOwner()));
 		}
 		data.characterId = pickCharacterForFleetMember(member);
 		

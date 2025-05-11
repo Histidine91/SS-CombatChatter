@@ -61,8 +61,8 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$shipName", member.getShipName());
 				str = StringHelper.substituteToken(str, "$shipClass", member.getHullSpec().getHullName());
 				str = StringHelper.substituteToken(str, "$shipSizeClass", StringHelper.getString(member.getHullSpec().getHullSize().toString().toLowerCase()));
-				str = StringHelper.substituteToken(str, "$shipFaction", Global.getSector().getFaction(
-						ChatterDataManager.getFactionFromShip(member)).getDisplayName());
+				FactionAPI faction = Global.getSector().getFaction(ChatterDataManager.getFactionFromShip(member));
+				if (faction != null) str = StringHelper.substituteToken(str, "$shipFaction", faction.getDisplayName());
 			}
 			
 			PersonAPI player = Global.getSector().getPlayerPerson();
@@ -88,10 +88,13 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$commanderFaction", commander.getFaction().getDisplayName());
 				str = StringHelper.substituteToken(str, "$commanderHonorific", getHonorific(commander));
 			}
+			else {
+				log.warn("Missing commander for member " + member.getShipName() + ", " + member.getHullSpec().getNameWithDesignationWithDashClass());
+			}
 
 			
 		} catch (Exception ex) {
-			log.error(String.format("Error substituting text in line '%s'", text), ex);
+			log.warn(String.format("Error substituting text in line '%s'", text), ex);
 		}
 		
 		return str;
