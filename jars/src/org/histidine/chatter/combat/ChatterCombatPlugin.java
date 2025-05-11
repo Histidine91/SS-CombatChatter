@@ -468,8 +468,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (member.isAlly() || stateData.isEnemy) charge = 4.5f;
 		if (!force && messageBoxLimiter + charge > BOX_LIMITER_DO_NOT_EXCEED)
 			return;
-		
-		boxMessages.add(new BoxMessage(member, message.string, message.color));
+
+		BoxMessage bm = new BoxMessage(member, message.string, message.color);
+		bm.ttl = message.estimateLineTTL();
+		boxMessages.add(bm);
+
 		messageBoxLimiter += charge;
 	}
 	
@@ -620,7 +623,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				return false;
 			}
 
-			engine.addFloatingText(textPos, message.string, Global.getSettings().getInt("chatter_floaterFontSize"), textColor, ship, 0, 0);
+			//engine.addFloatingText(textPos, message.string, Global.getSettings().getInt("chatter_floaterFontSize"), textColor, ship, 0, 0);
+			engine.addFloatingTextAlways(textPos, message.string, Global.getSettings().getInt("chatter_floaterFontSize"), textColor, ship, 0, 0, message.estimateLineTTL() - 1,
+					0.5f, 0.5f, 1);
 			if (addToMsgBox) {
 				addMessageBoxMessage(stateData, message);
 			}

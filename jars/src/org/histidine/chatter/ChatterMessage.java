@@ -9,6 +9,11 @@ import org.jetbrains.annotations.Nullable;
 import java.awt.*;
 
 public class ChatterMessage {
+
+    public static float TTL_FLAT = 1f;
+    public static float TTL_PER_CHARACTER = 0.1f;
+    public static float TTL_MIN = 4f;
+
     public FleetMemberAPI member;
     @Nullable public String characterId;
     @Nullable public ChatterLine line;
@@ -33,6 +38,10 @@ public class ChatterMessage {
         characterId = ChatterCombatPlugin.getInstance() != null ? ChatterCombatPlugin.getInstance().getCharacterForFleetMember(member) : null;
         this.string = string;
         this.type = type;
+    }
+
+    public float estimateLineTTL() {
+        return Math.max(TTL_FLAT + string.length() * TTL_PER_CHARACTER, TTL_MIN);
     }
 
     public static class QueuedChatterMessage {
