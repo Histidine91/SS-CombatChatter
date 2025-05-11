@@ -221,45 +221,40 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (ship == null) ship = engine.getFleetManager(FleetSide.ENEMY).getShipFor(member);
 		return ship;
 	}
-	
-	protected boolean isIgnored(FleetMemberAPI member)
-	{
-		if (ignore.containsKey(member)) return ignore.get(member);
-		
+
+	protected boolean wantIgnore(FleetMemberAPI member) {
 		if (!ChatterConfig.allyChatter && member.isAlly()) {
-			ignore.put(member, true);
 			return true;
 		}
 		if (member.getHullSpec().hasTag("no_combat_chatter")) {
-			ignore.put(member, true);
 			return true;
 		}
 		if (ChatterDataManager.EXCLUDED_HULLS.contains(member.getHullId()))
 		{
-			ignore.put(member, true);
+			return true;
+		}
+		if (member.getVariant().hasTag("no_combat_chatter")) {
 			return true;
 		}
 		if (member.isFighterWing() && member.getHullSpec().getMaxCrew() <= 0)
 		{
-			ignore.put(member, true);
 			return true;
 		}
+
 		// non-fighter fleet member that's fighter-sized
 		if (!member.isFighterWing() && member.getHullSpec().getHullSize() == HullSize.FIGHTER) {
-			ignore.put(member, true);
 			return true;
 		}
-		
+
 		ShipAPI ship = getShipForMember(member);
 		if (ship != null)
 		{
 			// ignore modules
 			if (ship.getParentStation() != null)
 			{
-				ignore.put(member, true);
 				return true;
 			}
-			
+
 			boolean npc = ship.getOwner() == 1 || ship.isAlly();
 			if (npc)
 			{
@@ -267,14 +262,18 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 				if (ChatterConfig.noEnemyChatterFactions.contains(faction)
 						|| !ChatterConfig.enemyChatter) {
 					//log.info("Enemy ship " + member.getShipName() + " being ignored: " + faction);
-					ignore.put(member, true);
 					return true;
 				}
 			}
 		}
-		
-		ignore.put(member, false);
 		return false;
+	}
+	
+	protected boolean isIgnored(FleetMemberAPI member)
+	{
+		if (!ignore.containsKey(member))
+			ignore.put(member, wantIgnore(member));
+		return ignore.get(member);
 	}
 	
 	/**
