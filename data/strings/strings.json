@@ -41,6 +41,8 @@
 		"tooltip_boxPortraitSizeMult":"",
 		"name_boxFontSize":"Chatter box font size",
 		"tooltip_boxFontSize":"It may be desirable to also change the font specified in this mod's settings.json file.",
+		"name_floaterFontSize":"Floating text font size",
+		"name_tooltipFontSize":"",
 		"name_fleetIntro":"Fleet intro",
 		"tooltip_fleetIntro":"Intro splash for some fleet types at the start of battles.",
 		
