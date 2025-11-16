@@ -35,9 +35,9 @@
 			{"text":"We are in a lot of trouble!"},			
 		],
 		"pursuing":[
-			{"text":"Take no prisoners"},
-			{"text":"Squadron en route"},
-			{"text":"Set a course"},
+			{"text":"Take no prisoners."},
+			{"text":"Squadron en route."},
+			{"text":"Set a course."},
 			{"text":"Shoot them all!"},			
 		],
 		"running":[
