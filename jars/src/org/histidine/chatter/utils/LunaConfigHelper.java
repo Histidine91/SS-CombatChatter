@@ -6,6 +6,9 @@ import lunalib.lunaSettings.LunaSettingsListener;
 import org.apache.log4j.Logger;
 
 import org.histidine.chatter.ChatterConfig;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
 
 public class LunaConfigHelper implements LunaSettingsListener {
 	
@@ -40,6 +43,11 @@ public class LunaConfigHelper implements LunaSettingsListener {
 		addSetting("genderChanceScaling", "float", ChatterConfig.genderChanceScaling, 1, 5);
 		addSetting("restrictAICharacters", "boolean", ChatterConfig.restrictAICharacters);
 
+        // configure disabled tags within Luna
+        // not great, the text field doesn't have enough space
+        String tabDisallowed = getString("name_disallowedTags");
+        addSetting("disallowedTags", "string", tabDisallowed, StringHelper.writeStringCollection(ChatterConfig.disallowedTags));
+
         LunaSettings.SettingsCreator.refresh(mid);
 
         try {
@@ -69,6 +77,14 @@ public class LunaConfigHelper implements LunaSettingsListener {
 		ChatterConfig.personalityChanceScaling = (boolean)loadSetting("personalityChanceScaling", "boolean");
 		ChatterConfig.genderChanceScaling = (float)loadSetting("genderChanceScaling", "float");
 		ChatterConfig.restrictAICharacters = (boolean)loadSetting("restrictAICharacters", "boolean");
+
+        /*
+        String[] disallowed = ((String)loadSetting("disallowedTags", "string")).split(",");
+        ChatterConfig.disallowedTags.clear();
+        for (String tag : disallowed) {
+            ChatterConfig.disallowedTags.add(tag.trim());
+        }
+        */
     }
 
     public static Object loadSetting(String var, String type) {
@@ -86,6 +102,8 @@ public class LunaConfigHelper implements LunaSettingsListener {
                 return (float)(double)LunaSettings.getDouble(mid, var);
             case "double":
                 return LunaSettings.getDouble(mid, var);
+            case "string":
+                return LunaSettings.getString(mid, var);
             default:
                 log.error(String.format("Setting %s has invalid type %s", var, type));
         }
@@ -93,22 +111,32 @@ public class LunaConfigHelper implements LunaSettingsListener {
     }
 
     public static void addSetting(String var, String type, Object defaultVal) {
-        addSetting(var, type, defaultVal, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        addSetting(var, type, null, defaultVal, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    public static void addSetting(String var, String type, @Nullable String tab, Object defaultVal) {
+        addSetting(var, type, tab, defaultVal, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     public static void addSetting(String var, String type, Object defaultVal, double min, double max) {
+        addSetting(var, type, null, defaultVal, min, max);
+    }
+
+    public static void addSetting(String var, String type, String tab, Object defaultVal, double min, double max) {
         String tooltip = Global.getSettings().getString("chatter_lunaSettings", "tooltip_" + var);
         if (tooltip.startsWith("Missing string:")) {
             tooltip = "";
         }
         String mid = MOD_ID;
         String name = getString("name_" + var);
+
+        if (tab == null) tab = "";
 		
 		var = PREFIX + var;
 
         switch (type) {
             case "boolean":
-                LunaSettings.SettingsCreator.addBoolean(mid, var, name, tooltip, (boolean)defaultVal);
+                LunaSettings.SettingsCreator.addBoolean(mid, var, name, tooltip, (boolean)defaultVal, tab);
                 break;
             case "int":
             case "integer":
@@ -116,31 +144,39 @@ public class LunaConfigHelper implements LunaSettingsListener {
                     defaultVal = Math.round((float)defaultVal);
                 }
                 LunaSettings.SettingsCreator.addInt(mid, var, name, tooltip,
-                        (int)defaultVal, (int)Math.round(min), (int)Math.round(max));
+                        (int)defaultVal, (int)Math.round(min), (int)Math.round(max), tab);
                 break;
             case "float":
                 // fix float -> double conversion causing an unround number
                 String floatStr = ((Float)defaultVal).toString();
                 LunaSettings.SettingsCreator.addDouble(mid, var, name, tooltip,
-                        Double.parseDouble(floatStr), min, max);
+                        Double.parseDouble(floatStr), min, max, tab);
                 break;
             case "double":
                 LunaSettings.SettingsCreator.addDouble(mid, var, name, tooltip,
-                        (double)defaultVal, min, max);
+                        (double)defaultVal, min, max, tab);
+                break;
+            case "string":
+                LunaSettings.SettingsCreator.addString(mid, var, name, tooltip, (String)defaultVal, tab);
                 break;
             case "key":
-                LunaSettings.SettingsCreator.addKeybind(mid, var, name, tooltip, (int)defaultVal);
+                LunaSettings.SettingsCreator.addKeybind(mid, var, name, tooltip, (int)defaultVal, tab);
             default:
                 log.error(String.format("Setting %s has invalid type %s", var, type));
         }
     }
 
     public static void addHeader(String id) {
-        LunaSettings.SettingsCreator.addHeader(MOD_ID, id, getString("header_" + id));
+        addHeader(id, getString("header_" + id), null);
     }
 
     public static void addHeader(String id, String title) {
-        LunaSettings.SettingsCreator.addHeader(MOD_ID, id, title);
+        addHeader(id, title, null);
+    }
+
+    public static void addHeader(String id, String title, String tab) {
+        if (tab == null) tab = "";
+        LunaSettings.SettingsCreator.addHeader(MOD_ID, id, title, tab);
     }
 
     public static LunaConfigHelper createListener() {

@@ -3,6 +3,7 @@ package org.histidine.chatter;
 import com.fs.starfarer.api.Global;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import org.apache.log4j.Logger;
 import org.histidine.chatter.utils.GeneralUtils;
@@ -51,7 +52,7 @@ public class ChatterConfig {
 			
 			fleetIntro = settings.optBoolean("fleetIntro", fleetIntro);
 			
-			disallowedTags = new HashSet<>(GeneralUtils.JSONArrayToStringList(settings.optJSONArray("disallowedTags")));
+			disallowedTags = new LinkedHashSet<>(GeneralUtils.JSONArrayToStringList(settings.optJSONArray("disallowedTags")));
 			noEnemyChatterFactions = new HashSet<>(GeneralUtils.JSONArrayToStringList(settings.optJSONArray("noEnemyChatterFactions")));
 			introSplashFleetTypes = new HashSet<>(GeneralUtils.JSONArrayToStringList(settings.optJSONArray("introSplashFleetTypes")));
 			introSplashFactions = new HashSet<>(GeneralUtils.JSONArrayToStringList(settings.optJSONArray("introSplashFactions")));

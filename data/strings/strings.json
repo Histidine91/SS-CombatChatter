@@ -54,5 +54,8 @@
 		"tooltip_personalityChanceScaling":"Make characters with only 1-2 allowed personalities have higher chance to be picked.",
 		"name_genderChanceScaling":"Gender chance scaling",
 		"tooltip_genderChanceScaling":"Makes gender-specific characters more likely to be picked.",
+
+		"name_disallowedTags":"Disallowed tags",
+		"tooltip_disallowedTags":"Any characters with any of the category tags in this list will not be picked ingame.\nTags of interest may include: \"othermedia\" (all configs taken from another game, film, etc.); \"meme\".\nSpecify as a comma-separated list without quotes."
 	}
 }

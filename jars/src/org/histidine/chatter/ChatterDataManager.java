@@ -2,6 +2,7 @@ package org.histidine.chatter;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.FactionAPI;
+import com.fs.starfarer.api.campaign.rules.HasMemory;
 import com.fs.starfarer.api.characters.FullName;
 import com.fs.starfarer.api.characters.FullName.Gender;
 import com.fs.starfarer.api.characters.OfficerDataAPI;
@@ -13,14 +14,8 @@ import com.fs.starfarer.api.impl.campaign.events.OfficerManagerEvent;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+
 import org.apache.log4j.Logger;
 import org.histidine.chatter.ChatterLine.MessageType;
 import org.histidine.chatter.utils.GeneralUtils;
@@ -66,9 +61,8 @@ public class ChatterDataManager {
 	public static Logger log = Global.getLogger(ChatterDataManager.class);
 	
 	protected static boolean loaded = false;
-	
-	// FIXME: this lags when the class is first loaded, 
-	// and right now the class is loaded at the start of the first battle
+
+	// note: this lags main menu missions briefly if that's the first thing player does
 	static {
 		loadCharacters();
 	}
@@ -572,6 +566,15 @@ public class ChatterDataManager {
 				return FACTION_SHIPNAME_PREFIXES.get(prefix);
 		}
 		return "";
+	}
+
+	public static List<String> getAllTags() {
+		List<String> tags = new ArrayList<>();
+		for (ChatterCharacter character : CHARACTERS) {
+			tags.addAll(character.categoryTags);
+		}
+		Collections.sort(tags);
+		return tags;
 	}
 	
 	/**
