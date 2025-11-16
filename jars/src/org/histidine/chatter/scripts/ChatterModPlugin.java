@@ -2,6 +2,8 @@ package org.histidine.chatter.scripts;
 
 import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
+import lunalib.lunaRefit.LunaRefitManager;
+import org.histidine.chatter.campaign.CharacterSelectorRefitButton;
 import org.magiclib.util.MagicSettings;
 import java.util.Map;
 import org.histidine.chatter.ChatterConfig;
@@ -10,7 +12,7 @@ import org.histidine.chatter.campaign.ChatterCampaignListener;
 
 public class ChatterModPlugin extends BaseModPlugin
 {
-	public static boolean hasTwigLib = Global.getSettings().getModManager().isModEnabled("ztwiglib");
+	public static final boolean HAVE_LUNALIB = Global.getSettings().getModManager().isModEnabled("lunalib");
 	
 	@Override
 	public void onGameLoad(boolean newGame) {
@@ -31,6 +33,10 @@ public class ChatterModPlugin extends BaseModPlugin
 			for (String path : flagshipToLogo.values()) {
 				Global.getSettings().loadTexture(path);
 			}
+		}
+
+		if (HAVE_LUNALIB) {
+			LunaRefitManager.addRefitButton(new CharacterSelectorRefitButton());
 		}
 	}
 }

@@ -14,7 +14,9 @@
 		
 		"fleetIntroMessage":"-- CAUTION --",
 		"fleetIntroBracketStart":"\\\\ ",
-		"fleetIntroBracketEnd":" \\\\"
+		"fleetIntroBracketEnd":" \\\\",
+		
+		"refitButton":"Set chatter character"
 	},
 	
 	"chatter_lunaSettings":{
