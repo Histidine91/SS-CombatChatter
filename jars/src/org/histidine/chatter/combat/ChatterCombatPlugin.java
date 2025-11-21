@@ -5,19 +5,11 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.BattleAPI;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
-import com.fs.starfarer.api.combat.CombatAssignmentType;
-import com.fs.starfarer.api.combat.CombatEngineAPI;
+import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.combat.CombatFleetManagerAPI.AssignmentInfo;
-import com.fs.starfarer.api.combat.CombatTaskManagerAPI;
-import com.fs.starfarer.api.combat.EveryFrameCombatPlugin;
-import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI.ShipTypeHints;
-import com.fs.starfarer.api.combat.ShipSystemAPI;
-import com.fs.starfarer.api.combat.ShipwideAIFlags;
 import com.fs.starfarer.api.combat.ShipwideAIFlags.AIFlags;
-import com.fs.starfarer.api.combat.ViewportAPI;
-import com.fs.starfarer.api.combat.WeaponAPI;
 import com.fs.starfarer.api.combat.WeaponAPI.WeaponType;
 import com.fs.starfarer.api.fleet.FleetGoal;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
@@ -99,6 +91,9 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	protected float messageBoxLimiter = 0;
 	
 	protected boolean wantDebugChat = false;
+
+	protected Map<FleetSide, FleetMemberAPI> flagships = new HashMap<>();
+	protected Map<FleetSide, PersonAPI> commanders = new HashMap<>();
 	
 	// TODO externalise
 	static {
@@ -145,6 +140,11 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		return (ChatterCombatPlugin)Global.getCombatEngine().getCustomData().get(DATA_KEY);
 	}
 
+	public static FleetSide getEnemySide(FleetSide side) {
+		FleetSide enemy = side == FleetSide.PLAYER ? FleetSide.ENEMY : FleetSide.PLAYER;
+		return enemy;
+	}
+
 	public static void addListener(ChatterListener listener) {
 		if (getInstance() != null) getInstance().chatterListeners.add(listener);
 	}
@@ -162,6 +162,53 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		if (seed == null || seed.isEmpty()) return (float)Math.random();
 		Random generator = new Random(seed.hashCode());
 		return generator.nextFloat();
+	}
+
+	public Set<FleetMemberAPI> getAllMembersOnSide(FleetSide side) {
+		Set<FleetMemberAPI> list = new LinkedHashSet<>();
+		CombatFleetManagerAPI manager = engine.getFleetManager(side);
+		list.addAll(manager.getDeployedCopy());
+		list.addAll(manager.getDisabledCopy());
+		list.addAll(manager.getDestroyedCopy());
+		list.addAll(manager.getReservesCopy());
+		list.addAll(manager.getRetreatedCopy());
+		return list;
+	}
+
+	public FleetSide getSideForMember(FleetMemberAPI member) {
+		if (getAllMembersOnSide(FleetSide.PLAYER).contains(member)) return FleetSide.PLAYER;
+		if (getAllMembersOnSide(FleetSide.ENEMY).contains(member)) return FleetSide.ENEMY;
+		return null;
+	}
+
+	@Nullable
+	public PersonAPI getCommanderForSide(FleetSide side) {
+		return commanders.get(side);
+	}
+
+	@Nullable
+	public FleetMemberAPI getFlagshipForSide(FleetSide side) {
+		return flagships.get(side);
+	}
+
+	@Nullable
+	public FleetMemberAPI findFlagshipForSide(FleetSide side) {
+		Set<FleetMemberAPI> members = getAllMembersOnSide(side);
+		for (FleetMemberAPI member : members) {
+			if (member.isFlagship()) {
+				return member;
+			}
+		}
+		return null;
+	}
+
+	public PersonAPI findCommanderForSide(FleetMemberAPI flagship, FleetSide side) {
+		// check this way because I found an issue where Horacio Caden was not the fleet commander, which was apparently instead taken by the Volturn station commander?
+		if (flagship != null && flagship.getCaptain() != null && !flagship.getCaptain().isDefault())
+			return flagship.getCaptain();
+		else {
+			return engine.getFleetManager(side).getFleetCommander();
+		}
 	}
 
 	public String getCharacterForFleetMember(FleetMemberAPI member) {
@@ -1348,6 +1395,14 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		drawer = new ChatterCombatDrawer(this);
 		engine.getCustomData().put(DATA_KEY, this);
 		chatterListeners.add(new ChatterCoreListener());
+
+		FleetMemberAPI ourFlagship = findFlagshipForSide(FleetSide.PLAYER);
+		FleetMemberAPI theirFlagship = findFlagshipForSide(FleetSide.ENEMY);
+		flagships.put(FleetSide.PLAYER, ourFlagship);
+		flagships.put(FleetSide.ENEMY, theirFlagship);
+
+		commanders.put(FleetSide.PLAYER, findCommanderForSide(ourFlagship, FleetSide.PLAYER));
+		commanders.put(FleetSide.ENEMY, findCommanderForSide(theirFlagship, FleetSide.ENEMY));
 	}
 
 	@Override

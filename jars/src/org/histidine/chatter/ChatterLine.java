@@ -5,7 +5,9 @@ import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.characters.FullName;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.mission.FleetSide;
 import org.apache.log4j.Logger;
+import org.histidine.chatter.combat.ChatterCombatPlugin;
 import org.histidine.chatter.utils.StringHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -89,10 +91,45 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$commanderHonorific", getHonorific(commander));
 			}
 			else {
-				log.warn("Missing commander for member " + member.getShipName() + ", " + member.getHullSpec().getNameWithDesignationWithDashClass());
+				//log.warn("Missing commander for member " + member.getShipName() + ", " + member.getHullSpec().getNameWithDesignationWithDashClass());
 			}
 
-			
+			// enemy flagship substitution, enemy faction substitution, commission faction substitution
+			String enemyFaction = null;
+			PersonAPI enemyCommander = null;
+			FleetMemberAPI enemyFlagship = null;
+			ChatterCombatPlugin combatPlugin = ChatterCombatPlugin.getInstance();
+			if (combatPlugin != null) {
+				FleetSide ourSide = combatPlugin.getSideForMember(member);
+				if (ourSide != null) {
+					FleetSide enemy = ChatterCombatPlugin.getEnemySide(ourSide);
+					enemyCommander = combatPlugin.getCommanderForSide(enemy);
+					enemyFlagship = combatPlugin.getFlagshipForSide(enemy);
+					if (enemyFlagship != null) {
+						enemyFaction = ChatterDataManager.getFactionFromShip(enemyFlagship);
+					}
+				}
+			}
+
+			if (enemyCommander != null)
+			{
+				str = StringHelper.substituteToken(str, "$enemyCommanderName", enemyCommander.getNameString());
+				str = StringHelper.substituteToken(str, "$enemyCommanderLastName", enemyCommander.getName().getLast());
+				str = StringHelper.substituteToken(str, "$enemyCommanderFirstName", enemyCommander.getName().getFirst());
+				str = StringHelper.substituteToken(str, "$enemyCommanderRank", enemyCommander.getRank());
+				str = StringHelper.substituteToken(str, "$enemyCommanderFaction", enemyCommander.getFaction().getDisplayName());
+				str = StringHelper.substituteToken(str, "$enemyCommanderHonorific", getHonorific(enemyCommander));
+			}
+			if (enemyFlagship != null) {
+				str = StringHelper.substituteToken(str, "$enemyFlagshipNameNoPrefix", stripShipNamePrefix(enemyFlagship));
+				str = StringHelper.substituteToken(str, "$enemyFlagshipName", enemyFlagship.getShipName());
+				str = StringHelper.substituteToken(str, "$enemyFlagshipClass", enemyFlagship.getHullSpec().getHullName());
+				str = StringHelper.substituteToken(str, "$enemyFlagshipSizeClass", StringHelper.getString(enemyFlagship.getHullSpec().getHullSize().toString().toLowerCase()));
+			}
+			if (enemyFaction != null) {
+				FactionAPI faction = Global.getSector().getFaction(ChatterDataManager.getFactionFromShip(member));
+				str = StringHelper.substituteToken(str, "$enemyFaction", faction.getDisplayName());
+			}
 		} catch (Exception ex) {
 			log.warn(String.format("Error substituting text in line '%s'", text), ex);
 		}

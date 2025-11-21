@@ -332,6 +332,9 @@ public class ChatterDataManager {
 	}
 	
 	public static String getFactionFromShip(FleetMemberAPI ship) {
+		if (ship.getFleetData() != null && ship.getFleetData().getFleet() != null) {
+			return ship.getFleetData().getFleet().getFaction().getId();
+		}
 		if (ship.getCaptain() != null && !ship.getCaptain().getFaction().isNeutralFaction()) {
 			//log.info(ship.getShipName() + " getting faction from captain: " + ship.getCaptain().getFaction().getId());
 			return ship.getCaptain().getFaction().getId();
