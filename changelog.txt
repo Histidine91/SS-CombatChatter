@@ -1,3 +1,12 @@
+Version 1.15.1
+
+* Chatter characters can be assigned from LunaLib's refit additional options
+* Add enemy-related line substitutions (commander, flagship and faction)
+* Refactor ignored ship handling; allow ignoring by variant tag
+* Floating text lifetime based on text length; font size configurable in LunaLib mod settings
+* Fix a few typos
+* Clean up some errorlogging
+
 Version 1.15.0
 * Update for Starsector 0.98
 * Add a system for intro splashes when fighting a faction for the first time
@@ -29,49 +38,3 @@ Version 1.14.0
 * Add SotF Taken, LOST_SECTOR Enigma, and RAT abyssal factions to `noEnemyChatterFactions` 
     * Deep abyssal faction also gets intro splash
 * Fix a couple of under-the-hood bugs
-
-Version 1.13.2
-
-* Compatibility with Starsector 0.96, MagicLib 1.0.0 and LunaLib 1.7.0
-* Remove minor log spam
-
-Version 1.13.1
-
-* Fix ingame changes in Luna config not applying
-* Fix player name substitution
-
-Version 1.13
-
-=== New characters ===
-Thanks to Zumberge and Bulletkin for most of these.
-* sunrider_lynn
-* tf2_engineer
-* hl1_barney
-* hl1_scientist
-* ruina_binah
-* ruina_chesed
-* ruina_gebura
-* ruina_hod
-* ruina_hokma
-* ruina_malkuth
-* ruina_myo
-* ruina_netzach
-* ruina_roland
-* ruina_tiphereth
-* ruina_yesod
-* warframe_cephaloncy
-* roman
-* binary
-* shortphrases
-* salvager
-* sophisticated
-* hotshot
-* passionate
-
-=== Other functionality ===
-* Settings can be modified ingame with LunaLib
-* Try to handle Starsector UI scaling
-* SetChatterChar command no longer requires exact character ID match
-* Can substitute officer name, player name, and ship name/class into chatter lines
-* Don't load blank CSV entries
-* Some line additions
