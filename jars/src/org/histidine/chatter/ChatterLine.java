@@ -5,6 +5,8 @@ import com.fs.starfarer.api.campaign.FactionAPI;
 import com.fs.starfarer.api.characters.FullName;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Factions;
+import com.fs.starfarer.api.impl.campaign.ids.Ranks;
 import com.fs.starfarer.api.mission.FleetSide;
 import org.apache.log4j.Logger;
 import org.histidine.chatter.combat.ChatterCombatPlugin;
@@ -47,14 +49,21 @@ public class ChatterLine {
 	public String getSubstitutedLine(PersonAPI person, FleetMemberAPI member) {
 		String str = text;
 		try {
+			ChatterCombatPlugin combatPlugin = ChatterCombatPlugin.getInstance();
+			FleetSide side = null;
+			if (combatPlugin != null) {
+				side = combatPlugin.getSideForMember(member);
+			}
+
 			if (person != null) {
+				String first = person.getName().getFirst();
 				String last = person.getName().getLast();
-				if (last == null || last.isEmpty()) last = person.getName().getFirst();
+				if (last == null || last.isEmpty()) last = first;
 				str = StringHelper.substituteToken(str, "$officerName", person.getNameString());
 				str = StringHelper.substituteToken(str, "$officerLastName", last);
 				str = StringHelper.substituteToken(str, "$officerSurname", last);
-				str = StringHelper.substituteToken(str, "$officerFirstName", person.getName().getFirst());
-				str = StringHelper.substituteToken(str, "$officerGivenName", person.getName().getFirst());
+				str = StringHelper.substituteToken(str, "$officerFirstName", first);
+				str = StringHelper.substituteToken(str, "$officerGivenName", first);
 				str = StringHelper.substituteToken(str, "$officerFaction", person.getFaction().getDisplayName());
 				str = StringHelper.substituteToken(str, "$officerRank", person.getRank());
 			}
@@ -70,22 +79,35 @@ public class ChatterLine {
 			PersonAPI player = Global.getSector().getPlayerPerson();
 			if (player != null)
 			{
+				String first = player.getName().getFirst();
 				String last = player.getName().getLast();
-				if (last == null || last.isEmpty()) last = player.getName().getFirst();
+				if (last == null || last.isEmpty()) last = first;
 				str = StringHelper.substituteToken(str, "$playerName", player.getNameString());
 				str = StringHelper.substituteToken(str, "$playerLastName", last);
 				str = StringHelper.substituteToken(str, "$playerSurname", last);
-				str = StringHelper.substituteToken(str, "$playerFirstName", player.getName().getFirst());
-				str = StringHelper.substituteToken(str, "$playerGivenName", player.getName().getFirst());
-				str = StringHelper.substituteToken(str, "$playerHonorific", Global.getSector().getCharacterData().getHonorific());
-
+				str = StringHelper.substituteToken(str, "$playerFirstName", first);
+				str = StringHelper.substituteToken(str, "$playerGivenName", first);
+				String honorific = null;
+				if (Global.getSector().getCharacterData() != null) {
+					honorific = Global.getSector().getCharacterData().getHonorific();
+				}
+				if (honorific == null) honorific = getHonorific(player);
+				str = StringHelper.substituteToken(str, "$playerHonorific", honorific);
 			}
 			PersonAPI commander = member.getFleetCommander();
+			if (commander == null && side != null) {
+				commander = combatPlugin.getCommanderForSide(side);
+			}
 			if (commander != null)
 			{
+				String first = commander.getName().getFirst();
+				String last = commander.getName().getLast();
+				if (last == null || last.isEmpty()) last = first;
 				str = StringHelper.substituteToken(str, "$commanderName", commander.getNameString());
-				str = StringHelper.substituteToken(str, "$commanderLastName", commander.getName().getLast());
-				str = StringHelper.substituteToken(str, "$commanderFirstName", commander.getName().getFirst());
+				str = StringHelper.substituteToken(str, "$commanderLastName", last);
+				str = StringHelper.substituteToken(str, "$commanderSurname", last);
+				str = StringHelper.substituteToken(str, "$commanderFirstName", first);
+				str = StringHelper.substituteToken(str, "$commanderGivenName", first);
 				str = StringHelper.substituteToken(str, "$commanderRank", commander.getRank());
 				str = StringHelper.substituteToken(str, "$commanderFaction", commander.getFaction().getDisplayName());
 				str = StringHelper.substituteToken(str, "$commanderHonorific", getHonorific(commander));
@@ -98,11 +120,9 @@ public class ChatterLine {
 			String enemyFaction = null;
 			PersonAPI enemyCommander = null;
 			FleetMemberAPI enemyFlagship = null;
-			ChatterCombatPlugin combatPlugin = ChatterCombatPlugin.getInstance();
 			if (combatPlugin != null) {
-				FleetSide ourSide = combatPlugin.getSideForMember(member);
-				if (ourSide != null) {
-					FleetSide enemy = ChatterCombatPlugin.getEnemySide(ourSide);
+				if (side != null) {
+					FleetSide enemy = ChatterCombatPlugin.getEnemySide(side);
 					enemyCommander = combatPlugin.getCommanderForSide(enemy);
 					enemyFlagship = combatPlugin.getFlagshipForSide(enemy);
 					if (enemyFlagship != null) {
@@ -113,9 +133,14 @@ public class ChatterLine {
 
 			if (enemyCommander != null)
 			{
-				str = StringHelper.substituteToken(str, "$enemyCommanderName", enemyCommander.getNameString());
-				str = StringHelper.substituteToken(str, "$enemyCommanderLastName", enemyCommander.getName().getLast());
-				str = StringHelper.substituteToken(str, "$enemyCommanderFirstName", enemyCommander.getName().getFirst());
+				String first = enemyCommander.getName().getFirst();
+				String last = enemyCommander.getName().getLast();
+				if (last == null || last.isEmpty()) last = first;
+				str = StringHelper.substituteToken(str, "$enemyCommanderName", commander.getNameString());
+				str = StringHelper.substituteToken(str, "$enemyCommanderLastName", last);
+				str = StringHelper.substituteToken(str, "$enemyCommanderSurname", last);
+				str = StringHelper.substituteToken(str, "$enemyCommanderFirstName", first);
+				str = StringHelper.substituteToken(str, "$enemyCommanderGivenName", first);
 				str = StringHelper.substituteToken(str, "$enemyCommanderRank", enemyCommander.getRank());
 				str = StringHelper.substituteToken(str, "$enemyCommanderFaction", enemyCommander.getFaction().getDisplayName());
 				str = StringHelper.substituteToken(str, "$enemyCommanderHonorific", getHonorific(enemyCommander));
@@ -127,7 +152,7 @@ public class ChatterLine {
 				str = StringHelper.substituteToken(str, "$enemyFlagshipSizeClass", StringHelper.getString(enemyFlagship.getHullSpec().getHullSize().toString().toLowerCase()));
 			}
 			if (enemyFaction != null) {
-				FactionAPI faction = Global.getSector().getFaction(ChatterDataManager.getFactionFromShip(member));
+				FactionAPI faction = Global.getSector().getFaction(enemyFaction);
 				str = StringHelper.substituteToken(str, "$enemyFaction", faction.getDisplayName());
 			}
 		} catch (Exception ex) {
