@@ -39,6 +39,7 @@ public class ChatterDataManager {
 	public static final String FACTION_SPLASH_FILE = CONFIG_DIR + "faction_first_encounter_splash.csv";
 	public static final String CHARACTER_MEMORY_KEY = "$chatterChar";
 	public static final String FACTION_MEMKEY_SHOWN_INTRO_BEFORE = "$chatter_shownIntro";
+    public static final String PORTRAIT_DIR = "graphics/portraits/";
 	
 	public static final List<ChatterCharacter> CHARACTERS = new ArrayList<>();
 	public static final Map<String, ChatterCharacter> CHARACTERS_MAP = new HashMap<>();
@@ -137,6 +138,12 @@ public class ChatterDataManager {
 					character.talkativeness = (float)characterEntry.optDouble("talkativeness", 1);
 					character.categoryTags = new HashSet<>(GeneralUtils.JSONArrayToStringList(characterEntry.optJSONArray("categoryTags")));
 					character.isDefault = character.categoryTags.contains("default");
+
+                    character.portrait = characterEntry.optString("portrait","noenfp"); // noenfp = no enforced portrait
+
+                    if (character.portrait != "noenfp") {
+                        Global.getSettings().loadTexture(PORTRAIT_DIR + character + ".png");
+                    }
 					
 					JSONObject lines = characterEntry.getJSONObject("lines");
 					Iterator<?> keys = lines.keys();
@@ -260,8 +267,8 @@ public class ChatterDataManager {
 					FACTION_FIRST_ENCOUNTER_SPLASHES.put(factionId, def);
 				} catch (JSONException ex) {}
 			}
-			
-		} catch (IOException | JSONException ex) {	// can't read CSV
+
+        } catch (IOException | JSONException ex) {	// can't read CSV
 			log.error(ex);
 		}
 		
@@ -695,6 +702,9 @@ public class ChatterDataManager {
 	{
 		// save to person's memory
 		person.getMemoryWithoutUpdate().set(CHARACTER_MEMORY_KEY, character);
+        if (getCharacterData(character).portrait != "") {
+            person.setPortraitSprite(getCharacterData(character).portrait);
+        }
 		
 		// save to used characters map in persistent data
 		Map<String, Object> data = Global.getSector().getPersistentData();

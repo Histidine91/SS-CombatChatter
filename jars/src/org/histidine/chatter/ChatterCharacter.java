@@ -21,4 +21,5 @@ public class ChatterCharacter {
 	public boolean allowedForAI;
 	public final Map<MessageType, List<ChatterLine>> lines = new HashMap<>();
 	public boolean isDefault = false;
+	public String portrait; // inshallah it will work
 }
