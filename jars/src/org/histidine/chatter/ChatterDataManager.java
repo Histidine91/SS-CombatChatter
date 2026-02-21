@@ -175,6 +175,8 @@ public class ChatterDataManager {
 					throw new RuntimeException("Error loading chatter character" + characterId + ", file missing?", rex);
 				}
 			}
+
+			Collections.sort(CHARACTERS);
 			
 			// map for officer names getting specific characters
 			debugPrint("Loading officer name to character file map");
