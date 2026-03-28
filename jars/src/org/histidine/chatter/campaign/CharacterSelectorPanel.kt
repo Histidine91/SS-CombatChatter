@@ -86,12 +86,14 @@ class CharacterSelectorPanel(var person: PersonAPI) {
             var ratio = FuzzySearch.extractOne(searchText, listOf(character.name, character.id))
             if (searchText != "" && ratio.score <= 55) continue
 
+            val name = String.format("%s  [%s]", character.name, character.id)
+
             element.addLunaElement(width - 10, 30f).apply {
                 enableTransparency = true
                 backgroundAlpha = 0.5f
                 if (currentCharacter == character) backgroundAlpha = 1f
                 borderAlpha = 0.5f
-                addText(character.name, baseColor = Misc.getBasePlayerColor())
+                addText(name, baseColor = Misc.getBasePlayerColor())
                 centerText()
 
                 onClick {
