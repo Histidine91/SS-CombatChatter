@@ -1,0 +1,74 @@
+{
+	"name":"Renu Rewa",
+	"personalities":["aggressive", "reckless"],
+	"gender":["f",],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "menace"],
+	
+	"lines":{
+		"start":[
+			{"text":"I can kill from anywhere."},
+			{"text":"Kut-ta spotted."},
+			{"text":"Out of my fucking way, I've an exam to pass!"},
+			{"text":"Every kut-ta that has it coming... will get it."},
+		],
+		"start_boss":[
+			{"text":"Rip that asura apart!"},
+			{"text":"Wreck that rakshasa!"},
+		],		
+		"retreat":[
+		],
+		"out_of_missiles":[
+			{"text":"Recalibrating sights!"},
+		],
+		"engaged":[
+			{"text":"Bring in MORE!"},
+			{"text":"Very good, fuck them up!"},
+			{"text":"Now put them out of their misery!"},	
+		],
+		"need_help":[
+			{"text":"Again, I need bigger guns!"},
+		],
+		"pursuing":[
+			{"text":"Come out, little kut-ta..."},
+			{"text":"Engines engaged."},
+			{"text":"Let me have them."},
+		],
+		"running":[
+			{"text":"Action on all sides, I will continue to fight from another position!"},
+			{"text":"Captain, this position is compromised! Relocating now!"},
+		],
+		"hull_90":[
+			{"text":"Taking some heat here!"},
+			{"text":"Armor’s holding!"},
+			{"text":"These scars aren't for show."},
+		],
+		"hull_50":[
+			{"text":"Keep trying, kut-ta."},
+			{"text":"Kut-ta, I can't stay here much longer!"},
+		],
+		"hull_30":[
+			{"text":"Modules... damaged!"},
+			{"text":"Holes in the hull!"},
+			{"text":"Ventilating smoke!"},
+		],
+		"overload":[
+			{"text":"Reassess the situation, Captain!"},
+			{"text":"Fucking kut-ta!"},
+		],
+		"death":[
+			{"text":"They... keep... coming..."},
+		],
+		"victory":[
+			{"text":"So many dead kut-ta. So many good memories."},
+			{"text":"I feel rested and recuperated."},
+			{"text":"Which of you wants it next?"},
+			{"text":"Great work, kill all the kut-ta!"},
+		],
+		"victory_boss":[
+			{"text":"So many dead kut-ta... BUT NOT ENOUGH."},
+			{"text":"I am acing every PT test, Captain!"},
+		],
+	}
+}

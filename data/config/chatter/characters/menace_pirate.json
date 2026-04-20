@@ -1,0 +1,84 @@
+{
+	"name":"MENACE Pirate",
+	"personalities":["aggressive", "reckless"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "menace"],
+	
+	"lines":{
+		"start":[
+			{"text":"You're looking at ten thousand hours!"},
+			{"text":"My dogs eat better than you!"},
+			{"text":"Should've never come here!"},
+			{"text":"Can't wait to kill you!"},
+			{"text":"I'm gonna kick you in your trinket nuts!"},
+			{"text":"You're about to get touched!"},
+			{"text":"You're now manually breathing ah-ha!"},
+		],
+		"start_boss":[
+			{"text":"It's about to get... UNCOMFORTABLE."},
+			{"text":"Kill me if you dare!"},
+			{"text":"I'm a sapiosexual, killing you gets me off!"},
+			{"text":"You've been programmed to care about shit that doesn’t matter!"},
+		],
+		"retreat":[
+			{"text":"I'm out!"},
+			{"text":"Run, run for our lives!"},
+			{"text":"What is a trinket worth, really?"},
+		],
+		"out_of_missiles":[
+			{"text":"Wait, they're not dead."},
+		],
+		"engaged":[
+			{"text":"Trinketsss..."},
+			{"text":"Miss home yet?"},
+			{"text":"You SHOULD be scared!"},
+			{"text":"Ventilate these motherfuckers!"},
+		],
+		"need_help":[
+			{"text":"We're just joking!"},
+			{"text":"We come in peace!"},
+			{"text":"Don't freak out!"},
+		],
+		"pursuing":[
+			{"text":"Hey, the battle's over HERE!"},
+			{"text":"Sweating, aintcha?"},
+			{"text":"You're never going home!"},
+		],
+		"running":[
+			{"text":"Those breakfast pancakes were a mistake."},
+			{"text":"Hopping and scotching!"},	
+		],
+		"hull_90":[
+			{"text":"Why so hostile?!"},
+			{"text":"What did we ever do to you?"},
+			{"text":"Trinketing ain't easy!"},
+		],
+		"hull_50":[
+			{"text":"This is REAL!"},
+			{"text":"Not having a good time!"},
+			{"text":"Lick my sack!"},
+		],
+		"hull_30":[
+			{"text":"Fuck trinkets!"},
+			{"text":"Oh man, oh god!"},
+			{"text":"Everything suddenly sucks!"},
+		],
+		"overload":[
+			{"text":"Are we still in this?"},
+			{"text":"Aaahh they're shooting us!"},
+			{"text":"Pause pause!"},
+		],
+		"death":[
+			{"text":"SOMEONE CALL MOM!!"},
+			{"text":"AAAAGHH!"},
+		],
+		"victory":[
+			{"text":"WHAT A LOVELY DAY!"},
+			{"text":"MEN OF STEAL!"},
+		],
+		"victory_boss":[
+		],
+	}
+}

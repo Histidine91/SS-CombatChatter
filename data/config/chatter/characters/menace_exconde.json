@@ -1,0 +1,83 @@
+{
+	"name":"Gabriel Exconde",
+	"personalities":["cautious","steady","aggressive"],
+	"gender":["m"],
+	"chance":1,
+	"talkativeness":1,
+	"categoryTags":["othermedia", "game", "menace"],
+	
+	"lines":{
+		"start":[
+			{"text":"The contracts are good, life is good, God is great."},
+			{"text":"All evil will be vanquished!"},
+			
+		],
+		"start_boss":[
+			{"text":"God’s grace clothes me in IMMENSE power!"},
+			{"text":"This is a dark place, but the light of God shall guide us."},
+			{"text":"Are you from Hell?"},
+		],		
+		"retreat":[
+			{"text":"If God willed it, then so be it."},
+		],
+		"out_of_missiles":[
+			{"text":"Put not your faith in those weapons, Captain, keep your faith in US."},
+		],
+		"engaged":[
+			{"text":"I shall pray for all those I am killing!"},
+			{"text":"Repent, sinner!"},
+			{"text":"Through me, God strikes!"},
+			{"text":"My hand is guided!"},
+			{"text":"God's warriors SHOULD be feared!"},
+			
+		],
+		"need_help":[
+			{"text":"There is far too much agony in this garden."},
+			{"text":"Hail Mary, full of grace, the Lord is with thee..."},
+		],
+		"pursuing":[
+			{"text":"God shall see to us all, but I shall see to our enemies first."},
+			{"text":"May the Lord open their hearts before I do."},
+			{"text":"Hellfire awaits you!"}
+		],
+		"running":[
+			{"text":"If you're going to run, run to church!"},
+			{"text":"God wills it that I find safety!"},
+		],
+		"hull_90":[
+			{"text":"Keeping faith."},
+			{"text":"Best start praying."},
+			{"text":"God is with me."},
+		],
+		"hull_50":[
+			{"text":"Yes, God, give me the burdens! Give me the weight! I can take it!"},
+			{"text":"Still here, Lord..."},
+		],
+		"hull_30":[
+			{"text":"Hell has breached my hull!"},
+			{"text":"There is Hell in the hull!"},
+		],
+		"overload":[
+			{"text":"Try and test my faith."},
+			{"text":"Maintain faith, and maintain course!"},
+			{"text":"Blessed be my armor!"},
+		],
+		"death":[
+			{"text":"Argh…! I am ready to meet my maker."},
+			{"text":"Heaven… awaits…"},
+		],
+		"victory":[
+			{"text":"I do what He asks of me."},
+			{"text":"All through God, friend."},
+			{"text":"Dust to dust."},
+			{"text":"All flesh is grass."},
+			{"text":"Rest, ye wicked."},
+			{"text":"Death takes my enemies!"},
+			{"text":"To the realm of the dead with you."},
+		],
+		"victory_boss":[
+			{"text":"Through God, nothing can stop us!"},
+			{"text":"God is ALWAYS with me!"}
+		],
+	}
+}
