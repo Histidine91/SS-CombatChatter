@@ -4,9 +4,10 @@
 	
 	"chatter_boxFont":"graphics/fonts/insignia16a.fnt",
 	"chatter_introFont":"graphics/fonts/orbitron24aabold.fnt",
-	"chatter_boxPortraitSizeMult":1,
+	"chatter_boxPortraitSizeMult":1,	# base size is 32x32
 	"chatter_boxFontSize":16,
 	"chatter_floaterFontSize":32,
+	"chatter_enableFloatingMessages":true,	# if false, messages that would've been printed as floating text just won't appear
 	
 	"chatter_renameBounties":true,
 

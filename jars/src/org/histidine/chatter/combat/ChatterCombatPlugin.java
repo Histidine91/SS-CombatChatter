@@ -543,6 +543,8 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 		
 		boolean enemy = stateData.isEnemy;
 		boolean floater = enemy || isFloatingMessage(category);
+
+		if (floater && !Global.getSettings().getBoolean("chatter_enableFloatingMessages")) return false;
 		
 		if (!floater && !meetsPriorityThreshold(member, category))
 		{
