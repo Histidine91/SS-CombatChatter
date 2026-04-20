@@ -16,7 +16,10 @@
 		"fleetIntroBracketStart":"\\\\ ",
 		"fleetIntroBracketEnd":" \\\\",
 		
-		"refitButton":"Set chatter character"
+		"refitButton":"Set chatter character",
+		"refitButtonTooltip_defaultCaptain":"Note: This is a generic captain, who will be replaced (along with their saved character) if the ship is stored or a new officer is assigned.",
+		"refitHeaderSearch": "Search",
+		"refitHeaderCharacters": "Characters"
 	},
 	
 	"chatter_lunaSettings":{

@@ -9,6 +9,7 @@ import lunalib.lunaExtensions.addLunaElement
 import lunalib.lunaExtensions.addLunaTextfield
 import me.xdrop.fuzzywuzzy.FuzzySearch
 import org.histidine.chatter.ChatterDataManager
+import org.histidine.chatter.utils.StringHelper
 
 // Adapted from CombatChatterSelector in Random Assortment of Things (RAT)
 class CharacterSelectorPanel(var person: PersonAPI) {
@@ -35,7 +36,7 @@ class CharacterSelectorPanel(var person: PersonAPI) {
         basePanel!!.addUIElement(searchElement)
         searchElement!!.position.inTL(0f, 0f)
 
-        searchElement!!.addSectionHeading("Search", Alignment.MID, 0f)
+        searchElement!!.addSectionHeading(StringHelper.getString("chatter_general", "refitHeaderSearch"), Alignment.MID, 0f)
         searchElement!!.addSpacer(3f)
 
         var textfield = searchElement!!.addLunaTextfield(searchText, false, width - 10, 30f)
@@ -55,9 +56,7 @@ class CharacterSelectorPanel(var person: PersonAPI) {
          */
 
         searchElement!!.addSpacer(3f)
-        searchElement!!.addSectionHeading("Characters", Alignment.MID, 0f)
-
-
+        searchElement!!.addSectionHeading(StringHelper.getString("chatter_general", "refitHeaderCharacters"), Alignment.MID, 0f)
 
         refresh()
     }
