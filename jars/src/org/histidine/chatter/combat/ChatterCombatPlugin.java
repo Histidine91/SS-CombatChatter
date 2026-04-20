@@ -156,6 +156,10 @@ public class ChatterCombatPlugin implements EveryFrameCombatPlugin {
 	public List<ChatterListener> getListeners() {
 		return chatterListeners;
 	}
+
+	public Map<FleetMemberAPI, Boolean> getIgnoredMap() {
+		return ignore;
+	}
 	
 	protected float getRandomForStringSeed(String seed)
 	{
