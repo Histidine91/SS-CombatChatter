@@ -2,7 +2,7 @@
 
 Combat Chatter is a mod for the game [Starsector](http://fractalsoftworks.com). It adds some dialog lines for NPC ships in battles.
 
-Current release version: v1.15.1
+Current release version: v1.15.2
 
 ### Setup instructions ###
 Create a project with `Combat Chatter/jars/src` as a source folder to compile the Java files. This is required to use the mod.

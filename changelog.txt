@@ -1,16 +1,29 @@
+Version 1.15.2
+
+* Character picker in refit additional options has some sorting; shows character IDs; can be used on non-officered ships
+    * The generic officers are replaced when ship is stored or a 'real' officer is assigned and unassigned, so chatter character will also need to be repicked in that case
+* Add characters: menace_pirate, menace_rewa, menace_exconde
+* Add settings.json toggle for floating text
+* Threat and Dweller marked as no-chatter factions
+* Other scripts/mods can access the ignored ships map in combat plugin
+
+
 Version 1.15.1
 
 * Chatter characters can be assigned from LunaLib's refit additional options
 * Add enemy-related line substitutions (commander, flagship and faction)
 * Refactor ignored ship handling; allow ignoring by variant tag
 * Floating text lifetime based on text length; font size configurable in LunaLib mod settings
+* Disable enemy chatter for Threat and Dweller (for now?)
 * Fix a few typos
-* Clean up some errorlogging
+* Clean up some error logging
+
 
 Version 1.15.0
 * Update for Starsector 0.98
 * Add a system for intro splashes when fighting a faction for the first time
 * Fix overload and out-of-missile messages being filtered out
+
 
 Version 1.14.2
 
@@ -18,6 +31,7 @@ Version 1.14.2
 * Add config options to resize chatter box portrait and font
 * Replace most cases of "sir" in dialog lines with the commander's honorific (including non-player commanders)
 * Fix chatter box portrait offset with UI scaling again
+
 
 Version 1.14.1
 
@@ -27,6 +41,7 @@ Version 1.14.1
 * Characters can use $playerHonorific token in their lines
 
 Thanks to Bjarl for the SoaSE characters and the new functionality.
+
 
 Version 1.14.0
 
